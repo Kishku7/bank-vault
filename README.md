@@ -13,12 +13,12 @@ everything you own, sorted and searchable.
 
 ### One vault, (almost) everything
 
-Open the vault and you get a **full-screen, creative-style browser** of your entire stock —
-**13 categories** (Wood, Copper, Colored, Blocks, Items, Food, Equipment, Redstone, Enchanting,
-Transportation, Dyes, Misc, Uncategorized) with live counts, a scrollable item grid, and
-per-category **smart sorting**: sort by item *family*, by *type* (all planks together, all slabs
-together…), alphabetically, or by quantity. Tools sort by material tier, food by its core name
-("Raw Beef" and "Cooked Beef" file under **B**), wood by species, copper by oxidation, dyes by color.
+Open the vault and you get a **full-screen, creative-style browser** of your entire stock, split
+across **category tabs** with live counts and a scrollable item grid. Each tab carries its own
+**smart sorting** — sort by family, by type (all the planks together, all the slabs together…),
+alphabetically, or by quantity. Tools fall into line by material tier, food sorts by its core name
+("Raw Beef" and "Cooked Beef" both file under **B**) — the ordering actually understands what
+it's looking at.
 
 ### Quick-unload, recursively
 
@@ -41,15 +41,15 @@ to deposit**, click an item in the grid to **withdraw** a stack.
 
 ### Capacity you earn
 
-A freshly-formed vault holds **2,048** items. Feed **chests** into the upgrade slot and the ceiling
-climbs a back-loaded exponential curve to a maximum of **20,000,000** — and it always beats simply
-placing the same chests on the ground. Only the *count* of chests matters, never their position.
+A freshly-formed vault holds a humble stockpile. Feed **chests** into the upgrade slot and the
+ceiling climbs an accelerating curve — only the *count* of chests matters, never their position.
+How many upgrades do you think will be enough?
 
-### Shared vaults
+### Shared vaults — guild and team ready
 
 Invite other players with `/bank invite <name|UUID>`. Four permission levels (Owner, Master, Member,
-Deposit-only), vault **merging**, owner **succession**, and the usual kick/leave/transfer/disband —
-all command-driven.
+Deposit-only), vault **merging**, owner **succession**, and the usual kick/leave/transfer/disband.
+Run a guild bank, a team stockpile, or a shared base supply — all command-driven.
 
 ---
 
@@ -57,7 +57,8 @@ all command-driven.
 
 - **Hopper input on every face** — point a hopper at any block of the vault and it feeds straight in.
   Automate your sorting once and forget it.
-- **Late-game by design** — the structure costs **33 iron blocks** (297 ingots) to build out.
+- **Affordable early** — it's a 3×3 of iron. Anyone with iron gear can gather what they need, and if
+  you've built an iron farm you'll have the vault standing long before you set foot in the Nether.
 - **Inert when broken** — pull a block and the vault locks; your items are safe in storage until you
   repair the 3×3. Nothing is lost.
 - **Per-player data** stored as plain JSON under `config/bankvault/` — readable, backup-friendly,
@@ -96,4 +97,4 @@ internals. Bug reports and ideas welcome.
 
 ---
 
-*By Kishku7 · built with [TechPro](https://example.invalid).*
+*By Kishku7.*
