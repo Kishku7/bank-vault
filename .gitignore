@@ -34,3 +34,7 @@ run-pid.txt
 *.bak
 .DS_Store
 Thumbs.db
+
+# Planning / design docs — kept local, not shipped
+plan/
+docs/
