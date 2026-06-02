@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "front": "bankvault:block/center_front",
+    "metal": "bankvault:block/vault_metal",
+    "particle": "bankvault:block/vault_metal"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#front",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#front",
+          "cullface": "south"
+        },
+        "east": {
+          "texture": "#metal",
+          "cullface": "east"
+        },
+        "west": {
+          "texture": "#metal",
+          "cullface": "west"
+        },
+        "up": {
+          "texture": "#metal",
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#metal",
+          "cullface": "down"
+        }
+      }
+    }
+  ]
+}

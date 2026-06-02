@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": "minecraft:iron_block"
+  },
+  "result": {
+    "id": "bankvault:bank_vault",
+    "count": 2
+  }
+}

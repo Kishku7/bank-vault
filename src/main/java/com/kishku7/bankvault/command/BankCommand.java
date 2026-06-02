@@ -1,0 +1,203 @@
+package com.kishku7.bankvault.command;
+
+import com.kishku7.bankvault.vault.Bank;
+import com.kishku7.bankvault.vault.BankManager;
+import com.kishku7.bankvault.vault.VaultCapacity;
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+/** {@code /bank} — manage your bank vault group and stored items. */
+public final class BankCommand {
+
+    private BankCommand() {}
+
+    private interface MemberOp { String apply(ServerPlayer actor, UUID targetId, String targetName); }
+
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+        dispatcher.register(Commands.literal("bank")
+                .executes(c -> info(c.getSource()))
+                .then(Commands.literal("list").executes(c -> list(c.getSource())))
+                .then(Commands.literal("invite")
+                        .then(Commands.argument("player", StringArgumentType.word()).suggests(BankCommand::players)
+                                .executes(c -> invite(c.getSource(), StringArgumentType.getString(c, "player"), 2))
+                                .then(Commands.argument("level", IntegerArgumentType.integer(1, 3))
+                                        .executes(c -> invite(c.getSource(), StringArgumentType.getString(c, "player"),
+                                                IntegerArgumentType.getInteger(c, "level"))))))
+                .then(Commands.literal("accept").executes(c -> accept(c.getSource())))
+                .then(Commands.literal("decline").executes(c -> simple(c.getSource(), BankManager::decline)))
+                .then(Commands.literal("leave").executes(c -> simple(c.getSource(), BankManager::leave)))
+                .then(Commands.literal("disband").executes(c -> simple(c.getSource(), BankManager::disband)))
+                .then(Commands.literal("upgrade")
+                        .executes(c -> upgrade(c.getSource())))
+                .then(Commands.literal("withdraw")
+                        .then(Commands.argument("count", IntegerArgumentType.integer(1))
+                                .then(Commands.argument("item", StringArgumentType.greedyString())
+                                        .executes(c -> withdraw(c.getSource(),
+                                                IntegerArgumentType.getInteger(c, "count"),
+                                                StringArgumentType.getString(c, "item"))))))
+                .then(Commands.literal("setlevel")
+                        .then(Commands.argument("player", StringArgumentType.word()).suggests(BankCommand::players)
+                                .then(Commands.argument("level", IntegerArgumentType.integer(1, 3))
+                                        .executes(c -> withTarget(c.getSource(), StringArgumentType.getString(c, "player"),
+                                                (a, id, n) -> BankManager.setLevel(a, id, n, IntegerArgumentType.getInteger(c, "level")))))))
+                .then(Commands.literal("kick")
+                        .then(Commands.argument("player", StringArgumentType.word()).suggests(BankCommand::players)
+                                .executes(c -> withTarget(c.getSource(), StringArgumentType.getString(c, "player"), BankManager::kick))))
+                .then(Commands.literal("transfer")
+                        .then(Commands.argument("player", StringArgumentType.word()).suggests(BankCommand::players)
+                                .executes(c -> withTarget(c.getSource(), StringArgumentType.getString(c, "player"), BankManager::transfer)))));
+    }
+
+    private interface SimpleOp { String apply(ServerPlayer p); }
+
+    private static int simple(CommandSourceStack src, SimpleOp op) {
+        ServerPlayer p = src.getPlayer();
+        return p == null ? 0 : send(p, op.apply(p));
+    }
+
+    private static int info(CommandSourceStack src) {
+        ServerPlayer p = src.getPlayer();
+        if (p == null) return 0;
+        Bank bank = BankManager.getOrCreate(p);
+        StringBuilder sb = new StringBuilder("§6[Bank Vault]§r ");
+        sb.append(String.format("%,d/%,d items · %d unique · upgrades %d/64. Members: ",
+                bank.totalItems(), VaultCapacity.capacityFor(bank.upgradeCount), bank.uniqueItems(), bank.upgradeCount));
+        for (Bank.Member m : bank.members) sb.append(m.name).append("(").append(BankManager.levelName(m.level)).append(") ");
+        return send(p, sb.toString().trim());
+    }
+
+    private static int list(CommandSourceStack src) {
+        ServerPlayer p = src.getPlayer();
+        if (p == null) return 0;
+        Bank bank = BankManager.getOrCreate(p);
+        if (bank.items.isEmpty()) return send(p, "§6[Bank Vault]§r (empty)");
+        send(p, "§6[Bank Vault]§r contents:");
+        int shown = 0;
+        for (Map.Entry<String, Long> e : bank.items.entrySet()) {
+            if (shown++ >= 40) { send(p, "§7…and " + (bank.items.size() - 40) + " more."); break; }
+            send(p, String.format("§7- §f%s §7x §e%,d", e.getKey(), e.getValue()));
+        }
+        return 1;
+    }
+
+    private static int invite(CommandSourceStack src, String name, int level) {
+        ServerPlayer actor = src.getPlayer();
+        if (actor == null) return 0;
+        UUID id = resolveId(src, name);
+        if (id == null) return send(actor, "§cPlayer not found: " + name);
+        send(actor, BankManager.invite(actor, id, name, level));
+        ServerPlayer target = src.getServer().getPlayerList().getPlayerByName(name);
+        if (target != null) {
+            send(target, "§6[Bank Vault]§r " + actor.getGameProfile().name()
+                    + " invites you to be a " + BankManager.levelName(level)
+                    + " of their bank vault. §e/bank accept§r or §e/bank decline§r.");
+        }
+        return 1;
+    }
+
+    private static int accept(CommandSourceStack src) {
+        ServerPlayer p = src.getPlayer();
+        if (p == null) return 0;
+        BankManager.AcceptResult r = BankManager.accept(p);
+        send(p, r.message());
+        int ex = r.excessChests();
+        while (ex > 0) {
+            int n = Math.min(64, ex);
+            ItemStack chests = new ItemStack(Items.CHEST, n);
+            if (!p.getInventory().add(chests)) p.drop(chests, false);
+            ex -= n;
+        }
+        return r.ok() ? 1 : 0;
+    }
+
+    private static int upgrade(CommandSourceStack src) {
+        ServerPlayer p = src.getPlayer();
+        if (p == null) return 0;
+        Bank bank = BankManager.lookup(p.getUUID());
+        if (bank == null) return send(p, "§cYou don't belong to a bank.");
+        if (bank.levelOf(p.getUUID()) < BankManager.MASTER) return send(p, "§cOnly Bank Masters or the Owner can add upgrades.");
+        ItemStack hand = p.getMainHandItem();
+        if (hand.getItem() != Items.CHEST) return send(p, "§cHold a stack of chests, then run §e/bank upgrade§c.");
+        int room = VaultCapacity.MAX_UPGRADES - bank.upgradeCount;
+        if (room <= 0) return send(p, "§cThis bank is already at the 64-upgrade cap.");
+        int add = Math.min(room, hand.getCount());
+        hand.shrink(add);
+        bank.upgradeCount += add;
+        BankManager.save(bank);
+        return send(p, String.format("§aAdded %d upgrade(s) — now %d/64, capacity %,d items.",
+                add, bank.upgradeCount, VaultCapacity.capacityFor(bank.upgradeCount)));
+    }
+
+    private static int withdraw(CommandSourceStack src, int count, String itemArg) {
+        ServerPlayer p = src.getPlayer();
+        if (p == null) return 0;
+        Bank bank = BankManager.lookup(p.getUUID());
+        if (bank == null) return send(p, "§cYou don't belong to a bank.");
+        if (bank.levelOf(p.getUUID()) < BankManager.MEMBER) return send(p, "§cDeposit-only members can't withdraw.");
+        Identifier id = parseId(itemArg.trim());
+        if (id == null || !BuiltInRegistries.ITEM.containsKey(id)) return send(p, "§cUnknown item: " + itemArg);
+        String key = id.toString();
+        long taken = BankManager.withdraw(bank, key, count);
+        if (taken <= 0) return send(p, "§cNone of that item in the bank.");
+        Item item = BuiltInRegistries.ITEM.getValue(id);
+        int max = new ItemStack(item).getMaxStackSize();
+        long left = taken;
+        while (left > 0) {
+            int n = (int) Math.min(max, left);
+            ItemStack stack = new ItemStack(item, n);
+            if (!p.getInventory().add(stack)) p.drop(stack, false);
+            left -= n;
+        }
+        return send(p, String.format("§aWithdrew %,d %s.", taken, key));
+    }
+
+    private static int withTarget(CommandSourceStack src, String name, MemberOp op) {
+        ServerPlayer actor = src.getPlayer();
+        if (actor == null) return 0;
+        UUID id = resolveId(src, name);
+        if (id == null) return send(actor, "§cPlayer not found: " + name);
+        return send(actor, op.apply(actor, id, name));
+    }
+
+    private static UUID resolveId(CommandSourceStack src, String name) {
+        ServerPlayer online = src.getServer().getPlayerList().getPlayerByName(name);
+        if (online != null) return online.getUUID();
+        try { return UUID.fromString(name); } catch (IllegalArgumentException ignored) { return null; }
+    }
+
+    private static Identifier parseId(String s) {
+        String ns = "minecraft", path = s;
+        int i = s.indexOf(':');
+        if (i >= 0) { ns = s.substring(0, i); path = s.substring(i + 1); }
+        try { return Identifier.fromNamespaceAndPath(ns, path); }
+        catch (Exception e) { return null; }
+    }
+
+    private static int send(ServerPlayer p, String msg) {
+        p.sendSystemMessage(Component.literal(msg));
+        return 1;
+    }
+
+    private static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> players(
+            com.mojang.brigadier.context.CommandContext<CommandSourceStack> ctx,
+            com.mojang.brigadier.suggestion.SuggestionsBuilder builder) {
+        List<String> names = ctx.getSource().getServer().getPlayerList().getPlayers().stream()
+                .map(pl -> pl.getGameProfile().name()).toList();
+        return SharedSuggestionProvider.suggest(names, builder);
+    }
+}
