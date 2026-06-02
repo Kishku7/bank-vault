@@ -26,6 +26,7 @@ bin/
 # Build / run logs (backgrounded gradle output)
 build-out.txt
 run-out.txt
+run-pid.txt
 *.log
 
 # Temp / OS / editor cruft
