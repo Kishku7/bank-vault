@@ -105,6 +105,24 @@ public final class BankManager {
         return bank;
     }
 
+    /** True if the bank already holds this exact stack (plain id, or byte-identical prototype). */
+    public static synchronized boolean hasExact(Bank bank, ItemStack stack, RegistryAccess ra) {
+        ensure();
+        if (StackStore.isPlain(stack)) return bank.items.containsKey(StackStore.idOf(stack));
+        com.google.gson.JsonElement js = StackStore.encode(stack, ra);
+        if (js == null) return false;
+        String base = StackStore.specialKey(stack, js);
+        String key = base;
+        Bank.Special sp = bank.special.get(key);
+        int probe = 0;
+        while (sp != null) {
+            if (js.equals(sp.stack)) return true;
+            key = base + "~" + (++probe);
+            sp = bank.special.get(key);
+        }
+        return false;
+    }
+
     public static synchronized Bank lookup(UUID playerId) {
         ensure();
         String bid = index.get(playerId.toString());

@@ -48,13 +48,6 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             "_stairs","_slab","_wall","_door","_button","_sign","_planks","_log","_wood","_leaves","_sapling",
             "_carpet","_wool","_concrete","_terracotta","_bricks","_brick","_ingot","_nugget","_block","_ore",
             "_bed","_candle","_banner","_boat","_dye","_seeds","_bulb"};
-    private static final String[] TOOLTYPES={"_pickaxe","_sword","_axe","_shovel","_hoe","_helmet","_chestplate","_leggings","_boots"};
-    private static final Map<String,Integer> TIER = new HashMap<>();
-    static {
-        TIER.put("leather",0); TIER.put("wooden",0); TIER.put("chainmail",1); TIER.put("stone",1);
-        TIER.put("copper",2); TIER.put("turtle",2); TIER.put("golden",3); TIER.put("iron",4);
-        TIER.put("diamond",5); TIER.put("netherite",6);
-    }
 
     private enum SortMode { SMART_FAMILY("Smart(F)"), SMART_TYPE("Smart(T)"), ALPHA("A–Z"), COUNT("Count"); final String label; SortMode(String l){label=l;} }
 
@@ -63,7 +56,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private long capacity;
     private int permLevel;
 
-    private String selectedTab = "blocks";
+    private String selectedTab = null; // resolved to the first configured tab on init
     private SortMode sortMode = SortMode.SMART_FAMILY;
     private boolean countDesc = true;
     private int scrollRow = 0, tabScroll = 0;
@@ -119,6 +112,8 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         // Fill the screen: full vertical space at every GUI scale (no design-height cap).
         pw = Math.max(MIN_W, Math.min(DESIGN_W, this.width - 2 * MARGIN));
         // Height: just enough to fit the tab rail (or the right panel cluster), capped to the screen.
+        if (selectedTab == null || Catalog.tabs().stream().noneMatch(t -> t.id().equals(selectedTab)))
+            selectedTab = Catalog.tabs().isEmpty() ? "uncategorized" : Catalog.tabs().get(0).id();
         int tabsNeeded = Catalog.tabs().size() * 20 + 16;
         int tRowsPre = (this.menu.trinketSlotCount + 8) / 9;
         int clusterNeeded = RP_H + 6 + 18 + 14 + (tRowsPre > 0 ? tRowsPre * 18 + 4 : 0);
@@ -268,36 +263,70 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             default: return smartFamily();
         }
     }
-    private Comparator<Entry> smartFamily() {
-        switch (selectedTab) {
-            case "equipment": return Comparator.<Entry>comparingInt(e -> tier(idOf(e))).thenComparing(this::nameOf);
-            case "food": return Comparator.<Entry, String>comparing(e -> lastWord(nameOf(e))).thenComparing(this::nameOf);
-            case "colored": return Comparator.<Entry>comparingInt(e -> prefixIndex(idOf(e), COLORS)).thenComparing(this::nameOf);
-            case "wood": return Comparator.<Entry>comparingInt(e -> prefixIndex(idOf(e), WOODS)).thenComparing(this::nameOf);
-            case "copper": return Comparator.<Entry>comparingInt(e -> oxidation(idOf(e))).thenComparing(this::nameOf);
-            case "dyes": return Comparator.<Entry>comparingInt(e -> path(idOf(e)).endsWith("_dye") ? 1 : 0).thenComparing(this::nameOf);
-            default: return Comparator.comparing(this::nameOf);
+    /** SETTINGS-DRIVEN smart sort: interprets the step chain from categories.json tabSort.
+     *  Steps: "name", "form", "oxidation", "color", "firstword", "lastword",
+     *  "prefix:<list>", "tier:<list>" (ordered infix), "suffix:<list>". */
+    private Comparator<Entry> smartFamily() { return smart("family"); }
+    private Comparator<Entry> smartType() { return smart("type"); }
+    private Comparator<Entry> smart(String mode) {
+        Comparator<Entry> cmp = null;
+        for (String step : Catalog.sortSteps(selectedTab, mode)) {
+            Comparator<Entry> c;
+            if (step.equals("list")) c = Comparator.comparingInt(e -> Catalog.orderIndex(selectedTab, mode, idOf(e)));
+            else if (step.equals("name")) c = Comparator.comparing(this::nameOf);
+            else if (step.equals("form")) { String[] arr = Catalog.sortList("forms").length > 0 ? Catalog.sortList("forms") : FORMS; c = Comparator.comparingInt(e -> suffixIndex(idOf(e), arr)); }
+            else if (step.equals("oxidation")) c = Comparator.comparingInt(e -> oxidation(idOf(e)));
+            else if (step.equals("color")) c = Comparator.comparingInt(e -> { int k = Catalog.colorOf(idOf(e)); return k < 0 ? 99 : k; });
+            else if (step.equals("firstword")) c = Comparator.comparing(e -> firstWord(nameOf(e)));
+            else if (step.equals("lastword")) c = Comparator.comparing(e -> lastWord(nameOf(e)));
+            else if (step.equals("enchant")) c = Comparator.comparing(BankVaultScreen::enchantKey);
+            else if (step.equals("potion")) c = Comparator.comparing(BankVaultScreen::potionEffectKey);
+            else if (step.equals("potionpower")) c = Comparator.comparingInt(BankVaultScreen::potionPower);
+            else if (step.startsWith("prefix:")) { String[] arr = Catalog.sortList(step.substring(7)); c = Comparator.comparingInt(e -> prefixIndex(idOf(e), arr)); }
+            else if (step.startsWith("tier:")) { String[] arr = Catalog.sortList(step.substring(5)); c = Comparator.comparingInt(e -> infixIndex(idOf(e), arr)); }
+            else if (step.startsWith("suffix:")) { String[] arr = Catalog.sortList(step.substring(7)); c = Comparator.comparingInt(e -> suffixIndex(idOf(e), arr)); }
+            else continue;
+            cmp = cmp == null ? c : cmp.thenComparing(c);
         }
-    }
-    private Comparator<Entry> smartType() {
-        switch (selectedTab) {
-            case "equipment": return Comparator.<Entry, String>comparing(e -> toolType(idOf(e))).thenComparing(Comparator.comparingInt(e -> tier(idOf(e)))).thenComparing(this::nameOf);
-            case "colored": return Comparator.<Entry, String>comparing(e -> formKey(idOf(e))).thenComparing(Comparator.comparingInt(e -> prefixIndex(idOf(e), COLORS))).thenComparing(this::nameOf);
-            case "wood": return Comparator.<Entry, String>comparing(e -> formKey(idOf(e))).thenComparing(Comparator.comparingInt(e -> prefixIndex(idOf(e), WOODS))).thenComparing(this::nameOf);
-            case "copper": return Comparator.<Entry, String>comparing(e -> formKey(idOf(e))).thenComparing(Comparator.comparingInt(e -> oxidation(idOf(e)))).thenComparing(this::nameOf);
-            case "dyes": return Comparator.<Entry>comparingInt(e -> { int c = Catalog.colorOf(idOf(e)); return c < 0 ? 99 : c; }).thenComparing(this::nameOf);
-            case "food": return Comparator.<Entry, String>comparing(e -> firstWord(nameOf(e))).thenComparing(this::nameOf);
-            default: return Comparator.<Entry, String>comparing(e -> formKey(idOf(e))).thenComparing(this::nameOf);
-        }
+        return cmp == null ? Comparator.comparing(this::nameOf) : cmp;
     }
     private static String idOf(Entry e) { return BuiltInRegistries.ITEM.getKey(e.stack().getItem()).toString(); }
     private String nameOf(Entry e) { return nameCache.computeIfAbsent(e.key(), k -> e.stack().getHoverName().getString().toLowerCase(Locale.ROOT)); }
     private static String path(String id) { int i = id.indexOf(':'); return i >= 0 ? id.substring(i + 1) : id; }
     private static String lastWord(String n) { String[] t = n.trim().split("\\s+"); return t.length == 0 ? n : t[t.length - 1]; }
     private static String firstWord(String n) { String[] t = n.trim().split("\\s+"); return t.length == 0 ? n : t[0]; }
-    private int tier(String id) { String p = path(id); int b = 99; for (Map.Entry<String, Integer> e : TIER.entrySet()) if (p.contains(e.getKey())) b = Math.min(b, e.getValue()); return b; }
-    private String formKey(String id) { String p = path(id); for (String f : FORMS) if (p.endsWith(f)) return f; return "~" + p; }
-    private String toolType(String id) { String p = path(id); for (String t : TOOLTYPES) if (p.endsWith(t)) return t; return "~" + p; }
+    private String formKey(String id) { String p = path(id); String[] forms = Catalog.sortList("forms"); if (forms.length == 0) forms = FORMS; for (String f : forms) if (p.endsWith(f)) return f; return "~" + p; }
+    private static int infixIndex(String id, String[] arr) { String p = path(id); for (int i = 0; i < arr.length; i++) if (p.contains(arr[i])) return i; return arr.length; }
+    private static int suffixIndex(String id, String[] arr) { String p = path(id); for (int i = 0; i < arr.length; i++) if (p.endsWith(arr[i])) return i; return arr.length; }
+    /** Effect-base key for potion-carrying stacks ("night_vision" for normal/long/strong alike);
+     *  non-potion items sort after all potions via the tilde prefix. */
+    private static String potionEffectKey(Entry e) {
+        var pc = e.stack().get(net.minecraft.core.component.DataComponents.POTION_CONTENTS);
+        if (pc == null || pc.potion().isEmpty()) return "~";
+        String p = pc.potion().get().getRegisteredName();
+        p = p.substring(p.indexOf(':') + 1);
+        if (p.startsWith("long_")) p = p.substring(5);
+        if (p.startsWith("strong_")) p = p.substring(7);
+        return p;
+    }
+
+    /** 0 = plain, 1 = long, 2 = strong -- "logically sub-sorted by effect power". */
+    private static int potionPower(Entry e) {
+        var pc = e.stack().get(net.minecraft.core.component.DataComponents.POTION_CONTENTS);
+        if (pc == null || pc.potion().isEmpty()) return 0;
+        String p = pc.potion().get().getRegisteredName();
+        if (p.contains(":long_")) return 1;
+        if (p.contains(":strong_")) return 2;
+        return 0;
+    }
+
+    /** Sort key for enchanted books (all share one hover name): first stored enchantment id, then level. */
+    private static String enchantKey(Entry e) {
+        var stored = e.stack().get(net.minecraft.core.component.DataComponents.STORED_ENCHANTMENTS);
+        if (stored == null || stored.isEmpty()) return "~";
+        var en = stored.entrySet().iterator().next();
+        return en.getKey().getRegisteredName() + String.format("%02d", en.getIntValue());
+    }
     private static int prefixIndex(String id, String[] arr) { String p = path(id); for (int i = 0; i < arr.length; i++) if (p.startsWith(arr[i] + "_") || p.equals(arr[i])) return i; return arr.length; }
     private int oxidation(String id) { String p = path(id); int b = p.contains("oxidized") ? 3 : p.contains("weathered") ? 2 : p.contains("exposed") ? 1 : 0; return b + (p.startsWith("waxed_") ? 4 : 0); }
 

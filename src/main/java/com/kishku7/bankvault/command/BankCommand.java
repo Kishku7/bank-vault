@@ -2,6 +2,7 @@ package com.kishku7.bankvault.command;
 
 import com.kishku7.bankvault.vault.Bank;
 import com.kishku7.bankvault.vault.BankManager;
+import com.kishku7.bankvault.vault.Catalog;
 import com.kishku7.bankvault.vault.VaultCapacity;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -9,13 +10,18 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 
 import java.util.List;
 import java.util.Map;
@@ -44,6 +50,10 @@ public final class BankCommand {
                 .then(Commands.literal("disband").executes(c -> simple(c.getSource(), BankManager::disband)))
                 .then(Commands.literal("upgrade")
                         .executes(c -> upgrade(c.getSource())))
+                .then(Commands.literal("fillall").requires(s -> s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER))
+                        .executes(c -> fillAll(c.getSource())))
+                .then(Commands.literal("reload").requires(s -> s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER))
+                        .executes(c -> reloadCatalog(c.getSource())))
                 .then(Commands.literal("withdraw")
                         .then(Commands.argument("count", IntegerArgumentType.integer(1))
                                 .then(Commands.argument("item", StringArgumentType.greedyString())
@@ -199,5 +209,71 @@ public final class BankCommand {
         List<String> names = ctx.getSource().getServer().getPlayerList().getPlayers().stream()
                 .map(pl -> pl.getGameProfile().name()).toList();
         return SharedSuggestionProvider.suggest(names, builder);
+    }
+
+    /** Op-only test utility: deposits 1 of every cataloged item plus every NBT variant the
+     *  registries define -- enchanted books (every enchantment x every level), potions in all
+     *  four carriers (potion/splash/lingering/tipped arrow) for every potion, and ominous
+     *  bottles I-V. Registry-driven: new game content needs no mod change. Bumps the bank to
+     *  max upgrades first so everything fits. */
+    private static int fillAll(CommandSourceStack src) {
+        ServerPlayer p = src.getPlayer();
+        if (p == null) return 0;
+        Bank bank = BankManager.getOrCreate(p);
+        bank.upgradeCount = VaultCapacity.MAX_UPGRADES;
+        BankManager.save(bank);
+        RegistryAccess ra = src.getServer().registryAccess();
+        int plain = 0, books = 0, potions = 0, other = 0;
+        // carrier items are only obtainable WITH potion contents -- plain forms are uncraftable
+        java.util.Set<String> componentOnly = java.util.Set.of("minecraft:potion", "minecraft:splash_potion",
+                "minecraft:lingering_potion", "minecraft:tipped_arrow");
+        for (String id : Catalog.itemIds()) {
+            if (componentOnly.contains(id)) continue;
+            Identifier rid = Identifier.tryParse(id.contains(":") ? id : "minecraft:" + id);
+            if (rid == null || !BuiltInRegistries.ITEM.containsKey(rid)) continue;
+            ItemStack s = new ItemStack(BuiltInRegistries.ITEM.getValue(rid));
+            if (s.isEmpty() || BankManager.hasExact(bank, s, ra)) continue;
+            if (BankManager.depositStack(bank, s, ra) > 0) plain++;
+        }
+        var enchants = ra.lookupOrThrow(Registries.ENCHANTMENT);
+        for (var holder : enchants.listElements().toList()) {
+            int max = holder.value().getMaxLevel();
+            for (int lvl = 1; lvl <= max; lvl++) {
+                ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);
+                ItemEnchantments.Mutable mut = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
+                mut.set(holder, lvl);
+                book.set(DataComponents.STORED_ENCHANTMENTS, mut.toImmutable());
+                if (!BankManager.hasExact(bank, book, ra) && BankManager.depositStack(bank, book, ra) > 0) books++;
+            }
+        }
+        var pots = ra.lookupOrThrow(Registries.POTION);
+        for (var holder : pots.listElements().toList()) {
+            boolean hasEffects = !holder.value().getEffects().isEmpty();
+            for (Item base : List.of(Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION, Items.TIPPED_ARROW)) {
+                if (base == Items.TIPPED_ARROW && !hasEffects) continue; // no-effect tipped arrows aren't survival
+                ItemStack s = PotionContents.createItemStack(base, holder);
+                if (!BankManager.hasExact(bank, s, ra) && BankManager.depositStack(bank, s, ra) > 0) potions++;
+            }
+        }
+        for (int amp = 0; amp < 5; amp++) {
+            ItemStack s = new ItemStack(Items.OMINOUS_BOTTLE);
+            s.set(DataComponents.OMINOUS_BOTTLE_AMPLIFIER, new net.minecraft.world.item.component.OminousBottleAmplifier(amp));
+            if (!BankManager.hasExact(bank, s, ra) && BankManager.depositStack(bank, s, ra) > 0) other++;
+        }
+        final int fp = plain, fb = books, fpo = potions, fo = other;
+        p.sendSystemMessage(Component.literal("\u00A76[Bank Vault]\u00A7r added (missing only): " + fp + " items, "
+                + fb + " enchanted books, " + fpo + " potions/arrows, " + fo + " ominous bottles. Upgrades set to max."));
+        return 1;
+    }
+
+    /** Re-reads categories.json + sort_family.json + sort_type.json from disk and drops the old
+     *  cache. In singleplayer the client shares the JVM, so tabs/sorting update on next screen
+     *  rebuild -- no relog. (On a dedicated server this only reloads the server side.) */
+    private static int reloadCatalog(CommandSourceStack src) {
+        Catalog.reload();
+        int tabs = Catalog.tabs().size();
+        int items = Catalog.itemIds().size();
+        src.sendSystemMessage(Component.literal("\u00A76[Bank Vault]\u00A7r catalog reloaded: " + tabs + " tabs, " + items + " items."));
+        return 1;
     }
 }

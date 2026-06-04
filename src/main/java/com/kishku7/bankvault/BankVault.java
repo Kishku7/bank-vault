@@ -36,6 +36,7 @@ public class BankVault implements ModInitializer {
         ModBlockEntities.init();
         ModCreativeTab.init();
         ModMenus.init();
+        Catalog.restoreMissingDefaults();
         Catalog.ensureLoaded();
         ModNetworking.registerCommon();
 
