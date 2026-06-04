@@ -146,12 +146,22 @@ public final class BankManager {
         } else {
             com.google.gson.JsonElement js = StackStore.encode(stack, ra);
             if (js == null) {
-                bank.items.merge(StackStore.idOf(stack), add, Long::sum);
-            } else {
-                String key = StackStore.specialKey(stack, js);
-                Bank.Special sp = bank.special.get(key);
-                if (sp == null) bank.special.put(key, new Bank.Special(js, add)); else sp.count += add;
+                // NEVER flatten a component-bearing stack into the plain bucket -- that strips
+                // its NBT on withdrawal. Reject instead; the stack stays where it was.
+                BankVault.LOGGER.warn("[Bank Vault] refusing deposit: cannot serialize {}", StackStore.idOf(stack));
+                return 0;
             }
+            // Exact-match merge: counts combine ONLY when the stored prototype is byte-identical.
+            // On a key collision with different JSON, linear-probe to "key~1", "key~2", ...
+            String base = StackStore.specialKey(stack, js);
+            String key = base;
+            Bank.Special sp = bank.special.get(key);
+            int probe = 0;
+            while (sp != null && !js.equals(sp.stack)) {
+                key = base + "~" + (++probe);
+                sp = bank.special.get(key);
+            }
+            if (sp == null) bank.special.put(key, new Bank.Special(js, add)); else sp.count += add;
         }
         save(bank);
         return add;
