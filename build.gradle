@@ -9,10 +9,16 @@ base {
     archivesName = project.archives_base_name
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/bankvault.accesswidener")
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     compileOnly localRuntime("net.fabricmc:fabric-loader:${project.loader_version}")
     compileOnly localRuntime("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
+    // soft compat: compile against Trinkets Updated (mod id trinkets_updated); never shipped, never required
+    compileOnly files("libs/trinkets-4.0.0-beta.2+26.1.jar")
 }
 
 processResources {

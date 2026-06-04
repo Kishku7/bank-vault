@@ -5,8 +5,11 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BundleItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.item.component.ItemContainerContents;
 
 import java.util.ArrayList;
@@ -50,6 +53,17 @@ public final class ContainerExtractor {
     /** True if the stack carries extractable contents right now. */
     public static boolean isContainer(ItemStack stack) {
         return contentsOf(stack) != null;
+    }
+
+    /** True if the stack is structurally a container (shulker/bundle/TB), even when empty.
+     *  Components only exist once something was stored, so empties are matched by item identity. */
+    public static boolean isContainerType(ItemStack stack) {
+        if (stack.has(DataComponents.CONTAINER) || stack.has(DataComponents.BUNDLE_CONTENTS)) return true;
+        for (DataComponentType<?> type : SOFT_CONTAINERS) if (stack.has(type)) return true;
+        if (stack.getItem() instanceof BundleItem) return true;
+        if (stack.getItem() instanceof BlockItem bi && bi.getBlock() instanceof ShulkerBoxBlock) return true;
+        // TB backpacks are namespaced by variant (travelersbackpack:standard, :diamond, ...)
+        return BuiltInRegistries.ITEM.getKey(stack.getItem()).getNamespace().equals("travelersbackpack");
     }
 
     /** One level of contents, or null if the stack is not a (non-empty) container. */

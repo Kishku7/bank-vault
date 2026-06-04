@@ -1,5 +1,6 @@
 package com.kishku7.bankvault.net;
 
+import com.kishku7.bankvault.inventory.BankVaultMenu;
 import com.kishku7.bankvault.vault.Bank;
 import com.kishku7.bankvault.vault.BankManager;
 import com.kishku7.bankvault.vault.StackStore;
@@ -27,9 +28,11 @@ public final class ModNetworking {
         PayloadTypeRegistry.serverboundPlay().register(WithdrawPayload.TYPE, WithdrawPayload.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(UpgradePayload.TYPE, UpgradePayload.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(DepositPayload.TYPE, DepositPayload.CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(GridViewPayload.TYPE, GridViewPayload.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(WithdrawPayload.TYPE, ModNetworking::onWithdraw);
         ServerPlayNetworking.registerGlobalReceiver(UpgradePayload.TYPE, ModNetworking::onUpgrade);
         ServerPlayNetworking.registerGlobalReceiver(DepositPayload.TYPE, ModNetworking::onDeposit);
+        ServerPlayNetworking.registerGlobalReceiver(GridViewPayload.TYPE, ModNetworking::onGridView);
     }
 
     public static void sendSync(ServerPlayer player, Bank bank) {
@@ -37,8 +40,10 @@ public final class ModNetworking {
         List<VaultSyncPayload.Entry> entries = new ArrayList<>();
         for (var e : bank.items.entrySet()) {
             Identifier id = StackStore.parseId(e.getKey());
-            if (id != null && BuiltInRegistries.ITEM.containsKey(id))
-                entries.add(new VaultSyncPayload.Entry(e.getKey(), new ItemStack(BuiltInRegistries.ITEM.getValue(id)), e.getValue()));
+            if (id == null || !BuiltInRegistries.ITEM.containsKey(id)) continue;
+            ItemStack st = new ItemStack(BuiltInRegistries.ITEM.getValue(id));
+            if (st.isEmpty()) continue;
+            entries.add(new VaultSyncPayload.Entry(e.getKey(), st, e.getValue()));
         }
         for (var e : bank.special.entrySet()) {
             ItemStack st = StackStore.decode(e.getValue().stack, ra);
@@ -46,6 +51,15 @@ public final class ModNetworking {
         }
         ServerPlayNetworking.send(player, new VaultSyncPayload(entries, bank.upgradeCount,
                 VaultCapacity.capacityFor(bank.upgradeCount), bank.levelOf(player.getUUID())));
+    }
+
+    /** The client tells us which bank key sits in each visible grid cell so a real-Slot click on the
+     *  vault view (handled in BankVaultMenu.clicked) knows what to withdraw. */
+    private static void onGridView(GridViewPayload payload, ServerPlayNetworking.Context context) {
+        ServerPlayer player = context.player();
+        if (player.containerMenu instanceof BankVaultMenu menu) {
+            menu.setViewKeys(payload.keys());
+        }
     }
 
     private static void onWithdraw(WithdrawPayload payload, ServerPlayNetworking.Context context) {

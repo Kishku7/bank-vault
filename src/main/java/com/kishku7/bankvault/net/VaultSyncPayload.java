@@ -18,7 +18,7 @@ public record VaultSyncPayload(List<Entry> entries, int upgradeCount, long capac
     public record Entry(String key, ItemStack stack, long count) {
         public static final StreamCodec<RegistryFriendlyByteBuf, Entry> CODEC = StreamCodec.composite(
                 ByteBufCodecs.STRING_UTF8, Entry::key,
-                ItemStack.STREAM_CODEC, Entry::stack,
+                ItemStack.OPTIONAL_STREAM_CODEC, Entry::stack,
                 ByteBufCodecs.VAR_LONG, Entry::count,
                 Entry::new);
     }
