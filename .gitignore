@@ -44,3 +44,5 @@ build-*.log
 build-*.err
 runserver.log
 runserver.err
+b2.log
+b2.err
