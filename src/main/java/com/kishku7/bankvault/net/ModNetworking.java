@@ -29,10 +29,15 @@ public final class ModNetworking {
         PayloadTypeRegistry.serverboundPlay().register(UpgradePayload.TYPE, UpgradePayload.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(DepositPayload.TYPE, DepositPayload.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(GridViewPayload.TYPE, GridViewPayload.CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(DepositAllPayload.TYPE, DepositAllPayload.CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(SharingStatePayload.TYPE, SharingStatePayload.CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(ShareActionPayload.TYPE, ShareActionPayload.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(WithdrawPayload.TYPE, ModNetworking::onWithdraw);
         ServerPlayNetworking.registerGlobalReceiver(UpgradePayload.TYPE, ModNetworking::onUpgrade);
         ServerPlayNetworking.registerGlobalReceiver(DepositPayload.TYPE, ModNetworking::onDeposit);
         ServerPlayNetworking.registerGlobalReceiver(GridViewPayload.TYPE, ModNetworking::onGridView);
+        ServerPlayNetworking.registerGlobalReceiver(DepositAllPayload.TYPE, ModNetworking::onDepositAll);
+        ServerPlayNetworking.registerGlobalReceiver(ShareActionPayload.TYPE, ModNetworking::onShareAction);
     }
 
     public static void sendSync(ServerPlayer player, Bank bank) {
@@ -51,6 +56,91 @@ public final class ModNetworking {
         }
         ServerPlayNetworking.send(player, new VaultSyncPayload(entries, bank.upgradeCount,
                 VaultCapacity.capacityFor(bank.upgradeCount), bank.levelOf(player.getUUID())));
+        sendSharing(player);
+    }
+
+    /** Push the Sharing-corner state (membership + pending invite) to one player. */
+    public static void sendSharing(ServerPlayer player) {
+        Bank bank = BankManager.lookup(player.getUUID());
+        List<SharingStatePayload.Member> ms = new ArrayList<>();
+        if (bank != null) for (Bank.Member m : bank.members)
+            ms.add(new SharingStatePayload.Member(m.uuid, m.name, m.level));
+        BankManager.Invite inv = BankManager.pendingInvite(player.getUUID());
+        ServerPlayNetworking.send(player, new SharingStatePayload(ms,
+                inv == null ? "" : inv.inviterName, inv == null ? 0 : inv.level));
+    }
+
+    /** Re-sync every online member of a bank (membership or contents changed). */
+    private static void refreshGroup(net.minecraft.server.MinecraftServer server, Bank bank) {
+        for (Bank.Member m : bank.members) {
+            try {
+                ServerPlayer p = server.getPlayerList().getPlayer(java.util.UUID.fromString(m.uuid));
+                if (p != null) sendSync(p, bank);   // sendSync also pushes sharing state
+            } catch (IllegalArgumentException ignored) {}
+        }
+    }
+
+    private static void onShareAction(ShareActionPayload payload, ServerPlayNetworking.Context context) {
+        ServerPlayer player = context.player();
+        net.minecraft.server.MinecraftServer server = player.level().getServer();
+        if (server == null) return;
+        String msg = null;
+        switch (payload.op()) {
+            case ShareActionPayload.INVITE -> {
+                ServerPlayer target = server.getPlayerList().getPlayerByName(payload.target());
+                if (target == null) msg = "\u00a7cPlayer '" + payload.target() + "' is not online.";
+                else if (target.getUUID().equals(player.getUUID())) msg = "\u00a7cYou can't invite yourself.";
+                else {
+                    msg = BankManager.invite(player, target.getUUID(), target.getGameProfile().name(),
+                            Math.max(BankManager.DEPOSIT, payload.level()));
+                    sendSharing(target);                       // light their Accept button up live
+                }
+            }
+            case ShareActionPayload.ACCEPT -> {
+                BankManager.AcceptResult r = BankManager.accept(player);
+                msg = r.message();
+                if (r.ok()) {
+                    int excess = r.excessChests();
+                    while (excess > 0) {                       // refund surplus upgrade chests
+                        int n = Math.min(64, excess);
+                        ItemStack c = new ItemStack(Items.CHEST, n);
+                        if (!player.getInventory().add(c)) player.drop(c, false);
+                        excess -= n;
+                    }
+                    Bank b = BankManager.lookup(player.getUUID());
+                    if (b != null) refreshGroup(server, b);
+                }
+            }
+            case ShareActionPayload.DECLINE -> msg = BankManager.decline(player);
+            case ShareActionPayload.KICK, ShareActionPayload.LEVEL_UP, ShareActionPayload.LEVEL_DOWN -> {
+                Bank bank = BankManager.lookup(player.getUUID());
+                java.util.UUID t;
+                try { t = java.util.UUID.fromString(payload.target()); }
+                catch (IllegalArgumentException e) { t = null; }
+                Bank.Member m = (bank == null || t == null) ? null : bank.member(t);
+                if (m == null) msg = "\u00a7cThat player isn't in your bank.";
+                else if (payload.op() == ShareActionPayload.KICK) {
+                    msg = BankManager.kick(player, t, m.name);
+                    ServerPlayer kicked = server.getPlayerList().getPlayer(t);
+                    if (kicked != null) sendSharing(kicked);
+                    refreshGroup(server, bank);
+                } else {
+                    int delta = payload.op() == ShareActionPayload.LEVEL_UP ? 1 : -1;
+                    msg = BankManager.setLevel(player, t, m.name, m.level + delta);
+                    refreshGroup(server, bank);
+                }
+            }
+            case ShareActionPayload.LEAVE -> {
+                Bank old = BankManager.lookup(player.getUUID());
+                msg = BankManager.leave(player);
+                if (old != null) refreshGroup(server, old);
+                BankManager.getOrCreate(player);               // fresh solo bank right away
+            }
+            default -> { return; }
+        }
+        if (msg != null) player.sendSystemMessage(Component.literal(msg));
+        Bank now = BankManager.lookup(player.getUUID());
+        if (now != null) sendSync(player, now); else sendSharing(player);
     }
 
     /** The client tells us which bank key sits in each visible grid cell so a real-Slot click on the
@@ -103,6 +193,30 @@ public final class ModNetworking {
         long accepted = BankManager.depositStack(bank, s, player.level().registryAccess());
         if (accepted > 0) s.shrink((int) accepted);
         sendSync(player, bank);
+    }
+
+    /** Bulk deposit (v1.1 "Deposit:" buttons). Vanilla Inventory indices: 0..8 hotbar, 9..35 main
+     *  rows. Strictly those ranges -- armor (36..39), offhand (40), trinket and crafting slots are
+     *  untouchable here by construction. Partial deposits stop when the vault fills; the remainder
+     *  stays where it was. */
+    private static void onDepositAll(DepositAllPayload payload, ServerPlayNetworking.Context context) {
+        ServerPlayer player = context.player();
+        Bank bank = BankManager.lookup(player.getUUID());
+        if (bank == null || bank.levelOf(player.getUUID()) < BankManager.DEPOSIT) return;
+        Inventory inv = player.getInventory();
+        RegistryAccess ra = player.level().registryAccess();
+        boolean rejected = false;
+        int first = payload.includeHotbar() ? 0 : 9;                 // main rows always; hotbar only on "All"
+        for (int i = first; i <= 35; i++) {
+            ItemStack s = inv.getItem(i);
+            if (s.isEmpty()) continue;
+            long accepted = BankManager.depositStack(bank, s, ra);
+            if (accepted > 0) s.shrink((int) accepted);
+            if (!s.isEmpty()) rejected = true;                       // vault filled mid-stack
+        }
+        if (rejected) player.sendSystemMessage(Component.literal("\u26a0 Vault is full."));
+        sendSync(player, bank);
+        if (player.containerMenu instanceof BankVaultMenu menu) menu.broadcastChanges();
     }
 
     private static void onUpgrade(UpgradePayload payload, ServerPlayNetworking.Context context) {

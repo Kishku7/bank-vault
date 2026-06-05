@@ -132,9 +132,10 @@ public class BankVaultMenu extends AbstractContainerMenu {
         }
     }
 
-    /** Used by TrinketCompat: trinket inventories are vanilla Containers, so plain Slots work. */
-    void addTrinketSlot(Container container, int index) {
-        addSlot(new Slot(container, index, -9999, -9999));
+    /** Used by TrinketCompat: trinket inventories are vanilla Containers, so real Slots work.
+     *  The compat class builds the Slot itself (icon + validator overrides need trinkets types). */
+    void addTrinketSlotDirect(Slot slot) {
+        addSlot(slot);
     }
 
     public Container ioContainer() { return io; }
@@ -192,14 +193,18 @@ public class BankVaultMenu extends AbstractContainerMenu {
                     long take = BankManager.withdrawKey(bank, key, want);
                     if (take > 0) setCarried(proto.copyWithCount((int) take));
                 }
-                case QUICK_MOVE -> {                                  // shift-click: a stack straight to inventory
+                case QUICK_MOVE -> {                                  // shift-click: one stack to inventory.
+                    // Fill order (Dave, v1.1): main rows 1->3 first, hotbar LAST. Menu slots 0..26
+                    // are inv rows top->bottom, 27..35 hotbar, so an ascending moveItemStackTo walks
+                    // exactly that order -- and can never touch trinket/backpack slots (range-capped).
                     long take = BankManager.withdrawKey(bank, key, max);
-                    long left = take;
-                    while (left > 0) {
-                        int n = (int) Math.min(max, left);
-                        ItemStack g = proto.copyWithCount(n);
-                        if (!sp.getInventory().add(g)) sp.drop(g, false);
-                        left -= n;
+                    if (take > 0) {
+                        ItemStack g = proto.copyWithCount((int) take);
+                        moveItemStackTo(g, 0, PLAYER_SLOTS, false);
+                        if (!g.isEmpty()) {
+                            // No room: remainder goes straight back to the vault -- never dropped.
+                            BankManager.depositStack(bank, g, sp.level().registryAccess());
+                        }
                     }
                 }
                 default -> { return; }                                // ignore THROW/SWAP/CLONE/PICKUP_ALL for now

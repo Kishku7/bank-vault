@@ -38,3 +38,5 @@ Thumbs.db
 # Planning / design docs — kept local, not shipped
 plan/
 docs/
+
+experiments/

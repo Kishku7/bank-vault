@@ -244,6 +244,17 @@ public final class BankManager {
         if (own != null && !own.bankId.equals(group.bankId)) {
             for (Map.Entry<String, Long> e : own.items.entrySet())
                 group.items.merge(e.getKey(), e.getValue(), Long::sum);
+            // v1.1 fix: special (NBT) stacks were silently dropped on merge. Same probe scheme as
+            // depositStack: merge on byte-identical stored JSON, else walk key, key~1, key~2...
+            for (Map.Entry<String, Bank.Special> e : own.special.entrySet()) {
+                String base = e.getKey().contains("~") ? e.getKey().substring(0, e.getKey().indexOf('~')) : e.getKey();
+                String cand = base;
+                for (int n = 1; ; cand = base + "~" + n++) {
+                    Bank.Special exist = group.special.get(cand);
+                    if (exist == null) { group.special.put(cand, e.getValue()); break; }
+                    if (exist.stack.equals(e.getValue().stack)) { exist.count += e.getValue().count; break; }
+                }
+            }
             int combined = group.upgradeCount + own.upgradeCount;
             group.upgradeCount = Math.min(VaultCapacity.MAX_UPGRADES, combined);
             excess = Math.max(0, combined - VaultCapacity.MAX_UPGRADES);

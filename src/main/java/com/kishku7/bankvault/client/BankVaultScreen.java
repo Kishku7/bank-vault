@@ -8,6 +8,8 @@ import com.kishku7.bankvault.net.VaultSyncPayload;
 import com.kishku7.bankvault.net.VaultSyncPayload.Entry;
 import com.kishku7.bankvault.vault.Catalog;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import com.kishku7.bankvault.net.ShareActionPayload;
+import com.kishku7.bankvault.net.SharingStatePayload;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
@@ -75,6 +77,16 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private int upgX, upgY, upgChestX, upgSize = 16;
     private int closeX, closeY, closeSize = 14;
     private final int[] sbX = new int[4]; private final int[] sbW = new int[4]; private int sbY, sbH = 14;
+    private int depInvX, depInvW, depAllX, depAllW, depY;   // v1.1 Deposit: [Inventory] [All]
+    // -- Sharing corner (v1.1) --
+    private List<SharingStatePayload.Member> shMembers = new ArrayList<>();
+    private String shInviteFrom = ""; private int shInviteLevel = 0;
+    private int shTop, shBtnY, shListY, shListH, shMgmtY;
+    private int shBtn1X, shBtn1W, shBtn2X, shBtn2W;
+    private int shMg1X, shMg1W, shMg2X, shMg2W, shMg3X, shMg3W, shMgmtMode;
+    private int shScroll = 0; private static final int SH_ROW_H = 12, SH_BTN_H = 13;
+    private String shSelected = null;
+    private boolean shInputActive = false; private String shInputText = "";
     private int srchY, goX, goW2;
     private int searchBoxX, searchBoxW;
 
@@ -106,6 +118,40 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         rebuild();
     }
 
+    public void updateSharing(SharingStatePayload data) {
+        this.shMembers = new ArrayList<>(data.members());
+        this.shInviteFrom = data.inviteFrom();
+        this.shInviteLevel = data.inviteLevel();
+        if (shSelected != null) {
+            boolean still = false;
+            for (SharingStatePayload.Member m : shMembers) if (m.uuid().equals(shSelected)) { still = true; break; }
+            if (!still) shSelected = null;
+        }
+    }
+
+    private SharingStatePayload.Member selectedMember() {
+        if (shSelected == null) return null;
+        for (SharingStatePayload.Member m : shMembers) if (m.uuid().equals(shSelected)) return m;
+        return null;
+    }
+
+    private static String levelTag(int level) {
+        return switch (level) { case 4 -> "Owner"; case 3 -> "Master"; case 2 -> "Member"; default -> "Deposit"; };
+    }
+
+    private String trimTo(String s, int w) {
+        while (s.length() > 1 && this.font.width(s) > w) s = s.substring(0, s.length() - 1);
+        return s;
+    }
+
+    private void shButton(GuiGraphicsExtractor g, int x, int y, int w, String label, boolean enabled, int mx, int my) {
+        boolean hov = enabled && inside(mx, my, x, y, w, SH_BTN_H);
+        g.fill(x, y, x + w, y + SH_BTN_H, hov ? 0xFF3A3A42 : WELL);
+        g.fill(x, y, x + w, y + 1, enabled ? ACCENT : SUBTLE);
+        String l = trimTo(label, w - 6);
+        g.text(this.font, l, x + (w - this.font.width(l)) / 2, y + 3, enabled ? TEXT : SUBTLE);
+    }
+
     @Override
     protected void init() {
         super.init();
@@ -116,7 +162,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             selectedTab = Catalog.tabs().isEmpty() ? "uncategorized" : Catalog.tabs().get(0).id();
         int tabsNeeded = Catalog.tabs().size() * 20 + 16;
         int tRowsPre = (this.menu.trinketSlotCount + 8) / 9;
-        int clusterNeeded = RP_H + 6 + 18 + 14 + (tRowsPre > 0 ? tRowsPre * 18 + 4 : 0);
+        int clusterNeeded = RP_H + 6 + 18 + 14 + (tRowsPre > 0 ? tRowsPre * 18 + 4 : 0) + 81;   // +81: Sharing corner (v1.1)
         int gridNeeded = sbH + 6 + 6 * 18 + 6 + sbH;             // sort row + 6 grid rows min + search row
         int contentNeeded = Math.max(Math.max(tabsNeeded, clusterNeeded), gridNeeded);
         ph = Math.max(MIN_H, Math.min(this.height - 2 * MARGIN, 32 + contentNeeded + 8));
@@ -140,6 +186,17 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         rpX = px + pw - 8 - RP_W;
         rpY = contentTop;                                        // top-aligned player area
         quY = rpY + RP_H + 6;
+
+        // Sharing corner (v1.1): below the quick-unload cluster and trinket rows, to the panel bottom.
+        int tRowsSh = (this.menu.trinketSlotCount + 8) / 9;
+        shTop = quY + 34 + tRowsSh * 18 + (tRowsSh > 0 ? 4 : 0);
+        shBtn1X = rpX + 8; shBtn1W = (RP_W - 16 - 4) / 2;
+        shBtn2X = shBtn1X + shBtn1W + 4; shBtn2W = shBtn1W;
+        shBtnY = shTop + 11;
+        shMgmtY = py + ph - 8 - SH_BTN_H;
+        shListY = shBtnY + SH_BTN_H + 4;
+        shListH = Math.max(0, shMgmtY - 4 - shListY);
+        if (shBtnY + SH_BTN_H > py + ph - 8) shTop = 0;   // no room at this scale: hide the corner
 
         // --- full-height left rail ---
         railX = px + 8;
@@ -481,6 +538,27 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             vanillaSlot(g, px + s.x, py + s.y);
         }
 
+        // Deposit buttons (v1.1): "Deposit:" + [Inventory] [All], right-aligned in the band
+        // between the 3x3 crafting grid and the main inventory. All = 27 main + 9 hotbar;
+        // Inventory = 27 main only. Strictly those slot ranges (server enforces too).
+        {
+            depAllW = this.font.width("All") + 10;
+            depInvW = this.font.width("Inventory") + 10;
+            depY = rpY + 67;
+            depAllX = rpX + RP_W - 8 - depAllW;
+            depInvX = depAllX - 4 - depInvW;
+            String dlbl = "Deposit:";
+            textScaled(g, dlbl, depInvX - 6 - (int) (this.font.width(dlbl) * LBL_SCALE), depY + 3, SUBTLE, LBL_SCALE);
+            boolean ihov = inside(mouseX, mouseY, depInvX, depY, depInvW, 13);
+            boolean ahov = inside(mouseX, mouseY, depAllX, depY, depAllW, 13);
+            g.fill(depInvX, depY, depInvX + depInvW, depY + 13, ihov ? 0xFF3A3A42 : WELL);
+            g.fill(depInvX, depY, depInvX + depInvW, depY + 1, SUBTLE);
+            g.fill(depAllX, depY, depAllX + depAllW, depY + 13, ahov ? 0xFF3A3A42 : WELL);
+            g.fill(depAllX, depY, depAllX + depAllW, depY + 1, SUBTLE);
+            g.text(this.font, "Inventory", depInvX + 5, depY + 3, TEXT);
+            g.text(this.font, "All", depAllX + 5, depY + 3, TEXT);
+        }
+
         // quick-unload cluster (below the inventory panel)
         textScaled(g, "Quick Unload", rpX + 8, quY + 5, SUBTLE, LBL_SCALE);
         panel(g, rpX + 108, quY, 18, 18, false);
@@ -505,6 +583,75 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         if (unloadBlocked) {
             String bf = "Bank Full";
             textScaled(g, bf, rpX + 108 + 22 - (int)(this.font.width(bf) * LBL_SCALE) / 2, quY + 20, 0xFFE0524A, LBL_SCALE);
+        }
+
+        // --- Sharing corner (v1.1): buttons + member/invite list + management row ---
+        shMgmtMode = 0;
+        if (shTop > 0) {
+            boolean inGroup = shMembers.size() > 1;
+            boolean canInvite = permLevel >= 3;                  // Master+ may invite
+            boolean hasInvite = !shInviteFrom.isEmpty();
+            textScaled(g, "Sharing", rpX + 8, shTop, SUBTLE, LBL_SCALE);
+            String b1 = canInvite ? "Share Bank" : (inGroup ? "Leave Bank" : null);
+            String b2 = inGroup ? (canInvite ? "Leave Bank" : null)
+                                : ("Accept Invite" + (hasInvite ? " (1)" : ""));
+            boolean b2On = inGroup ? canInvite : hasInvite;      // host w/ members never sees Accept
+            if (b1 != null) shButton(g, shBtn1X, shBtnY, shBtn1W, b1, true, mouseX, mouseY);
+            if (b2 != null) shButton(g, shBtn2X, shBtnY, shBtn2W, b2, b2On, mouseX, mouseY);
+
+            if (shListH >= SH_ROW_H) {
+                g.fill(rpX + 8, shListY, rpX + RP_W - 8, shListY + shListH, WELL);
+                int yy = shListY + 2;
+                if (shInputActive) {                              // inline invite-name entry
+                    g.fill(rpX + 9, yy - 1, rpX + RP_W - 9, yy + 10, 0xFF1A1A28);
+                    String hint = shInputText.isEmpty() ? "player name + Enter" : shInputText;
+                    g.text(this.font, trimTo(hint, RP_W - 24), rpX + 12, yy, shInputText.isEmpty() ? SUBTLE : TEXT);
+                    if (!shInputText.isEmpty() && (System.currentTimeMillis() / 500) % 2 == 0) {
+                        int cx2 = rpX + 12 + this.font.width(shInputText);
+                        g.fill(cx2, yy - 1, cx2 + 1, yy + 9, TEXT);
+                    }
+                    yy += 13;
+                }
+                if (inGroup) {
+                    int visRows = Math.max(0, (shListY + shListH - yy) / SH_ROW_H);
+                    shScroll = Math.max(0, Math.min(shScroll, Math.max(0, shMembers.size() - visRows)));
+                    String me = this.minecraft != null && this.minecraft.player != null
+                            ? this.minecraft.player.getUUID().toString() : "";
+                    for (int i = shScroll; i < shMembers.size() && yy + SH_ROW_H <= shListY + shListH; i++, yy += SH_ROW_H) {
+                        SharingStatePayload.Member m = shMembers.get(i);
+                        boolean self = m.uuid().equals(me);
+                        boolean sel = m.uuid().equals(shSelected);
+                        boolean hov = inside(mouseX, mouseY, rpX + 8, yy, RP_W - 16, SH_ROW_H);
+                        if (sel) g.fill(rpX + 8, yy, rpX + RP_W - 8, yy + SH_ROW_H, 0xFF4A3A12);
+                        else if (hov && !self) g.fill(rpX + 8, yy, rpX + RP_W - 8, yy + SH_ROW_H, 0xFF3A3A42);
+                        String tag = levelTag(m.level());
+                        g.text(this.font, trimTo((self ? "* " : "") + m.name(), RP_W - 20 - this.font.width(tag)),
+                                rpX + 10, yy + 2, sel ? ACCENT : TEXT);
+                        g.text(this.font, tag, rpX + RP_W - 10 - this.font.width(tag), yy + 2, SUBTLE);
+                    }
+                } else if (hasInvite && !shInputActive) {
+                    g.text(this.font, trimTo("From " + shInviteFrom, RP_W - 20), rpX + 10, yy + 2, TEXT);
+                    if (yy + 2 * SH_ROW_H <= shListY + shListH)
+                        g.text(this.font, "as " + levelTag(shInviteLevel), rpX + 10, yy + SH_ROW_H + 2, SUBTLE);
+                }
+            }
+
+            if (inGroup) {                                        // management row (selection-driven)
+                SharingStatePayload.Member sel = selectedMember();
+                if (sel != null && permLevel >= 3 && sel.level() < permLevel) {
+                    shMgmtMode = 1;
+                    shMg1W = this.font.width("Remove") + 8; shMg1X = rpX + 8;
+                    shMg2W = this.font.width("+1") + 8;     shMg2X = shMg1X + shMg1W + 4;
+                    shMg3W = this.font.width("-1") + 8;     shMg3X = shMg2X + shMg2W + 4;
+                    shButton(g, shMg1X, shMgmtY, shMg1W, "Remove", true, mouseX, mouseY);
+                    shButton(g, shMg2X, shMgmtY, shMg2W, "+1", sel.level() < 3, mouseX, mouseY);
+                    shButton(g, shMg3X, shMgmtY, shMg3W, "-1", sel.level() > 1, mouseX, mouseY);
+                }
+            } else if (hasInvite) {
+                shMgmtMode = 2;
+                shMg1W = this.font.width("Reject Invite") + 8; shMg1X = rpX + 8;
+                shButton(g, shMg1X, shMgmtY, shMg1W, "Reject Invite", true, mouseX, mouseY);
+            }
         }
     }
 
@@ -553,6 +700,21 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
 
     @Override
     public boolean keyPressed(KeyEvent event) {
+        if (shInputActive) {
+            if (event.input() == 259) { // BACKSPACE
+                if (!shInputText.isEmpty()) shInputText = shInputText.substring(0, shInputText.length() - 1);
+                return true;
+            }
+            if (event.isEscape()) { shInputActive = false; return true; }
+            if (event.isConfirmation()) {
+                String name = shInputText.trim();
+                shInputActive = false;
+                if (!name.isEmpty())
+                    ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.INVITE, name, 1));
+                return true;
+            }
+            return true; // consume all other keys while the name field is focused
+        }
         if (searchFocused) {
             if (event.input() == 259) { // BACKSPACE
                 if (!searchText.isEmpty()) { searchText = searchText.substring(0, searchText.length() - 1); rebuild(); }
@@ -567,6 +729,12 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
 
     @Override
     public boolean charTyped(CharacterEvent event) {
+        if (shInputActive) {
+            if (event.isAllowedChatCharacter() && shInputText.length() < 16) {
+                shInputText = shInputText + event.codepointAsString();
+            }
+            return true;
+        }
         if (searchFocused) {
             if (event.isAllowedChatCharacter() && searchText.length() < 32) {
                 searchText = searchText + event.codepointAsString();
@@ -616,6 +784,63 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         }
         if (button == 1 && inside(mx, my, upgX, upgY, upgSize, upgSize) && permLevel >= 3
                 && this.menu.getCarried().isEmpty()) { ClientPlayNetworking.send(new UpgradePayload(false)); return true; }
+
+        // Deposit buttons (v1.1): Inventory = main 27, All = main 27 + hotbar 9. Deposit perm required.
+        if (button == 0 && permLevel >= 1 && this.menu.getCarried().isEmpty()) {
+            if (inside(mx, my, depInvX, depY, depInvW, 13)) {
+                ClientPlayNetworking.send(new com.kishku7.bankvault.net.DepositAllPayload(false)); return true;
+            }
+            if (inside(mx, my, depAllX, depY, depAllW, 13)) {
+                ClientPlayNetworking.send(new com.kishku7.bankvault.net.DepositAllPayload(true)); return true;
+            }
+        }
+
+        // Sharing corner (v1.1)
+        if (shTop > 0 && button == 0) {
+            boolean inGroup = shMembers.size() > 1;
+            boolean canInvite = permLevel >= 3;
+            boolean hasInvite = !shInviteFrom.isEmpty();
+            if (inside(mx, my, shBtn1X, shBtnY, shBtn1W, SH_BTN_H)) {
+                if (canInvite) { shInputActive = true; shInputText = ""; searchFocused = false; }
+                else if (inGroup) ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.LEAVE, "", 0));
+                return true;
+            }
+            if (inside(mx, my, shBtn2X, shBtnY, shBtn2W, SH_BTN_H)) {
+                if (inGroup) {
+                    if (canInvite) ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.LEAVE, "", 0));
+                } else if (hasInvite) {
+                    ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.ACCEPT, "", 0));
+                }
+                return true;
+            }
+            if (inGroup && shListH >= SH_ROW_H && inside(mx, my, rpX + 8, shListY, RP_W - 16, shListH)) {
+                int yy0 = shListY + 2 + (shInputActive ? 13 : 0);
+                int row = (my - yy0) / SH_ROW_H;
+                int idx = shScroll + row;
+                if (my >= yy0 && row >= 0 && idx < shMembers.size()) {
+                    SharingStatePayload.Member m = shMembers.get(idx);
+                    String me = this.minecraft != null && this.minecraft.player != null
+                            ? this.minecraft.player.getUUID().toString() : "";
+                    shSelected = m.uuid().equals(me) ? null : (m.uuid().equals(shSelected) ? null : m.uuid());
+                }
+                return true;
+            }
+            if (shMgmtMode == 1 && shSelected != null) {
+                if (inside(mx, my, shMg1X, shMgmtY, shMg1W, SH_BTN_H)) {
+                    ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.KICK, shSelected, 0));
+                    shSelected = null; return true;
+                }
+                if (inside(mx, my, shMg2X, shMgmtY, shMg2W, SH_BTN_H)) {
+                    ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.LEVEL_UP, shSelected, 0)); return true;
+                }
+                if (inside(mx, my, shMg3X, shMgmtY, shMg3W, SH_BTN_H)) {
+                    ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.LEVEL_DOWN, shSelected, 0)); return true;
+                }
+            } else if (shMgmtMode == 2 && inside(mx, my, shMg1X, shMgmtY, shMg1W, SH_BTN_H)) {
+                ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.DECLINE, "", 0)); return true;
+            }
+            if (shInputActive) shInputActive = false;   // click elsewhere cancels name entry
+        }
 
         // vault grid: route the click through vanilla's container protocol. Empty cursor picks up
         // (left = stack, right = one, shift = stack to inventory); a held stack deposits into the
