@@ -23,7 +23,7 @@
           "cullface": "north"
         },
         "south": {
-          "texture": "#front",
+          "texture": "#metal",
           "cullface": "south"
         },
         "east": {
