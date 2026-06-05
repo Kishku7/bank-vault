@@ -65,9 +65,10 @@ public final class ModNetworking {
         List<SharingStatePayload.Member> ms = new ArrayList<>();
         if (bank != null) for (Bank.Member m : bank.members)
             ms.add(new SharingStatePayload.Member(m.uuid, m.name, m.level));
-        BankManager.Invite inv = BankManager.pendingInvite(player.getUUID());
-        ServerPlayNetworking.send(player, new SharingStatePayload(ms,
-                inv == null ? "" : inv.inviterName, inv == null ? 0 : inv.level));
+        List<SharingStatePayload.InviteEntry> is = new ArrayList<>();
+        for (BankManager.Invite inv : BankManager.pendingInvites(player.getUUID()))
+            is.add(new SharingStatePayload.InviteEntry(inv.inviterName, inv.level));
+        ServerPlayNetworking.send(player, new SharingStatePayload(ms, is));
     }
 
     /** Re-sync every online member of a bank (membership or contents changed). */
@@ -97,7 +98,9 @@ public final class ModNetworking {
                 }
             }
             case ShareActionPayload.ACCEPT -> {
-                BankManager.AcceptResult r = BankManager.accept(player);
+                // rc.3: target carries the inviter name; empty = most recent invite
+                BankManager.AcceptResult r = BankManager.accept(player,
+                        payload.target().isEmpty() ? null : payload.target());
                 msg = r.message();
                 if (r.ok()) {
                     int excess = r.excessChests();
@@ -111,7 +114,8 @@ public final class ModNetworking {
                     if (b != null) refreshGroup(server, b);
                 }
             }
-            case ShareActionPayload.DECLINE -> msg = BankManager.decline(player);
+            case ShareActionPayload.DECLINE -> msg = BankManager.decline(player,
+                    payload.target().isEmpty() ? null : payload.target());
             case ShareActionPayload.KICK, ShareActionPayload.LEVEL_UP, ShareActionPayload.LEVEL_DOWN -> {
                 Bank bank = BankManager.lookup(player.getUUID());
                 java.util.UUID t;
@@ -138,7 +142,7 @@ public final class ModNetworking {
             }
             default -> { return; }
         }
-        if (msg != null) player.sendSystemMessage(Component.literal(msg));
+        if (msg != null && !msg.isEmpty()) player.sendSystemMessage(Component.literal(msg));
         Bank now = BankManager.lookup(player.getUUID());
         if (now != null) sendSync(player, now); else sendSharing(player);
     }

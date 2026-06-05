@@ -6,6 +6,8 @@ import com.google.gson.reflect.TypeToken;
 import com.kishku7.bankvault.BankVault;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
@@ -14,7 +16,9 @@ import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -30,7 +34,7 @@ public final class BankManager {
 
     private static Path root, banksDir, indexFile, invitesFile;
     private static Map<String, String> index;        // playerUUID -> bankId
-    private static Map<String, Invite> invites;       // inviteeUUID -> invite
+    private static Map<String, List<Invite>> invites;  // inviteeUUID -> invites, oldest..newest (rc.3: multi-invite)
 
     private BankManager() {}
 
@@ -50,7 +54,7 @@ public final class BankManager {
         invitesFile = root.resolve("invites.json");
         try { Files.createDirectories(banksDir); } catch (IOException e) { BankVault.LOGGER.error("[Bank Vault] mkdir failed", e); }
         index = loadMap(indexFile, new TypeToken<Map<String, String>>() {}.getType());
-        invites = loadMap(invitesFile, new TypeToken<Map<String, Invite>>() {}.getType());
+        invites = loadInvites();
     }
 
     private static <T> Map<String, T> loadMap(Path file, java.lang.reflect.Type type) {
@@ -61,6 +65,27 @@ public final class BankManager {
             } catch (Exception e) { BankVault.LOGGER.error("[Bank Vault] load failed {}", file, e); }
         }
         return new HashMap<>();
+    }
+
+    /** rc.3: invites are now a LIST per invitee. Pre-rc.3 files stored a single object -- migrate. */
+    private static Map<String, List<Invite>> loadInvites() {
+        Map<String, List<Invite>> out = new HashMap<>();
+        if (!Files.exists(invitesFile)) return out;
+        try (Reader r = Files.newBufferedReader(invitesFile)) {
+            com.google.gson.JsonObject rootObj = GSON.fromJson(r, com.google.gson.JsonObject.class);
+            if (rootObj == null) return out;
+            for (Map.Entry<String, com.google.gson.JsonElement> e : rootObj.entrySet()) {
+                List<Invite> list = new ArrayList<>();
+                if (e.getValue().isJsonArray()) {
+                    for (com.google.gson.JsonElement el : e.getValue().getAsJsonArray())
+                        list.add(GSON.fromJson(el, Invite.class));
+                } else if (e.getValue().isJsonObject()) {
+                    list.add(GSON.fromJson(e.getValue(), Invite.class));   // old single-invite format
+                }
+                if (!list.isEmpty()) out.put(e.getKey(), list);
+            }
+        } catch (Exception e) { BankVault.LOGGER.error("[Bank Vault] load failed {}", invitesFile, e); }
+        return out;
     }
 
     private static void writeJson(Path file, Object obj) {
@@ -217,24 +242,65 @@ public final class BankManager {
         inv.inviterUuid = inviter.getUUID().toString();
         inv.inviterName = inviter.getGameProfile().name();
         inv.sentAt = System.currentTimeMillis();
-        invites.put(targetId.toString(), inv);
+        List<Invite> list = invites.computeIfAbsent(targetId.toString(), k -> new ArrayList<>());
+        list.removeIf(i -> inv.inviterUuid.equals(i.inviterUuid));   // re-invite: replace + becomes newest
+        list.add(inv);                                               // newest = end of list
         writeJson(invitesFile, invites);
+
+        // rc.3: the invitee hears about it in chat, with instructions (GUI + /bank invite both land here)
+        MinecraftServer server = inviter.level().getServer();
+        ServerPlayer target = server == null ? null : server.getPlayerList().getPlayer(targetId);
+        if (target != null) {
+            String how = list.size() > 1
+                    ? "\u00a7e/bank accept " + inv.inviterName + "\u00a7r (\u00a7e/bank accept\u00a7r takes the newest)"
+                    : "\u00a7e/bank accept\u00a7r";
+            target.sendSystemMessage(Component.literal(
+                    "\u00a76[Bank Vault]\u00a7r " + inv.inviterName + " invited you to share their bank vault as "
+                    + levelName(level) + "! " + how + ", \u00a7e/bank decline\u00a7r, or open any Bank Vault to respond."));
+        }
         return "§aInvited " + targetName + " as " + levelName(level) + ". They run §e/bank accept§a.";
     }
 
+    /** Most recent pending invite, or null. */
     public static synchronized Invite pendingInvite(UUID invitee) {
         ensure();
-        return invites.get(invitee.toString());
+        List<Invite> l = invites.get(invitee.toString());
+        return (l == null || l.isEmpty()) ? null : l.get(l.size() - 1);
     }
 
-    /** Merges the invitee's (solo) bank into the inviter's group bank. */
-    public static synchronized AcceptResult accept(ServerPlayer invitee) {
+    /** All pending invites, oldest..newest (immutable copy). */
+    public static synchronized List<Invite> pendingInvites(UUID invitee) {
         ensure();
-        Invite inv = invites.get(invitee.getUUID().toString());
-        if (inv == null) return new AcceptResult(false, "§cYou have no pending invite.", 0);
+        List<Invite> l = invites.get(invitee.toString());
+        return l == null ? List.of() : List.copyOf(l);
+    }
+
+    /** Accept the most recent pending invite. */
+    public static synchronized AcceptResult accept(ServerPlayer invitee) { return accept(invitee, null); }
+
+    /** Merges the invitee's (solo) bank into the inviter's group bank.
+     *  rc.3: inviterName selects a specific invite; null = the MOST RECENT one. */
+    public static synchronized AcceptResult accept(ServerPlayer invitee, String inviterName) {
+        ensure();
+        String key = invitee.getUUID().toString();
+        List<Invite> pending = invites.get(key);
+        if (pending == null || pending.isEmpty())
+            return new AcceptResult(false, "§cYou have no pending invite.", 0);
+        Invite inv = null;
+        if (inviterName == null) {
+            inv = pending.get(pending.size() - 1);                      // newest
+        } else {
+            for (int i = pending.size() - 1; i >= 0; i--)               // newest match wins
+                if (pending.get(i).inviterName.equalsIgnoreCase(inviterName)) { inv = pending.get(i); break; }
+            if (inv == null) return new AcceptResult(false, "§cNo pending invite from " + inviterName + ".", 0);
+        }
         Bank group = loadBank(inv.bankId);
-        if (group == null) { invites.remove(invitee.getUUID().toString()); writeJson(invitesFile, invites);
-            return new AcceptResult(false, "§cThat bank no longer exists.", 0); }
+        if (group == null) {
+            pending.remove(inv);
+            if (pending.isEmpty()) invites.remove(key);
+            writeJson(invitesFile, invites);
+            return new AcceptResult(false, "§cThat bank no longer exists.", 0);
+        }
 
         Bank own = lookup(invitee.getUUID());
         if (own != null && own.members.size() > 1)
@@ -263,18 +329,35 @@ public final class BankManager {
         group.members.add(new Bank.Member(invitee.getUUID().toString(),
                 invitee.getGameProfile().name(), inv.level, System.currentTimeMillis()));
         index.put(invitee.getUUID().toString(), group.bankId);
-        invites.remove(invitee.getUUID().toString());
+        pending.remove(inv);                                            // others stay pending
+        if (pending.isEmpty()) invites.remove(key);
         save(group); writeJson(indexFile, index); writeJson(invitesFile, invites);
         return new AcceptResult(true,
                 "§aJoined " + inv.inviterName + "'s bank as " + levelName(inv.level) + "."
                         + (excess > 0 ? " §7(" + excess + " surplus chests returned.)" : ""), excess);
     }
 
-    public static synchronized String decline(ServerPlayer invitee) {
+    /** Decline the most recent pending invite. */
+    public static synchronized String decline(ServerPlayer invitee) { return decline(invitee, null); }
+
+    /** rc.3: inviterName declines a specific invite; null = the MOST RECENT one. */
+    public static synchronized String decline(ServerPlayer invitee, String inviterName) {
         ensure();
-        if (invites.remove(invitee.getUUID().toString()) == null) return "§cYou have no pending invite.";
+        String key = invitee.getUUID().toString();
+        List<Invite> pending = invites.get(key);
+        if (pending == null || pending.isEmpty()) return "§cYou have no pending invite.";
+        Invite inv = null;
+        if (inviterName == null) {
+            inv = pending.get(pending.size() - 1);
+        } else {
+            for (int i = pending.size() - 1; i >= 0; i--)
+                if (pending.get(i).inviterName.equalsIgnoreCase(inviterName)) { inv = pending.get(i); break; }
+            if (inv == null) return "§cNo pending invite from " + inviterName + ".";
+        }
+        pending.remove(inv);
+        if (pending.isEmpty()) invites.remove(key);
         writeJson(invitesFile, invites);
-        return "§7Invite declined.";
+        return "§7Invite from " + inv.inviterName + " declined.";
     }
 
     /** Member leaves; owner triggers succession; last member out deletes the bank. */
@@ -321,8 +404,29 @@ public final class BankManager {
         int maxGrant = (my == OWNER) ? MASTER : MEMBER;
         if (newLevel < DEPOSIT) newLevel = DEPOSIT;
         if (newLevel > maxGrant) newLevel = maxGrant;
+        int oldLevel = t.level;
         t.level = newLevel;
         save(bank);
+
+        // rc.3 (Dave): promotions are announced to every online member; demotions only to
+        // online Owners/Masters.
+        MinecraftServer server = actor.level().getServer();
+        if (server != null && newLevel != oldLevel) {
+            boolean up = newLevel > oldLevel;
+            String note = up
+                    ? "§6[Bank Vault]§a " + targetName + " was promoted to " + levelName(newLevel)
+                      + " by " + actor.getGameProfile().name() + "."
+                    : "§6[Bank Vault]§c " + targetName + " was lowered to " + levelName(newLevel)
+                      + " by " + actor.getGameProfile().name() + ".";
+            for (Bank.Member m : bank.members) {
+                if (!up && m.level < MASTER) continue;
+                try {
+                    ServerPlayer online = server.getPlayerList().getPlayer(UUID.fromString(m.uuid));
+                    if (online != null) online.sendSystemMessage(Component.literal(note));
+                } catch (IllegalArgumentException ignored) {}
+            }
+            return "";   // broadcast already covers the actor (Master+) -- no duplicate line
+        }
         return "§a" + targetName + " is now " + levelName(newLevel) + ".";
     }
 

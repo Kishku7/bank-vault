@@ -80,7 +80,8 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private int depInvX, depInvW, depAllX, depAllW, depY;   // v1.1 Deposit: [Inventory] [All]
     // -- Sharing corner (v1.1) --
     private List<SharingStatePayload.Member> shMembers = new ArrayList<>();
-    private String shInviteFrom = ""; private int shInviteLevel = 0;
+    private List<SharingStatePayload.InviteEntry> shInvites = new ArrayList<>();
+    private int shSelInvite = -1;   // index into shInvites (display selection); -1 = none -> most recent
     private int shTop, shBtnY, shListY, shListH, shMgmtY;
     private int shBtn1X, shBtn1W, shBtn2X, shBtn2W;
     private int shMg1X, shMg1W, shMg2X, shMg2W, shMg3X, shMg3W, shMgmtMode;
@@ -120,13 +121,32 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
 
     public void updateSharing(SharingStatePayload data) {
         this.shMembers = new ArrayList<>(data.members());
-        this.shInviteFrom = data.inviteFrom();
-        this.shInviteLevel = data.inviteLevel();
+        this.shInvites = new ArrayList<>(data.invites());
+        if (shSelInvite >= shInvites.size()) shSelInvite = -1;
         if (shSelected != null) {
             boolean still = false;
             for (SharingStatePayload.Member m : shMembers) if (m.uuid().equals(shSelected)) { still = true; break; }
             if (!still) shSelected = null;
         }
+    }
+
+    /** rc.3: remainder of the alphabetically-first online player name that extends what's typed
+     *  (case-insensitive prefix match, self excluded). Empty when nothing matches or the typed
+     *  text already equals an online name exactly. */
+    private String shCompletion() {
+        if (shInputText.isEmpty() || this.minecraft == null
+                || this.minecraft.getConnection() == null || this.minecraft.player == null) return "";
+        String typed = shInputText.toLowerCase(java.util.Locale.ROOT);
+        String me = this.minecraft.player.getGameProfile().name();
+        String best = null;
+        for (var info : this.minecraft.getConnection().getOnlinePlayers()) {
+            String n = info.getProfile().name();
+            if (n.equals(me)) continue;
+            String ln = n.toLowerCase(java.util.Locale.ROOT);
+            if (ln.equals(typed)) return "";                     // exact name typed: no ghost
+            if (ln.startsWith(typed) && (best == null || n.compareToIgnoreCase(best) < 0)) best = n;
+        }
+        return best == null ? "" : best.substring(shInputText.length());
     }
 
     private SharingStatePayload.Member selectedMember() {
@@ -591,11 +611,11 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         if (shTop > 0) {
             boolean inGroup = shMembers.size() > 1;
             boolean canInvite = permLevel >= 3;                  // Master+ may invite
-            boolean hasInvite = !shInviteFrom.isEmpty();
+            boolean hasInvite = !shInvites.isEmpty();
             textScaled(g, "Sharing", rpX + 8, shTop, SUBTLE, LBL_SCALE);
             String b1 = canInvite ? "Share Bank" : (inGroup ? "Leave Bank" : null);
             String b2 = inGroup ? (canInvite ? "Leave Bank" : null)
-                                : ("Accept Invite" + (hasInvite ? " (1)" : ""));
+                                : ("Accept Invite" + (hasInvite ? " (" + shInvites.size() + ")" : ""));
             boolean b2On = inGroup ? canInvite : hasInvite;      // host w/ members never sees Accept
             if (b1 != null) shButton(g, shBtn1X, shBtnY, shBtn1W, b1, true, mouseX, mouseY);
             if (b2 != null) shButton(g, shBtn2X, shBtnY, shBtn2W, b2, b2On, mouseX, mouseY);
@@ -612,11 +632,13 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                         if (blink) g.fill(rpX + 12, yy - 1, rpX + 13, yy + 9, TEXT);
                         g.text(this.font, trimTo("type player name, Enter sends", RP_W - 28), rpX + 15, yy, SUBTLE);
                     } else {
+                        // rc.3 (Dave): inline autocomplete -- grey remainder of the nearest online
+                        // name; narrows as more letters are typed; Enter sends the completed name.
                         g.text(this.font, trimTo(shInputText, RP_W - 24), rpX + 12, yy, TEXT);
-                        if (blink) {
-                            int cx2 = rpX + 12 + this.font.width(shInputText);
-                            g.fill(cx2, yy - 1, cx2 + 1, yy + 9, TEXT);
-                        }
+                        int cx2 = rpX + 12 + this.font.width(shInputText);
+                        String ghost = shCompletion();
+                        if (!ghost.isEmpty()) g.text(this.font, trimTo(ghost, RP_W - 24 - this.font.width(shInputText)), cx2 + 1, yy, SUBTLE);
+                        if (blink) g.fill(cx2, yy - 1, cx2 + 1, yy + 9, TEXT);
                     }
                     yy += 13;
                 }
@@ -638,9 +660,19 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                         g.text(this.font, tag, rpX + RP_W - 10 - this.font.width(tag), yy + 2, SUBTLE);
                     }
                 } else if (hasInvite && !shInputActive) {
-                    g.text(this.font, trimTo("From " + shInviteFrom, RP_W - 20), rpX + 10, yy + 2, TEXT);
-                    if (yy + 2 * SH_ROW_H <= shListY + shListH)
-                        g.text(this.font, "as " + levelTag(shInviteLevel), rpX + 10, yy + SH_ROW_H + 2, SUBTLE);
+                    // newest first; click selects which invite Accept / Reject acts on
+                    for (int d = 0; d < shInvites.size() && yy + SH_ROW_H <= shListY + shListH; d++, yy += SH_ROW_H) {
+                        int idx = shInvites.size() - 1 - d;
+                        SharingStatePayload.InviteEntry ie = shInvites.get(idx);
+                        boolean sel = (shSelInvite == idx) || (shSelInvite < 0 && d == 0);
+                        boolean hov = inside(mouseX, mouseY, rpX + 8, yy, RP_W - 16, SH_ROW_H);
+                        if (sel) g.fill(rpX + 8, yy, rpX + RP_W - 8, yy + SH_ROW_H, 0xFF4A3A12);
+                        else if (hov) g.fill(rpX + 8, yy, rpX + RP_W - 8, yy + SH_ROW_H, 0xFF3A3A42);
+                        String tag = levelTag(ie.level());
+                        g.text(this.font, trimTo("From " + ie.from(), RP_W - 20 - this.font.width(tag)),
+                                rpX + 10, yy + 2, sel ? ACCENT : TEXT);
+                        g.text(this.font, tag, rpX + RP_W - 10 - this.font.width(tag), yy + 2, SUBTLE);
+                    }
                 }
             }
 
@@ -715,7 +747,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             }
             if (event.isEscape()) { shInputActive = false; return true; }
             if (event.isConfirmation()) {
-                String name = shInputText.trim();
+                String name = (shInputText + shCompletion()).trim();   // rc.3: Enter takes the autocomplete
                 shInputActive = false;
                 if (!name.isEmpty())
                     ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.INVITE, name, 1));
@@ -807,7 +839,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         if (shTop > 0 && button == 0) {
             boolean inGroup = shMembers.size() > 1;
             boolean canInvite = permLevel >= 3;
-            boolean hasInvite = !shInviteFrom.isEmpty();
+            boolean hasInvite = !shInvites.isEmpty();
             if (inside(mx, my, shBtn1X, shBtnY, shBtn1W, SH_BTN_H)) {
                 if (canInvite) { shInputActive = true; shInputText = ""; searchFocused = false; }
                 else if (inGroup) ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.LEAVE, "", 0));
@@ -818,15 +850,17 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                     if (canInvite) ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.LEAVE, "", 0));
                 } else if (hasInvite) {
                     // rc.2 (Dave): informed consent -- close the vault, confirm the merge, then accept.
-                    // No on the dialog = nothing happens; the invite stays pending for later.
+                    // rc.3: acts on the SELECTED invite (default = most recent), named in the dialog.
+                    SharingStatePayload.InviteEntry chosen = shSelInvite >= 0 && shSelInvite < shInvites.size()
+                            ? shInvites.get(shSelInvite) : shInvites.get(shInvites.size() - 1);
                     var mc = this.minecraft;
                     this.onClose();
                     if (mc != null) {
                         mc.setScreen(new net.minecraft.client.gui.screens.ConfirmScreen(yes -> {
-                            if (yes) ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.ACCEPT, "", 0));
+                            if (yes) ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.ACCEPT, chosen.from(), 0));
                             mc.setScreen(null);
                         },
-                        Component.literal("Accept Bank Invite?"),
+                        Component.literal("Accept " + chosen.from() + "'s Bank Invite?"),
                         Component.literal("If you accept this invite, all of your bank vault items will be merged into the shared bank. Do you agree?")));
                     }
                 }
@@ -834,6 +868,15 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             }
             if (shInputActive && inside(mx, my, rpX + 9, shListY + 1, RP_W - 18, 11)) {
                 return true;   // rc.2 (Dave): clicking the name box must NOT cancel the invite entry
+            }
+            if (!inGroup && !shInvites.isEmpty() && !shInputActive && shListH >= SH_ROW_H
+                    && inside(mx, my, rpX + 8, shListY, RP_W - 16, shListH)) {
+                int row = (my - (shListY + 2)) / SH_ROW_H;
+                if (my >= shListY + 2 && row >= 0 && row < shInvites.size()) {
+                    int idx = shInvites.size() - 1 - row;            // rows render newest-first
+                    shSelInvite = (shSelInvite == idx) ? -1 : idx;
+                }
+                return true;
             }
             if (inGroup && shListH >= SH_ROW_H && inside(mx, my, rpX + 8, shListY, RP_W - 16, shListH)) {
                 int yy0 = shListY + 2 + (shInputActive ? 13 : 0);
@@ -859,7 +902,10 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                     ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.LEVEL_DOWN, shSelected, 0)); return true;
                 }
             } else if (shMgmtMode == 2 && inside(mx, my, shMg1X, shMgmtY, shMg1W, SH_BTN_H)) {
-                ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.DECLINE, "", 0)); return true;
+                String from = shSelInvite >= 0 && shSelInvite < shInvites.size()
+                        ? shInvites.get(shSelInvite).from() : "";
+                shSelInvite = -1;
+                ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.DECLINE, from, 0)); return true;
             }
             if (shInputActive) shInputActive = false;   // click elsewhere cancels name entry
         }

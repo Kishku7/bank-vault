@@ -44,8 +44,13 @@ public final class BankCommand {
                                 .then(Commands.argument("level", IntegerArgumentType.integer(1, 3))
                                         .executes(c -> invite(c.getSource(), StringArgumentType.getString(c, "player"),
                                                 IntegerArgumentType.getInteger(c, "level"))))))
-                .then(Commands.literal("accept").executes(c -> accept(c.getSource())))
-                .then(Commands.literal("decline").executes(c -> simple(c.getSource(), BankManager::decline)))
+                .then(Commands.literal("accept").executes(c -> accept(c.getSource(), null))
+                        .then(Commands.argument("player", StringArgumentType.word()).suggests(BankCommand::inviters)
+                                .executes(c -> accept(c.getSource(), StringArgumentType.getString(c, "player")))))
+                .then(Commands.literal("decline").executes(c -> simple(c.getSource(), BankManager::decline))
+                        .then(Commands.argument("player", StringArgumentType.word()).suggests(BankCommand::inviters)
+                                .executes(c -> simple(c.getSource(),
+                                        p -> BankManager.decline(p, StringArgumentType.getString(c, "player"))))))
                 .then(Commands.literal("leave").executes(c -> simple(c.getSource(), BankManager::leave)))
                 .then(Commands.literal("disband").executes(c -> simple(c.getSource(), BankManager::disband)))
                 .then(Commands.literal("upgrade")
@@ -111,19 +116,14 @@ public final class BankCommand {
         UUID id = resolveId(src, name);
         if (id == null) return send(actor, "§cPlayer not found: " + name);
         send(actor, BankManager.invite(actor, id, name, level));
-        ServerPlayer target = src.getServer().getPlayerList().getPlayerByName(name);
-        if (target != null) {
-            send(target, "§6[Bank Vault]§r " + actor.getGameProfile().name()
-                    + " invites you to be a " + BankManager.levelName(level)
-                    + " of their bank vault. §e/bank accept§r or §e/bank decline§r.");
-        }
+        // rc.3: BankManager.invite notifies the invitee directly (covers GUI invites too).
         return 1;
     }
 
-    private static int accept(CommandSourceStack src) {
+    private static int accept(CommandSourceStack src, String inviterName) {
         ServerPlayer p = src.getPlayer();
         if (p == null) return 0;
-        BankManager.AcceptResult r = BankManager.accept(p);
+        BankManager.AcceptResult r = BankManager.accept(p, inviterName);
         send(p, r.message());
         int ex = r.excessChests();
         while (ex > 0) {
@@ -199,8 +199,17 @@ public final class BankCommand {
     }
 
     private static int send(ServerPlayer p, String msg) {
-        p.sendSystemMessage(Component.literal(msg));
+        if (msg != null && !msg.isEmpty()) p.sendSystemMessage(Component.literal(msg));
         return 1;
+    }
+
+    private static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> inviters(
+            com.mojang.brigadier.context.CommandContext<CommandSourceStack> ctx,
+            com.mojang.brigadier.suggestion.SuggestionsBuilder builder) {
+        ServerPlayer p = ctx.getSource().getPlayer();
+        List<String> names = p == null ? List.of()
+                : BankManager.pendingInvites(p.getUUID()).stream().map(i -> i.inviterName).distinct().toList();
+        return SharedSuggestionProvider.suggest(names, builder);
     }
 
     private static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> players(

@@ -9,10 +9,10 @@ import net.minecraft.resources.Identifier;
 
 import java.util.List;
 
-/** Server -> client: the player's bank membership + any pending invite, for the in-screen
- *  Sharing corner (v1.1). members has exactly one entry (the player) when solo; more = group.
- *  inviteFrom is empty when no invite is pending. */
-public record SharingStatePayload(List<Member> members, String inviteFrom, int inviteLevel)
+/** Server -> client: the player's bank membership + ALL pending invites (rc.3: multi-invite),
+ *  for the in-screen Sharing corner. members has exactly one entry (the player) when solo;
+ *  more = group. invites are ordered oldest..newest -- the LAST entry is the most recent. */
+public record SharingStatePayload(List<Member> members, List<InviteEntry> invites)
         implements CustomPacketPayload {
 
     public record Member(String uuid, String name, int level) {
@@ -23,13 +23,19 @@ public record SharingStatePayload(List<Member> members, String inviteFrom, int i
                 Member::new);
     }
 
+    public record InviteEntry(String from, int level) {
+        public static final StreamCodec<RegistryFriendlyByteBuf, InviteEntry> CODEC = StreamCodec.composite(
+                ByteBufCodecs.STRING_UTF8, InviteEntry::from,
+                ByteBufCodecs.VAR_INT, InviteEntry::level,
+                InviteEntry::new);
+    }
+
     public static final Type<SharingStatePayload> TYPE =
             new Type<>(Identifier.fromNamespaceAndPath(BankVault.MOD_ID, "sharing_state"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, SharingStatePayload> CODEC = StreamCodec.composite(
             Member.CODEC.apply(ByteBufCodecs.list()), SharingStatePayload::members,
-            ByteBufCodecs.STRING_UTF8, SharingStatePayload::inviteFrom,
-            ByteBufCodecs.VAR_INT, SharingStatePayload::inviteLevel,
+            InviteEntry.CODEC.apply(ByteBufCodecs.list()), SharingStatePayload::invites,
             SharingStatePayload::new);
 
     @Override
