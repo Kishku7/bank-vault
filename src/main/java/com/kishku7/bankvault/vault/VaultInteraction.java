@@ -29,6 +29,15 @@ public final class VaultInteraction {
                     "\u00A76[Bank Vault]\u00A7r \u00A7cVault incomplete\u00A7r \u2014 complete the 3\u00D73 to use it."));
             return;
         }
+        // Live structure check (parity w/ NeoForge rc.5, Dave 2026-06-05): player-break events
+        // don't cover /setblock or other-mod removals -- re-validate the real 3x3 before opening.
+        if (!MultiblockManager.isIntact(level, pos)) {
+            MultiblockManager.onRemoved(level, pos); // strip stale formed visuals
+            player.sendSystemMessage(Component.literal(
+                    "\u00A76[Bank Vault]\u00A7r \u00A7cVault incomplete\u00A7r \u2014 complete the 3\u00D73 to use it."));
+            return;
+        }
+
         Bank bank = BankManager.getOrCreate(player);
         // Open the container menu (real inventory slots), then push the vault grid data.
         player.openMenu(new SimpleMenuProvider(

@@ -78,6 +78,14 @@ public final class MultiblockManager {
         return rightSign > 0 ? VaultPart.EDGE90 : VaultPart.EDGE270;
     }
 
+    /** True if pos belongs to a COMPLETE 3x3 (some neighbor validates as a center). */
+    public static boolean isIntact(Level level, BlockPos pos) {
+        for (BlockPos c : around(pos, 1)) {
+            if (MultiblockValidator.matchedAxis(level, c) != null) return true;
+        }
+        return false;
+    }
+
     public static void onRemoved(Level level, BlockPos pos) {
         if (level.isClientSide()) return;
         for (BlockPos p : around(pos, 2)) {
