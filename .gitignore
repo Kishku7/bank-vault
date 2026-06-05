@@ -40,3 +40,7 @@ plan/
 docs/
 
 experiments/
+build-*.log
+build-*.err
+runserver.log
+runserver.err
