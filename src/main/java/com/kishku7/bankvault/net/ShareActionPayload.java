@@ -15,7 +15,7 @@ import net.minecraft.resources.Identifier;
 public record ShareActionPayload(int op, String target, int level) implements CustomPacketPayload {
 
     public static final int INVITE = 0, ACCEPT = 1, DECLINE = 2, KICK = 3,
-            LEVEL_UP = 4, LEVEL_DOWN = 5, LEAVE = 6;
+            LEVEL_UP = 4, LEVEL_DOWN = 5, LEAVE = 6, REFRESH = 7;
 
     public static final Type<ShareActionPayload> TYPE =
             new Type<>(Identifier.fromNamespaceAndPath(BankVault.MOD_ID, "share_action"));

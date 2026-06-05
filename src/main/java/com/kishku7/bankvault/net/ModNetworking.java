@@ -140,6 +140,7 @@ public final class ModNetworking {
                 if (old != null) refreshGroup(server, old);
                 BankManager.getOrCreate(player);               // fresh solo bank right away
             }
+            case ShareActionPayload.REFRESH -> { /* rc.4 heartbeat: the tail below re-syncs */ }
             default -> { return; }
         }
         if (msg != null && !msg.isEmpty()) player.sendSystemMessage(Component.literal(msg));

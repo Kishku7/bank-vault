@@ -119,6 +119,19 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         rebuild();
     }
 
+    private int shRefreshTicks = 0;
+
+    @Override
+    protected void containerTick() {
+        super.containerTick();
+        // rc.4 (Dave): the host's member list must update live when someone accepts an invite.
+        // Pushes cover the instant case; this heartbeat guarantees freshness even if one is missed.
+        if (++shRefreshTicks >= 60) {   // every 3s
+            shRefreshTicks = 0;
+            ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.REFRESH, "", 0));
+        }
+    }
+
     public void updateSharing(SharingStatePayload data) {
         this.shMembers = new ArrayList<>(data.members());
         this.shInvites = new ArrayList<>(data.invites());
@@ -630,7 +643,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                     if (shInputText.isEmpty()) {
                         // rc.2 (Dave): make "type here" unmistakable -- cursor blinks from the start
                         if (blink) g.fill(rpX + 12, yy - 1, rpX + 13, yy + 9, TEXT);
-                        g.text(this.font, trimTo("type player name, Enter sends", RP_W - 28), rpX + 15, yy, SUBTLE);
+                        g.text(this.font, trimTo("type a name; Tab fills, Enter sends", RP_W - 28), rpX + 15, yy, SUBTLE);
                     } else {
                         // rc.3 (Dave): inline autocomplete -- grey remainder of the nearest online
                         // name; narrows as more letters are typed; Enter sends the completed name.
@@ -654,10 +667,11 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                         boolean hov = inside(mouseX, mouseY, rpX + 8, yy, RP_W - 16, SH_ROW_H);
                         if (sel) g.fill(rpX + 8, yy, rpX + RP_W - 8, yy + SH_ROW_H, 0xFF4A3A12);
                         else if (hov && !self) g.fill(rpX + 8, yy, rpX + RP_W - 8, yy + SH_ROW_H, 0xFF3A3A42);
-                        String tag = levelTag(m.level());
+                        // rc.4 (Dave): rank badges are Masters+ knowledge only
+                        String tag = permLevel >= 3 ? levelTag(m.level()) : "";
                         g.text(this.font, trimTo((self ? "* " : "") + m.name(), RP_W - 20 - this.font.width(tag)),
                                 rpX + 10, yy + 2, sel ? ACCENT : TEXT);
-                        g.text(this.font, tag, rpX + RP_W - 10 - this.font.width(tag), yy + 2, SUBTLE);
+                        if (!tag.isEmpty()) g.text(this.font, tag, rpX + RP_W - 10 - this.font.width(tag), yy + 2, SUBTLE);
                     }
                 } else if (hasInvite && !shInputActive) {
                     // newest first; click selects which invite Accept / Reject acts on
@@ -668,10 +682,8 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                         boolean hov = inside(mouseX, mouseY, rpX + 8, yy, RP_W - 16, SH_ROW_H);
                         if (sel) g.fill(rpX + 8, yy, rpX + RP_W - 8, yy + SH_ROW_H, 0xFF4A3A12);
                         else if (hov) g.fill(rpX + 8, yy, rpX + RP_W - 8, yy + SH_ROW_H, 0xFF3A3A42);
-                        String tag = levelTag(ie.level());
-                        g.text(this.font, trimTo("From " + ie.from(), RP_W - 20 - this.font.width(tag)),
-                                rpX + 10, yy + 2, sel ? ACCENT : TEXT);
-                        g.text(this.font, tag, rpX + RP_W - 10 - this.font.width(tag), yy + 2, SUBTLE);
+                        // rc.4 (Dave): the invitee is not told the offered rank
+                        g.text(this.font, trimTo("From " + ie.from(), RP_W - 20), rpX + 10, yy + 2, sel ? ACCENT : TEXT);
                     }
                 }
             }
@@ -741,6 +753,11 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     @Override
     public boolean keyPressed(KeyEvent event) {
         if (shInputActive) {
+            if (event.input() == 258) { // TAB -- rc.4 (Dave): accept the autocomplete
+                String ghost = shCompletion();
+                if (!ghost.isEmpty()) shInputText = shInputText + ghost;
+                return true;
+            }
             if (event.input() == 259) { // BACKSPACE
                 if (!shInputText.isEmpty()) shInputText = shInputText.substring(0, shInputText.length() - 1);
                 return true;

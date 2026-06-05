@@ -254,9 +254,10 @@ public final class BankManager {
             String how = list.size() > 1
                     ? "\u00a7e/bank accept " + inv.inviterName + "\u00a7r (\u00a7e/bank accept\u00a7r takes the newest)"
                     : "\u00a7e/bank accept\u00a7r";
+            // rc.4 (Dave): no rank disclosure to the invitee -- only Masters+ see rank info
             target.sendSystemMessage(Component.literal(
-                    "\u00a76[Bank Vault]\u00a7r " + inv.inviterName + " invited you to share their bank vault as "
-                    + levelName(level) + "! " + how + ", \u00a7e/bank decline\u00a7r, or open any Bank Vault to respond."));
+                    "\u00a76[Bank Vault]\u00a7r " + inv.inviterName + " invited you to share their bank vault! "
+                    + how + ", \u00a7e/bank decline\u00a7r, or open any Bank Vault to respond."));
         }
         return "§aInvited " + targetName + " as " + levelName(level) + ". They run §e/bank accept§a.";
     }
@@ -332,8 +333,10 @@ public final class BankManager {
         pending.remove(inv);                                            // others stay pending
         if (pending.isEmpty()) invites.remove(key);
         save(group); writeJson(indexFile, index); writeJson(invitesFile, invites);
+        // rc.4 (Dave): rank named only when the new member is Master+ -- others just join
         return new AcceptResult(true,
-                "§aJoined " + inv.inviterName + "'s bank as " + levelName(inv.level) + "."
+                "§aJoined " + inv.inviterName + "'s bank."
+                        + (inv.level >= MASTER ? " You are a " + levelName(inv.level) + "." : "")
                         + (excess > 0 ? " §7(" + excess + " surplus chests returned.)" : ""), excess);
     }
 
@@ -373,11 +376,25 @@ public final class BankManager {
         if (bank.members.isEmpty()) {
             deleteBank(bank.bankId);
         } else {
+            Bank.Member heir = null;
             if (wasOwner) {
-                Bank.Member heir = succession(bank);
+                heir = succession(bank);
                 if (heir != null) heir.level = OWNER;
             }
             save(bank);
+            // rc.4 (Dave): Owners/Masters are told when someone leaves the share
+            MinecraftServer server = player.level().getServer();
+            if (server != null) {
+                String note = "\u00a76[Bank Vault]\u00a77 " + player.getGameProfile().name() + " left the bank."
+                        + (heir != null ? " Ownership passed to " + heir.name + "." : "");
+                for (Bank.Member m : bank.members) {
+                    if (m.level < MASTER) continue;
+                    try {
+                        ServerPlayer online = server.getPlayerList().getPlayer(UUID.fromString(m.uuid));
+                        if (online != null) online.sendSystemMessage(Component.literal(note));
+                    } catch (IllegalArgumentException ignored) {}
+                }
+            }
         }
         writeJson(indexFile, index);
         return "§7You left the bank." + (wasOwner && !bank.members.isEmpty() ? " Ownership passed on." : "");
