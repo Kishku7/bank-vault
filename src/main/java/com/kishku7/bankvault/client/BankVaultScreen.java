@@ -542,21 +542,22 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         // between the 3x3 crafting grid and the main inventory. All = 27 main + 9 hotbar;
         // Inventory = 27 main only. Strictly those slot ranges (server enforces too).
         {
-            depAllW = this.font.width("All") + 10;
-            depInvW = this.font.width("Inventory") + 10;
-            depY = rpY + 67;
+            // rc.2 (Dave): half-size buttons -- short labels, tight padding, 11px tall
+            depAllW = this.font.width("All") + 6;
+            depInvW = this.font.width("Inv") + 6;
+            depY = rpY + 68;
             depAllX = rpX + RP_W - 8 - depAllW;
-            depInvX = depAllX - 4 - depInvW;
+            depInvX = depAllX - 3 - depInvW;
             String dlbl = "Deposit:";
-            textScaled(g, dlbl, depInvX - 6 - (int) (this.font.width(dlbl) * LBL_SCALE), depY + 3, SUBTLE, LBL_SCALE);
-            boolean ihov = inside(mouseX, mouseY, depInvX, depY, depInvW, 13);
-            boolean ahov = inside(mouseX, mouseY, depAllX, depY, depAllW, 13);
-            g.fill(depInvX, depY, depInvX + depInvW, depY + 13, ihov ? 0xFF3A3A42 : WELL);
+            textScaled(g, dlbl, depInvX - 5 - (int) (this.font.width(dlbl) * LBL_SCALE), depY + 2, SUBTLE, LBL_SCALE);
+            boolean ihov = inside(mouseX, mouseY, depInvX, depY, depInvW, 11);
+            boolean ahov = inside(mouseX, mouseY, depAllX, depY, depAllW, 11);
+            g.fill(depInvX, depY, depInvX + depInvW, depY + 11, ihov ? 0xFF3A3A42 : WELL);
             g.fill(depInvX, depY, depInvX + depInvW, depY + 1, SUBTLE);
-            g.fill(depAllX, depY, depAllX + depAllW, depY + 13, ahov ? 0xFF3A3A42 : WELL);
+            g.fill(depAllX, depY, depAllX + depAllW, depY + 11, ahov ? 0xFF3A3A42 : WELL);
             g.fill(depAllX, depY, depAllX + depAllW, depY + 1, SUBTLE);
-            g.text(this.font, "Inventory", depInvX + 5, depY + 3, TEXT);
-            g.text(this.font, "All", depAllX + 5, depY + 3, TEXT);
+            g.text(this.font, "Inv", depInvX + 3, depY + 2, TEXT);
+            g.text(this.font, "All", depAllX + 3, depY + 2, TEXT);
         }
 
         // quick-unload cluster (below the inventory panel)
@@ -604,11 +605,18 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                 int yy = shListY + 2;
                 if (shInputActive) {                              // inline invite-name entry
                     g.fill(rpX + 9, yy - 1, rpX + RP_W - 9, yy + 10, 0xFF1A1A28);
-                    String hint = shInputText.isEmpty() ? "player name + Enter" : shInputText;
-                    g.text(this.font, trimTo(hint, RP_W - 24), rpX + 12, yy, shInputText.isEmpty() ? SUBTLE : TEXT);
-                    if (!shInputText.isEmpty() && (System.currentTimeMillis() / 500) % 2 == 0) {
-                        int cx2 = rpX + 12 + this.font.width(shInputText);
-                        g.fill(cx2, yy - 1, cx2 + 1, yy + 9, TEXT);
+                    g.fill(rpX + 9, yy - 1, rpX + RP_W - 9, yy, ACCENT);          // focused border cue
+                    boolean blink = (System.currentTimeMillis() / 500) % 2 == 0;
+                    if (shInputText.isEmpty()) {
+                        // rc.2 (Dave): make "type here" unmistakable -- cursor blinks from the start
+                        if (blink) g.fill(rpX + 12, yy - 1, rpX + 13, yy + 9, TEXT);
+                        g.text(this.font, trimTo("type player name, Enter sends", RP_W - 28), rpX + 15, yy, SUBTLE);
+                    } else {
+                        g.text(this.font, trimTo(shInputText, RP_W - 24), rpX + 12, yy, TEXT);
+                        if (blink) {
+                            int cx2 = rpX + 12 + this.font.width(shInputText);
+                            g.fill(cx2, yy - 1, cx2 + 1, yy + 9, TEXT);
+                        }
                     }
                     yy += 13;
                 }
@@ -787,10 +795,10 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
 
         // Deposit buttons (v1.1): Inventory = main 27, All = main 27 + hotbar 9. Deposit perm required.
         if (button == 0 && permLevel >= 1 && this.menu.getCarried().isEmpty()) {
-            if (inside(mx, my, depInvX, depY, depInvW, 13)) {
+            if (inside(mx, my, depInvX, depY, depInvW, 11)) {
                 ClientPlayNetworking.send(new com.kishku7.bankvault.net.DepositAllPayload(false)); return true;
             }
-            if (inside(mx, my, depAllX, depY, depAllW, 13)) {
+            if (inside(mx, my, depAllX, depY, depAllW, 11)) {
                 ClientPlayNetworking.send(new com.kishku7.bankvault.net.DepositAllPayload(true)); return true;
             }
         }
@@ -809,9 +817,23 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                 if (inGroup) {
                     if (canInvite) ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.LEAVE, "", 0));
                 } else if (hasInvite) {
-                    ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.ACCEPT, "", 0));
+                    // rc.2 (Dave): informed consent -- close the vault, confirm the merge, then accept.
+                    // No on the dialog = nothing happens; the invite stays pending for later.
+                    var mc = this.minecraft;
+                    this.onClose();
+                    if (mc != null) {
+                        mc.setScreen(new net.minecraft.client.gui.screens.ConfirmScreen(yes -> {
+                            if (yes) ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.ACCEPT, "", 0));
+                            mc.setScreen(null);
+                        },
+                        Component.literal("Accept Bank Invite?"),
+                        Component.literal("If you accept this invite, all of your bank vault items will be merged into the shared bank. Do you agree?")));
+                    }
                 }
                 return true;
+            }
+            if (shInputActive && inside(mx, my, rpX + 9, shListY + 1, RP_W - 18, 11)) {
+                return true;   // rc.2 (Dave): clicking the name box must NOT cancel the invite entry
             }
             if (inGroup && shListH >= SH_ROW_H && inside(mx, my, rpX + 8, shListY, RP_W - 16, shListH)) {
                 int yy0 = shListY + 2 + (shInputActive ? 13 : 0);
