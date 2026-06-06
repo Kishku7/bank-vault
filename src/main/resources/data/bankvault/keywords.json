@@ -4672,8 +4672,7 @@
    "mobDrop",
    "cave",
    "renewable",
-   "stackable",
-   "dye"
+   "stackable"
   ],
   "minecraft:glow_item_frame": [
    "decoration",
