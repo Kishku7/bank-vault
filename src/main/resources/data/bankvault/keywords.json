@@ -80,6 +80,7 @@
   "gem",
   "ghast",
   "glass",
+  "glider",
   "gold",
   "gravity",
   "growable",
@@ -4050,7 +4051,8 @@
    "unique",
    "unstackable",
    "breakable",
-   "endGame"
+   "endGame",
+   "glider"
   ],
   "minecraft:emerald": [
    "gem",

@@ -67,4 +67,21 @@ public final class TrinketCompat {
         }
         return n;
     }
+
+    /** v1.2: is this stack accepted by ANY of the player's trinket slots? Dynamic detection --
+     *  works for every trinkets-backed mod without inventorying item ids. Same guard contract
+     *  as the rest of this class: callers check TRINKETS and catch Throwable. */
+    public static boolean isTrinket(ItemStack stack, Player player) {
+        TrinketAttachment att = TrinketsApi.getAttachment(player);
+        if (att == null) return false;
+        for (TrinketInventory inv : att.getInventories().values()) {
+            if (inv.getContainerSize() <= 0) continue;
+            try {
+                if (inv.slotType().validatorCheck(stack, inv.getOrCreateSlotAccess(0), player)) return true;
+            } catch (Throwable ignored) {
+                // API drift on one slot type must not break detection for the others
+            }
+        }
+        return false;
+    }
 }

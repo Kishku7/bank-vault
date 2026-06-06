@@ -6,6 +6,8 @@ import com.kishku7.bankvault.net.GridViewPayload;
 import com.kishku7.bankvault.net.UpgradePayload;
 import com.kishku7.bankvault.net.VaultSyncPayload;
 import com.kishku7.bankvault.net.VaultSyncPayload.Entry;
+import com.kishku7.bankvault.BankVault;
+import com.kishku7.bankvault.inventory.TrinketCompat;
 import com.kishku7.bankvault.vault.Catalog;
 import com.kishku7.bankvault.vault.Keywords;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -76,6 +78,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private int btnRowsTotal, btnVisRows;
     private final Map<String, ItemStack> iconCache = new HashMap<>();
     private final Map<String, Long> btnTotals = new HashMap<>();   // per-sync cache (hover-lag fix)
+    private final Map<String, Boolean> trinketCache = new HashMap<>();   // per-stack-key trinket test cache
     private int gridX, gridY, gridBottom, slot = 18, cols, rows;
     private int sbarX, sbarTop, sbarBottom;
     private int rpX, rpY;                       // right panel (native inventory) top-left, absolute
@@ -341,6 +344,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         btnCells.clear();
         iconCache.clear();
         btnTotals.clear();
+        trinketCache.clear();
         int step = btnSize + btnGap;
         int y = 0, rowsUsed = 0;
         for (List<ButtonLayout.BtnDef> row : ButtonLayout.rows()) {
@@ -358,6 +362,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     }
 
     private boolean buttonVisible(ButtonLayout.BtnDef d) {
+        if (d.dynamic() != null) return "trinkets".equals(d.dynamic()) && BankVault.TRINKETS;
         if (d.words() != null) return Keywords.anyItemHas(d.words());
         String tabId = d.category();
         if (Catalog.tab(tabId) == null) return false;
@@ -376,7 +381,20 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     /** Does this vault entry belong under the given button? */
     private boolean matchesDef(ButtonLayout.BtnDef d, Entry e) {
         if (d.category() != null) return Catalog.inTab(idOf(e), d.category());
-        return Keywords.itemHasAny(idOf(e), d.words());
+        if (d.words() != null) return Keywords.itemHasAny(idOf(e), d.words());
+        if ("trinkets".equals(d.dynamic())) return isTrinketCached(e);
+        return false;
+    }
+
+    /** Dynamic trinket membership: ask the trinkets API whether any of the player's trinket
+     *  slots accepts this stack. Cached per stack key; guarded so a missing/shifted trinkets
+     *  mod can never crash the vault. */
+    private boolean isTrinketCached(Entry e) {
+        if (!BankVault.TRINKETS || this.minecraft == null || this.minecraft.player == null) return false;
+        return trinketCache.computeIfAbsent(e.key(), k -> {
+            try { return TrinketCompat.isTrinket(e.stack(), this.minecraft.player); }
+            catch (Throwable t) { return false; }
+        });
     }
 
     /** Sort identity for the selected button: category id, or the button's first word
@@ -384,7 +402,8 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private String sortKey() {
         ButtonLayout.BtnDef d = selectedDef();
         if (d == null) return "default";
-        return d.category() != null ? d.category() : d.words().get(0);
+        if (d.category() != null) return d.category();
+        return d.words() != null ? d.words().get(0) : "default";
     }
 
     private String btnLabel(ButtonLayout.BtnDef d) {
@@ -398,11 +417,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private long btnTotal(ButtonLayout.BtnDef d) {
         return btnTotals.computeIfAbsent(d.key(), k -> {
             long t = 0;
-            for (Entry e : entries) {
-                boolean in = d.category() != null ? Catalog.inTab(idOf(e), d.category())
-                        : Keywords.itemHasAny(idOf(e), d.words());
-                if (in) t += e.count();
-            }
+            for (Entry e : entries) if (matchesDef(d, e)) t += e.count();
             return t;
         });
     }
@@ -466,9 +481,29 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     /** SETTINGS-DRIVEN smart sort: interprets the step chain from categories.json tabSort.
      *  Steps: "name", "form", "oxidation", "color", "firstword", "lastword",
      *  "prefix:<list>", "tier:<list>" (ordered infix), "suffix:<list>". */
+    /** v1.2 (Dave): keyword/dynamic buttons sort CATEGORICALLY -- items group by their
+     *  primary catalog category (in category order), each group walking that category's
+     *  curated order, then display name. Reads as: all the wood things together, all the
+     *  redstone things together, in the same order the old tabs used. */
+    private Comparator<Entry> categorical(String mode) {
+        Comparator<Entry> byTab = Comparator.comparingInt(e -> primaryTabOrder(idOf(e)));
+        Comparator<Entry> byCurated = Comparator.comparingInt(e -> {
+            String id = idOf(e);
+            return Catalog.orderIndex(Catalog.tabsFor(id).get(0), mode, id);
+        });
+        return byTab.thenComparing(byCurated).thenComparing(Comparator.comparing(this::nameOf));
+    }
+
+    private int primaryTabOrder(String itemId) {
+        Catalog.Tab t = Catalog.tab(Catalog.tabsFor(itemId).get(0));
+        return t == null ? Integer.MAX_VALUE : t.order();
+    }
+
     private Comparator<Entry> smartFamily() { return smart("family"); }
     private Comparator<Entry> smartType() { return smart("type"); }
     private Comparator<Entry> smart(String mode) {
+        ButtonLayout.BtnDef sd = selectedDef();
+        if (sd != null && sd.category() == null) return categorical(mode);
         Comparator<Entry> cmp = null;
         String sk = sortKey();
         for (String step : Catalog.sortSteps(sk, mode)) {

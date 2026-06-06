@@ -327,8 +327,14 @@
      "rail",
      "minecart",
      "boat",
-     "rideable"
+     "rideable",
+     "glider"
     ]
+   },
+   {
+    "label": "Trinkets",
+    "icon": "minecraft:totem_of_undying",
+    "dynamic": "trinkets"
    },
    {
     "label": "Redstone",

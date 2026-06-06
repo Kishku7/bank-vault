@@ -29,10 +29,15 @@ import java.util.List;
  *                                               from keywords.json (multi-word friendly) */
 public final class ButtonLayout {
 
-    /** One button definition. Exactly one of {@code category} / {@code words} is non-null. */
-    public record BtnDef(String label, String icon, String category, List<String> words) {
+    /** One button definition. Exactly one of {@code category} / {@code words} / {@code dynamic}
+     *  is non-null. {@code dynamic} buttons resolve membership at runtime (e.g. "trinkets"). */
+    public record BtnDef(String label, String icon, String category, List<String> words, String dynamic) {
         /** Stable identity for selection state across re-inits and config reloads. */
-        public String key() { return category != null ? "cat:" + category : "kw:" + label; }
+        public String key() {
+            if (category != null) return "cat:" + category;
+            if (dynamic != null) return "dyn:" + dynamic;
+            return "kw:" + label;
+        }
     }
 
     private static final Gson GSON = new Gson();
@@ -86,15 +91,17 @@ public final class ButtonLayout {
             List<BtnDef> row = new ArrayList<>();
             for (JsonElement e : re.getAsJsonArray()) {
                 if (e.isJsonPrimitive()) {
-                    row.add(new BtnDef(null, null, e.getAsString(), null));
+                    row.add(new BtnDef(null, null, e.getAsString(), null, null));
                 } else if (e.isJsonObject()) {
                     JsonObject o = e.getAsJsonObject();
                     List<String> words = new ArrayList<>();
                     if (o.has("words")) o.getAsJsonArray("words").forEach(x -> words.add(x.getAsString()));
+                    String dynamic = o.has("dynamic") ? o.get("dynamic").getAsString() : null;
                     String label = o.has("label") ? o.get("label").getAsString()
-                            : (words.isEmpty() ? "?" : words.get(0));
+                            : (dynamic != null ? dynamic : words.isEmpty() ? "?" : words.get(0));
                     String icon = o.has("icon") ? o.get("icon").getAsString() : "";
-                    if (!words.isEmpty()) row.add(new BtnDef(label, icon, null, words));
+                    if (!words.isEmpty() || dynamic != null)
+                        row.add(new BtnDef(label, icon, null, words.isEmpty() ? null : words, dynamic));
                 }
             }
             if (!row.isEmpty()) out.add(row);
