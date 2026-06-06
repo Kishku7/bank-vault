@@ -99,10 +99,12 @@
     ]
    },
    {
-    "label": "Obsidian",
+    "label": "Other Materials",
     "icon": "minecraft:obsidian",
     "words": [
-     "obsidian"
+     "obsidian",
+     "coral",
+     "clay"
     ]
    }
   ],
@@ -112,20 +114,6 @@
     "icon": "minecraft:bamboo",
     "words": [
      "bamboo"
-    ]
-   },
-   {
-    "label": "Clay",
-    "icon": "minecraft:clay_ball",
-    "words": [
-     "clay"
-    ]
-   },
-   {
-    "label": "Coral",
-    "icon": "minecraft:brain_coral",
-    "words": [
-     "coral"
     ]
    },
    {
@@ -467,7 +455,7 @@
    },
    {
     "label": "Jungle",
-    "icon": "minecraft:jungle_log",
+    "icon": "minecraft:vine",
     "words": [
      "jungle"
     ]

@@ -797,7 +797,6 @@
    "cave"
   ],
   "minecraft:beacon": [
-   "glass",
    "block",
    "lightSource",
    "craftable",
@@ -1668,7 +1667,6 @@
   "minecraft:brown_harness": [
    "harness",
    "leather",
-   "glass",
    "colored",
    "craftable",
    "wearable",
@@ -4248,7 +4246,6 @@
    "egg"
   ],
   "minecraft:experience_bottle": [
-   "glass",
    "throwable",
    "projectile",
    "tradeable",
@@ -6078,7 +6075,6 @@
   "minecraft:light_blue_harness": [
    "harness",
    "leather",
-   "glass",
    "colored",
    "craftable",
    "rideable",
@@ -6197,7 +6193,6 @@
   "minecraft:light_gray_harness": [
    "harness",
    "leather",
-   "glass",
    "colored",
    "craftable",
    "rideable",
@@ -6359,7 +6354,6 @@
   "minecraft:lime_harness": [
    "harness",
    "leather",
-   "glass",
    "colored",
    "craftable",
    "rideable",
@@ -6517,7 +6511,6 @@
   "minecraft:magenta_harness": [
    "harness",
    "leather",
-   "glass",
    "colored",
    "craftable",
    "rideable",
@@ -8334,7 +8327,6 @@
   ],
   "minecraft:pink_harness": [
    "leather",
-   "glass",
    "colored",
    "craftable",
    "ghast",
@@ -9000,7 +8992,6 @@
   ],
   "minecraft:purple_harness": [
    "leather",
-   "glass",
    "colored",
    "craftable",
    "ghast",
@@ -9331,7 +9322,6 @@
   ],
   "minecraft:red_harness": [
    "leather",
-   "glass",
    "colored",
    "craftable",
    "ghast",

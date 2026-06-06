@@ -208,9 +208,9 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         pw = Math.max(MIN_W, Math.min(DESIGN_W, this.width - 2 * MARGIN));
         // Height: just enough to fit the tab rail (or the right panel cluster), capped to the screen.
         // selection resolves against the button cells after recomputeButtons() below
-        int tabsNeeded = 16;
+        int tabsNeeded = 20;   // matches recomputeButtons: headers cost HDR + 3 pre-gap
         for (ButtonLayout.Row lr : ButtonLayout.rows())
-            tabsNeeded += lr.section() != null ? BTN_SECTION_HDR
+            tabsNeeded += lr.section() != null ? BTN_SECTION_HDR + 3
                     : lr.buttons().isEmpty() ? BTN_SECTION_GAP : ButtonLayout.buttonSize() + 2;
         int tRowsPre = (this.menu.trinketSlotCount + 8) / 9;
         int clusterNeeded = RP_H + 6 + 18 + 14 + (tRowsPre > 0 ? tRowsPre * 18 + 4 : 0) + 81;   // +81: Sharing corner (v1.1)
