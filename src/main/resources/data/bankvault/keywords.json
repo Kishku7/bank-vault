@@ -3945,7 +3945,8 @@
    "dragon",
    "end",
    "brewable",
-   "endGame"
+   "endGame",
+   "lingeringPotion"
   ],
   "minecraft:dragon_egg": [
    "dragon",
@@ -5177,7 +5178,8 @@
    "explosive",
    "brewable",
    "stackable",
-   "earlyGame"
+   "earlyGame",
+   "splashPotion"
   ],
   "minecraft:guster_banner_pattern": [
    "bannerPattern",
