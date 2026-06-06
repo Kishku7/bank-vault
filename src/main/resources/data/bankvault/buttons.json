@@ -346,13 +346,6 @@
     ]
    },
    {
-    "label": "Farmable",
-    "icon": "minecraft:wheat",
-    "words": [
-     "farmable"
-    ]
-   },
-   {
     "label": "Fuel",
     "icon": "minecraft:coal",
     "words": [

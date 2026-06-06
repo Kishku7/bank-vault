@@ -814,7 +814,8 @@
    "overworld",
    "renewable",
    "mineable",
-   "farmable"
+   "farmable",
+   "odd"
   ],
   "minecraft:bee_spawn_egg": [
    "egg",
@@ -838,7 +839,8 @@
    "craftable",
    "renewable",
    "burnable",
-   "farmable"
+   "farmable",
+   "odd"
   ],
   "minecraft:beetroot": [
    "food",
@@ -2361,7 +2363,8 @@
    "mineable",
    "overworld",
    "earlyGame",
-   "farmable"
+   "farmable",
+   "otherMaterial"
   ],
   "minecraft:coast_armor_trim_smithing_template": [
    "smithingTemplate",
@@ -3900,7 +3903,8 @@
    "placeable",
    "overworld",
    "earlyGame",
-   "farmable"
+   "farmable",
+   "otherMaterial"
   ],
   "minecraft:dirt_path": [
    "soil",
@@ -4028,7 +4032,8 @@
    "projectile",
    "farmable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "odd"
   ],
   "minecraft:elder_guardian_spawn_egg": [
    "technical",
@@ -4891,7 +4896,8 @@
    "renewable",
    "overworld",
    "earlyGame",
-   "farmable"
+   "farmable",
+   "otherMaterial"
   ],
   "minecraft:gravel": [
    "block",
@@ -5206,7 +5212,8 @@
    "renewable",
    "village",
    "flammable",
-   "compostable"
+   "compostable",
+   "odd"
   ],
   "minecraft:heart_of_the_sea": [
    "gem",
@@ -5257,7 +5264,8 @@
    "placeable",
    "bee",
    "renewable",
-   "farmable"
+   "farmable",
+   "odd"
   ],
   "minecraft:honey_bottle": [
    "honey",
@@ -5272,7 +5280,8 @@
    "bee",
    "farmable",
    "renewable",
-   "stackable"
+   "stackable",
+   "odd"
   ],
   "minecraft:honeycomb_block": [
    "honey",
@@ -5282,7 +5291,8 @@
    "bee",
    "decoration",
    "renewable",
-   "farmable"
+   "farmable",
+   "decorMisc"
   ],
   "minecraft:hopper": [
    "redstoneComp",
@@ -8387,7 +8397,8 @@
    "mineable",
    "overworld",
    "renewable",
-   "farmable"
+   "farmable",
+   "otherMaterial"
   ],
   "minecraft:pointed_dripstone": [
    "stone",
@@ -11441,7 +11452,8 @@
    "unstackable",
    "renewable",
    "earlyGame",
-   "farmable"
+   "farmable",
+   "odd"
   ],
   "minecraft:waxed_chiseled_copper": [
    "copper",
