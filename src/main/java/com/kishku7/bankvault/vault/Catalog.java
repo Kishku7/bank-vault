@@ -49,7 +49,7 @@ public final class Catalog {
         Path dir = FabricLoader.getInstance().getConfigDir().resolve("bankvault");
         try { Files.createDirectories(dir); }
         catch (Exception e) { BankVault.LOGGER.error("[Bank Vault] config dir create failed", e); return; }
-        for (String f : List.of("categories.json", "sort_family.json", "sort_type.json", "buttons.json")) {
+        for (String f : List.of("categories.json", "sort_family.json", "sort_type.json", "buttons.json", "keywords.json")) {
             Path dst = dir.resolve(f);
             if (Files.exists(dst)) continue;
             try (InputStream in = Catalog.class.getResourceAsStream("/data/bankvault/" + f)) {

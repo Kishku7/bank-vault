@@ -1,11 +1,122 @@
 {
-  "buttonSize": 20,
-  "rows": [
-    ["wood", "stone", "copper"],
-    ["fabric", "colored", "lights"],
-    ["containers", "nature", "nether_end"],
-    ["ocean", "redstone", "gear"],
-    ["food", "enchanting", "potions"],
-    ["treasure", "materials", "uncategorized"]
+ "buttonSize": 18,
+ "rows": [
+  [
+   {"label": "Wood", "icon": "minecraft:oak_log", "words": ["wood"]},
+   {"label": "Stone", "icon": "minecraft:stone_bricks", "words": ["stone"]},
+   {"label": "Copper", "icon": "minecraft:copper_block", "words": ["copper"]},
+   {"label": "Iron", "icon": "minecraft:iron_ingot", "words": ["iron"]},
+   {"label": "Gold", "icon": "minecraft:gold_ingot", "words": ["gold"]},
+   {"label": "Diamond", "icon": "minecraft:diamond", "words": ["diamond"]},
+   {"label": "Netherite", "icon": "minecraft:netherite_ingot", "words": ["netherite"]}
+  ],
+  [
+   {"label": "Glass", "icon": "minecraft:glass", "words": ["glass"]},
+   {"label": "Wool", "icon": "minecraft:white_wool", "words": ["wool"]},
+   {"label": "Leather", "icon": "minecraft:leather", "words": ["leather"]},
+   {"label": "Bone", "icon": "minecraft:bone", "words": ["bone"]},
+   {"label": "Amethyst", "icon": "minecraft:amethyst_shard", "words": ["amethyst"]},
+   {"label": "Quartz", "icon": "minecraft:quartz", "words": ["quartz"]},
+   {"label": "Obsidian", "icon": "minecraft:obsidian", "words": ["obsidian"]}
+  ],
+  [
+   {"label": "Bamboo", "icon": "minecraft:bamboo", "words": ["bamboo"]},
+   {"label": "Clay", "icon": "minecraft:clay_ball", "words": ["clay"]},
+   {"label": "Coral", "icon": "minecraft:brain_coral", "words": ["coral"]},
+   {"label": "Prismarine", "icon": "minecraft:prismarine_shard", "words": ["prismarine"]},
+   {"label": "Terracotta", "icon": "minecraft:terracotta", "words": ["terracotta"]},
+   {"label": "Concrete", "icon": "minecraft:white_concrete", "words": ["concrete"]},
+   {"label": "Brick", "icon": "minecraft:bricks", "words": ["brick"]}
+  ],
+  [
+   {"label": "Slabs", "icon": "minecraft:oak_slab", "words": ["slab"]},
+   {"label": "Stairs", "icon": "minecraft:oak_stairs", "words": ["stairs"]},
+   {"label": "Walls", "icon": "minecraft:cobblestone_wall", "words": ["wall"]},
+   {"label": "Doors", "icon": "minecraft:oak_door", "words": ["door"]},
+   {"label": "Fences", "icon": "minecraft:oak_fence", "words": ["fence", "gate"]},
+   {"label": "Trapdoors", "icon": "minecraft:oak_trapdoor", "words": ["trapdoor"]},
+   {"label": "Signs", "icon": "minecraft:oak_sign", "words": ["sign"]}
+  ],
+  [
+   {"label": "Beds", "icon": "minecraft:red_bed", "words": ["bed"]},
+   {"label": "Candles", "icon": "minecraft:candle", "words": ["candle"]},
+   {"label": "Carpets", "icon": "minecraft:red_carpet", "words": ["carpet"]},
+   {"label": "Banners", "icon": "minecraft:white_banner", "words": ["banner", "bannerPattern"]},
+   {"label": "Pottery", "icon": "minecraft:decorated_pot", "words": ["pottery"]},
+   {"label": "Armor Trims", "icon": "minecraft:coast_armor_trim_smithing_template", "words": ["trim", "smithingTemplate"]},
+   {"label": "Heads", "icon": "minecraft:creeper_head", "words": ["head"]}
+  ],
+  [
+   {"label": "Weapons", "icon": "minecraft:iron_sword", "words": ["weapon"]},
+   {"label": "Tools", "icon": "minecraft:iron_pickaxe", "words": ["tool"]},
+   {"label": "Armor", "icon": "minecraft:iron_chestplate", "words": ["armor"]},
+   {"label": "Food", "icon": "minecraft:cooked_beef", "words": ["food", "meat"]},
+   {"label": "Plants", "icon": "minecraft:fern", "words": ["plant"]},
+   {"label": "Seeds", "icon": "minecraft:wheat_seeds", "words": ["seed"]},
+   {"label": "Flowers", "icon": "minecraft:poppy", "words": ["flower"]}
+  ],
+  [
+   {"label": "Dyes", "icon": "minecraft:red_dye", "words": ["dye"]},
+   {"label": "Redstone", "icon": "minecraft:repeater", "words": ["redstoneComp"]},
+   {"label": "Rails", "icon": "minecraft:rail", "words": ["rail"]},
+   {"label": "Minecarts", "icon": "minecraft:minecart", "words": ["minecart"]},
+   {"label": "Boats", "icon": "minecraft:oak_boat", "words": ["boat"]},
+   {"label": "Containers", "icon": "minecraft:chest", "words": ["container"]},
+   {"label": "Lights", "icon": "minecraft:lantern", "words": ["lightSource"]}
+  ],
+  [
+   {"label": "Combat", "icon": "minecraft:diamond_sword", "words": ["combat"]},
+   {"label": "Hand-to-Hand", "icon": "minecraft:netherite_sword", "words": ["hand2hand"]},
+   {"label": "Ranged", "icon": "minecraft:bow", "words": ["ranged"]},
+   {"label": "Projectiles", "icon": "minecraft:arrow", "words": ["projectile", "ammo", "thrown"]},
+   {"label": "Explosives", "icon": "minecraft:tnt", "words": ["explosive"]},
+   {"label": "Traps", "icon": "minecraft:tripwire_hook", "words": ["trap"]},
+   {"label": "Music", "icon": "minecraft:jukebox", "words": ["music", "jukebox"]}
+  ],
+  [
+   {"label": "Enchantable", "icon": "minecraft:enchanted_book", "words": ["enchantable"]},
+   {"label": "Wearable", "icon": "minecraft:golden_helmet", "words": ["wearable"]},
+   {"label": "Edible", "icon": "minecraft:apple", "words": ["edible"]},
+   {"label": "Fuel", "icon": "minecraft:coal", "words": ["fuel"]},
+   {"label": "Growable", "icon": "minecraft:oak_sapling", "words": ["growable"]},
+   {"label": "Has Durability", "icon": "minecraft:wooden_pickaxe", "words": ["breakable"]},
+   {"label": "Books", "icon": "minecraft:book", "words": ["book"]}
+  ],
+  [
+   {"label": "Mob Drops", "icon": "minecraft:rotten_flesh", "words": ["mobDrop"]},
+   {"label": "Loot Only", "icon": "minecraft:golden_apple", "words": ["lootOnly"]},
+   {"label": "Tradeable", "icon": "minecraft:emerald", "words": ["tradeable"]},
+   {"label": "Bartering", "icon": "minecraft:gold_nugget", "words": ["bartering"]},
+   {"label": "Archaeology", "icon": "minecraft:brush", "words": ["archaeology", "sniffing"]},
+   {"label": "Smeltable", "icon": "minecraft:furnace", "words": ["smeltable"]},
+   {"label": "Farmable", "icon": "minecraft:wheat", "words": ["farmable"]}
+  ],
+  [
+   {"label": "Overworld", "icon": "minecraft:grass_block", "words": ["overworld"]},
+   {"label": "Nether", "icon": "minecraft:netherrack", "words": ["nether"]},
+   {"label": "The End", "icon": "minecraft:end_stone", "words": ["end"]},
+   {"label": "Ocean", "icon": "minecraft:cod", "words": ["ocean"]},
+   {"label": "Caves", "icon": "minecraft:pointed_dripstone", "words": ["cave"]},
+   {"label": "Village", "icon": "minecraft:bell", "words": ["village"]},
+   {"label": "Ancient City", "icon": "minecraft:echo_shard", "words": ["ancientCity", "sculk"]}
+  ],
+  [
+   {"label": "Jungle", "icon": "minecraft:jungle_log", "words": ["jungle"]},
+   {"label": "Desert", "icon": "minecraft:cactus", "words": ["desert"]},
+   {"label": "Swamp", "icon": "minecraft:lily_pad", "words": ["swamp"]},
+   {"label": "Mountain", "icon": "minecraft:goat_horn", "words": ["mountain"]},
+   {"label": "Snow", "icon": "minecraft:snowball", "words": ["snow", "ice"]},
+   {"label": "Mushroom", "icon": "minecraft:red_mushroom", "words": ["mushroom"]},
+   {"label": "Trial Chamber", "icon": "minecraft:trial_key", "words": ["trialChamber"]}
+  ],
+  [
+   {"label": "Early Game", "icon": "minecraft:crafting_table", "words": ["earlyGame"]},
+   {"label": "Mid Game", "icon": "minecraft:shield", "words": ["midGame"]},
+   {"label": "Late Game", "icon": "minecraft:diamond_pickaxe", "words": ["lateGame"]},
+   {"label": "End Game", "icon": "minecraft:elytra", "words": ["endGame"]},
+   {"label": "Oxidizable", "icon": "minecraft:exposed_copper", "words": ["oxidizable"]},
+   {"label": "Technical", "icon": "minecraft:command_block", "words": ["technical", "creativeOnly"]},
+   "uncategorized"
   ]
+ ]
 }

@@ -7,6 +7,7 @@ import com.kishku7.bankvault.net.UpgradePayload;
 import com.kishku7.bankvault.net.VaultSyncPayload;
 import com.kishku7.bankvault.net.VaultSyncPayload.Entry;
 import com.kishku7.bankvault.vault.Catalog;
+import com.kishku7.bankvault.vault.Keywords;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import com.kishku7.bankvault.net.ShareActionPayload;
 import com.kishku7.bankvault.net.SharingStatePayload;
@@ -59,7 +60,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private long capacity;
     private int permLevel;
 
-    private String selectedTab = null; // resolved to the first configured tab on init
+    private String selectedKey = null; // resolved to the first configured button on init
     private SortMode sortMode = SortMode.SMART_FAMILY;
     private boolean countDesc = true;
     private int scrollRow = 0, btnScroll = 0;
@@ -70,7 +71,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private int px, py, pw, ph;
     private int railX, railW, railTop, railBottom;
     private int btnTop, btnBottom, btnSize = 20, btnGap = 2;
-    private record BtnCell(Catalog.Tab tab, int x, int y) {}
+    private record BtnCell(ButtonLayout.BtnDef def, int x, int y) {}
     private final List<BtnCell> btnCells = new ArrayList<>();
     private int btnRowsTotal, btnVisRows;
     private final Map<String, ItemStack> iconCache = new HashMap<>();
@@ -197,8 +198,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         // Fill the screen: full vertical space at every GUI scale (no design-height cap).
         pw = Math.max(MIN_W, Math.min(DESIGN_W, this.width - 2 * MARGIN));
         // Height: just enough to fit the tab rail (or the right panel cluster), capped to the screen.
-        if (selectedTab == null || Catalog.tabs().stream().noneMatch(t -> t.id().equals(selectedTab)))
-            selectedTab = Catalog.tabs().isEmpty() ? "uncategorized" : Catalog.tabs().get(0).id();
+        // selection resolves against the button cells after recomputeButtons() below
         int tabsNeeded = ButtonLayout.rows().size() * (ButtonLayout.buttonSize() + 2) + 16;
         int tRowsPre = (this.menu.trinketSlotCount + 8) / 9;
         int clusterNeeded = RP_H + 6 + 18 + 14 + (tRowsPre > 0 ? tRowsPre * 18 + 4 : 0) + 81;   // +81: Sharing corner (v1.1)
@@ -241,7 +241,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         railX = px + 8;
         btnSize = ButtonLayout.buttonSize();
         int maxCols = 1;
-        for (List<String> r : ButtonLayout.rows()) maxCols = Math.max(maxCols, r.size());
+        for (List<ButtonLayout.BtnDef> r : ButtonLayout.rows()) maxCols = Math.max(maxCols, r.size());
         railW = Math.max(30, Math.min(160, maxCols * (btnSize + btnGap) - btnGap + 10));
         railTop = contentTop; railBottom = py + ph - 8;
         btnTop = railTop + 5; btnBottom = railBottom - 5;
@@ -273,8 +273,8 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
 
         positionRealSlots();
         recomputeButtons();
-        if (!btnCells.isEmpty() && btnCells.stream().noneMatch(b -> b.tab().id().equals(selectedTab)))
-            selectedTab = btnCells.get(0).tab().id();
+        if (!btnCells.isEmpty() && btnCells.stream().noneMatch(b -> b.def().key().equals(selectedKey)))
+            selectedKey = btnCells.get(0).def().key();
         rebuild();
     }
 
@@ -331,19 +331,19 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
 
     private void clampBtnScroll() { btnScroll = Math.max(0, Math.min(btnScroll, Math.max(0, btnRowsTotal - btnVisRows))); }
 
-    /** Build the category-button cells from the layout rows (v1.2: buttons instead of tabs).
-     *  A button is hidden when its category has no smart-sort records -- except Uncategorized,
-     *  which shows only while the vault actually holds uncategorized items. */
+    /** Build the button cells from the layout rows (v1.2 schema v2: category ids or
+     *  keyword-word buttons). Hidden when the backing data has no records; Uncategorized
+     *  shows only while the vault actually holds uncategorized items. */
     private void recomputeButtons() {
         btnCells.clear();
+        iconCache.clear();
         int step = btnSize + btnGap;
         int y = 0, rowsUsed = 0;
-        for (List<String> row : ButtonLayout.rows()) {
+        for (List<ButtonLayout.BtnDef> row : ButtonLayout.rows()) {
             int col = 0;
-            for (String id : row) {
-                Catalog.Tab t = Catalog.tab(id);
-                if (t == null || !buttonVisible(t.id())) continue;
-                btnCells.add(new BtnCell(t, railX + 5 + col * step, y));
+            for (ButtonLayout.BtnDef d : row) {
+                if (!buttonVisible(d)) continue;
+                btnCells.add(new BtnCell(d, railX + 5 + col * step, y));
                 col++;
             }
             if (col > 0) { y += step; rowsUsed++; }
@@ -353,11 +353,54 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         clampBtnScroll();
     }
 
-    private boolean buttonVisible(String tabId) {
+    private boolean buttonVisible(ButtonLayout.BtnDef d) {
+        if (d.words() != null) return Keywords.anyItemHas(d.words());
+        String tabId = d.category();
+        if (Catalog.tab(tabId) == null) return false;
         if (Catalog.hasItems(tabId)) return true;
         if (!tabId.equals("uncategorized")) return false;
         for (Entry e : entries) if (Catalog.tabsFor(idOf(e)).contains("uncategorized")) return true;
         return false;
+    }
+
+    /** The button definition currently selected, or null. */
+    private ButtonLayout.BtnDef selectedDef() {
+        for (BtnCell bc : btnCells) if (bc.def().key().equals(selectedKey)) return bc.def();
+        return null;
+    }
+
+    /** Does this vault entry belong under the selected button? */
+    private boolean inSelected(Entry e) {
+        ButtonLayout.BtnDef d = selectedDef();
+        if (d == null) return true;
+        if (d.category() != null) return Catalog.inTab(idOf(e), d.category());
+        return Keywords.itemHasAny(idOf(e), d.words());
+    }
+
+    /** Sort identity for the selected button: category id, or the button's first word
+     *  (keyword buttons fall back to the catalog's "default" sort chain). */
+    private String sortKey() {
+        ButtonLayout.BtnDef d = selectedDef();
+        if (d == null) return "default";
+        return d.category() != null ? d.category() : d.words().get(0);
+    }
+
+    private String btnLabel(ButtonLayout.BtnDef d) {
+        if (d.category() != null) {
+            Catalog.Tab t = Catalog.tab(d.category());
+            return t != null ? t.name() : d.category();
+        }
+        return d.label();
+    }
+
+    private long btnTotal(ButtonLayout.BtnDef d) {
+        long t = 0;
+        for (Entry e : entries) {
+            boolean in = d.category() != null ? Catalog.inTab(idOf(e), d.category())
+                    : Keywords.itemHasAny(idOf(e), d.words());
+            if (in) t += e.count();
+        }
+        return t;
     }
 
     private BtnCell buttonAt(int mx, int my) {
@@ -370,9 +413,13 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         return null;
     }
 
-    private ItemStack iconFor(Catalog.Tab t) {
-        return iconCache.computeIfAbsent(t.id(), k -> {
-            String s = t.icon();
+    private ItemStack iconFor(ButtonLayout.BtnDef d) {
+        return iconCache.computeIfAbsent(d.key(), k -> {
+            String s = d.icon();
+            if (d.category() != null) {
+                Catalog.Tab t = Catalog.tab(d.category());
+                s = t != null ? t.icon() : "";
+            }
             if (s != null && !s.isEmpty()) {
                 Identifier iid = Identifier.tryParse(s);
                 if (iid != null && BuiltInRegistries.ITEM.containsKey(iid))
@@ -392,7 +439,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         boolean searching = !q.isEmpty();
         for (Entry e : entries) {
             // search is GLOBAL: with text in the box, results come from the whole vault, not the tab
-            if (!searching && !Catalog.inTab(idOf(e), selectedTab)) continue;
+            if (!searching && !inSelected(e)) continue;
             if (searching && !nameOf(e).contains(q)) continue;
             view.add(e);
         }
@@ -418,9 +465,10 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private Comparator<Entry> smartType() { return smart("type"); }
     private Comparator<Entry> smart(String mode) {
         Comparator<Entry> cmp = null;
-        for (String step : Catalog.sortSteps(selectedTab, mode)) {
+        String sk = sortKey();
+        for (String step : Catalog.sortSteps(sk, mode)) {
             Comparator<Entry> c;
-            if (step.equals("list")) c = Comparator.comparingInt(e -> Catalog.orderIndex(selectedTab, mode, idOf(e)));
+            if (step.equals("list")) c = Comparator.comparingInt(e -> Catalog.orderIndex(sk, mode, idOf(e)));
             else if (step.equals("name")) c = Comparator.comparing(this::nameOf);
             else if (step.equals("form")) { String[] arr = Catalog.sortList("forms").length > 0 ? Catalog.sortList("forms") : FORMS; c = Comparator.comparingInt(e -> suffixIndex(idOf(e), arr)); }
             else if (step.equals("oxidation")) c = Comparator.comparingInt(e -> oxidation(idOf(e)));
@@ -504,7 +552,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         if (h != null) g.setTooltipForNextFrame(this.font, h.stack(), mouseX, mouseY);
         BtnCell bt = buttonAt(mouseX, mouseY);
         if (bt != null) g.setTooltipForNextFrame(this.font,
-                Component.literal(bt.tab().name() + " \u2014 " + abbrev(tabTotal(bt.tab().id()))), mouseX, mouseY);
+                Component.literal(btnLabel(bt.def()) + " \u2014 " + abbrev(btnTotal(bt.def()))), mouseX, mouseY);
     }
 
     private void drawCustom(GuiGraphicsExtractor g, int mouseX, int mouseY) {
@@ -537,7 +585,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         for (BtnCell cell : btnCells) {
             int bx = cell.x(), by = btnTop + cell.y() - btnScroll * bStep;
             if (by + btnSize < btnTop || by > btnBottom) continue;
-            boolean sel = cell.tab().id().equals(selectedTab);
+            boolean sel = cell.def().key().equals(selectedKey);
             boolean hov = inside(mouseX, mouseY, bx, by, btnSize, btnSize);
             g.fill(bx, by, bx + btnSize, by + btnSize, sel ? 0xFF4A3A12 : (hov ? 0xFF3A3A42 : WELL));
             if (sel) {
@@ -546,7 +594,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                 g.fill(bx, by, bx + 1, by + btnSize, ACCENT);
                 g.fill(bx + btnSize - 1, by, bx + btnSize, by + btnSize, ACCENT);
             }
-            g.item(iconFor(cell.tab()), bx + (btnSize - 16) / 2, by + (btnSize - 16) / 2);
+            g.item(iconFor(cell.def()), bx + (btnSize - 16) / 2, by + (btnSize - 16) / 2);
         }
         g.disableScissor();
         if (btnScroll > 0) g.text(this.font, "\u25b2", railX + railW - 12, railTop + 2, SUBTLE);
@@ -897,7 +945,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             rebuild(); return true;
         }
         BtnCell bc = buttonAt(mx, my);
-        if (bc != null) { selectedTab = bc.tab().id(); scrollRow = 0; rebuild(); return true; }
+        if (bc != null) { selectedKey = bc.def().key(); scrollRow = 0; rebuild(); return true; }
         if (button == 1 && inside(mx, my, upgX, upgY, upgSize, upgSize) && permLevel >= 3
                 && this.menu.getCarried().isEmpty()) { ClientPlayNetworking.send(new UpgradePayload(false)); return true; }
 
@@ -1043,8 +1091,6 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         }
         return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY);
     }
-
-    private long tabTotal(String tab) { long t = 0; for (Entry e : entries) if (Catalog.inTab(idOf(e), tab)) t += e.count(); return t; }
 
     private Entry gridItemAt(int mx, int my) {
         if (!inside(mx, my, gridX, gridY, cols * slot, rows * slot)) return null;
