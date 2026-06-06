@@ -263,14 +263,6 @@
     "words": [
      "book"
     ]
-   },
-   {
-    "label": "Music",
-    "icon": "minecraft:jukebox",
-    "words": [
-     "music",
-     "jukebox"
-    ]
    }
   ],
   [
@@ -550,6 +542,14 @@
     "icon": "minecraft:trial_key",
     "words": [
      "trialChamber"
+    ]
+   },
+   {
+    "label": "Music",
+    "icon": "minecraft:jukebox",
+    "words": [
+     "music",
+     "jukebox"
     ]
    }
   ],

@@ -535,7 +535,6 @@
    "ammo",
    "projectile",
    "craftable",
-   "mobDrop",
    "skeleton",
    "stackable",
    "earlyGame"
@@ -831,7 +830,6 @@
   "minecraft:beef": [
    "food",
    "edible",
-   "mobDrop",
    "cow",
    "smeltable",
    "renewable",
@@ -1961,7 +1959,6 @@
    "enchantable",
    "breakable",
    "tradeable",
-   "mobDrop",
    "midGame"
   ],
   "minecraft:chainmail_chestplate": [
@@ -1971,7 +1968,6 @@
    "enchantable",
    "breakable",
    "tradeable",
-   "mobDrop",
    "midGame"
   ],
   "minecraft:chainmail_helmet": [
@@ -1981,7 +1977,6 @@
    "enchantable",
    "breakable",
    "tradeable",
-   "mobDrop",
    "midGame"
   ],
   "minecraft:chainmail_leggings": [
@@ -1991,7 +1986,6 @@
    "enchantable",
    "breakable",
    "tradeable",
-   "mobDrop",
    "midGame"
   ],
   "minecraft:charcoal": [
@@ -2182,7 +2176,6 @@
    "food",
    "meat",
    "edible",
-   "mobDrop",
    "smeltable",
    "renewable",
    "earlyGame"
@@ -2579,7 +2572,6 @@
    "food",
    "edible",
    "smeltable",
-   "mobDrop",
    "renewable",
    "stackable"
   ],
@@ -2587,7 +2579,6 @@
    "food",
    "edible",
    "smeltable",
-   "mobDrop",
    "renewable",
    "stackable"
   ],
@@ -2595,7 +2586,6 @@
    "food",
    "edible",
    "smeltable",
-   "mobDrop",
    "renewable",
    "stackable"
   ],
@@ -2742,7 +2732,6 @@
    "ingot",
    "smeltable",
    "craftable",
-   "mobDrop",
    "renewable",
    "stackable",
    "earlyGame"
@@ -3093,7 +3082,6 @@
    "breakable",
    "enchantable",
    "craftable",
-   "mobDrop",
    "midGame"
   ],
   "minecraft:crying_obsidian": [
@@ -4237,7 +4225,6 @@
   ],
   "minecraft:ender_pearl": [
    "enderman",
-   "mobDrop",
    "bartering",
    "throwable",
    "projectile",
@@ -4736,7 +4723,6 @@
   ],
   "minecraft:goat_horn": [
    "music",
-   "mobDrop",
    "mountain",
    "unstackable",
    "rare"
@@ -5577,7 +5563,6 @@
    "ingot",
    "smeltable",
    "craftable",
-   "mobDrop",
    "tradeable",
    "stackable",
    "midGame"
@@ -7002,7 +6987,6 @@
   "minecraft:music_disc_11": [
    "music",
    "jukebox",
-   "mobDrop",
    "creeper",
    "skeleton",
    "unstackable",
@@ -7011,7 +6995,6 @@
   "minecraft:music_disc_13": [
    "music",
    "jukebox",
-   "mobDrop",
    "creeper",
    "skeleton",
    "unstackable",
@@ -7029,7 +7012,6 @@
   "minecraft:music_disc_blocks": [
    "music",
    "jukebox",
-   "mobDrop",
    "creeper",
    "skeleton",
    "unstackable",
@@ -7038,7 +7020,6 @@
   "minecraft:music_disc_cat": [
    "music",
    "jukebox",
-   "mobDrop",
    "creeper",
    "skeleton",
    "unstackable",
@@ -7047,7 +7028,6 @@
   "minecraft:music_disc_chirp": [
    "music",
    "jukebox",
-   "mobDrop",
    "creeper",
    "skeleton",
    "unstackable",
@@ -7072,7 +7052,6 @@
   "minecraft:music_disc_far": [
    "music",
    "jukebox",
-   "mobDrop",
    "creeper",
    "skeleton",
    "unstackable",
@@ -7081,7 +7060,6 @@
   "minecraft:music_disc_lava_chicken": [
    "music",
    "jukebox",
-   "mobDrop",
    "zombie",
    "unstackable",
    "rare"
@@ -7089,7 +7067,6 @@
   "minecraft:music_disc_mall": [
    "music",
    "jukebox",
-   "mobDrop",
    "creeper",
    "skeleton",
    "rare",
@@ -7099,7 +7076,6 @@
   "minecraft:music_disc_mellohi": [
    "music",
    "jukebox",
-   "mobDrop",
    "creeper",
    "skeleton",
    "rare",
@@ -7143,7 +7119,6 @@
   "minecraft:music_disc_stal": [
    "music",
    "jukebox",
-   "mobDrop",
    "creeper",
    "skeleton",
    "rare",
@@ -7153,7 +7128,6 @@
   "minecraft:music_disc_strad": [
    "music",
    "jukebox",
-   "mobDrop",
    "creeper",
    "skeleton",
    "rare",
@@ -7163,7 +7137,6 @@
   "minecraft:music_disc_tears": [
    "music",
    "jukebox",
-   "mobDrop",
    "ghast",
    "rare",
    "unstackable",
@@ -7172,7 +7145,6 @@
   "minecraft:music_disc_wait": [
    "music",
    "jukebox",
-   "mobDrop",
    "creeper",
    "skeleton",
    "rare",
@@ -7182,7 +7154,6 @@
   "minecraft:music_disc_ward": [
    "music",
    "jukebox",
-   "mobDrop",
    "creeper",
    "skeleton",
    "rare",
@@ -7192,7 +7163,6 @@
   "minecraft:mutton": [
    "food",
    "edible",
-   "mobDrop",
    "smeltable",
    "renewable",
    "earlyGame",
@@ -8773,7 +8743,6 @@
   "minecraft:porkchop": [
    "food",
    "edible",
-   "mobDrop",
    "smeltable",
    "renewable",
    "stackable",
@@ -8912,7 +8881,6 @@
    "food",
    "edible",
    "fishable",
-   "mobDrop",
    "ocean",
    "brewable",
    "stackable"
@@ -9181,7 +9149,6 @@
   "minecraft:rabbit": [
    "food",
    "edible",
-   "mobDrop",
    "smeltable",
    "renewable",
    "stackable"
@@ -9681,13 +9648,11 @@
    "overworld"
   ],
   "minecraft:rotten_flesh": [
-   "food",
-   "edible",
-   "mobDrop",
    "zombie",
    "tradeable",
    "earlyGame",
-   "stackable"
+   "stackable",
+   "mobDrop"
   ],
   "minecraft:saddle": [
    "leather",
@@ -9702,7 +9667,6 @@
    "food",
    "edible",
    "fishable",
-   "mobDrop",
    "renewable",
    "earlyGame"
   ],
@@ -9789,7 +9753,6 @@
    "block",
    "ancientCity",
    "cave",
-   "mobDrop",
    "placeable",
    "rare",
    "lateGame"
@@ -10264,7 +10227,6 @@
   "minecraft:spider_eye": [
    "mobDrop",
    "spider",
-   "edible",
    "brewable",
    "stackable",
    "earlyGame"
@@ -11130,7 +11092,6 @@
   ],
   "minecraft:trident": [
    "ocean",
-   "mobDrop",
    "weapon",
    "combat",
    "flying",
@@ -12459,7 +12420,6 @@
    "thrown",
    "combat",
    "midGame",
-   "mobDrop",
    "craftable",
    "throwable",
    "trialChamber"
