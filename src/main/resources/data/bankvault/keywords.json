@@ -853,7 +853,6 @@
   "minecraft:beetroot_seeds": [
    "seed",
    "farmable",
-   "growable",
    "renewable",
    "compostable",
    "village",
@@ -2474,10 +2473,8 @@
   ],
   "minecraft:cocoa_beans": [
    "seed",
-   "plant",
    "farmable",
    "placeable",
-   "growable",
    "renewable",
    "compostable",
    "jungle",
@@ -6657,9 +6654,7 @@
    "swamp"
   ],
   "minecraft:mangrove_propagule": [
-   "plant",
    "seed",
-   "growable",
    "compostable",
    "renewable",
    "swamp"
@@ -6754,7 +6749,6 @@
   ],
   "minecraft:melon_seeds": [
    "seed",
-   "plant",
    "farmable",
    "craftable",
    "tradeable",
@@ -8435,11 +8429,9 @@
   ],
   "minecraft:pitcher_pod": [
    "seed",
-   "plant",
    "sniffing",
    "sniffer",
    "farmable",
-   "growable",
    "rare",
    "compostable"
   ],
@@ -8947,7 +8939,6 @@
   ],
   "minecraft:pumpkin_seeds": [
    "seed",
-   "plant",
    "farmable",
    "craftable",
    "compostable",
@@ -11103,9 +11094,7 @@
   ],
   "minecraft:torchflower_seeds": [
    "seed",
-   "plant",
    "farmable",
-   "growable",
    "sniffing",
    "sniffer",
    "compostable",
@@ -12288,7 +12277,6 @@
   ],
   "minecraft:wheat_seeds": [
    "seed",
-   "plant",
    "earlyGame",
    "farmable",
    "placeable",
