@@ -427,20 +427,6 @@
     ]
    },
    {
-    "label": "Has Durability",
-    "icon": "minecraft:wooden_pickaxe",
-    "words": [
-     "breakable"
-    ]
-   },
-   {
-    "label": "Smeltable",
-    "icon": "minecraft:furnace",
-    "words": [
-     "smeltable"
-    ]
-   },
-   {
     "label": "Farmable",
     "icon": "minecraft:wheat",
     "words": [
