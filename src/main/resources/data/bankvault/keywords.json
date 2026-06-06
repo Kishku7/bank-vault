@@ -3933,7 +3933,6 @@
   "minecraft:dispenser": [
    "block",
    "redstoneComp",
-   "container",
    "craftable",
    "placeable"
   ],
@@ -4011,7 +4010,6 @@
   "minecraft:dropper": [
    "block",
    "redstoneComp",
-   "container",
    "craftable",
    "placeable"
   ],
@@ -5304,7 +5302,6 @@
   ],
   "minecraft:hopper": [
    "iron",
-   "container",
    "redstoneComp",
    "block",
    "craftable",
@@ -5315,7 +5312,6 @@
    "iron",
    "minecart",
    "rail",
-   "container",
    "redstoneComp",
    "craftable",
    "midGame"
