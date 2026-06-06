@@ -401,7 +401,6 @@
   ],
   "minecraft:allium": [
    "flower",
-   "plant",
    "dye",
    "renewable",
    "compostable",
@@ -571,7 +570,6 @@
   ],
   "minecraft:azure_bluet": [
    "flower",
-   "plant",
    "dye",
    "renewable",
    "compostable",
@@ -851,7 +849,8 @@
    "renewable",
    "compostable",
    "village",
-   "earlyGame"
+   "earlyGame",
+   "dye"
   ],
   "minecraft:beetroot_seeds": [
    "seed",
@@ -1345,7 +1344,6 @@
   ],
   "minecraft:blue_orchid": [
    "flower",
-   "plant",
    "dye",
    "renewable",
    "compostable",
@@ -1429,7 +1427,8 @@
    "renewable",
    "skeleton",
    "stackable",
-   "earlyGame"
+   "earlyGame",
+   "dye"
   ],
   "minecraft:book": [
    "paper",
@@ -1816,16 +1815,17 @@
    "renewable",
    "placeable",
    "compostable",
-   "earlyGame"
+   "earlyGame",
+   "dye"
   ],
   "minecraft:cactus_flower": [
    "flower",
-   "plant",
    "desert",
    "placeable",
    "renewable",
    "compostable",
-   "decoration"
+   "decoration",
+   "dye"
   ],
   "minecraft:cake": [
    "food",
@@ -2290,13 +2290,13 @@
    "earlyGame"
   ],
   "minecraft:chorus_flower": [
-   "plant",
    "block",
    "end",
    "growable",
    "farmable",
    "placeable",
-   "endGame"
+   "endGame",
+   "flower"
   ],
   "minecraft:chorus_fruit": [
    "food",
@@ -2339,11 +2339,11 @@
   ],
   "minecraft:closed_eyeblossom": [
    "flower",
-   "plant",
    "placeable",
    "compostable",
    "decoration",
-   "overworld"
+   "overworld",
+   "dye"
   ],
   "minecraft:coal": [
    "fuel",
@@ -2470,7 +2470,8 @@
    "renewable",
    "compostable",
    "jungle",
-   "earlyGame"
+   "earlyGame",
+   "dye"
   ],
   "minecraft:cod": [
    "food",
@@ -2823,7 +2824,6 @@
   ],
   "minecraft:cornflower": [
    "flower",
-   "plant",
    "decoration",
    "dye",
    "compostable",
@@ -3282,7 +3282,6 @@
   ],
   "minecraft:dandelion": [
    "flower",
-   "plant",
    "decoration",
    "dye",
    "compostable",
@@ -3711,7 +3710,6 @@
   "minecraft:deepslate_lapis_ore": [
    "ore",
    "block",
-   "dye",
    "mineable",
    "smeltable",
    "cave",
@@ -4538,7 +4536,6 @@
   "minecraft:flower_banner_pattern": [
    "paper",
    "bannerPattern",
-   "flower",
    "craftable"
   ],
   "minecraft:flower_pot": [
@@ -4550,21 +4547,21 @@
    "pottery"
   ],
   "minecraft:flowering_azalea": [
-   "plant",
    "decoration",
    "placeable",
    "growable",
    "compostable",
    "renewable",
-   "cave"
+   "cave",
+   "flower"
   ],
   "minecraft:flowering_azalea_leaves": [
-   "plant",
    "block",
    "decoration",
    "placeable",
    "compostable",
-   "flammable"
+   "flammable",
+   "flower"
   ],
   "minecraft:fox_spawn_egg": [
    "technical",
@@ -4679,7 +4676,8 @@
    "mobDrop",
    "cave",
    "renewable",
-   "stackable"
+   "stackable",
+   "dye"
   ],
   "minecraft:glow_item_frame": [
    "decoration",
@@ -4809,7 +4807,6 @@
   "minecraft:golden_dandelion": [
    "gold",
    "flower",
-   "plant",
    "decoration",
    "placeable",
    "overworld"
@@ -5462,7 +5459,8 @@
    "ocean",
    "renewable",
    "stackable",
-   "earlyGame"
+   "earlyGame",
+   "dye"
   ],
   "minecraft:iron_axe": [
    "tool",
@@ -5878,7 +5876,8 @@
    "stackable",
    "earlyGame",
    "cave",
-   "enchantable"
+   "enchantable",
+   "dye"
   ],
   "minecraft:lapis_ore": [
    "gem",
@@ -6259,19 +6258,19 @@
   ],
   "minecraft:lilac": [
    "flower",
-   "plant",
    "compostable",
    "renewable",
    "overworld",
-   "decoration"
+   "decoration",
+   "dye"
   ],
   "minecraft:lily_of_the_valley": [
    "flower",
-   "plant",
    "compostable",
    "renewable",
    "overworld",
-   "decoration"
+   "decoration",
+   "dye"
   ],
   "minecraft:lily_pad": [
    "plant",
@@ -7660,11 +7659,11 @@
   ],
   "minecraft:open_eyeblossom": [
    "flower",
-   "plant",
    "placeable",
    "compostable",
    "decoration",
-   "overworld"
+   "overworld",
+   "dye"
   ],
   "minecraft:orange_banner": [
    "banner",
@@ -7791,11 +7790,11 @@
   ],
   "minecraft:orange_tulip": [
    "flower",
-   "plant",
    "placeable",
    "compostable",
    "decoration",
-   "overworld"
+   "overworld",
+   "dye"
   ],
   "minecraft:orange_wool": [
    "wool",
@@ -7809,11 +7808,11 @@
   ],
   "minecraft:oxeye_daisy": [
    "flower",
-   "plant",
    "placeable",
    "compostable",
    "decoration",
-   "overworld"
+   "overworld",
+   "dye"
   ],
   "minecraft:oxidized_chiseled_copper": [
    "copper",
@@ -8184,12 +8183,12 @@
   ],
   "minecraft:peony": [
    "flower",
-   "plant",
    "placeable",
    "compostable",
    "decoration",
    "renewable",
-   "overworld"
+   "overworld",
+   "dye"
   ],
   "minecraft:petrified_oak_slab": [
    "slab",
@@ -8335,14 +8334,14 @@
    "harness"
   ],
   "minecraft:pink_petals": [
-   "plant",
    "flower",
    "decoration",
    "placeable",
    "growable",
    "compostable",
    "renewable",
-   "overworld"
+   "overworld",
+   "dye"
   ],
   "minecraft:pink_shulker_box": [
    "container",
@@ -8381,12 +8380,12 @@
   ],
   "minecraft:pink_tulip": [
    "flower",
-   "plant",
    "decoration",
    "placeable",
    "compostable",
    "renewable",
-   "overworld"
+   "overworld",
+   "dye"
   ],
   "minecraft:pink_wool": [
    "wool",
@@ -8408,7 +8407,6 @@
    "midGame"
   ],
   "minecraft:pitcher_plant": [
-   "plant",
    "flower",
    "decoration",
    "placeable",
@@ -8416,7 +8414,8 @@
    "renewable",
    "sniffer",
    "sniffing",
-   "compostable"
+   "compostable",
+   "dye"
   ],
   "minecraft:pitcher_pod": [
    "seed",
@@ -8724,13 +8723,13 @@
   ],
   "minecraft:poppy": [
    "flower",
-   "plant",
    "decoration",
    "placeable",
    "compostable",
    "renewable",
    "overworld",
-   "mobDrop"
+   "mobDrop",
+   "dye"
   ],
   "minecraft:porkchop": [
    "food",
@@ -9466,12 +9465,12 @@
   ],
   "minecraft:red_tulip": [
    "flower",
-   "plant",
    "decoration",
    "placeable",
    "compostable",
    "renewable",
-   "overworld"
+   "overworld",
+   "dye"
   ],
   "minecraft:red_wool": [
    "wool",
@@ -9630,12 +9629,12 @@
   ],
   "minecraft:rose_bush": [
    "flower",
-   "plant",
    "decoration",
    "placeable",
    "compostable",
    "renewable",
-   "overworld"
+   "overworld",
+   "dye"
   ],
   "minecraft:rotten_flesh": [
    "zombie",
@@ -9791,7 +9790,8 @@
    "placeable",
    "renewable",
    "compostable",
-   "smeltable"
+   "smeltable",
+   "dye"
   ],
   "minecraft:seagrass": [
    "plant",
@@ -10255,7 +10255,6 @@
   ],
   "minecraft:spore_blossom": [
    "flower",
-   "plant",
    "decoration",
    "cave",
    "placeable",
@@ -10877,7 +10876,6 @@
   ],
   "minecraft:sunflower": [
    "flower",
-   "plant",
    "dye",
    "placeable",
    "renewable",
@@ -11028,7 +11026,6 @@
   ],
   "minecraft:torchflower": [
    "flower",
-   "plant",
    "dye",
    "placeable",
    "growable",
@@ -12369,12 +12366,12 @@
   ],
   "minecraft:white_tulip": [
    "flower",
-   "plant",
    "decoration",
    "earlyGame",
    "placeable",
    "compostable",
-   "renewable"
+   "renewable",
+   "dye"
   ],
   "minecraft:white_wool": [
    "wool",
@@ -12397,13 +12394,13 @@
   ],
   "minecraft:wildflowers": [
    "flower",
-   "plant",
    "decoration",
    "earlyGame",
    "placeable",
    "compostable",
    "renewable",
-   "overworld"
+   "overworld",
+   "dye"
   ],
   "minecraft:wind_charge": [
    "projectile",
@@ -12421,12 +12418,12 @@
   ],
   "minecraft:wither_rose": [
    "flower",
-   "plant",
    "lateGame",
    "mobDrop",
    "placeable",
    "compostable",
-   "wither"
+   "wither",
+   "dye"
   ],
   "minecraft:wither_skeleton_skull": [
    "head",
