@@ -419,7 +419,6 @@
    "block",
    "mineable",
    "cave",
-   "growable",
    "lightSource",
    "waterloggable"
   ],
@@ -1780,7 +1779,6 @@
   "minecraft:budding_amethyst": [
    "amethyst",
    "block",
-   "growable",
    "cave",
    "creativeOnly"
   ],
@@ -3994,7 +3992,6 @@
    "mineable",
    "placeable",
    "waterloggable",
-   "growable",
    "lateGame"
   ],
   "minecraft:dried_kelp": [
@@ -4585,7 +4582,6 @@
   "minecraft:frogspawn": [
    "frog",
    "block",
-   "growable",
    "swamp",
    "technical",
    "creativeOnly"
@@ -5893,7 +5889,6 @@
    "decoration",
    "cave",
    "placeable",
-   "growable",
    "mineable",
    "waterloggable"
   ],
@@ -8454,7 +8449,6 @@
    "mineable",
    "gravity",
    "trap",
-   "growable",
    "waterloggable"
   ],
   "minecraft:poisonous_potato": [
@@ -11217,7 +11211,6 @@
    "block",
    "turtle",
    "placeable",
-   "growable",
    "renewable",
    "ocean"
   ],
@@ -13077,8 +13070,7 @@
    "wearable",
    "modded",
    "craftable",
-   "melon",
-   "plant"
+   "melon"
   ],
   "travelersbackpack:nether": [
    "container",
@@ -13152,8 +13144,7 @@
    "wearable",
    "modded",
    "craftable",
-   "pumpkin",
-   "plant"
+   "pumpkin"
   ],
   "travelersbackpack:purple_sleeping_bag": [
    "wool",
