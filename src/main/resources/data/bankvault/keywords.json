@@ -9334,7 +9334,8 @@
    "mineable",
    "placeable",
    "smeltable",
-   "overworld"
+   "overworld",
+   "glass"
   ],
   "minecraft:red_sandstone": [
    "stone",
@@ -9619,7 +9620,8 @@
    "smeltable",
    "placeable",
    "desert",
-   "overworld"
+   "overworld",
+   "glass"
   ],
   "minecraft:sandstone": [
    "stone",
