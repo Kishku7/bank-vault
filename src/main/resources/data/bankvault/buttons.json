@@ -66,13 +66,6 @@
     ]
    },
    {
-    "label": "Bone",
-    "icon": "minecraft:bone",
-    "words": [
-     "bone"
-    ]
-   },
-   {
     "label": "Amethyst",
     "icon": "minecraft:amethyst_block",
     "words": [
@@ -358,6 +351,13 @@
     "words": [
      "dye"
     ]
+   },
+   {
+    "label": "Bone",
+    "icon": "minecraft:bone",
+    "words": [
+     "bone"
+    ]
    }
   ],
   [
@@ -373,43 +373,6 @@
     "icon": "minecraft:red_mushroom",
     "words": [
      "mushroom"
-    ]
-   },
-   {
-    "label": "Ocean",
-    "icon": "minecraft:cod",
-    "words": [
-     "ocean"
-    ]
-   },
-   {
-    "label": "Jungle",
-    "icon": "minecraft:vine",
-    "words": [
-     "jungle"
-    ]
-   },
-   {
-    "label": "Desert",
-    "icon": "minecraft:cactus",
-    "words": [
-     "desert"
-    ]
-   },
-   {
-    "label": "Swamp",
-    "icon": "minecraft:lily_pad",
-    "words": [
-     "swamp"
-    ]
-   },
-   {
-    "label": "Mountain & Snow",
-    "icon": "minecraft:goat_horn",
-    "words": [
-     "mountain",
-     "snow",
-     "ice"
     ]
    }
   ],
@@ -465,6 +428,45 @@
     "words": [
      "music",
      "jukebox"
+    ]
+   }
+  ],
+  [
+   {
+    "label": "Ocean",
+    "icon": "minecraft:cod",
+    "words": [
+     "ocean"
+    ]
+   },
+   {
+    "label": "Jungle",
+    "icon": "minecraft:vine",
+    "words": [
+     "jungle"
+    ]
+   },
+   {
+    "label": "Desert",
+    "icon": "minecraft:cactus",
+    "words": [
+     "desert"
+    ]
+   },
+   {
+    "label": "Swamp",
+    "icon": "minecraft:lily_pad",
+    "words": [
+     "swamp"
+    ]
+   },
+   {
+    "label": "Mountain & Snow",
+    "icon": "minecraft:goat_horn",
+    "words": [
+     "mountain",
+     "snow",
+     "ice"
     ]
    }
   ],
