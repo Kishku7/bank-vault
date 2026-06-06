@@ -13,10 +13,11 @@
     ]
    },
    {
-    "label": "Stone",
+    "label": "Stone & Brick",
     "icon": "minecraft:stone_bricks",
     "words": [
-     "stone"
+     "stone",
+     "brick"
     ]
    },
    {
@@ -98,7 +99,7 @@
   [
    {
     "label": "Bamboo",
-    "icon": "minecraft:bamboo",
+    "icon": "minecraft:bamboo_block",
     "words": [
      "bamboo"
     ]
@@ -122,13 +123,6 @@
     "icon": "minecraft:white_concrete",
     "words": [
      "concrete"
-    ]
-   },
-   {
-    "label": "Brick",
-    "icon": "minecraft:bricks",
-    "words": [
-     "brick"
     ]
    }
   ],

@@ -1531,14 +1531,12 @@
   ],
   "minecraft:brick": [
    "brick",
-   "clay",
    "smeltable",
    "tradeable",
    "stackable",
    "earlyGame"
   ],
   "minecraft:brick_slab": [
-   "brick",
    "block",
    "craftable",
    "decoration",
@@ -1547,7 +1545,6 @@
    "slab"
   ],
   "minecraft:brick_stairs": [
-   "brick",
    "block",
    "craftable",
    "decoration",
@@ -1556,7 +1553,6 @@
    "stairs"
   ],
   "minecraft:brick_wall": [
-   "brick",
    "block",
    "craftable",
    "decoration",
@@ -2352,12 +2348,12 @@
   ],
   "minecraft:coal_ore": [
    "ore",
-   "stone",
    "block",
    "mineable",
    "cave",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "otherMaterial"
   ],
   "minecraft:coarse_dirt": [
    "block",
@@ -3588,7 +3584,6 @@
   ],
   "minecraft:decorated_pot": [
    "pottery",
-   "clay",
    "block",
    "container",
    "decoration",
@@ -3605,7 +3600,6 @@
    "placeable"
   ],
   "minecraft:deepslate_brick_slab": [
-   "brick",
    "block",
    "decoration",
    "craftable",
@@ -3613,7 +3607,6 @@
    "slab"
   ],
   "minecraft:deepslate_brick_stairs": [
-   "brick",
    "block",
    "decoration",
    "craftable",
@@ -3621,7 +3614,6 @@
    "stairs"
   ],
   "minecraft:deepslate_brick_wall": [
-   "brick",
    "block",
    "decoration",
    "craftable",
@@ -3638,17 +3630,16 @@
   ],
   "minecraft:deepslate_coal_ore": [
    "ore",
-   "stone",
    "block",
    "mineable",
    "cave",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "otherMaterial"
   ],
   "minecraft:deepslate_copper_ore": [
    "copper",
    "ore",
-   "stone",
    "block",
    "mineable",
    "smeltable",
@@ -3658,7 +3649,6 @@
   "minecraft:deepslate_diamond_ore": [
    "diamond",
    "ore",
-   "stone",
    "block",
    "mineable",
    "cave",
@@ -3667,7 +3657,6 @@
   "minecraft:deepslate_emerald_ore": [
    "gem",
    "ore",
-   "stone",
    "block",
    "mineable",
    "cave",
@@ -3677,7 +3666,6 @@
   "minecraft:deepslate_gold_ore": [
    "gold",
    "ore",
-   "stone",
    "block",
    "mineable",
    "smeltable",
@@ -4105,7 +4093,6 @@
   "minecraft:enchanting_table": [
    "block",
    "workstation",
-   "obsidian",
    "book",
    "craftable",
    "placeable",
@@ -4143,7 +4130,6 @@
    "endGame"
   ],
   "minecraft:end_stone_brick_slab": [
-   "brick",
    "block",
    "decoration",
    "craftable",
@@ -4153,7 +4139,6 @@
    "slab"
   ],
   "minecraft:end_stone_brick_stairs": [
-   "brick",
    "block",
    "decoration",
    "craftable",
@@ -4163,7 +4148,6 @@
    "stairs"
   ],
   "minecraft:end_stone_brick_wall": [
-   "brick",
    "block",
    "decoration",
    "craftable",
@@ -4184,7 +4168,6 @@
   "minecraft:ender_chest": [
    "container",
    "block",
-   "obsidian",
    "craftable",
    "placeable",
    "lateGame"
@@ -4237,7 +4220,6 @@
    "potion"
   ],
   "minecraft:explorer_pottery_sherd": [
-   "clay",
    "pottery",
    "archaeology",
    "rare"
@@ -4492,10 +4474,10 @@
    "village"
   ],
   "minecraft:flint": [
-   "stone",
    "mineable",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "otherMaterial"
   ],
   "minecraft:flint_and_steel": [
    "tool",
@@ -4559,7 +4541,6 @@
    "snow"
   ],
   "minecraft:friend_pottery_sherd": [
-   "clay",
    "pottery",
    "archaeology",
    "rare"
@@ -6839,7 +6820,6 @@
    "wall"
   ],
   "minecraft:mossy_stone_brick_slab": [
-   "brick",
    "block",
    "craftable",
    "decoration",
@@ -6847,7 +6827,6 @@
    "slab"
   ],
   "minecraft:mossy_stone_brick_stairs": [
-   "brick",
    "block",
    "craftable",
    "decoration",
@@ -6855,7 +6834,6 @@
    "stairs"
   ],
   "minecraft:mossy_stone_brick_wall": [
-   "brick",
    "block",
    "craftable",
    "decoration",
@@ -6884,7 +6862,6 @@
    "renewable"
   ],
   "minecraft:mud_brick_slab": [
-   "brick",
    "block",
    "craftable",
    "decoration",
@@ -6893,7 +6870,6 @@
    "slab"
   ],
   "minecraft:mud_brick_stairs": [
-   "brick",
    "block",
    "craftable",
    "decoration",
@@ -6902,7 +6878,6 @@
    "stairs"
   ],
   "minecraft:mud_brick_wall": [
-   "brick",
    "block",
    "craftable",
    "decoration",
@@ -7167,7 +7142,6 @@
    "lateGame"
   ],
   "minecraft:nether_brick_fence": [
-   "brick",
    "fence",
    "block",
    "craftable",
@@ -7176,7 +7150,6 @@
    "lateGame"
   ],
   "minecraft:nether_brick_slab": [
-   "brick",
    "slab",
    "block",
    "craftable",
@@ -7185,7 +7158,6 @@
    "lateGame"
   ],
   "minecraft:nether_brick_stairs": [
-   "brick",
    "stairs",
    "block",
    "craftable",
@@ -7194,7 +7166,6 @@
    "lateGame"
   ],
   "minecraft:nether_brick_wall": [
-   "brick",
    "wall",
    "block",
    "craftable",
@@ -8485,7 +8456,6 @@
    "nether"
   ],
   "minecraft:polished_blackstone_brick_slab": [
-   "brick",
    "block",
    "slab",
    "craftable",
@@ -8495,7 +8465,6 @@
    "nether"
   ],
   "minecraft:polished_blackstone_brick_stairs": [
-   "brick",
    "block",
    "stairs",
    "craftable",
@@ -8505,7 +8474,6 @@
    "nether"
   ],
   "minecraft:polished_blackstone_brick_wall": [
-   "brick",
    "block",
    "wall",
    "craftable",
@@ -8757,7 +8725,6 @@
   ],
   "minecraft:prismarine_brick_slab": [
    "prismarine",
-   "brick",
    "block",
    "slab",
    "ocean",
@@ -8768,7 +8735,6 @@
   ],
   "minecraft:prismarine_brick_stairs": [
    "prismarine",
-   "brick",
    "block",
    "stairs",
    "ocean",
@@ -9316,7 +9282,6 @@
    "renewable"
   ],
   "minecraft:red_nether_brick_slab": [
-   "brick",
    "block",
    "slab",
    "nether",
@@ -9326,7 +9291,6 @@
    "waterloggable"
   ],
   "minecraft:red_nether_brick_stairs": [
-   "brick",
    "block",
    "stairs",
    "nether",
@@ -9336,7 +9300,6 @@
    "waterloggable"
   ],
   "minecraft:red_nether_brick_wall": [
-   "brick",
    "block",
    "wall",
    "nether",
@@ -9531,7 +9494,6 @@
   ],
   "minecraft:resin_brick_slab": [
    "resin",
-   "brick",
    "slab",
    "block",
    "craftable",
@@ -9540,7 +9502,6 @@
   ],
   "minecraft:resin_brick_stairs": [
    "resin",
-   "brick",
    "stairs",
    "block",
    "craftable",
@@ -9549,7 +9510,6 @@
   ],
   "minecraft:resin_brick_wall": [
    "resin",
-   "brick",
    "wall",
    "block",
    "craftable",
@@ -10437,7 +10397,6 @@
    "earlyGame"
   ],
   "minecraft:stone_brick_slab": [
-   "brick",
    "slab",
    "block",
    "craftable",
@@ -10445,7 +10404,6 @@
    "decoration"
   ],
   "minecraft:stone_brick_stairs": [
-   "brick",
    "stairs",
    "block",
    "craftable",
@@ -10453,7 +10411,6 @@
    "decoration"
   ],
   "minecraft:stone_brick_wall": [
-   "brick",
    "wall",
    "block",
    "craftable",
@@ -11117,7 +11074,6 @@
    "earlyGame"
   ],
   "minecraft:tuff_brick_slab": [
-   "brick",
    "block",
    "craftable",
    "placeable",
@@ -11127,7 +11083,6 @@
    "slab"
   ],
   "minecraft:tuff_brick_stairs": [
-   "brick",
    "block",
    "craftable",
    "placeable",
@@ -11137,7 +11092,6 @@
    "stairs"
   ],
   "minecraft:tuff_brick_wall": [
-   "brick",
    "block",
    "craftable",
    "placeable",
@@ -13477,8 +13431,7 @@
    "trinket",
    "wearable",
    "modded",
-   "lootOnly",
-   "obsidian"
+   "lootOnly"
   ],
   "artifacts:onion_ring": [
    "trinket",
