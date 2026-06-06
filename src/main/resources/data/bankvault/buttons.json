@@ -238,18 +238,11 @@
     ]
    },
    {
-    "label": "Heads",
-    "icon": "minecraft:creeper_head",
-    "words": [
-     "head"
-    ]
-   },
-   {
     "label": "Misc",
     "icon": "minecraft:painting",
     "words": [
      "coral",
-     "book"
+     "head"
     ]
    },
    {

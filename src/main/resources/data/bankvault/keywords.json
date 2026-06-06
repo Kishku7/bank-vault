@@ -538,7 +538,6 @@
    "earlyGame"
   ],
   "minecraft:axolotl_bucket": [
-   "container",
    "axolotl",
    "cave",
    "unstackable",
@@ -1213,7 +1212,6 @@
   "minecraft:blast_furnace": [
    "iron",
    "block",
-   "container",
    "craftable",
    "village",
    "midGame",
@@ -1524,7 +1522,6 @@
   ],
   "minecraft:brewing_stand": [
    "block",
-   "container",
    "craftable",
    "blaze",
    "nether",
@@ -1767,7 +1764,6 @@
   ],
   "minecraft:bucket": [
    "iron",
-   "container",
    "tool",
    "craftable",
    "stackable",
@@ -1926,7 +1922,6 @@
   "minecraft:cauldron": [
    "iron",
    "block",
-   "container",
    "craftable",
    "village",
    "midGame",
@@ -2479,7 +2474,6 @@
    "earlyGame"
   ],
   "minecraft:cod_bucket": [
-   "container",
    "fish",
    "ocean",
    "unstackable",
@@ -2874,7 +2868,6 @@
   ],
   "minecraft:crafter": [
    "redstoneComp",
-   "container",
    "block",
    "workstation",
    "craftable",
@@ -4586,7 +4579,6 @@
   "minecraft:furnace": [
    "block",
    "workstation",
-   "container",
    "craftable",
    "placeable",
    "earlyGame"
@@ -4630,7 +4622,6 @@
   ],
   "minecraft:glass_bottle": [
    "glass",
-   "container",
    "craftable",
    "brewable",
    "potion"
@@ -6772,7 +6763,6 @@
   ],
   "minecraft:milk_bucket": [
    "drink",
-   "container",
    "unstackable",
    "renewable",
    "earlyGame"
@@ -8741,7 +8731,6 @@
    "lateGame"
   ],
   "minecraft:powder_snow_bucket": [
-   "container",
    "snow",
    "mountain",
    "trap",
@@ -8860,7 +8849,6 @@
    "stackable"
   ],
   "minecraft:pufferfish_bucket": [
-   "container",
    "ocean",
    "placeable",
    "unstackable",
@@ -9643,7 +9631,6 @@
    "earlyGame"
   ],
   "minecraft:salmon_bucket": [
-   "container",
    "unstackable",
    "ocean",
    "renewable",
@@ -9978,7 +9965,6 @@
   ],
   "minecraft:smoker": [
    "block",
-   "container",
    "craftable",
    "placeable",
    "village",
@@ -12684,7 +12670,6 @@
    "piglin"
   ],
   "travelersbackpack:backpack_tank": [
-   "container",
    "upgrade",
    "craftable",
    "modded"
@@ -12717,14 +12702,12 @@
   "travelersbackpack:blank_upgrade": [
    "upgrade",
    "craftable",
-   "modded",
-   "container"
+   "modded"
   ],
   "travelersbackpack:blast_furnace_upgrade": [
    "upgrade",
    "craftable",
-   "modded",
-   "container"
+   "modded"
   ],
   "travelersbackpack:blaze": [
    "container",
@@ -12799,8 +12782,7 @@
   "travelersbackpack:crafting_upgrade": [
    "upgrade",
    "craftable",
-   "modded",
-   "container"
+   "modded"
   ],
   "travelersbackpack:creeper": [
    "container",
@@ -12830,8 +12812,7 @@
    "upgrade",
    "craftable",
    "diamond",
-   "modded",
-   "container"
+   "modded"
   ],
   "travelersbackpack:dragon": [
    "container",
@@ -12870,8 +12851,7 @@
   "travelersbackpack:feeding_upgrade": [
    "upgrade",
    "craftable",
-   "modded",
-   "container"
+   "modded"
   ],
   "travelersbackpack:fox": [
    "container",
@@ -12883,8 +12863,7 @@
   "travelersbackpack:furnace_upgrade": [
    "upgrade",
    "craftable",
-   "modded",
-   "container"
+   "modded"
   ],
   "travelersbackpack:ghast": [
    "container",
@@ -12906,8 +12885,7 @@
    "upgrade",
    "craftable",
    "gold",
-   "modded",
-   "container"
+   "modded"
   ],
   "travelersbackpack:gray_sleeping_bag": [
    "wool",
@@ -12977,20 +12955,17 @@
    "upgrade",
    "modded",
    "craftable",
-   "midGame",
-   "container"
+   "midGame"
   ],
   "travelersbackpack:jukebox_upgrade": [
    "upgrade",
    "modded",
-   "craftable",
-   "container"
+   "craftable"
   ],
   "travelersbackpack:lantern_upgrade": [
    "upgrade",
    "modded",
-   "craftable",
-   "container"
+   "craftable"
   ],
   "travelersbackpack:lapis": [
    "lapis",
@@ -13049,8 +13024,7 @@
   "travelersbackpack:magnet_upgrade": [
    "upgrade",
    "modded",
-   "craftable",
-   "container"
+   "craftable"
   ],
   "travelersbackpack:melon": [
    "container",
@@ -13081,8 +13055,7 @@
    "upgrade",
    "modded",
    "craftable",
-   "endGame",
-   "container"
+   "endGame"
   ],
   "travelersbackpack:ocelot": [
    "container",
@@ -13105,8 +13078,7 @@
   "travelersbackpack:pickup_upgrade": [
    "upgrade",
    "modded",
-   "craftable",
-   "container"
+   "craftable"
   ],
   "travelersbackpack:pig": [
    "container",
@@ -13172,8 +13144,7 @@
   "travelersbackpack:refill_upgrade": [
    "upgrade",
    "modded",
-   "craftable",
-   "container"
+   "craftable"
   ],
   "travelersbackpack:sandstone": [
    "stone",
@@ -13206,8 +13177,7 @@
   "travelersbackpack:smoker_upgrade": [
    "upgrade",
    "modded",
-   "craftable",
-   "container"
+   "craftable"
   ],
   "travelersbackpack:snow": [
    "container",
@@ -13255,8 +13225,7 @@
   "travelersbackpack:tanks_upgrade": [
    "upgrade",
    "modded",
-   "craftable",
-   "container"
+   "craftable"
   ],
   "travelersbackpack:villager": [
    "container",
@@ -13270,8 +13239,7 @@
   "travelersbackpack:void_upgrade": [
    "upgrade",
    "modded",
-   "craftable",
-   "container"
+   "craftable"
   ],
   "travelersbackpack:warden": [
    "container",
