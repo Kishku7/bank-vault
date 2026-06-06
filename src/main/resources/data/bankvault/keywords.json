@@ -450,7 +450,6 @@
    "earlyGame"
   ],
   "minecraft:andesite_slab": [
-   "stone",
    "block",
    "slab",
    "craftable",
@@ -458,7 +457,6 @@
    "waterloggable"
   ],
   "minecraft:andesite_stairs": [
-   "stone",
    "block",
    "stairs",
    "craftable",
@@ -466,7 +464,6 @@
    "waterloggable"
   ],
   "minecraft:andesite_wall": [
-   "stone",
    "block",
    "wall",
    "craftable",
@@ -521,7 +518,8 @@
    "decoration",
    "craftable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "armor"
   ],
   "minecraft:arms_up_pottery_sherd": [
    "pottery",
@@ -820,7 +818,8 @@
    "honey",
    "overworld",
    "renewable",
-   "mineable"
+   "mineable",
+   "farmable"
   ],
   "minecraft:bee_spawn_egg": [
    "egg",
@@ -844,7 +843,8 @@
    "honey",
    "craftable",
    "renewable",
-   "burnable"
+   "burnable",
+   "farmable"
   ],
   "minecraft:beetroot": [
    "food",
@@ -1133,7 +1133,8 @@
    "colored",
    "craftable",
    "ghast",
-   "sky"
+   "sky",
+   "rideable"
   ],
   "minecraft:black_shulker_box": [
    "container",
@@ -1184,7 +1185,6 @@
    "lateGame"
   ],
   "minecraft:blackstone_slab": [
-   "stone",
    "block",
    "slab",
    "nether",
@@ -1193,7 +1193,6 @@
    "waterloggable"
   ],
   "minecraft:blackstone_stairs": [
-   "stone",
    "block",
    "stairs",
    "nether",
@@ -1202,7 +1201,6 @@
    "waterloggable"
   ],
   "minecraft:blackstone_wall": [
-   "stone",
    "block",
    "wall",
    "nether",
@@ -1219,7 +1217,6 @@
   ],
   "minecraft:blast_furnace": [
    "iron",
-   "stone",
    "block",
    "container",
    "craftable",
@@ -1337,7 +1334,8 @@
    "colored",
    "craftable",
    "ghast",
-   "sky"
+   "sky",
+   "rideable"
   ],
   "minecraft:blue_ice": [
    "ice",
@@ -1473,7 +1471,8 @@
    "wood",
    "craftable",
    "stackable",
-   "earlyGame"
+   "earlyGame",
+   "food"
   ],
   "minecraft:brain_coral": [
    "coral",
@@ -1675,7 +1674,8 @@
    "craftable",
    "wearable",
    "ghast",
-   "lateGame"
+   "lateGame",
+   "rideable"
   ],
   "minecraft:brown_mushroom": [
    "mushroom",
@@ -2013,7 +2013,8 @@
    "redstoneComp",
    "craftable",
    "placeable",
-   "earlyGame"
+   "earlyGame",
+   "button"
   ],
   "minecraft:cherry_chest_boat": [
    "wood",
@@ -2094,7 +2095,8 @@
    "redstoneComp",
    "craftable",
    "placeable",
-   "earlyGame"
+   "earlyGame",
+   "pressurePlate"
   ],
   "minecraft:cherry_sapling": [
    "plant",
@@ -2382,7 +2384,8 @@
    "craftable",
    "mineable",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "farmable"
   ],
   "minecraft:coast_armor_trim_smithing_template": [
    "smithingTemplate",
@@ -2401,7 +2404,6 @@
    "earlyGame"
   ],
   "minecraft:cobbled_deepslate_slab": [
-   "stone",
    "block",
    "craftable",
    "decoration",
@@ -2411,7 +2413,6 @@
    "slab"
   ],
   "minecraft:cobbled_deepslate_stairs": [
-   "stone",
    "block",
    "craftable",
    "decoration",
@@ -2421,7 +2422,6 @@
    "stairs"
   ],
   "minecraft:cobbled_deepslate_wall": [
-   "stone",
    "block",
    "craftable",
    "decoration",
@@ -2440,7 +2440,6 @@
    "earlyGame"
   ],
   "minecraft:cobblestone_slab": [
-   "stone",
    "block",
    "craftable",
    "decoration",
@@ -2449,7 +2448,6 @@
    "slab"
   ],
   "minecraft:cobblestone_stairs": [
-   "stone",
    "block",
    "craftable",
    "decoration",
@@ -2458,7 +2456,6 @@
    "stairs"
   ],
   "minecraft:cobblestone_wall": [
-   "stone",
    "block",
    "craftable",
    "decoration",
@@ -2522,7 +2519,6 @@
   "minecraft:comparator": [
    "redstoneComp",
    "quartz",
-   "stone",
    "craftable",
    "placeable",
    "lateGame"
@@ -2917,7 +2913,8 @@
    "overworld",
    "mineable",
    "rare",
-   "placeable"
+   "placeable",
+   "rawWood"
   ],
   "minecraft:creaking_spawn_egg": [
    "egg",
@@ -2952,7 +2949,8 @@
    "redstoneComp",
    "nether",
    "craftable",
-   "placeable"
+   "placeable",
+   "button"
   ],
   "minecraft:crimson_door": [
    "wood",
@@ -3026,7 +3024,8 @@
    "redstoneComp",
    "nether",
    "craftable",
-   "placeable"
+   "placeable",
+   "pressurePlate"
   ],
   "minecraft:crimson_roots": [
    "plant",
@@ -3141,7 +3140,6 @@
    "placeable"
   ],
   "minecraft:cut_red_sandstone_slab": [
-   "stone",
    "block",
    "decoration",
    "desert",
@@ -3158,7 +3156,6 @@
    "placeable"
   ],
   "minecraft:cut_sandstone_slab": [
-   "stone",
    "block",
    "decoration",
    "desert",
@@ -3322,7 +3319,8 @@
    "wood",
    "redstoneComp",
    "craftable",
-   "placeable"
+   "placeable",
+   "button"
   ],
   "minecraft:dark_oak_chest_boat": [
    "wood",
@@ -3395,7 +3393,8 @@
    "wood",
    "redstoneComp",
    "craftable",
-   "placeable"
+   "placeable",
+   "pressurePlate"
   ],
   "minecraft:dark_oak_sapling": [
    "plant",
@@ -3634,7 +3633,6 @@
    "placeable"
   ],
   "minecraft:deepslate_brick_slab": [
-   "stone",
    "brick",
    "block",
    "decoration",
@@ -3643,7 +3641,6 @@
    "slab"
   ],
   "minecraft:deepslate_brick_stairs": [
-   "stone",
    "brick",
    "block",
    "decoration",
@@ -3652,7 +3649,6 @@
    "stairs"
   ],
   "minecraft:deepslate_brick_wall": [
-   "stone",
    "brick",
    "block",
    "decoration",
@@ -3744,7 +3740,6 @@
    "overworld"
   ],
   "minecraft:deepslate_tile_slab": [
-   "stone",
    "block",
    "decoration",
    "craftable",
@@ -3753,7 +3748,6 @@
    "slab"
   ],
   "minecraft:deepslate_tile_stairs": [
-   "stone",
    "block",
    "decoration",
    "craftable",
@@ -3762,7 +3756,6 @@
    "stairs"
   ],
   "minecraft:deepslate_tile_wall": [
-   "stone",
    "block",
    "decoration",
    "craftable",
@@ -3779,7 +3772,6 @@
   ],
   "minecraft:detector_rail": [
    "iron",
-   "stone",
    "rail",
    "redstoneComp",
    "craftable",
@@ -3918,7 +3910,6 @@
    "earlyGame"
   ],
   "minecraft:diorite_slab": [
-   "stone",
    "block",
    "decoration",
    "craftable",
@@ -3927,7 +3918,6 @@
    "slab"
   ],
   "minecraft:diorite_stairs": [
-   "stone",
    "block",
    "decoration",
    "craftable",
@@ -3936,7 +3926,6 @@
    "stairs"
   ],
   "minecraft:diorite_wall": [
-   "stone",
    "block",
    "decoration",
    "craftable",
@@ -3950,7 +3939,8 @@
    "mineable",
    "placeable",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "farmable"
   ],
   "minecraft:dirt_path": [
    "soil",
@@ -3968,7 +3958,6 @@
    "rare"
   ],
   "minecraft:dispenser": [
-   "stone",
    "block",
    "redstoneComp",
    "container",
@@ -4048,7 +4037,6 @@
    "placeable"
   ],
   "minecraft:dropper": [
-   "stone",
    "block",
    "redstoneComp",
    "container",
@@ -4115,7 +4103,8 @@
    "block",
    "craftable",
    "placeable",
-   "rare"
+   "rare",
+   "mountain"
   ],
   "minecraft:emerald_ore": [
    "gem",
@@ -4184,7 +4173,6 @@
    "endGame"
   ],
   "minecraft:end_stone_brick_slab": [
-   "stone",
    "brick",
    "block",
    "decoration",
@@ -4195,7 +4183,6 @@
    "slab"
   ],
   "minecraft:end_stone_brick_stairs": [
-   "stone",
    "brick",
    "block",
    "decoration",
@@ -4206,7 +4193,6 @@
    "stairs"
   ],
   "minecraft:end_stone_brick_wall": [
-   "stone",
    "brick",
    "block",
    "decoration",
@@ -4277,7 +4263,8 @@
    "glass",
    "throwable",
    "projectile",
-   "tradeable"
+   "tradeable",
+   "potion"
   ],
   "minecraft:explorer_pottery_sherd": [
    "clay",
@@ -4441,7 +4428,8 @@
    "spider",
    "craftable",
    "brewable",
-   "renewable"
+   "renewable",
+   "potion"
   ],
   "minecraft:fern": [
    "plant",
@@ -4462,7 +4450,8 @@
    "paper",
    "craftable",
    "tradeable",
-   "overworld"
+   "overworld",
+   "book"
   ],
   "minecraft:fire_charge": [
    "projectile",
@@ -4622,7 +4611,6 @@
   "minecraft:furnace": [
    "block",
    "workstation",
-   "stone",
    "container",
    "craftable",
    "placeable",
@@ -4632,7 +4620,6 @@
    "minecart",
    "rail",
    "iron",
-   "stone",
    "craftable",
    "midGame"
   ],
@@ -4670,7 +4657,8 @@
    "glass",
    "container",
    "craftable",
-   "brewable"
+   "brewable",
+   "potion"
   ],
   "minecraft:glass_pane": [
    "glass",
@@ -4712,7 +4700,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "map"
+   "map",
+   "cave"
   ],
   "minecraft:glow_lichen": [
    "plant",
@@ -4926,7 +4915,6 @@
    "earlyGame"
   ],
   "minecraft:granite_slab": [
-   "stone",
    "block",
    "craftable",
    "placeable",
@@ -4935,7 +4923,6 @@
    "slab"
   ],
   "minecraft:granite_stairs": [
-   "stone",
    "block",
    "craftable",
    "placeable",
@@ -4944,7 +4931,6 @@
    "stairs"
   ],
   "minecraft:granite_wall": [
-   "stone",
    "block",
    "craftable",
    "placeable",
@@ -4957,7 +4943,8 @@
    "placeable",
    "renewable",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "farmable"
   ],
   "minecraft:gravel": [
    "block",
@@ -4967,7 +4954,8 @@
    "bartering",
    "renewable",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "stone"
   ],
   "minecraft:gray_banner": [
    "banner",
@@ -5044,7 +5032,8 @@
    "craftable",
    "wearable",
    "ghast",
-   "sky"
+   "sky",
+   "rideable"
   ],
   "minecraft:gray_shulker_box": [
    "container",
@@ -5165,7 +5154,8 @@
    "craftable",
    "wearable",
    "ghast",
-   "sky"
+   "sky",
+   "rideable"
   ],
   "minecraft:green_shulker_box": [
    "container",
@@ -5212,7 +5202,6 @@
    "flammable"
   ],
   "minecraft:grindstone": [
-   "stone",
    "wood",
    "block",
    "craftable",
@@ -5308,7 +5297,8 @@
    "block",
    "craftable",
    "placeable",
-   "midGame"
+   "midGame",
+   "pressurePlate"
   ],
   "minecraft:hoglin_spawn_egg": [
    "egg",
@@ -5322,7 +5312,8 @@
    "craftable",
    "placeable",
    "bee",
-   "renewable"
+   "renewable",
+   "farmable"
   ],
   "minecraft:honey_bottle": [
    "honey",
@@ -5346,7 +5337,8 @@
    "placeable",
    "bee",
    "decoration",
-   "renewable"
+   "renewable",
+   "farmable"
   ],
   "minecraft:hopper": [
    "iron",
@@ -5706,7 +5698,8 @@
    "jungle",
    "redstoneComp",
    "craftable",
-   "placeable"
+   "placeable",
+   "button"
   ],
   "minecraft:jungle_chest_boat": [
    "wood",
@@ -5786,7 +5779,8 @@
    "jungle",
    "redstoneComp",
    "craftable",
-   "placeable"
+   "placeable",
+   "pressurePlate"
   ],
   "minecraft:jungle_sapling": [
    "plant",
@@ -5873,7 +5867,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "climbable"
   ],
   "minecraft:lantern": [
    "iron",
@@ -5889,7 +5884,8 @@
    "block",
    "craftable",
    "placeable",
-   "earlyGame"
+   "earlyGame",
+   "cave"
   ],
   "minecraft:lapis_lazuli": [
    "gem",
@@ -5897,7 +5893,9 @@
    "smeltable",
    "tradeable",
    "stackable",
-   "earlyGame"
+   "earlyGame",
+   "cave",
+   "enchantable"
   ],
   "minecraft:lapis_ore": [
    "gem",
@@ -6012,7 +6010,6 @@
   ],
   "minecraft:lever": [
    "redstoneComp",
-   "stone",
    "wood",
    "craftable",
    "placeable",
@@ -6267,7 +6264,8 @@
    "block",
    "craftable",
    "placeable",
-   "midGame"
+   "midGame",
+   "pressurePlate"
   ],
   "minecraft:lightning_rod": [
    "copper",
@@ -6612,7 +6610,8 @@
    "redstoneComp",
    "craftable",
    "placeable",
-   "swamp"
+   "swamp",
+   "button"
   ],
   "minecraft:mangrove_chest_boat": [
    "wood",
@@ -6692,7 +6691,8 @@
    "redstoneComp",
    "craftable",
    "placeable",
-   "swamp"
+   "swamp",
+   "pressurePlate"
   ],
   "minecraft:mangrove_propagule": [
    "seed",
@@ -6769,7 +6769,8 @@
    "craftable",
    "tradeable",
    "stackable",
-   "overworld"
+   "overworld",
+   "book"
   ],
   "minecraft:medium_amethyst_bud": [
    "amethyst",
@@ -6868,7 +6869,6 @@
    "overworld"
   ],
   "minecraft:mossy_cobblestone_slab": [
-   "stone",
    "block",
    "craftable",
    "decoration",
@@ -6876,7 +6876,6 @@
    "slab"
   ],
   "minecraft:mossy_cobblestone_stairs": [
-   "stone",
    "block",
    "craftable",
    "decoration",
@@ -6884,7 +6883,6 @@
    "stairs"
   ],
   "minecraft:mossy_cobblestone_wall": [
-   "stone",
    "block",
    "craftable",
    "decoration",
@@ -6892,7 +6890,6 @@
    "wall"
   ],
   "minecraft:mossy_stone_brick_slab": [
-   "stone",
    "brick",
    "block",
    "craftable",
@@ -6901,7 +6898,6 @@
    "slab"
   ],
   "minecraft:mossy_stone_brick_stairs": [
-   "stone",
    "brick",
    "block",
    "craftable",
@@ -6910,7 +6906,6 @@
    "stairs"
   ],
   "minecraft:mossy_stone_brick_wall": [
-   "stone",
    "brick",
    "block",
    "craftable",
@@ -7506,7 +7501,8 @@
    "block",
    "craftable",
    "placeable",
-   "earlyGame"
+   "earlyGame",
+   "button"
   ],
   "minecraft:oak_chest_boat": [
    "wood",
@@ -7588,7 +7584,8 @@
    "block",
    "craftable",
    "placeable",
-   "earlyGame"
+   "earlyGame",
+   "pressurePlate"
   ],
   "minecraft:oak_sapling": [
    "plant",
@@ -7654,7 +7651,6 @@
    "rawWood"
   ],
   "minecraft:observer": [
-   "stone",
    "block",
    "redstoneComp",
    "craftable",
@@ -7689,7 +7685,8 @@
    "mobDrop",
    "trialChamber",
    "rare",
-   "midGame"
+   "midGame",
+   "potion"
   ],
   "minecraft:ominous_trial_key": [
    "trialChamber",
@@ -7788,7 +7785,8 @@
    "colored",
    "craftable",
    "sky",
-   "harness"
+   "harness",
+   "rideable"
   ],
   "minecraft:orange_shulker_box": [
    "container",
@@ -8038,7 +8036,8 @@
    "block",
    "craftable",
    "placeable",
-   "earlyGame"
+   "earlyGame",
+   "button"
   ],
   "minecraft:pale_oak_chest_boat": [
    "wood",
@@ -8120,7 +8119,8 @@
    "block",
    "craftable",
    "placeable",
-   "earlyGame"
+   "earlyGame",
+   "pressurePlate"
   ],
   "minecraft:pale_oak_sapling": [
    "plant",
@@ -8195,7 +8195,8 @@
    "paper",
    "craftable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "book"
   ],
   "minecraft:parched_spawn_egg": [
    "egg",
@@ -8227,7 +8228,6 @@
    "overworld"
   ],
   "minecraft:petrified_oak_slab": [
-   "stone",
    "slab",
    "block",
    "placeable",
@@ -8481,7 +8481,8 @@
    "placeable",
    "mineable",
    "overworld",
-   "renewable"
+   "renewable",
+   "farmable"
   ],
   "minecraft:pointed_dripstone": [
    "stone",
@@ -8517,7 +8518,6 @@
    "overworld"
   ],
   "minecraft:polished_andesite_slab": [
-   "stone",
    "block",
    "slab",
    "craftable",
@@ -8526,7 +8526,6 @@
    "waterloggable"
   ],
   "minecraft:polished_andesite_stairs": [
-   "stone",
    "block",
    "stairs",
    "craftable",
@@ -8553,7 +8552,6 @@
    "nether"
   ],
   "minecraft:polished_blackstone_brick_slab": [
-   "stone",
    "brick",
    "block",
    "slab",
@@ -8564,7 +8562,6 @@
    "nether"
   ],
   "minecraft:polished_blackstone_brick_stairs": [
-   "stone",
    "brick",
    "block",
    "stairs",
@@ -8575,7 +8572,6 @@
    "nether"
   ],
   "minecraft:polished_blackstone_brick_wall": [
-   "stone",
    "brick",
    "block",
    "wall",
@@ -8595,21 +8591,20 @@
    "nether"
   ],
   "minecraft:polished_blackstone_button": [
-   "stone",
    "redstoneComp",
    "craftable",
    "placeable",
-   "nether"
+   "nether",
+   "button"
   ],
   "minecraft:polished_blackstone_pressure_plate": [
-   "stone",
    "redstoneComp",
    "craftable",
    "placeable",
-   "nether"
+   "nether",
+   "pressurePlate"
   ],
   "minecraft:polished_blackstone_slab": [
-   "stone",
    "block",
    "slab",
    "craftable",
@@ -8619,7 +8614,6 @@
    "nether"
   ],
   "minecraft:polished_blackstone_stairs": [
-   "stone",
    "block",
    "stairs",
    "craftable",
@@ -8629,7 +8623,6 @@
    "nether"
   ],
   "minecraft:polished_blackstone_wall": [
-   "stone",
    "block",
    "wall",
    "craftable",
@@ -8648,7 +8641,6 @@
    "cave"
   ],
   "minecraft:polished_deepslate_slab": [
-   "stone",
    "block",
    "slab",
    "craftable",
@@ -8658,7 +8650,6 @@
    "cave"
   ],
   "minecraft:polished_deepslate_stairs": [
-   "stone",
    "block",
    "stairs",
    "craftable",
@@ -8668,7 +8659,6 @@
    "cave"
   ],
   "minecraft:polished_deepslate_wall": [
-   "stone",
    "block",
    "wall",
    "craftable",
@@ -8687,7 +8677,6 @@
    "overworld"
   ],
   "minecraft:polished_diorite_slab": [
-   "stone",
    "block",
    "slab",
    "craftable",
@@ -8696,7 +8685,6 @@
    "waterloggable"
   ],
   "minecraft:polished_diorite_stairs": [
-   "stone",
    "block",
    "stairs",
    "craftable",
@@ -8714,7 +8702,6 @@
    "overworld"
   ],
   "minecraft:polished_granite_slab": [
-   "stone",
    "block",
    "slab",
    "craftable",
@@ -8723,7 +8710,6 @@
    "waterloggable"
   ],
   "minecraft:polished_granite_stairs": [
-   "stone",
    "block",
    "stairs",
    "craftable",
@@ -8741,7 +8727,6 @@
    "cave"
   ],
   "minecraft:polished_tuff_slab": [
-   "stone",
    "block",
    "slab",
    "craftable",
@@ -8751,7 +8736,6 @@
    "cave"
   ],
   "minecraft:polished_tuff_stairs": [
-   "stone",
    "block",
    "stairs",
    "craftable",
@@ -8761,7 +8745,6 @@
    "cave"
   ],
   "minecraft:polished_tuff_wall": [
-   "stone",
    "block",
    "wall",
    "craftable",
@@ -9462,7 +9445,6 @@
    "decoration"
   ],
   "minecraft:red_sandstone_slab": [
-   "stone",
    "block",
    "slab",
    "desert",
@@ -9472,7 +9454,6 @@
    "waterloggable"
   ],
   "minecraft:red_sandstone_stairs": [
-   "stone",
    "block",
    "stairs",
    "desert",
@@ -9482,7 +9463,6 @@
    "waterloggable"
   ],
   "minecraft:red_sandstone_wall": [
-   "stone",
    "block",
    "wall",
    "desert",
@@ -9570,7 +9550,6 @@
   ],
   "minecraft:redstone_ore": [
    "ore",
-   "stone",
    "redstoneComp",
    "block",
    "mineable",
@@ -9612,7 +9591,8 @@
    "placeable",
    "decoration",
    "overworld",
-   "renewable"
+   "renewable",
+   "rawWood"
   ],
   "minecraft:resin_brick": [
    "resin",
@@ -9663,7 +9643,8 @@
    "placeable",
    "renewable",
    "overworld",
-   "smeltable"
+   "smeltable",
+   "rawWood"
   ],
   "minecraft:respawn_anchor": [
    "obsidian",
@@ -9755,7 +9736,6 @@
    "decoration"
   ],
   "minecraft:sandstone_slab": [
-   "stone",
    "slab",
    "block",
    "craftable",
@@ -9764,7 +9744,6 @@
    "decoration"
   ],
   "minecraft:sandstone_stairs": [
-   "stone",
    "stairs",
    "block",
    "craftable",
@@ -9773,7 +9752,6 @@
    "decoration"
   ],
   "minecraft:sandstone_wall": [
-   "stone",
    "wall",
    "block",
    "craftable",
@@ -10062,7 +10040,6 @@
    "workstation"
   ],
   "minecraft:smoker": [
-   "stone",
    "block",
    "container",
    "craftable",
@@ -10112,7 +10089,6 @@
    "decoration"
   ],
   "minecraft:smooth_red_sandstone_slab": [
-   "stone",
    "slab",
    "block",
    "craftable",
@@ -10121,7 +10097,6 @@
    "decoration"
   ],
   "minecraft:smooth_red_sandstone_stairs": [
-   "stone",
    "stairs",
    "block",
    "craftable",
@@ -10138,7 +10113,6 @@
    "decoration"
   ],
   "minecraft:smooth_sandstone_slab": [
-   "stone",
    "slab",
    "block",
    "craftable",
@@ -10147,7 +10121,6 @@
    "decoration"
   ],
   "minecraft:smooth_sandstone_stairs": [
-   "stone",
    "stairs",
    "block",
    "craftable",
@@ -10163,7 +10136,6 @@
    "decoration"
   ],
   "minecraft:smooth_stone_slab": [
-   "stone",
    "slab",
    "block",
    "craftable",
@@ -10350,7 +10322,8 @@
    "redstoneComp",
    "craftable",
    "placeable",
-   "earlyGame"
+   "earlyGame",
+   "button"
   ],
   "minecraft:spruce_chest_boat": [
    "wood",
@@ -10430,7 +10403,8 @@
    "wood",
    "redstoneComp",
    "craftable",
-   "placeable"
+   "placeable",
+   "pressurePlate"
   ],
   "minecraft:spruce_sapling": [
    "plant",
@@ -10510,7 +10484,8 @@
    "craftable",
    "renewable",
    "stackable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:sticky_piston": [
    "redstoneComp",
@@ -10531,7 +10506,6 @@
    "earlyGame"
   ],
   "minecraft:stone_axe": [
-   "stone",
    "tool",
    "weapon",
    "combat",
@@ -10542,7 +10516,6 @@
    "earlyGame"
   ],
   "minecraft:stone_brick_slab": [
-   "stone",
    "brick",
    "slab",
    "block",
@@ -10551,7 +10524,6 @@
    "decoration"
   ],
   "minecraft:stone_brick_stairs": [
-   "stone",
    "brick",
    "stairs",
    "block",
@@ -10560,7 +10532,6 @@
    "decoration"
   ],
   "minecraft:stone_brick_wall": [
-   "stone",
    "brick",
    "wall",
    "block",
@@ -10578,14 +10549,13 @@
    "decoration"
   ],
   "minecraft:stone_button": [
-   "stone",
    "redstoneComp",
    "craftable",
    "placeable",
-   "earlyGame"
+   "earlyGame",
+   "button"
   ],
   "minecraft:stone_hoe": [
-   "stone",
    "tool",
    "craftable",
    "breakable",
@@ -10593,7 +10563,6 @@
    "earlyGame"
   ],
   "minecraft:stone_pickaxe": [
-   "stone",
    "tool",
    "craftable",
    "breakable",
@@ -10601,14 +10570,13 @@
    "earlyGame"
   ],
   "minecraft:stone_pressure_plate": [
-   "stone",
    "redstoneComp",
    "craftable",
    "placeable",
-   "earlyGame"
+   "earlyGame",
+   "pressurePlate"
   ],
   "minecraft:stone_shovel": [
-   "stone",
    "tool",
    "craftable",
    "breakable",
@@ -10616,7 +10584,6 @@
    "earlyGame"
   ],
   "minecraft:stone_slab": [
-   "stone",
    "block",
    "slab",
    "craftable",
@@ -10624,7 +10591,6 @@
    "decoration"
   ],
   "minecraft:stone_spear": [
-   "stone",
    "weapon",
    "combat",
    "hand2hand",
@@ -10634,7 +10600,6 @@
    "earlyGame"
   ],
   "minecraft:stone_stairs": [
-   "stone",
    "block",
    "craftable",
    "placeable",
@@ -10643,7 +10608,6 @@
    "stairs"
   ],
   "minecraft:stone_sword": [
-   "stone",
    "weapon",
    "combat",
    "hand2hand",
@@ -10653,7 +10617,6 @@
    "earlyGame"
   ],
   "minecraft:stonecutter": [
-   "stone",
    "iron",
    "block",
    "workstation",
@@ -11238,7 +11201,6 @@
    "earlyGame"
   ],
   "minecraft:tuff_brick_slab": [
-   "stone",
    "brick",
    "block",
    "craftable",
@@ -11249,7 +11211,6 @@
    "slab"
   ],
   "minecraft:tuff_brick_stairs": [
-   "stone",
    "brick",
    "block",
    "craftable",
@@ -11260,7 +11221,6 @@
    "stairs"
   ],
   "minecraft:tuff_brick_wall": [
-   "stone",
    "brick",
    "block",
    "craftable",
@@ -11280,7 +11240,6 @@
    "earlyGame"
   ],
   "minecraft:tuff_slab": [
-   "stone",
    "block",
    "craftable",
    "placeable",
@@ -11289,7 +11248,6 @@
    "slab"
   ],
   "minecraft:tuff_stairs": [
-   "stone",
    "block",
    "craftable",
    "placeable",
@@ -11298,7 +11256,6 @@
    "stairs"
   ],
   "minecraft:tuff_wall": [
-   "stone",
    "block",
    "craftable",
    "placeable",
@@ -11429,7 +11386,8 @@
    "placeable",
    "nether",
    "renewable",
-   "lateGame"
+   "lateGame",
+   "button"
   ],
   "minecraft:warped_door": [
    "wood",
@@ -11527,7 +11485,8 @@
    "placeable",
    "nether",
    "renewable",
-   "lateGame"
+   "lateGame",
+   "pressurePlate"
   ],
   "minecraft:warped_roots": [
    "plant",
@@ -11611,7 +11570,8 @@
    "bucket",
    "unstackable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "farmable"
   ],
   "minecraft:waxed_chiseled_copper": [
    "copper",
@@ -11969,7 +11929,6 @@
   "minecraft:waxed_oxidized_copper_trapdoor": [
    "copper",
    "block",
-   "door",
    "craftable",
    "placeable",
    "waterloggable",
@@ -12117,7 +12076,6 @@
   "minecraft:waxed_weathered_copper_trapdoor": [
    "copper",
    "block",
-   "door",
    "craftable",
    "placeable",
    "waterloggable",
@@ -12262,7 +12220,6 @@
   "minecraft:weathered_copper_trapdoor": [
    "copper",
    "block",
-   "door",
    "placeable",
    "waterloggable",
    "renewable",
@@ -12420,7 +12377,8 @@
    "craftable",
    "ghast",
    "colored",
-   "harness"
+   "harness",
+   "rideable"
   ],
   "minecraft:white_shulker_box": [
    "container",
@@ -12702,7 +12660,8 @@
    "craftable",
    "ghast",
    "colored",
-   "harness"
+   "harness",
+   "rideable"
   ],
   "minecraft:yellow_shulker_box": [
    "container",
@@ -12829,12 +12788,14 @@
   "travelersbackpack:blank_upgrade": [
    "upgrade",
    "craftable",
-   "modded"
+   "modded",
+   "container"
   ],
   "travelersbackpack:blast_furnace_upgrade": [
    "upgrade",
    "craftable",
-   "modded"
+   "modded",
+   "container"
   ],
   "travelersbackpack:blaze": [
    "container",
@@ -12909,7 +12870,8 @@
   "travelersbackpack:crafting_upgrade": [
    "upgrade",
    "craftable",
-   "modded"
+   "modded",
+   "container"
   ],
   "travelersbackpack:creeper": [
    "container",
@@ -12939,7 +12901,8 @@
    "upgrade",
    "craftable",
    "diamond",
-   "modded"
+   "modded",
+   "container"
   ],
   "travelersbackpack:dragon": [
    "container",
@@ -12978,7 +12941,8 @@
   "travelersbackpack:feeding_upgrade": [
    "upgrade",
    "craftable",
-   "modded"
+   "modded",
+   "container"
   ],
   "travelersbackpack:fox": [
    "container",
@@ -12990,7 +12954,8 @@
   "travelersbackpack:furnace_upgrade": [
    "upgrade",
    "craftable",
-   "modded"
+   "modded",
+   "container"
   ],
   "travelersbackpack:ghast": [
    "container",
@@ -13012,7 +12977,8 @@
    "upgrade",
    "craftable",
    "gold",
-   "modded"
+   "modded",
+   "container"
   ],
   "travelersbackpack:gray_sleeping_bag": [
    "wool",
@@ -13082,17 +13048,20 @@
    "upgrade",
    "modded",
    "craftable",
-   "midGame"
+   "midGame",
+   "container"
   ],
   "travelersbackpack:jukebox_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "container"
   ],
   "travelersbackpack:lantern_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "container"
   ],
   "travelersbackpack:lapis": [
    "lapis",
@@ -13151,7 +13120,8 @@
   "travelersbackpack:magnet_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "container"
   ],
   "travelersbackpack:melon": [
    "container",
@@ -13183,7 +13153,8 @@
    "upgrade",
    "modded",
    "craftable",
-   "endGame"
+   "endGame",
+   "container"
   ],
   "travelersbackpack:ocelot": [
    "container",
@@ -13206,7 +13177,8 @@
   "travelersbackpack:pickup_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "container"
   ],
   "travelersbackpack:pig": [
    "container",
@@ -13273,7 +13245,8 @@
   "travelersbackpack:refill_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "container"
   ],
   "travelersbackpack:sandstone": [
    "stone",
@@ -13306,7 +13279,8 @@
   "travelersbackpack:smoker_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "container"
   ],
   "travelersbackpack:snow": [
    "container",
@@ -13354,7 +13328,8 @@
   "travelersbackpack:tanks_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "container"
   ],
   "travelersbackpack:villager": [
    "container",
@@ -13368,7 +13343,8 @@
   "travelersbackpack:void_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "container"
   ],
   "travelersbackpack:warden": [
    "container",

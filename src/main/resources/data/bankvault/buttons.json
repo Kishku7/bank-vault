@@ -157,6 +157,29 @@
     ]
    }
   ],
+  [
+   {
+    "label": "Nether",
+    "icon": "minecraft:netherrack",
+    "words": [
+     "nether"
+    ]
+   },
+   {
+    "label": "The End",
+    "icon": "minecraft:end_stone",
+    "words": [
+     "end"
+    ]
+   },
+   {
+    "label": "Caves",
+    "icon": "minecraft:pointed_dripstone",
+    "words": [
+     "cave"
+    ]
+   }
+  ],
   {
    "section": "Building & Decor"
   },
@@ -359,6 +382,15 @@
     "words": [
      "bannerPattern"
     ]
+   },
+   {
+    "label": "Potions",
+    "icon": "minecraft:potion",
+    "words": [
+     "potion",
+     "brewable",
+     "drink"
+    ]
    }
   ],
   {
@@ -418,28 +450,7 @@
     ]
    }
   ],
-  {
-   "section": "Tech & Sources"
-  },
   [
-   {
-    "label": "Redstone",
-    "icon": "minecraft:repeater",
-    "words": [
-     "redstoneComp"
-    ]
-   },
-   {
-    "label": "Transport",
-    "icon": "minecraft:minecart",
-    "words": [
-     "rail",
-     "minecart",
-     "boat",
-     "rideable",
-     "glider"
-    ]
-   },
    {
     "label": "Mob Drops",
     "icon": "minecraft:rotten_flesh",
@@ -448,59 +459,10 @@
     ]
    },
    {
-    "label": "Loot Only",
-    "icon": "minecraft:golden_apple",
+    "label": "Mushroom",
+    "icon": "minecraft:red_mushroom",
     "words": [
-     "lootOnly"
-    ]
-   },
-   {
-    "label": "Tradeable",
-    "icon": "minecraft:emerald",
-    "words": [
-     "tradeable"
-    ]
-   },
-   {
-    "label": "Archaeology",
-    "icon": "minecraft:brush",
-    "words": [
-     "archaeology",
-     "sniffing"
-    ]
-   },
-   {
-    "label": "Technical",
-    "icon": "minecraft:command_block",
-    "words": [
-     "technical",
-     "creativeOnly"
-    ]
-   }
-  ],
-  {
-   "section": "World"
-  },
-  [
-   {
-    "label": "Overworld",
-    "icon": "minecraft:grass_block",
-    "words": [
-     "overworld"
-    ]
-   },
-   {
-    "label": "Nether",
-    "icon": "minecraft:netherrack",
-    "words": [
-     "nether"
-    ]
-   },
-   {
-    "label": "The End",
-    "icon": "minecraft:end_stone",
-    "words": [
-     "end"
+     "mushroom"
     ]
    },
    {
@@ -510,30 +472,6 @@
      "ocean"
     ]
    },
-   {
-    "label": "Caves",
-    "icon": "minecraft:pointed_dripstone",
-    "words": [
-     "cave"
-    ]
-   },
-   {
-    "label": "Village",
-    "icon": "minecraft:bell",
-    "words": [
-     "village"
-    ]
-   },
-   {
-    "label": "Ancient City",
-    "icon": "minecraft:echo_shard",
-    "words": [
-     "ancientCity",
-     "sculk"
-    ]
-   }
-  ],
-  [
    {
     "label": "Jungle",
     "icon": "minecraft:jungle_log",
@@ -556,25 +494,52 @@
     ]
    },
    {
-    "label": "Mountain",
+    "label": "Mountain & Snow",
     "icon": "minecraft:goat_horn",
     "words": [
-     "mountain"
-    ]
-   },
-   {
-    "label": "Snow",
-    "icon": "minecraft:snowball",
-    "words": [
+     "mountain",
      "snow",
      "ice"
     ]
+   }
+  ],
+  {
+   "section": "Tech & Sources"
+  },
+  [
+   {
+    "label": "Redstone",
+    "icon": "minecraft:repeater",
+    "words": [
+     "redstoneComp"
+    ]
    },
    {
-    "label": "Mushroom",
-    "icon": "minecraft:red_mushroom",
+    "label": "Transport",
+    "icon": "minecraft:minecart",
     "words": [
-     "mushroom"
+     "rail",
+     "minecart",
+     "boat",
+     "rideable",
+     "glider",
+     "climbable"
+    ]
+   },
+   {
+    "label": "Archaeology",
+    "icon": "minecraft:brush",
+    "words": [
+     "archaeology",
+     "sniffing"
+    ]
+   },
+   {
+    "label": "Ancient City",
+    "icon": "minecraft:echo_shard",
+    "words": [
+     "ancientCity",
+     "sculk"
     ]
    },
    {
