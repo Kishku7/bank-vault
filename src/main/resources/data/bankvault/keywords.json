@@ -479,7 +479,6 @@
    "rare"
   ],
   "minecraft:anvil": [
-   "iron",
    "block",
    "tool",
    "craftable",
@@ -540,7 +539,6 @@
    "earlyGame"
   ],
   "minecraft:axolotl_bucket": [
-   "iron",
    "container",
    "axolotl",
    "cave",
@@ -1745,7 +1743,6 @@
   ],
   "minecraft:brush": [
    "tool",
-   "copper",
    "craftable",
    "archaeology",
    "breakable",
@@ -1955,7 +1952,6 @@
    "redstoneComp"
   ],
   "minecraft:chainmail_boots": [
-   "iron",
    "armor",
    "combat",
    "wearable",
@@ -1966,7 +1962,6 @@
    "midGame"
   ],
   "minecraft:chainmail_chestplate": [
-   "iron",
    "armor",
    "combat",
    "wearable",
@@ -1977,7 +1972,6 @@
    "midGame"
   ],
   "minecraft:chainmail_helmet": [
-   "iron",
    "armor",
    "combat",
    "wearable",
@@ -1988,7 +1982,6 @@
    "midGame"
   ],
   "minecraft:chainmail_leggings": [
-   "iron",
    "armor",
    "combat",
    "wearable",
@@ -2348,7 +2341,6 @@
    "earlyGame"
   ],
   "minecraft:clock": [
-   "gold",
    "tool",
    "craftable",
    "tradeable",
@@ -2502,7 +2494,6 @@
    "earlyGame"
   ],
   "minecraft:cod_bucket": [
-   "iron",
    "container",
    "fish",
    "ocean",
@@ -2537,7 +2528,6 @@
    "lateGame"
   ],
   "minecraft:compass": [
-   "iron",
    "tool",
    "craftable",
    "tradeable",
@@ -2631,7 +2621,6 @@
    "stackable"
   ],
   "minecraft:copper_axe": [
-   "copper",
    "tool",
    "weapon",
    "combat",
@@ -2658,7 +2647,6 @@
    "placeable"
   ],
   "minecraft:copper_boots": [
-   "copper",
    "armor",
    "wearable",
    "breakable",
@@ -2692,7 +2680,6 @@
    "earlyGame"
   ],
   "minecraft:copper_chestplate": [
-   "copper",
    "armor",
    "wearable",
    "breakable",
@@ -2732,7 +2719,6 @@
    "placeable"
   ],
   "minecraft:copper_helmet": [
-   "copper",
    "armor",
    "wearable",
    "breakable",
@@ -2741,7 +2727,6 @@
    "earlyGame"
   ],
   "minecraft:copper_hoe": [
-   "copper",
    "tool",
    "craftable",
    "breakable",
@@ -2749,7 +2734,6 @@
    "earlyGame"
   ],
   "minecraft:copper_horse_armor": [
-   "copper",
    "armor",
    "wearable",
    "craftable",
@@ -2774,7 +2758,6 @@
    "placeable"
   ],
   "minecraft:copper_leggings": [
-   "copper",
    "armor",
    "wearable",
    "breakable",
@@ -2783,7 +2766,6 @@
    "earlyGame"
   ],
   "minecraft:copper_nautilus_armor": [
-   "copper",
    "armor",
    "wearable",
    "ocean",
@@ -2807,7 +2789,6 @@
    "earlyGame"
   ],
   "minecraft:copper_pickaxe": [
-   "copper",
    "tool",
    "craftable",
    "breakable",
@@ -2815,7 +2796,6 @@
    "earlyGame"
   ],
   "minecraft:copper_shovel": [
-   "copper",
    "tool",
    "craftable",
    "breakable",
@@ -2823,7 +2803,6 @@
    "earlyGame"
   ],
   "minecraft:copper_spear": [
-   "copper",
    "weapon",
    "combat",
    "hand2hand",
@@ -2833,7 +2812,6 @@
    "earlyGame"
   ],
   "minecraft:copper_sword": [
-   "copper",
    "weapon",
    "combat",
    "hand2hand",
@@ -3796,7 +3774,6 @@
    "midGame"
   ],
   "minecraft:diamond_axe": [
-   "diamond",
    "tool",
    "weapon",
    "combat",
@@ -3813,7 +3790,6 @@
    "midGame"
   ],
   "minecraft:diamond_boots": [
-   "diamond",
    "armor",
    "wearable",
    "craftable",
@@ -3823,7 +3799,6 @@
    "midGame"
   ],
   "minecraft:diamond_chestplate": [
-   "diamond",
    "armor",
    "wearable",
    "craftable",
@@ -3833,7 +3808,6 @@
    "midGame"
   ],
   "minecraft:diamond_helmet": [
-   "diamond",
    "armor",
    "wearable",
    "craftable",
@@ -3843,7 +3817,6 @@
    "midGame"
   ],
   "minecraft:diamond_hoe": [
-   "diamond",
    "tool",
    "craftable",
    "breakable",
@@ -3851,7 +3824,6 @@
    "midGame"
   ],
   "minecraft:diamond_horse_armor": [
-   "diamond",
    "armor",
    "animalArmor",
    "lootOnly",
@@ -3859,7 +3831,6 @@
    "midGame"
   ],
   "minecraft:diamond_leggings": [
-   "diamond",
    "armor",
    "wearable",
    "craftable",
@@ -3869,7 +3840,6 @@
    "midGame"
   ],
   "minecraft:diamond_nautilus_armor": [
-   "diamond",
    "armor",
    "animalArmor",
    "ocean",
@@ -3886,7 +3856,6 @@
    "rare"
   ],
   "minecraft:diamond_pickaxe": [
-   "diamond",
    "tool",
    "craftable",
    "breakable",
@@ -3894,7 +3863,6 @@
    "midGame"
   ],
   "minecraft:diamond_shovel": [
-   "diamond",
    "tool",
    "craftable",
    "breakable",
@@ -3902,7 +3870,6 @@
    "midGame"
   ],
   "minecraft:diamond_spear": [
-   "diamond",
    "weapon",
    "combat",
    "hand2hand",
@@ -3912,7 +3879,6 @@
    "midGame"
   ],
   "minecraft:diamond_sword": [
-   "diamond",
    "weapon",
    "combat",
    "hand2hand",
@@ -4540,7 +4506,6 @@
   ],
   "minecraft:flint_and_steel": [
    "tool",
-   "iron",
    "craftable",
    "breakable",
    "unstackable"
@@ -4575,7 +4540,8 @@
    "block",
    "brick",
    "craftable",
-   "placeable"
+   "placeable",
+   "pottery"
   ],
   "minecraft:flowering_azalea": [
    "plant",
@@ -4798,7 +4764,6 @@
    "rare"
   ],
   "minecraft:golden_axe": [
-   "gold",
    "tool",
    "weapon",
    "craftable",
@@ -4808,7 +4773,6 @@
    "midGame"
   ],
   "minecraft:golden_boots": [
-   "gold",
    "armor",
    "wearable",
    "craftable",
@@ -4828,7 +4792,6 @@
    "midGame"
   ],
   "minecraft:golden_chestplate": [
-   "gold",
    "armor",
    "wearable",
    "craftable",
@@ -4847,7 +4810,6 @@
    "overworld"
   ],
   "minecraft:golden_helmet": [
-   "gold",
    "armor",
    "wearable",
    "craftable",
@@ -4858,7 +4820,6 @@
    "midGame"
   ],
   "minecraft:golden_hoe": [
-   "gold",
    "tool",
    "craftable",
    "enchantable",
@@ -4867,14 +4828,12 @@
    "midGame"
   ],
   "minecraft:golden_horse_armor": [
-   "gold",
    "armor",
    "wearable",
    "lootOnly",
    "midGame"
   ],
   "minecraft:golden_leggings": [
-   "gold",
    "armor",
    "wearable",
    "craftable",
@@ -4885,14 +4844,12 @@
    "midGame"
   ],
   "minecraft:golden_nautilus_armor": [
-   "gold",
    "armor",
    "wearable",
    "ocean",
    "midGame"
   ],
   "minecraft:golden_pickaxe": [
-   "gold",
    "tool",
    "craftable",
    "enchantable",
@@ -4901,7 +4858,6 @@
    "midGame"
   ],
   "minecraft:golden_shovel": [
-   "gold",
    "tool",
    "craftable",
    "enchantable",
@@ -4910,7 +4866,6 @@
    "midGame"
   ],
   "minecraft:golden_spear": [
-   "gold",
    "weapon",
    "combat",
    "hand2hand",
@@ -4920,7 +4875,6 @@
    "midGame"
   ],
   "minecraft:golden_sword": [
-   "gold",
    "weapon",
    "combat",
    "hand2hand",
@@ -5499,7 +5453,6 @@
    "earlyGame"
   ],
   "minecraft:iron_axe": [
-   "iron",
    "tool",
    "weapon",
    "combat",
@@ -5526,7 +5479,6 @@
    "midGame"
   ],
   "minecraft:iron_boots": [
-   "iron",
    "armor",
    "wearable",
    "craftable",
@@ -5544,7 +5496,6 @@
    "nether"
   ],
   "minecraft:iron_chestplate": [
-   "iron",
    "armor",
    "wearable",
    "craftable",
@@ -5569,7 +5520,6 @@
    "village"
   ],
   "minecraft:iron_helmet": [
-   "iron",
    "armor",
    "wearable",
    "craftable",
@@ -5579,7 +5529,6 @@
    "midGame"
   ],
   "minecraft:iron_hoe": [
-   "iron",
    "tool",
    "craftable",
    "enchantable",
@@ -5588,7 +5537,6 @@
    "midGame"
   ],
   "minecraft:iron_horse_armor": [
-   "iron",
    "armor",
    "wearable",
    "lootOnly",
@@ -5605,7 +5553,6 @@
    "midGame"
   ],
   "minecraft:iron_leggings": [
-   "iron",
    "armor",
    "wearable",
    "craftable",
@@ -5615,7 +5562,6 @@
    "midGame"
   ],
   "minecraft:iron_nautilus_armor": [
-   "iron",
    "armor",
    "wearable",
    "ocean",
@@ -5639,7 +5585,6 @@
    "earlyGame"
   ],
   "minecraft:iron_pickaxe": [
-   "iron",
    "tool",
    "craftable",
    "enchantable",
@@ -5648,7 +5593,6 @@
    "midGame"
   ],
   "minecraft:iron_shovel": [
-   "iron",
    "tool",
    "craftable",
    "enchantable",
@@ -5657,7 +5601,6 @@
    "midGame"
   ],
   "minecraft:iron_spear": [
-   "iron",
    "weapon",
    "combat",
    "hand2hand",
@@ -5667,7 +5610,6 @@
    "midGame"
   ],
   "minecraft:iron_sword": [
-   "iron",
    "weapon",
    "combat",
    "hand2hand",
@@ -5945,7 +5887,6 @@
   ],
   "minecraft:lava_bucket": [
    "bucket",
-   "iron",
    "fuel",
    "unstackable",
    "cave",
@@ -6831,7 +6772,6 @@
   ],
   "minecraft:milk_bucket": [
    "drink",
-   "iron",
    "container",
    "unstackable",
    "renewable",
@@ -7346,7 +7286,6 @@
    "lateGame"
   ],
   "minecraft:netherite_axe": [
-   "netherite",
    "tool",
    "weapon",
    "hand2hand",
@@ -7366,7 +7305,6 @@
    "rare"
   ],
   "minecraft:netherite_boots": [
-   "netherite",
    "armor",
    "wearable",
    "endGame",
@@ -7377,7 +7315,6 @@
    "fireproof"
   ],
   "minecraft:netherite_chestplate": [
-   "netherite",
    "armor",
    "wearable",
    "endGame",
@@ -7388,7 +7325,6 @@
    "fireproof"
   ],
   "minecraft:netherite_helmet": [
-   "netherite",
    "armor",
    "wearable",
    "endGame",
@@ -7399,7 +7335,6 @@
    "fireproof"
   ],
   "minecraft:netherite_hoe": [
-   "netherite",
    "tool",
    "endGame",
    "craftable",
@@ -7409,7 +7344,6 @@
    "fireproof"
   ],
   "minecraft:netherite_horse_armor": [
-   "netherite",
    "armor",
    "endGame",
    "craftable",
@@ -7425,7 +7359,6 @@
    "fireproof"
   ],
   "minecraft:netherite_leggings": [
-   "netherite",
    "armor",
    "wearable",
    "endGame",
@@ -7436,7 +7369,6 @@
    "fireproof"
   ],
   "minecraft:netherite_nautilus_armor": [
-   "netherite",
    "armor",
    "ocean",
    "endGame",
@@ -7445,7 +7377,6 @@
    "fireproof"
   ],
   "minecraft:netherite_pickaxe": [
-   "netherite",
    "tool",
    "endGame",
    "craftable",
@@ -7463,7 +7394,6 @@
    "fireproof"
   ],
   "minecraft:netherite_shovel": [
-   "netherite",
    "tool",
    "endGame",
    "craftable",
@@ -7473,7 +7403,6 @@
    "fireproof"
   ],
   "minecraft:netherite_spear": [
-   "netherite",
    "weapon",
    "combat",
    "hand2hand",
@@ -7484,7 +7413,6 @@
    "fireproof"
   ],
   "minecraft:netherite_sword": [
-   "netherite",
    "weapon",
    "combat",
    "hand2hand",
@@ -8866,7 +8794,6 @@
    "lateGame"
   ],
   "minecraft:powder_snow_bucket": [
-   "iron",
    "container",
    "snow",
    "mountain",
@@ -8987,7 +8914,6 @@
    "stackable"
   ],
   "minecraft:pufferfish_bucket": [
-   "iron",
    "container",
    "ocean",
    "placeable",
@@ -9779,7 +9705,6 @@
    "earlyGame"
   ],
   "minecraft:salmon_bucket": [
-   "iron",
    "container",
    "unstackable",
    "ocean",
@@ -9946,7 +9871,6 @@
    "overworld"
   ],
   "minecraft:shears": [
-   "iron",
    "tool",
    "craftable",
    "breakable",
@@ -10555,7 +10479,6 @@
   ],
   "minecraft:spyglass": [
    "tool",
-   "copper",
    "amethyst",
    "craftable",
    "unstackable",
@@ -11061,7 +10984,6 @@
    "earlyGame"
   ],
   "minecraft:tadpole_bucket": [
-   "iron",
    "bucket",
    "frog",
    "swamp",
@@ -11254,7 +11176,6 @@
    "earlyGame"
   ],
   "minecraft:tropical_fish_bucket": [
-   "iron",
    "bucket",
    "ocean",
    "unstackable",
@@ -11653,7 +11574,6 @@
    "lateGame"
   ],
   "minecraft:water_bucket": [
-   "iron",
    "bucket",
    "unstackable",
    "renewable",
@@ -12967,7 +12887,6 @@
    "backpack",
    "wearable",
    "craftable",
-   "diamond",
    "modded"
   ],
   "travelersbackpack:diamond_tier_upgrade": [
@@ -13044,7 +12963,6 @@
    "backpack",
    "wearable",
    "craftable",
-   "gold",
    "modded"
   ],
   "travelersbackpack:gold_tier_upgrade": [
@@ -13099,7 +13017,6 @@
    "stackable"
   ],
   "travelersbackpack:iron": [
-   "iron",
    "container",
    "backpack",
    "wearable",
@@ -13108,7 +13025,6 @@
    "midGame"
   ],
   "travelersbackpack:iron_golem": [
-   "iron",
    "container",
    "backpack",
    "wearable",
@@ -13214,7 +13130,6 @@
    "nether"
   ],
   "travelersbackpack:netherite": [
-   "netherite",
    "container",
    "backpack",
    "wearable",

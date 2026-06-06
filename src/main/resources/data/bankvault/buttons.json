@@ -41,15 +41,15 @@
    {"label": "Beds", "icon": "minecraft:red_bed", "words": ["bed"]},
    {"label": "Candles", "icon": "minecraft:candle", "words": ["candle"]},
    {"label": "Carpets", "icon": "minecraft:red_carpet", "words": ["carpet"]},
-   {"label": "Banners", "icon": "minecraft:white_banner", "words": ["banner", "bannerPattern"]},
+   {"label": "Banners", "icon": "minecraft:white_banner", "words": ["banner"]},
+   {"label": "Patterns", "icon": "minecraft:creeper_banner_pattern", "words": ["bannerPattern"]},
    {"label": "Pottery", "icon": "minecraft:decorated_pot", "words": ["pottery"]},
-   {"label": "Armor Trims", "icon": "minecraft:coast_armor_trim_smithing_template", "words": ["trim", "smithingTemplate"]},
    {"label": "Heads", "icon": "minecraft:creeper_head", "words": ["head"]}
   ],
   [
-   {"label": "Weapons", "icon": "minecraft:iron_sword", "words": ["weapon"]},
+   {"label": "Combat", "icon": "minecraft:diamond_sword", "words": ["combat", "weapon"]},
    {"label": "Tools", "icon": "minecraft:iron_pickaxe", "words": ["tool"]},
-   {"label": "Armor", "icon": "minecraft:iron_chestplate", "words": ["armor"]},
+   {"label": "Armor", "icon": "minecraft:iron_chestplate", "words": ["armor", "wearable"]},
    {"label": "Food", "icon": "minecraft:cooked_beef", "words": ["food", "meat"]},
    {"label": "Plants", "icon": "minecraft:fern", "words": ["plant"]},
    {"label": "Seeds", "icon": "minecraft:wheat_seeds", "words": ["seed"]},
@@ -65,31 +65,31 @@
    {"label": "Lights", "icon": "minecraft:lantern", "words": ["lightSource"]}
   ],
   [
-   {"label": "Combat", "icon": "minecraft:diamond_sword", "words": ["combat"]},
    {"label": "Hand-to-Hand", "icon": "minecraft:netherite_sword", "words": ["hand2hand"]},
-   {"label": "Ranged", "icon": "minecraft:bow", "words": ["ranged"]},
-   {"label": "Projectiles", "icon": "minecraft:arrow", "words": ["projectile", "ammo", "thrown"]},
+   {"label": "Ranged", "icon": "minecraft:bow", "words": ["ranged", "projectile", "ammo", "thrown"]},
    {"label": "Explosives", "icon": "minecraft:tnt", "words": ["explosive"]},
    {"label": "Traps", "icon": "minecraft:tripwire_hook", "words": ["trap"]},
-   {"label": "Music", "icon": "minecraft:jukebox", "words": ["music", "jukebox"]}
+   {"label": "Music", "icon": "minecraft:jukebox", "words": ["music", "jukebox"]},
+   "enchanting",
+   {"label": "Books", "icon": "minecraft:book", "words": ["book"]}
   ],
   [
-   {"label": "Enchantable", "icon": "minecraft:enchanted_book", "words": ["enchantable"]},
-   {"label": "Wearable", "icon": "minecraft:golden_helmet", "words": ["wearable"]},
    {"label": "Edible", "icon": "minecraft:apple", "words": ["edible"]},
    {"label": "Fuel", "icon": "minecraft:coal", "words": ["fuel"]},
    {"label": "Growable", "icon": "minecraft:oak_sapling", "words": ["growable"]},
    {"label": "Has Durability", "icon": "minecraft:wooden_pickaxe", "words": ["breakable"]},
-   {"label": "Books", "icon": "minecraft:book", "words": ["book"]}
+   {"label": "Smeltable", "icon": "minecraft:furnace", "words": ["smeltable"]},
+   {"label": "Farmable", "icon": "minecraft:wheat", "words": ["farmable"]},
+   {"label": "Armor Trims", "icon": "minecraft:coast_armor_trim_smithing_template", "words": ["trim", "smithingTemplate"]}
   ],
   [
    {"label": "Mob Drops", "icon": "minecraft:rotten_flesh", "words": ["mobDrop"]},
    {"label": "Loot Only", "icon": "minecraft:golden_apple", "words": ["lootOnly"]},
    {"label": "Tradeable", "icon": "minecraft:emerald", "words": ["tradeable"]},
-   {"label": "Bartering", "icon": "minecraft:gold_nugget", "words": ["bartering"]},
    {"label": "Archaeology", "icon": "minecraft:brush", "words": ["archaeology", "sniffing"]},
-   {"label": "Smeltable", "icon": "minecraft:furnace", "words": ["smeltable"]},
-   {"label": "Farmable", "icon": "minecraft:wheat", "words": ["farmable"]}
+   {"label": "End Game", "icon": "minecraft:elytra", "words": ["endGame"]},
+   {"label": "Oxidizable", "icon": "minecraft:exposed_copper", "words": ["oxidizable"]},
+   {"label": "Technical", "icon": "minecraft:command_block", "words": ["technical", "creativeOnly"]}
   ],
   [
    {"label": "Overworld", "icon": "minecraft:grass_block", "words": ["overworld"]},
@@ -110,12 +110,6 @@
    {"label": "Trial Chamber", "icon": "minecraft:trial_key", "words": ["trialChamber"]}
   ],
   [
-   {"label": "Early Game", "icon": "minecraft:crafting_table", "words": ["earlyGame"]},
-   {"label": "Mid Game", "icon": "minecraft:shield", "words": ["midGame"]},
-   {"label": "Late Game", "icon": "minecraft:diamond_pickaxe", "words": ["lateGame"]},
-   {"label": "End Game", "icon": "minecraft:elytra", "words": ["endGame"]},
-   {"label": "Oxidizable", "icon": "minecraft:exposed_copper", "words": ["oxidizable"]},
-   {"label": "Technical", "icon": "minecraft:command_block", "words": ["technical", "creativeOnly"]},
    "uncategorized"
   ]
  ]
