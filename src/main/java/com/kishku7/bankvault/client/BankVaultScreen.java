@@ -378,7 +378,9 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     }
 
     private boolean buttonVisible(ButtonLayout.BtnDef d) {
-        if (d.dynamic() != null) return "trinkets".equals(d.dynamic()) && BankVault.TRINKETS;
+        if (d.dynamic() != null)
+            return ("trinkets".equals(d.dynamic()) && BankVault.TRINKETS)
+                    || (d.words() != null && Keywords.anyItemHas(d.words()));
         if (d.words() != null) return Keywords.anyItemHas(d.words());
         String tabId = d.category();
         if (Catalog.tab(tabId) == null) return false;
@@ -394,10 +396,11 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         return null;
     }
 
-    /** Does this vault entry belong under the given button? */
+    /** Does this vault entry belong under the given button? A button may carry BOTH a word
+     *  list and a dynamic matcher -- membership is the union of the two. */
     private boolean matchesDef(ButtonLayout.BtnDef d, Entry e) {
         if (d.category() != null) return Catalog.inTab(idOf(e), d.category());
-        if (d.words() != null) return Keywords.itemHasAny(idOf(e), d.words());
+        if (d.words() != null && Keywords.itemHasAny(idOf(e), d.words())) return true;
         if ("trinkets".equals(d.dynamic())) return isTrinketCached(e);
         return false;
     }
@@ -408,6 +411,8 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private boolean isTrinketCached(Entry e) {
         if (!BankVault.TRINKETS || this.minecraft == null || this.minecraft.player == null) return false;
         return trinketCache.computeIfAbsent(e.key(), k -> {
+            // Dave: backpacks are NOT trinkets even though they occupy a trinket slot.
+            if (Keywords.wordsFor(idOf(e)).contains("backpack")) return false;
             try { return TrinketCompat.isTrinket(e.stack(), this.minecraft.player); }
             catch (Throwable t) { return false; }
         });

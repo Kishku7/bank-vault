@@ -367,7 +367,10 @@
    {
     "label": "Trinkets",
     "icon": "minecraft:totem_of_undying",
-    "dynamic": "trinkets"
+    "dynamic": "trinkets",
+    "words": [
+     "trinket"
+    ]
    },
    {
     "label": "Banners",

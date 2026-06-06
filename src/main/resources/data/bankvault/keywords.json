@@ -182,6 +182,7 @@
   "trapdoor",
   "trialChamber",
   "trim",
+  "trinket",
   "turtle",
   "unbreakable",
   "unique",
@@ -13390,6 +13391,338 @@
    "modded",
    "craftable",
    "bed"
+  ],
+  "artifacts:anglers_hat": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "fishable"
+  ],
+  "artifacts:antidote_vessel": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "potion"
+  ],
+  "artifacts:aqua_dashers": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "ocean"
+  ],
+  "artifacts:bunny_hoppers": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "mobDrop"
+  ],
+  "artifacts:charm_of_shrinking": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:charm_of_sinking": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "ocean"
+  ],
+  "artifacts:chorus_totem": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "end",
+   "teleport"
+  ],
+  "artifacts:cloud_in_a_bottle": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "sky"
+  ],
+  "artifacts:cowboy_hat": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:cross_necklace": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:crystal_heart": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:digging_claws": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "tool"
+  ],
+  "artifacts:eternal_steak": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "food",
+   "edible"
+  ],
+  "artifacts:everlasting_beef": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "food",
+   "edible"
+  ],
+  "artifacts:feral_claws": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "combat"
+  ],
+  "artifacts:fire_gauntlet": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "combat",
+   "nether"
+  ],
+  "artifacts:flame_pendant": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "nether"
+  ],
+  "artifacts:flippers": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "ocean"
+  ],
+  "artifacts:golden_hook": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "fishable"
+  ],
+  "artifacts:helium_flamingo": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "sky"
+  ],
+  "artifacts:kitty_slippers": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:lucky_scarf": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:mimic_spawn_egg": [
+   "trinket",
+   "modded",
+   "technical",
+   "egg",
+   "creativeOnly"
+  ],
+  "artifacts:night_vision_goggles": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "cave"
+  ],
+  "artifacts:novelty_drinking_hat": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:obsidian_skull": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "obsidian"
+  ],
+  "artifacts:onion_ring": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:panic_necklace": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:pickaxe_heater": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "tool"
+  ],
+  "artifacts:plastic_drinking_hat": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:pocket_piston": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "redstoneComp"
+  ],
+  "artifacts:power_glove": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "combat"
+  ],
+  "artifacts:rooted_boots": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:running_shoes": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:scarf_of_invisibility": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:shock_pendant": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "lightning"
+  ],
+  "artifacts:snorkel": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "ocean"
+  ],
+  "artifacts:snowshoes": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "snow"
+  ],
+  "artifacts:steadfast_spikes": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "combat"
+  ],
+  "artifacts:strider_shoes": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "nether"
+  ],
+  "artifacts:superstitious_hat": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:thorn_pendant": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "combat"
+  ],
+  "artifacts:umbrella": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "sky"
+  ],
+  "artifacts:universal_attractor": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:vampiric_glove": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "combat"
+  ],
+  "artifacts:villager_hat": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "village"
+  ],
+  "artifacts:warp_drive": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "teleport",
+   "end"
+  ],
+  "artifacts:whoopee_cushion": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly"
+  ],
+  "artifacts:withered_bracelet": [
+   "trinket",
+   "wearable",
+   "modded",
+   "lootOnly",
+   "wither"
   ]
  }
 }
