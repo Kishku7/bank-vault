@@ -71,13 +71,6 @@
     ]
    },
    {
-    "label": "Leather",
-    "icon": "minecraft:leather",
-    "words": [
-     "leather"
-    ]
-   },
-   {
     "label": "Bone",
     "icon": "minecraft:bone",
     "words": [
@@ -103,7 +96,8 @@
     "icon": "minecraft:obsidian",
     "words": [
      "obsidian",
-     "clay"
+     "clay",
+     "otherMaterial"
     ]
    }
   ],
@@ -141,29 +135,6 @@
     "icon": "minecraft:bricks",
     "words": [
      "brick"
-    ]
-   }
-  ],
-  [
-   {
-    "label": "Nether",
-    "icon": "minecraft:netherrack",
-    "words": [
-     "nether"
-    ]
-   },
-   {
-    "label": "The End",
-    "icon": "minecraft:end_stone",
-    "words": [
-     "end"
-    ]
-   },
-   {
-    "label": "Caves",
-    "icon": "minecraft:pointed_dripstone",
-    "words": [
-     "cave"
     ]
    }
   ],
@@ -242,7 +213,8 @@
     "icon": "minecraft:painting",
     "words": [
      "coral",
-     "head"
+     "head",
+     "decorMisc"
     ]
    },
    {
@@ -275,14 +247,6 @@
     "label": "Combat",
     "icon": "minecraft:diamond_sword",
     "words": [
-     "combat",
-     "weapon"
-    ]
-   },
-   {
-    "label": "Hand-to-Hand",
-    "icon": "minecraft:netherite_sword",
-    "words": [
      "hand2hand"
     ]
    },
@@ -290,24 +254,7 @@
     "label": "Ranged",
     "icon": "minecraft:bow",
     "words": [
-     "ranged",
-     "projectile",
-     "ammo",
-     "thrown"
-    ]
-   },
-   {
-    "label": "Explosives",
-    "icon": "minecraft:tnt",
-    "words": [
-     "explosive"
-    ]
-   },
-   {
-    "label": "Traps",
-    "icon": "minecraft:tripwire_hook",
-    "words": [
-     "trap"
+     "ranged"
     ]
    },
    {
@@ -322,6 +269,14 @@
     "icon": "minecraft:iron_chestplate",
     "words": [
      "armor"
+    ]
+   },
+   {
+    "label": "Explosives & Traps",
+    "icon": "minecraft:tnt",
+    "words": [
+     "explosive",
+     "trap"
     ]
    }
   ],
@@ -536,7 +491,14 @@
    "section": "Other"
   },
   [
-   "uncategorized"
+   "uncategorized",
+   {
+    "label": "Odds & Ends",
+    "icon": "minecraft:ender_eye",
+    "words": [
+     "odd"
+    ]
+   }
   ]
  ]
 }

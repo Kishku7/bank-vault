@@ -541,7 +541,8 @@
    "axolotl",
    "cave",
    "unstackable",
-   "renewable"
+   "renewable",
+   "odd"
   ],
   "minecraft:axolotl_spawn_egg": [
    "egg",
@@ -1311,7 +1312,8 @@
    "throwable",
    "projectile",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "odd"
   ],
   "minecraft:blue_glazed_terracotta": [
    "terracotta",
@@ -1647,7 +1649,8 @@
    "projectile",
    "renewable",
    "stackable",
-   "earlyGame"
+   "earlyGame",
+   "odd"
   ],
   "minecraft:brown_glazed_terracotta": [
    "terracotta",
@@ -2984,7 +2987,8 @@
    "block",
    "nether",
    "mineable",
-   "placeable"
+   "placeable",
+   "otherMaterial"
   ],
   "minecraft:crimson_planks": [
    "wood",
@@ -3701,7 +3705,8 @@
    "mineable",
    "smeltable",
    "cave",
-   "overworld"
+   "overworld",
+   "otherMaterial"
   ],
   "minecraft:deepslate_redstone_ore": [
    "ore",
@@ -3766,7 +3771,8 @@
    "craftable",
    "breakable",
    "enchantable",
-   "midGame"
+   "midGame",
+   "hand2hand"
   ],
   "minecraft:diamond_block": [
    "diamond",
@@ -3961,7 +3967,8 @@
    "rare",
    "gravity",
    "teleport",
-   "endGame"
+   "endGame",
+   "otherMaterial"
   ],
   "minecraft:dragon_head": [
    "head",
@@ -3981,7 +3988,8 @@
    "mineable",
    "placeable",
    "waterloggable",
-   "lateGame"
+   "lateGame",
+   "otherMaterial"
   ],
   "minecraft:dried_kelp": [
    "food",
@@ -4202,7 +4210,8 @@
    "craftable",
    "throwable",
    "end",
-   "lateGame"
+   "lateGame",
+   "odd"
   ],
   "minecraft:ender_pearl": [
    "enderman",
@@ -4210,7 +4219,8 @@
    "throwable",
    "projectile",
    "teleport",
-   "lateGame"
+   "lateGame",
+   "mobDrop"
   ],
   "minecraft:enderman_spawn_egg": [
    "technical",
@@ -4419,14 +4429,16 @@
    "craftable",
    "tradeable",
    "overworld",
-   "book"
+   "book",
+   "odd"
   ],
   "minecraft:fire_charge": [
    "projectile",
    "ammo",
    "craftable",
    "blaze",
-   "nether"
+   "nether",
+   "odd"
   ],
   "minecraft:fire_coral": [
    "coral",
@@ -4665,7 +4677,8 @@
    "craftable",
    "placeable",
    "map",
-   "cave"
+   "cave",
+   "decorMisc"
   ],
   "minecraft:glow_lichen": [
    "plant",
@@ -4754,7 +4767,8 @@
    "breakable",
    "enchantable",
    "piglin",
-   "midGame"
+   "midGame",
+   "hand2hand"
   ],
   "minecraft:golden_boots": [
    "armor",
@@ -5447,7 +5461,8 @@
    "enchantable",
    "breakable",
    "smeltable",
-   "midGame"
+   "midGame",
+   "hand2hand"
   ],
   "minecraft:iron_bars": [
    "iron",
@@ -5620,7 +5635,8 @@
    "leather",
    "decoration",
    "craftable",
-   "placeable"
+   "placeable",
+   "decorMisc"
   ],
   "minecraft:jack_o_lantern": [
    "block",
@@ -5843,7 +5859,8 @@
    "craftable",
    "placeable",
    "earlyGame",
-   "cave"
+   "cave",
+   "otherMaterial"
   ],
   "minecraft:lapis_lazuli": [
    "gem",
@@ -5863,7 +5880,8 @@
    "mineable",
    "overworld",
    "cave",
-   "earlyGame"
+   "earlyGame",
+   "otherMaterial"
   ],
   "minecraft:large_amethyst_bud": [
    "amethyst",
@@ -6720,7 +6738,8 @@
    "tradeable",
    "stackable",
    "overworld",
-   "book"
+   "book",
+   "odd"
   ],
   "minecraft:medium_amethyst_bud": [
    "amethyst",
@@ -7239,7 +7258,8 @@
    "wither",
    "rare",
    "nether",
-   "endGame"
+   "endGame",
+   "odd"
   ],
   "minecraft:nether_wart": [
    "plant",
@@ -7257,7 +7277,8 @@
    "placeable",
    "nether",
    "compostable",
-   "lateGame"
+   "lateGame",
+   "otherMaterial"
   ],
   "minecraft:netherite_axe": [
    "tool",
@@ -8129,7 +8150,8 @@
    "craftable",
    "renewable",
    "earlyGame",
-   "book"
+   "book",
+   "odd"
   ],
   "minecraft:parched_spawn_egg": [
    "egg",
@@ -8688,7 +8710,8 @@
    "end",
    "renewable",
    "stackable",
-   "endGame"
+   "endGame",
+   "odd"
   ],
   "minecraft:poppy": [
    "flower",
@@ -9017,7 +9040,8 @@
    "mineable",
    "placeable",
    "decoration",
-   "endGame"
+   "endGame",
+   "otherMaterial"
   ],
   "minecraft:purpur_pillar": [
    "end",
@@ -9026,7 +9050,8 @@
    "mineable",
    "placeable",
    "decoration",
-   "endGame"
+   "endGame",
+   "otherMaterial"
   ],
   "minecraft:purpur_slab": [
    "end",
@@ -9592,7 +9617,8 @@
    "placeable",
    "overworld",
    "cave",
-   "mineable"
+   "mineable",
+   "otherMaterial"
   ],
   "minecraft:rose_bush": [
    "flower",
@@ -10147,14 +10173,16 @@
    "nether",
    "mineable",
    "placeable",
-   "lateGame"
+   "lateGame",
+   "otherMaterial"
   ],
   "minecraft:soul_soil": [
    "block",
    "nether",
    "mineable",
    "placeable",
-   "lateGame"
+   "lateGame",
+   "otherMaterial"
   ],
   "minecraft:soul_torch": [
    "lightSource",
@@ -10957,7 +10985,6 @@
    "ammo",
    "projectile",
    "combat",
-   "ranged",
    "craftable",
    "stackable",
    "endGame"
@@ -11049,7 +11076,8 @@
    "lightning",
    "loyalty",
    "hand2hand",
-   "midGame"
+   "midGame",
+   "ranged"
   ],
   "minecraft:tripwire_hook": [
    "redstoneComp",
@@ -11476,7 +11504,8 @@
    "placeable",
    "renewable",
    "compostable",
-   "lateGame"
+   "lateGame",
+   "otherMaterial"
   ],
   "minecraft:water_bucket": [
    "bucket",
@@ -12372,7 +12401,8 @@
    "midGame",
    "craftable",
    "throwable",
-   "trialChamber"
+   "trialChamber",
+   "ranged"
   ],
   "minecraft:witch_spawn_egg": [
    "egg",
@@ -12668,7 +12698,8 @@
   "travelersbackpack:backpack_tank": [
    "upgrade",
    "craftable",
-   "modded"
+   "modded",
+   "odd"
   ],
   "travelersbackpack:bat": [
    "container",
@@ -12698,12 +12729,14 @@
   "travelersbackpack:blank_upgrade": [
    "upgrade",
    "craftable",
-   "modded"
+   "modded",
+   "odd"
   ],
   "travelersbackpack:blast_furnace_upgrade": [
    "upgrade",
    "craftable",
-   "modded"
+   "modded",
+   "odd"
   ],
   "travelersbackpack:blaze": [
    "container",
@@ -12778,7 +12811,8 @@
   "travelersbackpack:crafting_upgrade": [
    "upgrade",
    "craftable",
-   "modded"
+   "modded",
+   "odd"
   ],
   "travelersbackpack:creeper": [
    "container",
@@ -12847,7 +12881,8 @@
   "travelersbackpack:feeding_upgrade": [
    "upgrade",
    "craftable",
-   "modded"
+   "modded",
+   "odd"
   ],
   "travelersbackpack:fox": [
    "container",
@@ -12859,7 +12894,8 @@
   "travelersbackpack:furnace_upgrade": [
    "upgrade",
    "craftable",
-   "modded"
+   "modded",
+   "odd"
   ],
   "travelersbackpack:ghast": [
    "container",
@@ -12956,12 +12992,14 @@
   "travelersbackpack:jukebox_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "odd"
   ],
   "travelersbackpack:lantern_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "odd"
   ],
   "travelersbackpack:lapis": [
    "lapis",
@@ -13020,7 +13058,8 @@
   "travelersbackpack:magnet_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "odd"
   ],
   "travelersbackpack:melon": [
    "container",
@@ -13074,7 +13113,8 @@
   "travelersbackpack:pickup_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "odd"
   ],
   "travelersbackpack:pig": [
    "container",
@@ -13140,7 +13180,8 @@
   "travelersbackpack:refill_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "odd"
   ],
   "travelersbackpack:sandstone": [
    "stone",
@@ -13173,7 +13214,8 @@
   "travelersbackpack:smoker_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "odd"
   ],
   "travelersbackpack:snow": [
    "container",
@@ -13221,7 +13263,8 @@
   "travelersbackpack:tanks_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "odd"
   ],
   "travelersbackpack:villager": [
    "container",
@@ -13235,7 +13278,8 @@
   "travelersbackpack:void_upgrade": [
    "upgrade",
    "modded",
-   "craftable"
+   "craftable",
+   "odd"
   ],
   "travelersbackpack:warden": [
    "container",
