@@ -277,8 +277,7 @@
     "label": "Armor",
     "icon": "minecraft:iron_chestplate",
     "words": [
-     "armor",
-     "wearable"
+     "armor"
     ]
    },
    {
