@@ -48,9 +48,7 @@
      "diamond",
      "netherite"
     ]
-   }
-  ],
-  [
+   },
    {
     "label": "Glass",
     "icon": "minecraft:glass",
@@ -64,7 +62,9 @@
     "words": [
      "wool"
     ]
-   },
+   }
+  ],
+  [
    {
     "label": "Amethyst",
     "icon": "minecraft:amethyst_block",
@@ -79,17 +79,6 @@
      "quartz"
     ]
    },
-   {
-    "label": "Other Materials",
-    "icon": "minecraft:obsidian",
-    "words": [
-     "obsidian",
-     "clay",
-     "otherMaterial"
-    ]
-   }
-  ],
-  [
    {
     "label": "Bamboo",
     "icon": "minecraft:bamboo_block",
@@ -116,6 +105,15 @@
     "icon": "minecraft:white_concrete",
     "words": [
      "concrete"
+    ]
+   },
+   {
+    "label": "Other Materials",
+    "icon": "minecraft:obsidian",
+    "words": [
+     "obsidian",
+     "clay",
+     "otherMaterial"
     ]
    }
   ],
@@ -172,30 +170,21 @@
     "words": [
      "sign"
     ]
-   }
-  ],
-  [
+   },
    {
     "label": "Beds",
     "icon": "minecraft:red_bed",
     "words": [
      "bed"
     ]
-   },
+   }
+  ],
+  [
    {
     "label": "Pottery",
     "icon": "minecraft:decorated_pot",
     "words": [
      "pottery"
-    ]
-   },
-   {
-    "label": "Misc",
-    "icon": "minecraft:painting",
-    "words": [
-     "coral",
-     "head",
-     "decorMisc"
     ]
    },
    {
@@ -217,6 +206,15 @@
     "icon": "minecraft:lantern",
     "words": [
      "lightSource"
+    ]
+   },
+   {
+    "label": "Misc",
+    "icon": "minecraft:painting",
+    "words": [
+     "coral",
+     "head",
+     "decorMisc"
     ]
    }
   ],
@@ -259,9 +257,7 @@
      "explosive",
      "trap"
     ]
-   }
-  ],
-  [
+   },
    "enchanting",
    {
     "label": "Templates",
@@ -271,6 +267,17 @@
      "smithingTemplate"
     ]
    },
+   {
+    "label": "Potions",
+    "icon": "minecraft:potion",
+    "words": [
+     "potion",
+     "brewable",
+     "drink"
+    ]
+   }
+  ],
+  [
    {
     "label": "Trinkets",
     "icon": "minecraft:totem_of_undying",
@@ -291,15 +298,6 @@
     "icon": "minecraft:creeper_banner_pattern",
     "words": [
      "bannerPattern"
-    ]
-   },
-   {
-    "label": "Potions",
-    "icon": "minecraft:potion",
-    "words": [
-     "potion",
-     "brewable",
-     "drink"
     ]
    }
   ],
@@ -358,21 +356,12 @@
     "words": [
      "bone"
     ]
-   }
-  ],
-  [
+   },
    {
     "label": "Mob Drops",
     "icon": "minecraft:rotten_flesh",
     "words": [
      "mobDrop"
-    ]
-   },
-   {
-    "label": "Mushroom",
-    "icon": "minecraft:red_mushroom",
-    "words": [
-     "mushroom"
     ]
    }
   ],
@@ -429,9 +418,7 @@
      "music",
      "jukebox"
     ]
-   }
-  ],
-  [
+   },
    {
     "label": "Ocean",
     "icon": "minecraft:cod",
@@ -445,7 +432,9 @@
     "words": [
      "jungle"
     ]
-   },
+   }
+  ],
+  [
    {
     "label": "Desert",
     "icon": "minecraft:cactus",
@@ -467,6 +456,13 @@
      "mountain",
      "snow",
      "ice"
+    ]
+   },
+   {
+    "label": "Mushroom",
+    "icon": "minecraft:red_mushroom",
+    "words": [
+     "mushroom"
     ]
    }
   ],

@@ -254,7 +254,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         btnSize = ButtonLayout.buttonSize();
         int maxCols = 1;
         for (ButtonLayout.Row r : ButtonLayout.rows()) maxCols = Math.max(maxCols, r.buttons().size());
-        railW = Math.max(30, Math.min(160, maxCols * (btnSize + btnGap) - btnGap + 10));
+        railW = Math.max(30, Math.min(170, maxCols * (btnSize + btnGap) - btnGap + 10));   // 170: 8 cols at size 18 (Dave r26); grid drops to 11 cols
         railTop = contentTop; railBottom = py + ph - 8;
         btnTop = railTop + 5; btnBottom = railBottom - 5;
 
