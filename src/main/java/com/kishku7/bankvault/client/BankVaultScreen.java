@@ -73,7 +73,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private int px, py, pw, ph;
     private int railX, railW, railTop, railBottom;
     private int btnTop, btnBottom, btnSize = 20, btnGap = 2;
-    private record BtnCell(ButtonLayout.BtnDef def, int x, int y) {}
+    private record BtnCell(ButtonLayout.BtnDef def, String section, int x, int y) {}
     private final List<BtnCell> btnCells = new ArrayList<>();
     private int btnMaxScroll, btnContentH;
     private static final int BTN_SECTION_GAP = 6, BTN_SECTION_HDR = 10;
@@ -354,8 +354,10 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         int step = btnSize + btnGap;
         int y = 0;
         btnSections.clear();
+        String curSection = "";
         for (ButtonLayout.Row lr : ButtonLayout.rows()) {
             if (lr.section() != null) {                              // labeled section header
+                curSection = lr.section();
                 if (y > 0) y += 3;
                 btnSections.add(new SectionMark(lr.section(), y));
                 y += BTN_SECTION_HDR;
@@ -366,7 +368,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             int col = 0;
             for (ButtonLayout.BtnDef d : row) {
                 if (!buttonVisible(d)) continue;
-                btnCells.add(new BtnCell(d, railX + 5 + col * step, y));
+                btnCells.add(new BtnCell(d, curSection, railX + 5 + col * step, y));
                 col++;
             }
             if (col > 0) y += step;
@@ -492,6 +494,18 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     // -- sorting --
 
     private Comparator<Entry> comparator() {
+        Comparator<Entry> base = baseComparator();
+        ButtonLayout.BtnDef d = selectedDef();
+        if (d == null || d.pins() == null) return base;
+        List<String> pins = d.pins();
+        Comparator<Entry> pinned = Comparator.comparingInt(e -> {
+            int i = pins.indexOf(idOf(e));
+            return i < 0 ? Integer.MAX_VALUE : i;
+        });
+        return pinned.thenComparing(base);
+    }
+
+    private Comparator<Entry> baseComparator() {
         switch (sortMode) {
             case COUNT: return (a, b) -> countDesc ? Long.compare(b.count(), a.count()) : Long.compare(a.count(), b.count());
             case ALPHA: return Comparator.comparing(this::nameOf);
@@ -610,7 +624,25 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         this.extractCarriedItem(g, mouseX, mouseY);
         this.extractTooltip(g, mouseX, mouseY);
         Entry h = gridItemAt(mouseX, mouseY);
-        if (h != null) g.setTooltipForNextFrame(this.font, h.stack(), mouseX, mouseY);
+        if (h != null) {
+            if (!searchText.trim().isEmpty()) {   // searching: tell them WHERE it lives (Dave)
+                List<Component> lines = new ArrayList<>(this.getTooltipFromContainerItem(h.stack()));
+                boolean first = true;
+                for (BtnCell bc2 : btnCells) {
+                    if (!matchesDef(bc2.def(), h)) continue;
+                    if (first) {
+                        lines.add(Component.literal("Found under:")
+                                .withStyle(net.minecraft.ChatFormatting.GOLD, net.minecraft.ChatFormatting.BOLD));
+                        first = false;
+                    }
+                    lines.add(Component.literal(bc2.section() + " \u2192 " + btnLabel(bc2.def()))
+                            .withStyle(net.minecraft.ChatFormatting.BOLD));
+                }
+                g.setTooltipForNextFrame(this.font, lines, java.util.Optional.empty(), mouseX, mouseY);
+            } else {
+                g.setTooltipForNextFrame(this.font, h.stack(), mouseX, mouseY);
+            }
+        }
         BtnCell bt = buttonAt(mouseX, mouseY);
         if (bt != null) g.setTooltipForNextFrame(this.font,
                 Component.literal(btnLabel(bt.def()) + " \u2014 " + abbrev(btnTotal(bt.def()))), mouseX, mouseY);

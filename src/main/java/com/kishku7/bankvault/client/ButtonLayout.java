@@ -31,7 +31,7 @@ public final class ButtonLayout {
 
     /** One button definition. Exactly one of {@code category} / {@code words} / {@code dynamic}
      *  is non-null. {@code dynamic} buttons resolve membership at runtime (e.g. "trinkets"). */
-    public record BtnDef(String label, String icon, String category, List<String> words, String dynamic) {
+    public record BtnDef(String label, String icon, String category, List<String> words, String dynamic, List<String> pins) {
         /** Stable identity for selection state across re-inits and config reloads. */
         public String key() {
             if (category != null) return "cat:" + category;
@@ -100,7 +100,7 @@ public final class ButtonLayout {
             List<BtnDef> row = new ArrayList<>();
             for (JsonElement e : re.getAsJsonArray()) {
                 if (e.isJsonPrimitive()) {
-                    row.add(new BtnDef(null, null, e.getAsString(), null, null));
+                    row.add(new BtnDef(null, null, e.getAsString(), null, null, null));
                 } else if (e.isJsonObject()) {
                     JsonObject o = e.getAsJsonObject();
                     List<String> words = new ArrayList<>();
@@ -109,8 +109,11 @@ public final class ButtonLayout {
                     String label = o.has("label") ? o.get("label").getAsString()
                             : (dynamic != null ? dynamic : words.isEmpty() ? "?" : words.get(0));
                     String icon = o.has("icon") ? o.get("icon").getAsString() : "";
+                    List<String> pins = new ArrayList<>();
+                    if (o.has("pins")) o.getAsJsonArray("pins").forEach(x -> pins.add(x.getAsString()));
                     if (!words.isEmpty() || dynamic != null)
-                        row.add(new BtnDef(label, icon, null, words.isEmpty() ? null : words, dynamic));
+                        row.add(new BtnDef(label, icon, null, words.isEmpty() ? null : words, dynamic,
+                                pins.isEmpty() ? null : pins));
                 }
             }
             if (!row.isEmpty()) out.add(new Row(null, row));

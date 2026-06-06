@@ -541,7 +541,8 @@
    "cave",
    "unstackable",
    "renewable",
-   "odd"
+   "odd",
+   "bucket"
   ],
   "minecraft:axolotl_spawn_egg": [
    "egg",
@@ -1766,7 +1767,8 @@
    "tool",
    "craftable",
    "stackable",
-   "midGame"
+   "midGame",
+   "bucket"
   ],
   "minecraft:budding_amethyst": [
    "amethyst",
@@ -2474,7 +2476,8 @@
    "fish",
    "ocean",
    "unstackable",
-   "midGame"
+   "midGame",
+   "bucket"
   ],
   "minecraft:cod_spawn_egg": [
    "egg",
@@ -4222,7 +4225,7 @@
    "throwable",
    "projectile",
    "tradeable",
-   "potion"
+   "gearMisc"
   ],
   "minecraft:explorer_pottery_sherd": [
    "pottery",
@@ -6365,11 +6368,11 @@
    "flammable"
   ],
   "minecraft:lingering_potion": [
-   "potion",
    "brewable",
    "throwable",
    "thrown",
-   "lateGame"
+   "lateGame",
+   "lingeringPotion"
   ],
   "minecraft:llama_spawn_egg": [
    "egg",
@@ -6753,7 +6756,8 @@
    "drink",
    "unstackable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "bucket"
   ],
   "minecraft:minecart": [
    "minecart",
@@ -8714,7 +8718,8 @@
    "trap",
    "placeable",
    "unstackable",
-   "renewable"
+   "renewable",
+   "bucket"
   ],
   "minecraft:powered_rail": [
    "rail",
@@ -8827,7 +8832,8 @@
    "ocean",
    "placeable",
    "unstackable",
-   "renewable"
+   "renewable",
+   "bucket"
   ],
   "minecraft:pufferfish_spawn_egg": [
    "egg",
@@ -9606,7 +9612,8 @@
    "unstackable",
    "ocean",
    "renewable",
-   "midGame"
+   "midGame",
+   "bucket"
   ],
   "minecraft:salmon_spawn_egg": [
    "egg",
@@ -10178,14 +10185,14 @@
    "endGame"
   ],
   "minecraft:splash_potion": [
-   "potion",
    "thrown",
    "throwable",
    "projectile",
    "brewable",
    "combat",
    "unstackable",
-   "lateGame"
+   "lateGame",
+   "splashPotion"
   ],
   "minecraft:sponge": [
    "block",
@@ -10926,13 +10933,13 @@
    "midGame"
   ],
   "minecraft:tipped_arrow": [
-   "potion",
    "ammo",
    "projectile",
    "combat",
    "craftable",
    "stackable",
-   "endGame"
+   "endGame",
+   "tippedArrow"
   ],
   "minecraft:tnt": [
    "block",
@@ -10983,7 +10990,8 @@
    "unstackable",
    "renewable",
    "village",
-   "midGame"
+   "midGame",
+   "trinket"
   ],
   "minecraft:trader_llama_spawn_egg": [
    "egg",

@@ -268,24 +268,18 @@
     ]
    },
    {
-    "label": "Potions",
-    "icon": "minecraft:potion",
-    "words": [
-     "potion",
-     "brewable",
-     "drink"
-    ]
-   }
-  ],
-  [
-   {
     "label": "Trinkets",
     "icon": "minecraft:totem_of_undying",
     "dynamic": "trinkets",
     "words": [
      "trinket"
+    ],
+    "pins": [
+     "minecraft:totem_of_undying"
     ]
-   },
+   }
+  ],
+  [
    {
     "label": "Banners",
     "icon": "minecraft:white_banner",
@@ -298,6 +292,43 @@
     "icon": "minecraft:creeper_banner_pattern",
     "words": [
      "bannerPattern"
+    ]
+   },
+   {
+    "label": "Potions",
+    "icon": "minecraft:potion",
+    "words": [
+     "potion"
+    ]
+   },
+   {
+    "label": "Splash Potions",
+    "icon": "minecraft:splash_potion",
+    "words": [
+     "splashPotion"
+    ]
+   },
+   {
+    "label": "Lingering Potions",
+    "icon": "minecraft:lingering_potion",
+    "words": [
+     "lingeringPotion"
+    ]
+   },
+   {
+    "label": "Tipped Arrows",
+    "icon": "minecraft:tipped_arrow",
+    "words": [
+     "tippedArrow"
+    ]
+   },
+   {
+    "label": "Misc Gear",
+    "icon": "minecraft:bucket",
+    "words": [
+     "gearMisc",
+     "bucket",
+     "odd"
     ]
    }
   ],
@@ -470,14 +501,7 @@
    "section": "Other"
   },
   [
-   "uncategorized",
-   {
-    "label": "Odds & Ends",
-    "icon": "minecraft:ender_eye",
-    "words": [
-     "odd"
-    ]
-   }
+   "uncategorized"
   ]
  ]
 }
