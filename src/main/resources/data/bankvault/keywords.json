@@ -381,7 +381,6 @@
    "rawWood"
   ],
   "minecraft:activator_rail": [
-   "iron",
    "rail",
    "redstoneComp",
    "craftable",
@@ -1211,7 +1210,6 @@
    "rare"
   ],
   "minecraft:blast_furnace": [
-   "iron",
    "block",
    "craftable",
    "village",
@@ -1923,7 +1921,6 @@
    "village"
   ],
   "minecraft:cauldron": [
-   "iron",
    "block",
    "craftable",
    "village",
@@ -2157,7 +2154,6 @@
   "minecraft:chest_minecart": [
    "minecart",
    "container",
-   "iron",
    "wood",
    "craftable",
    "rail",
@@ -2177,7 +2173,6 @@
    "creativeOnly"
   ],
   "minecraft:chipped_anvil": [
-   "iron",
    "block",
    "gravity",
    "mineable",
@@ -3264,7 +3259,6 @@
    "placeable"
   ],
   "minecraft:damaged_anvil": [
-   "iron",
    "block",
    "workstation",
    "gravity",
@@ -3749,7 +3743,6 @@
    "placeable"
   ],
   "minecraft:detector_rail": [
-   "iron",
    "rail",
    "redstoneComp",
    "craftable",
@@ -4113,7 +4106,6 @@
    "block",
    "workstation",
    "obsidian",
-   "diamond",
    "book",
    "craftable",
    "placeable",
@@ -4596,7 +4588,6 @@
   "minecraft:furnace_minecart": [
    "minecart",
    "rail",
-   "iron",
    "craftable",
    "midGame"
   ],
@@ -4800,7 +4791,6 @@
    "midGame"
   ],
   "minecraft:golden_dandelion": [
-   "gold",
    "flower",
    "decoration",
    "placeable",
@@ -5266,7 +5256,6 @@
    "endGame"
   ],
   "minecraft:heavy_weighted_pressure_plate": [
-   "iron",
    "redstoneComp",
    "block",
    "craftable",
@@ -5315,7 +5304,6 @@
    "farmable"
   ],
   "minecraft:hopper": [
-   "iron",
    "redstoneComp",
    "block",
    "craftable",
@@ -5323,7 +5311,6 @@
    "midGame"
   ],
   "minecraft:hopper_minecart": [
-   "iron",
    "minecart",
    "rail",
    "redstoneComp",
@@ -5507,7 +5494,6 @@
    "midGame"
   ],
   "minecraft:iron_door": [
-   "iron",
    "block",
    "redstoneComp",
    "craftable",
@@ -5622,7 +5608,6 @@
    "midGame"
   ],
   "minecraft:iron_trapdoor": [
-   "iron",
    "block",
    "redstoneComp",
    "craftable",
@@ -5653,7 +5638,6 @@
   ],
   "minecraft:jukebox": [
    "wood",
-   "diamond",
    "jukebox",
    "music",
    "block",
@@ -5845,7 +5829,6 @@
    "climbable"
   ],
   "minecraft:lantern": [
-   "iron",
    "lightSource",
    "decoration",
    "craftable",
@@ -6404,7 +6387,6 @@
   ],
   "minecraft:lodestone": [
    "stone",
-   "iron",
    "block",
    "craftable",
    "placeable",
@@ -6784,7 +6766,6 @@
   ],
   "minecraft:minecart": [
    "minecart",
-   "iron",
    "rail",
    "rideable",
    "craftable",
@@ -8391,7 +8372,6 @@
   ],
   "minecraft:piston": [
    "wood",
-   "iron",
    "redstoneComp",
    "block",
    "craftable",
@@ -8758,7 +8738,6 @@
    "renewable"
   ],
   "minecraft:powered_rail": [
-   "gold",
    "rail",
    "redstoneComp",
    "craftable",
@@ -9162,7 +9141,6 @@
    "renewable"
   ],
   "minecraft:rail": [
-   "iron",
    "rail",
    "craftable",
    "placeable",
@@ -9837,12 +9815,12 @@
    "shield",
    "combat",
    "wood",
-   "iron",
    "craftable",
    "breakable",
    "enchantable",
    "unstackable",
-   "earlyGame"
+   "earlyGame",
+   "armor"
   ],
   "minecraft:short_dry_grass": [
    "plant",
@@ -9979,7 +9957,6 @@
   "minecraft:smithing_table": [
    "block",
    "wood",
-   "iron",
    "craftable",
    "placeable",
    "village",
@@ -10160,7 +10137,6 @@
   ],
   "minecraft:soul_lantern": [
    "lightSource",
-   "iron",
    "craftable",
    "placeable",
    "nether",
@@ -10562,7 +10538,6 @@
    "earlyGame"
   ],
   "minecraft:stonecutter": [
-   "iron",
    "block",
    "workstation",
    "craftable",

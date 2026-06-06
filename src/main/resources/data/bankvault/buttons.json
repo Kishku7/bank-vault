@@ -41,16 +41,10 @@
     ]
    },
    {
-    "label": "Diamond",
-    "icon": "minecraft:diamond",
+    "label": "Diamonds & Netherite",
+    "icon": "texture:bankvault:textures/gui/diamond_netherite.png",
     "words": [
-     "diamond"
-    ]
-   },
-   {
-    "label": "Netherite",
-    "icon": "minecraft:netherite_ingot",
-    "words": [
+     "diamond",
      "netherite"
     ]
    }

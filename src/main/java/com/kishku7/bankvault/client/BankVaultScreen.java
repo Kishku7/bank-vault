@@ -660,7 +660,13 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                 g.fill(bx, by, bx + 1, by + btnSize, ACCENT);
                 g.fill(bx + btnSize - 1, by, bx + btnSize, by + btnSize, ACCENT);
             }
-            g.item(iconFor(cell.def()), bx + (btnSize - 16) / 2, by + (btnSize - 16) / 2);
+            String ic = cell.def().icon();
+            if (ic != null && ic.startsWith("texture:")) {   // baked composite icons (v1.2)
+                Identifier tid = Identifier.tryParse(ic.substring(8));
+                if (tid != null) g.blit(tid, bx + (btnSize - 16) / 2, by + (btnSize - 16) / 2, 16, 16, 0f, 0f, 1f, 1f);
+            } else {
+                g.item(iconFor(cell.def()), bx + (btnSize - 16) / 2, by + (btnSize - 16) / 2);
+            }
         }
         g.disableScissor();
         if (btnScroll > 0) g.text(this.font, "\u25b2", railX + railW - 12, railTop + 2, SUBTLE);
