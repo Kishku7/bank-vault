@@ -75,7 +75,8 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private int btnTop, btnBottom, btnSize = 20, btnGap = 2;
     private record BtnCell(ButtonLayout.BtnDef def, int x, int y) {}
     private final List<BtnCell> btnCells = new ArrayList<>();
-    private int btnRowsTotal, btnVisRows;
+    private int btnMaxScroll, btnContentH;
+    private static final int BTN_SECTION_GAP = 6;
     private final Map<String, ItemStack> iconCache = new HashMap<>();
     private final Map<String, Long> btnTotals = new HashMap<>();   // per-sync cache (hover-lag fix)
     private final Map<String, Boolean> trinketCache = new HashMap<>();   // per-stack-key trinket test cache
@@ -205,7 +206,9 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         pw = Math.max(MIN_W, Math.min(DESIGN_W, this.width - 2 * MARGIN));
         // Height: just enough to fit the tab rail (or the right panel cluster), capped to the screen.
         // selection resolves against the button cells after recomputeButtons() below
-        int tabsNeeded = ButtonLayout.rows().size() * (ButtonLayout.buttonSize() + 2) + 16;
+        int tabsNeeded = 16;
+        for (List<ButtonLayout.BtnDef> lr : ButtonLayout.rows())
+            tabsNeeded += lr.isEmpty() ? BTN_SECTION_GAP : ButtonLayout.buttonSize() + 2;
         int tRowsPre = (this.menu.trinketSlotCount + 8) / 9;
         int clusterNeeded = RP_H + 6 + 18 + 14 + (tRowsPre > 0 ? tRowsPre * 18 + 4 : 0) + 81;   // +81: Sharing corner (v1.1)
         int gridNeeded = sbH + 6 + 6 * 18 + 6 + sbH;             // sort row + 6 grid rows min + search row
@@ -335,7 +338,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         }
     }
 
-    private void clampBtnScroll() { btnScroll = Math.max(0, Math.min(btnScroll, Math.max(0, btnRowsTotal - btnVisRows))); }
+    private void clampBtnScroll() { btnScroll = Math.max(0, Math.min(btnScroll, btnMaxScroll)); }
 
     /** Build the button cells from the layout rows (v1.2 schema v2: category ids or
      *  keyword-word buttons). Hidden when the backing data has no records; Uncategorized
@@ -346,18 +349,20 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         btnTotals.clear();
         trinketCache.clear();
         int step = btnSize + btnGap;
-        int y = 0, rowsUsed = 0;
+        int y = 0;
         for (List<ButtonLayout.BtnDef> row : ButtonLayout.rows()) {
+            if (row.isEmpty()) { if (y > 0) y += BTN_SECTION_GAP; continue; }   // "gap" section break
             int col = 0;
             for (ButtonLayout.BtnDef d : row) {
                 if (!buttonVisible(d)) continue;
                 btnCells.add(new BtnCell(d, railX + 5 + col * step, y));
                 col++;
             }
-            if (col > 0) { y += step; rowsUsed++; }
+            if (col > 0) y += step;
         }
-        btnRowsTotal = rowsUsed;
-        btnVisRows = Math.max(1, (btnBottom - btnTop) / step);
+        btnContentH = y;
+        int viewH = Math.max(1, btnBottom - btnTop);
+        btnMaxScroll = Math.max(0, (int) Math.ceil((btnContentH - viewH) / (double) step));
         clampBtnScroll();
     }
 
@@ -638,7 +643,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         }
         g.disableScissor();
         if (btnScroll > 0) g.text(this.font, "\u25b2", railX + railW - 12, railTop + 2, SUBTLE);
-        if (btnScroll + btnVisRows < btnRowsTotal) g.text(this.font, "\u25bc", railX + railW - 12, railBottom - 10, SUBTLE);
+        if (btnScroll < btnMaxScroll) g.text(this.font, "\u25bc", railX + railW - 12, railBottom - 10, SUBTLE);
 
         // sort buttons (top of the grid column)
         SortMode[] modes = SortMode.values();

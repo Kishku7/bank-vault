@@ -154,6 +154,7 @@
     ]
    }
   ],
+  "gap",
   [
    {
     "label": "Slabs",
@@ -259,88 +260,10 @@
   ],
   [
    {
-    "label": "Combat",
-    "icon": "minecraft:diamond_sword",
+    "label": "Workstations",
+    "icon": "minecraft:crafting_table",
     "words": [
-     "combat",
-     "weapon"
-    ]
-   },
-   {
-    "label": "Tools",
-    "icon": "minecraft:iron_pickaxe",
-    "words": [
-     "tool"
-    ]
-   },
-   {
-    "label": "Armor",
-    "icon": "minecraft:iron_chestplate",
-    "words": [
-     "armor"
-    ]
-   },
-   {
-    "label": "Food",
-    "icon": "minecraft:cooked_beef",
-    "words": [
-     "food",
-     "meat",
-     "edible"
-    ]
-   },
-   {
-    "label": "Plants",
-    "icon": "minecraft:fern",
-    "words": [
-     "plant",
-     "growable"
-    ]
-   },
-   {
-    "label": "Seeds",
-    "icon": "minecraft:wheat_seeds",
-    "words": [
-     "seed"
-    ]
-   },
-   {
-    "label": "Flowers",
-    "icon": "minecraft:poppy",
-    "words": [
-     "flower"
-    ]
-   }
-  ],
-  [
-   {
-    "label": "Dyes",
-    "icon": "minecraft:red_dye",
-    "words": [
-     "dye"
-    ]
-   },
-   {
-    "label": "Transport",
-    "icon": "minecraft:minecart",
-    "words": [
-     "rail",
-     "minecart",
-     "boat",
-     "rideable",
-     "glider"
-    ]
-   },
-   {
-    "label": "Trinkets",
-    "icon": "minecraft:totem_of_undying",
-    "dynamic": "trinkets"
-   },
-   {
-    "label": "Redstone",
-    "icon": "minecraft:repeater",
-    "words": [
-     "redstoneComp"
+     "workstation"
     ]
    },
    {
@@ -356,9 +279,47 @@
     "words": [
      "lightSource"
     ]
+   },
+   {
+    "label": "Dyes",
+    "icon": "minecraft:red_dye",
+    "words": [
+     "dye"
+    ]
+   },
+   {
+    "label": "Books",
+    "icon": "minecraft:book",
+    "words": [
+     "book"
+    ]
+   },
+   {
+    "label": "Music",
+    "icon": "minecraft:jukebox",
+    "words": [
+     "music",
+     "jukebox"
+    ]
+   },
+   {
+    "label": "Oxidizable",
+    "icon": "minecraft:exposed_copper",
+    "words": [
+     "oxidizable"
+    ]
    }
   ],
+  "gap",
   [
+   {
+    "label": "Combat",
+    "icon": "minecraft:diamond_sword",
+    "words": [
+     "combat",
+     "weapon"
+    ]
+   },
    {
     "label": "Hand-to-Hand",
     "icon": "minecraft:netherite_sword",
@@ -391,28 +352,67 @@
     ]
    },
    {
-    "label": "Music",
-    "icon": "minecraft:jukebox",
+    "label": "Tools",
+    "icon": "minecraft:iron_pickaxe",
     "words": [
-     "music",
-     "jukebox"
+     "tool"
     ]
    },
-   "enchanting",
    {
-    "label": "Books",
-    "icon": "minecraft:book",
+    "label": "Armor",
+    "icon": "minecraft:iron_chestplate",
     "words": [
-     "book"
+     "armor"
     ]
    }
   ],
   [
+   "enchanting",
    {
-    "label": "Fuel",
-    "icon": "minecraft:coal",
+    "label": "Armor Trims",
+    "icon": "minecraft:coast_armor_trim_smithing_template",
     "words": [
-     "fuel"
+     "trim",
+     "smithingTemplate"
+    ]
+   },
+   {
+    "label": "Trinkets",
+    "icon": "minecraft:totem_of_undying",
+    "dynamic": "trinkets"
+   }
+  ],
+  "gap",
+  [
+   {
+    "label": "Food",
+    "icon": "minecraft:cooked_beef",
+    "words": [
+     "food",
+     "meat",
+     "edible"
+    ]
+   },
+   {
+    "label": "Plants",
+    "icon": "minecraft:fern",
+    "words": [
+     "plant",
+     "growable"
+    ]
+   },
+   {
+    "label": "Seeds",
+    "icon": "minecraft:wheat_seeds",
+    "words": [
+     "seed"
+    ]
+   },
+   {
+    "label": "Flowers",
+    "icon": "minecraft:poppy",
+    "words": [
+     "flower"
     ]
    },
    {
@@ -423,22 +423,33 @@
     ]
    },
    {
-    "label": "Armor Trims",
-    "icon": "minecraft:coast_armor_trim_smithing_template",
+    "label": "Fuel",
+    "icon": "minecraft:coal",
     "words": [
-     "trim",
-     "smithingTemplate"
-    ]
-   },
-   {
-    "label": "Workstations",
-    "icon": "minecraft:crafting_table",
-    "words": [
-     "workstation"
+     "fuel"
     ]
    }
   ],
+  "gap",
   [
+   {
+    "label": "Redstone",
+    "icon": "minecraft:repeater",
+    "words": [
+     "redstoneComp"
+    ]
+   },
+   {
+    "label": "Transport",
+    "icon": "minecraft:minecart",
+    "words": [
+     "rail",
+     "minecart",
+     "boat",
+     "rideable",
+     "glider"
+    ]
+   },
    {
     "label": "Mob Drops",
     "icon": "minecraft:rotten_flesh",
@@ -469,13 +480,6 @@
     ]
    },
    {
-    "label": "Oxidizable",
-    "icon": "minecraft:exposed_copper",
-    "words": [
-     "oxidizable"
-    ]
-   },
-   {
     "label": "Technical",
     "icon": "minecraft:command_block",
     "words": [
@@ -484,6 +488,7 @@
     ]
    }
   ],
+  "gap",
   [
    {
     "label": "Overworld",
@@ -588,6 +593,7 @@
     ]
    }
   ],
+  "gap",
   [
    "uncategorized"
   ]

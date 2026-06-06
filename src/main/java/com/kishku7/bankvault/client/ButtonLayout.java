@@ -88,6 +88,7 @@ public final class ButtonLayout {
         List<List<BtnDef>> out = new ArrayList<>();
         JsonArray rr = root.getAsJsonArray("rows");
         if (rr != null) for (JsonElement re : rr) {
+            if (re.isJsonPrimitive() && "gap".equals(re.getAsString())) { out.add(new ArrayList<>()); continue; }
             List<BtnDef> row = new ArrayList<>();
             for (JsonElement e : re.getAsJsonArray()) {
                 if (e.isJsonPrimitive()) {
@@ -106,6 +107,7 @@ public final class ButtonLayout {
             }
             if (!row.isEmpty()) out.add(row);
         }
+        while (!out.isEmpty() && out.get(out.size() - 1).isEmpty()) out.remove(out.size() - 1);
         rows = out;
     }
 }
