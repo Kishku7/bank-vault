@@ -33,7 +33,10 @@ public final class Keywords {
 
     private Keywords() {}
 
-    private static synchronized void ensureLoaded() {
+    /** Check the config file's mtime and (re)load when it changed. Call this ONCE per
+     *  screen-open -- never from per-frame/per-item paths (a disk stat per call was the
+     *  alpha.2 hover-lag bug). */
+    public static synchronized void pollConfig() {
         Path cfg = FabricLoader.getInstance().getConfigDir().resolve("bankvault").resolve("keywords.json");
         long m = -1;
         try { if (Files.exists(cfg)) m = Files.getLastModifiedTime(cfg).toMillis(); } catch (Exception ignored) {}
@@ -69,6 +72,11 @@ public final class Keywords {
             itemWords.put(e.getKey(), ws);
             for (String w : ws) wordCounts.merge(w, 1, Integer::sum);
         }
+    }
+
+    /** Fast path: load once if never loaded; no disk access afterwards. */
+    private static void ensureLoaded() {
+        if (itemWords == null) pollConfig();
     }
 
     /** Words for an item id (empty list when unknown). */

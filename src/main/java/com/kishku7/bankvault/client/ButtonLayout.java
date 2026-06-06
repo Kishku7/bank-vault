@@ -45,7 +45,13 @@ public final class ButtonLayout {
     public static synchronized int buttonSize() { ensureLoaded(); return buttonSize; }
     public static synchronized List<List<BtnDef>> rows() { ensureLoaded(); return rows; }
 
+    /** Fast path: load once if never loaded; no disk access afterwards. */
     private static void ensureLoaded() {
+        if (rows == null) pollConfig();
+    }
+
+    /** Check the config file's mtime and (re)load when it changed. Call once per screen-open. */
+    public static synchronized void pollConfig() {
         Path cfg = FabricLoader.getInstance().getConfigDir().resolve("bankvault").resolve("buttons.json");
         long m = -1;
         try { if (Files.exists(cfg)) m = Files.getLastModifiedTime(cfg).toMillis(); } catch (Exception ignored) {}

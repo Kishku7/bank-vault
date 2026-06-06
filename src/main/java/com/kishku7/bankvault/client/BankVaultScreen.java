@@ -75,6 +75,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private final List<BtnCell> btnCells = new ArrayList<>();
     private int btnRowsTotal, btnVisRows;
     private final Map<String, ItemStack> iconCache = new HashMap<>();
+    private final Map<String, Long> btnTotals = new HashMap<>();   // per-sync cache (hover-lag fix)
     private int gridX, gridY, gridBottom, slot = 18, cols, rows;
     private int sbarX, sbarTop, sbarBottom;
     private int rpX, rpY;                       // right panel (native inventory) top-left, absolute
@@ -195,6 +196,8 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     @Override
     protected void init() {
         super.init();
+        ButtonLayout.pollConfig();
+        Keywords.pollConfig();
         // Fill the screen: full vertical space at every GUI scale (no design-height cap).
         pw = Math.max(MIN_W, Math.min(DESIGN_W, this.width - 2 * MARGIN));
         // Height: just enough to fit the tab rail (or the right panel cluster), capped to the screen.
@@ -337,6 +340,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private void recomputeButtons() {
         btnCells.clear();
         iconCache.clear();
+        btnTotals.clear();
         int step = btnSize + btnGap;
         int y = 0, rowsUsed = 0;
         for (List<ButtonLayout.BtnDef> row : ButtonLayout.rows()) {
@@ -369,10 +373,8 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         return null;
     }
 
-    /** Does this vault entry belong under the selected button? */
-    private boolean inSelected(Entry e) {
-        ButtonLayout.BtnDef d = selectedDef();
-        if (d == null) return true;
+    /** Does this vault entry belong under the given button? */
+    private boolean matchesDef(ButtonLayout.BtnDef d, Entry e) {
         if (d.category() != null) return Catalog.inTab(idOf(e), d.category());
         return Keywords.itemHasAny(idOf(e), d.words());
     }
@@ -394,13 +396,15 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     }
 
     private long btnTotal(ButtonLayout.BtnDef d) {
-        long t = 0;
-        for (Entry e : entries) {
-            boolean in = d.category() != null ? Catalog.inTab(idOf(e), d.category())
-                    : Keywords.itemHasAny(idOf(e), d.words());
-            if (in) t += e.count();
-        }
-        return t;
+        return btnTotals.computeIfAbsent(d.key(), k -> {
+            long t = 0;
+            for (Entry e : entries) {
+                boolean in = d.category() != null ? Catalog.inTab(idOf(e), d.category())
+                        : Keywords.itemHasAny(idOf(e), d.words());
+                if (in) t += e.count();
+            }
+            return t;
+        });
     }
 
     private BtnCell buttonAt(int mx, int my) {
@@ -437,9 +441,10 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         view.clear();
         String q = searchText == null ? "" : searchText.trim();
         boolean searching = !q.isEmpty();
+        ButtonLayout.BtnDef selDef = selectedDef();
         for (Entry e : entries) {
             // search is GLOBAL: with text in the box, results come from the whole vault, not the tab
-            if (!searching && !inSelected(e)) continue;
+            if (!searching && selDef != null && !matchesDef(selDef, e)) continue;
             if (searching && !nameOf(e).contains(q)) continue;
             view.add(e);
         }
