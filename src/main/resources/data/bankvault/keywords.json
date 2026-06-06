@@ -13128,8 +13128,7 @@
    "upgrade",
    "container",
    "modded",
-   "craftable",
-   "food"
+   "craftable"
   ],
   "travelersbackpack:snow": [
    "container",

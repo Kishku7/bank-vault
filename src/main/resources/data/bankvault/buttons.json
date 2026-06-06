@@ -285,7 +285,8 @@
     "icon": "minecraft:cooked_beef",
     "words": [
      "food",
-     "meat"
+     "meat",
+     "edible"
     ]
    },
    {
@@ -412,13 +413,6 @@
    }
   ],
   [
-   {
-    "label": "Edible",
-    "icon": "minecraft:apple",
-    "words": [
-     "edible"
-    ]
-   },
    {
     "label": "Fuel",
     "icon": "minecraft:coal",
