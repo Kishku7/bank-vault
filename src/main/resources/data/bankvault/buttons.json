@@ -6,7 +6,7 @@
     "label": "Wood",
     "icon": "minecraft:oak_log",
     "words": [
-     "wood"
+     "rawWood"
     ]
    },
    {
@@ -321,31 +321,20 @@
     ]
    },
    {
+    "label": "Transport",
+    "icon": "minecraft:minecart",
+    "words": [
+     "rail",
+     "minecart",
+     "boat",
+     "rideable"
+    ]
+   },
+   {
     "label": "Redstone",
     "icon": "minecraft:repeater",
     "words": [
      "redstoneComp"
-    ]
-   },
-   {
-    "label": "Rails",
-    "icon": "minecraft:rail",
-    "words": [
-     "rail"
-    ]
-   },
-   {
-    "label": "Minecarts",
-    "icon": "minecraft:minecart",
-    "words": [
-     "minecart"
-    ]
-   },
-   {
-    "label": "Boats",
-    "icon": "minecraft:oak_boat",
-    "words": [
-     "boat"
     ]
    },
    {
@@ -433,6 +422,13 @@
     "words": [
      "trim",
      "smithingTemplate"
+    ]
+   },
+   {
+    "label": "Workstations",
+    "icon": "minecraft:crafting_table",
+    "words": [
+     "workstation"
     ]
    }
   ],

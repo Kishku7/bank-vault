@@ -289,7 +289,8 @@
    "burnable",
    "flammable",
    "craftable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:acacia_planks": [
    "wood",
@@ -298,7 +299,8 @@
    "renewable",
    "burnable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:acacia_pressure_plate": [
    "wood",
@@ -372,7 +374,8 @@
    "renewable",
    "burnable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:activator_rail": [
    "iron",
@@ -480,7 +483,8 @@
    "tool",
    "craftable",
    "gravity",
-   "midGame"
+   "midGame",
+   "workstation"
   ],
   "minecraft:apple": [
    "food",
@@ -599,7 +603,8 @@
    "renewable",
    "burnable",
    "flammable",
-   "jungle"
+   "jungle",
+   "rawWood"
   ],
   "minecraft:bamboo_button": [
    "bamboo",
@@ -664,7 +669,8 @@
    "renewable",
    "burnable",
    "flammable",
-   "decoration"
+   "decoration",
+   "rawWood"
   ],
   "minecraft:bamboo_mosaic_slab": [
    "bamboo",
@@ -693,7 +699,8 @@
    "renewable",
    "burnable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:bamboo_pressure_plate": [
    "bamboo",
@@ -956,7 +963,8 @@
    "burnable",
    "flammable",
    "craftable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:birch_planks": [
    "wood",
@@ -965,7 +973,8 @@
    "renewable",
    "burnable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:birch_pressure_plate": [
    "wood",
@@ -1039,7 +1048,8 @@
    "renewable",
    "burnable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:black_banner": [
    "wool",
@@ -1212,7 +1222,8 @@
    "container",
    "craftable",
    "village",
-   "midGame"
+   "midGame",
+   "workstation"
   ],
   "minecraft:blaze_powder": [
    "blaze",
@@ -1526,7 +1537,8 @@
    "blaze",
    "nether",
    "village",
-   "lateGame"
+   "lateGame",
+   "workstation"
   ],
   "minecraft:brick": [
    "brick",
@@ -1901,7 +1913,8 @@
    "craftable",
    "village",
    "map",
-   "earlyGame"
+   "earlyGame",
+   "workstation"
   ],
   "minecraft:carved_pumpkin": [
    "plant",
@@ -1924,7 +1937,8 @@
    "container",
    "craftable",
    "village",
-   "midGame"
+   "midGame",
+   "workstation"
   ],
   "minecraft:cave_spider_spawn_egg": [
    "egg",
@@ -2059,7 +2073,8 @@
    "renewable",
    "flammable",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:cherry_planks": [
    "wood",
@@ -2067,7 +2082,8 @@
    "craftable",
    "renewable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:cherry_pressure_plate": [
    "wood",
@@ -2131,7 +2147,8 @@
    "renewable",
    "flammable",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:chest": [
    "wood",
@@ -2169,7 +2186,8 @@
    "block",
    "gravity",
    "mineable",
-   "midGame"
+   "midGame",
+   "workstation"
   ],
   "minecraft:chiseled_bookshelf": [
    "wood",
@@ -2507,7 +2525,8 @@
    "block",
    "craftable",
    "village",
-   "earlyGame"
+   "earlyGame",
+   "workstation"
   ],
   "minecraft:conduit": [
    "ocean",
@@ -2964,7 +2983,8 @@
    "block",
    "nether",
    "craftable",
-   "placeable"
+   "placeable",
+   "rawWood"
   ],
   "minecraft:crimson_nylium": [
    "block",
@@ -2978,7 +2998,8 @@
    "nether",
    "craftable",
    "renewable",
-   "placeable"
+   "placeable",
+   "rawWood"
   ],
   "minecraft:crimson_pressure_plate": [
    "wood",
@@ -3031,7 +3052,8 @@
    "nether",
    "mineable",
    "renewable",
-   "placeable"
+   "placeable",
+   "rawWood"
   ],
   "minecraft:crimson_trapdoor": [
    "wood",
@@ -3324,7 +3346,8 @@
    "mineable",
    "renewable",
    "flammable",
-   "placeable"
+   "placeable",
+   "rawWood"
   ],
   "minecraft:dark_oak_planks": [
    "wood",
@@ -3332,7 +3355,8 @@
    "craftable",
    "renewable",
    "flammable",
-   "placeable"
+   "placeable",
+   "rawWood"
   ],
   "minecraft:dark_oak_pressure_plate": [
    "wood",
@@ -3388,7 +3412,8 @@
    "craftable",
    "renewable",
    "flammable",
-   "placeable"
+   "placeable",
+   "rawWood"
   ],
   "minecraft:dark_prismarine": [
    "prismarine",
@@ -5134,7 +5159,8 @@
    "craftable",
    "placeable",
    "village",
-   "earlyGame"
+   "earlyGame",
+   "workstation"
   ],
   "minecraft:guardian_spawn_egg": [
    "egg",
@@ -5678,7 +5704,8 @@
    "mineable",
    "placeable",
    "renewable",
-   "flammable"
+   "flammable",
+   "rawWood"
   ],
   "minecraft:jungle_planks": [
    "wood",
@@ -5687,7 +5714,8 @@
    "craftable",
    "placeable",
    "renewable",
-   "flammable"
+   "flammable",
+   "rawWood"
   ],
   "minecraft:jungle_pressure_plate": [
    "wood",
@@ -5755,7 +5783,8 @@
    "craftable",
    "placeable",
    "renewable",
-   "flammable"
+   "flammable",
+   "rawWood"
   ],
   "minecraft:kelp": [
    "plant",
@@ -5911,7 +5940,8 @@
    "craftable",
    "village",
    "decoration",
-   "earlyGame"
+   "earlyGame",
+   "workstation"
   ],
   "minecraft:lever": [
    "redstoneComp",
@@ -6351,11 +6381,10 @@
   "minecraft:loom": [
    "wood",
    "block",
-   "banner",
-   "bannerPattern",
    "craftable",
    "village",
-   "earlyGame"
+   "earlyGame",
+   "workstation"
   ],
   "minecraft:mace": [
    "weapon",
@@ -6579,7 +6608,8 @@
    "mineable",
    "renewable",
    "craftable",
-   "flammable"
+   "flammable",
+   "rawWood"
   ],
   "minecraft:mangrove_planks": [
    "wood",
@@ -6587,7 +6617,8 @@
    "craftable",
    "swamp",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:mangrove_pressure_plate": [
    "wood",
@@ -6658,7 +6689,8 @@
    "mineable",
    "renewable",
    "craftable",
-   "flammable"
+   "flammable",
+   "rawWood"
   ],
   "minecraft:map": [
    "map",
@@ -7457,7 +7489,8 @@
    "renewable",
    "placeable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:oak_planks": [
    "wood",
@@ -7466,7 +7499,8 @@
    "placeable",
    "renewable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:oak_pressure_plate": [
    "wood",
@@ -7536,7 +7570,8 @@
    "placeable",
    "renewable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:observer": [
    "stone",
@@ -7986,7 +8021,8 @@
    "renewable",
    "placeable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:pale_oak_planks": [
    "wood",
@@ -7995,7 +8031,8 @@
    "placeable",
    "renewable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:pale_oak_pressure_plate": [
    "wood",
@@ -8065,7 +8102,8 @@
    "placeable",
    "renewable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:panda_spawn_egg": [
    "egg",
@@ -9595,7 +9633,8 @@
    "fishable",
    "tradeable",
    "midGame",
-   "unstackable"
+   "unstackable",
+   "rideable"
   ],
   "minecraft:salmon": [
    "food",
@@ -9940,7 +9979,8 @@
    "iron",
    "craftable",
    "placeable",
-   "village"
+   "village",
+   "workstation"
   ],
   "minecraft:smoker": [
    "stone",
@@ -9948,7 +9988,8 @@
    "container",
    "craftable",
    "placeable",
-   "village"
+   "village",
+   "workstation"
   ],
   "minecraft:smooth_basalt": [
    "stone",
@@ -10289,7 +10330,8 @@
    "renewable",
    "placeable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:spruce_planks": [
    "wood",
@@ -10298,7 +10340,8 @@
    "placeable",
    "renewable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:spruce_pressure_plate": [
    "wood",
@@ -10361,7 +10404,8 @@
    "craftable",
    "placeable",
    "renewable",
-   "flammable"
+   "flammable",
+   "rawWood"
   ],
   "minecraft:spyglass": [
    "tool",
@@ -10562,7 +10606,8 @@
    "flammable",
    "renewable",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_acacia_wood": [
    "wood",
@@ -10572,7 +10617,8 @@
    "burnable",
    "flammable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_bamboo_block": [
    "bamboo",
@@ -10582,7 +10628,8 @@
    "burnable",
    "flammable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_birch_log": [
    "wood",
@@ -10592,7 +10639,8 @@
    "flammable",
    "renewable",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_birch_wood": [
    "wood",
@@ -10602,7 +10650,8 @@
    "burnable",
    "flammable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_cherry_log": [
    "wood",
@@ -10612,7 +10661,8 @@
    "flammable",
    "renewable",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_cherry_wood": [
    "wood",
@@ -10622,7 +10672,8 @@
    "burnable",
    "flammable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_crimson_hyphae": [
    "wood",
@@ -10631,7 +10682,8 @@
    "placeable",
    "nether",
    "renewable",
-   "lateGame"
+   "lateGame",
+   "rawWood"
   ],
   "minecraft:stripped_crimson_stem": [
    "wood",
@@ -10639,7 +10691,8 @@
    "placeable",
    "nether",
    "renewable",
-   "lateGame"
+   "lateGame",
+   "rawWood"
   ],
   "minecraft:stripped_dark_oak_log": [
    "wood",
@@ -10649,7 +10702,8 @@
    "flammable",
    "renewable",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_dark_oak_wood": [
    "wood",
@@ -10659,7 +10713,8 @@
    "burnable",
    "flammable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_jungle_log": [
    "wood",
@@ -10669,7 +10724,8 @@
    "flammable",
    "renewable",
    "jungle",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_jungle_wood": [
    "wood",
@@ -10679,7 +10735,8 @@
    "burnable",
    "flammable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_mangrove_log": [
    "wood",
@@ -10689,7 +10746,8 @@
    "flammable",
    "renewable",
    "swamp",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_mangrove_wood": [
    "wood",
@@ -10699,7 +10757,8 @@
    "burnable",
    "flammable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_oak_log": [
    "wood",
@@ -10709,7 +10768,8 @@
    "flammable",
    "renewable",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_oak_wood": [
    "wood",
@@ -10719,7 +10779,8 @@
    "burnable",
    "flammable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_pale_oak_log": [
    "wood",
@@ -10729,7 +10790,8 @@
    "flammable",
    "renewable",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_pale_oak_wood": [
    "wood",
@@ -10739,7 +10801,8 @@
    "burnable",
    "flammable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_spruce_log": [
    "wood",
@@ -10749,7 +10812,8 @@
    "flammable",
    "renewable",
    "snow",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_spruce_wood": [
    "wood",
@@ -10759,7 +10823,8 @@
    "burnable",
    "flammable",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "rawWood"
   ],
   "minecraft:stripped_warped_hyphae": [
    "wood",
@@ -10768,7 +10833,8 @@
    "placeable",
    "nether",
    "renewable",
-   "lateGame"
+   "lateGame",
+   "rawWood"
   ],
   "minecraft:stripped_warped_stem": [
    "wood",
@@ -10776,7 +10842,8 @@
    "placeable",
    "nether",
    "renewable",
-   "lateGame"
+   "lateGame",
+   "rawWood"
   ],
   "minecraft:structure_block": [
    "block",
@@ -11336,7 +11403,8 @@
    "placeable",
    "nether",
    "renewable",
-   "lateGame"
+   "lateGame",
+   "rawWood"
   ],
   "minecraft:warped_nylium": [
    "block",
@@ -11353,7 +11421,8 @@
    "placeable",
    "nether",
    "renewable",
-   "lateGame"
+   "lateGame",
+   "rawWood"
   ],
   "minecraft:warped_pressure_plate": [
    "wood",
@@ -11417,7 +11486,8 @@
    "mineable",
    "nether",
    "renewable",
-   "lateGame"
+   "lateGame",
+   "rawWood"
   ],
   "minecraft:warped_trapdoor": [
    "wood",
@@ -12644,13 +12714,11 @@
   ],
   "travelersbackpack:blank_upgrade": [
    "upgrade",
-   "container",
    "craftable",
    "modded"
   ],
   "travelersbackpack:blast_furnace_upgrade": [
    "upgrade",
-   "container",
    "craftable",
    "modded"
   ],
@@ -12676,7 +12744,6 @@
    "backpack",
    "wearable",
    "craftable",
-   "book",
    "modded"
   ],
   "travelersbackpack:brown_sleeping_bag": [
@@ -12725,7 +12792,6 @@
   ],
   "travelersbackpack:crafting_upgrade": [
    "upgrade",
-   "container",
    "craftable",
    "modded"
   ],
@@ -12754,7 +12820,6 @@
   ],
   "travelersbackpack:diamond_tier_upgrade": [
    "upgrade",
-   "container",
    "craftable",
    "diamond",
    "modded"
@@ -12795,7 +12860,6 @@
   ],
   "travelersbackpack:feeding_upgrade": [
    "upgrade",
-   "container",
    "craftable",
    "modded"
   ],
@@ -12808,7 +12872,6 @@
   ],
   "travelersbackpack:furnace_upgrade": [
    "upgrade",
-   "container",
    "craftable",
    "modded"
   ],
@@ -12830,7 +12893,6 @@
   ],
   "travelersbackpack:gold_tier_upgrade": [
    "upgrade",
-   "container",
    "craftable",
    "gold",
    "modded"
@@ -12899,25 +12961,19 @@
   "travelersbackpack:iron_tier_upgrade": [
    "iron",
    "upgrade",
-   "container",
    "modded",
    "craftable",
    "midGame"
   ],
   "travelersbackpack:jukebox_upgrade": [
    "upgrade",
-   "container",
    "modded",
-   "craftable",
-   "jukebox",
-   "music"
+   "craftable"
   ],
   "travelersbackpack:lantern_upgrade": [
    "upgrade",
-   "container",
    "modded",
-   "craftable",
-   "lightSource"
+   "craftable"
   ],
   "travelersbackpack:lapis": [
    "lapis",
@@ -12971,7 +13027,6 @@
   ],
   "travelersbackpack:magnet_upgrade": [
    "upgrade",
-   "container",
    "modded",
    "craftable"
   ],
@@ -13003,7 +13058,6 @@
   "travelersbackpack:netherite_tier_upgrade": [
    "netherite",
    "upgrade",
-   "container",
    "modded",
    "craftable",
    "endGame"
@@ -13027,7 +13081,6 @@
   ],
   "travelersbackpack:pickup_upgrade": [
    "upgrade",
-   "container",
    "modded",
    "craftable"
   ],
@@ -13092,7 +13145,6 @@
   ],
   "travelersbackpack:refill_upgrade": [
    "upgrade",
-   "container",
    "modded",
    "craftable"
   ],
@@ -13126,7 +13178,6 @@
   ],
   "travelersbackpack:smoker_upgrade": [
    "upgrade",
-   "container",
    "modded",
    "craftable"
   ],
@@ -13175,7 +13226,6 @@
   ],
   "travelersbackpack:tanks_upgrade": [
    "upgrade",
-   "container",
    "modded",
    "craftable"
   ],
@@ -13190,7 +13240,6 @@
   ],
   "travelersbackpack:void_upgrade": [
    "upgrade",
-   "container",
    "modded",
    "craftable"
   ],
