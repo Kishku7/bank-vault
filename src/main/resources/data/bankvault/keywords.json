@@ -286,7 +286,6 @@
    "wood",
    "block",
    "renewable",
-   "fuel",
    "burnable",
    "flammable",
    "craftable",
@@ -297,7 +296,6 @@
    "block",
    "craftable",
    "renewable",
-   "fuel",
    "burnable",
    "flammable",
    "earlyGame"
@@ -372,7 +370,6 @@
    "block",
    "craftable",
    "renewable",
-   "fuel",
    "burnable",
    "flammable",
    "earlyGame"
@@ -600,7 +597,6 @@
    "block",
    "craftable",
    "renewable",
-   "fuel",
    "burnable",
    "flammable",
    "jungle"
@@ -695,7 +691,6 @@
    "block",
    "craftable",
    "renewable",
-   "fuel",
    "burnable",
    "flammable",
    "earlyGame"
@@ -958,7 +953,6 @@
    "wood",
    "block",
    "renewable",
-   "fuel",
    "burnable",
    "flammable",
    "craftable",
@@ -969,7 +963,6 @@
    "block",
    "craftable",
    "renewable",
-   "fuel",
    "burnable",
    "flammable",
    "earlyGame"
@@ -1044,7 +1037,6 @@
    "block",
    "craftable",
    "renewable",
-   "fuel",
    "burnable",
    "flammable",
    "earlyGame"
@@ -1447,7 +1439,6 @@
    "block",
    "craftable",
    "village",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:bordure_indented_banner_pattern": [
@@ -1471,7 +1462,6 @@
   "minecraft:bowl": [
    "wood",
    "craftable",
-   "fuel",
    "stackable",
    "earlyGame"
   ],
@@ -1911,7 +1901,6 @@
    "craftable",
    "village",
    "map",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:carved_pumpkin": [
@@ -2002,7 +1991,6 @@
    "boat",
    "craftable",
    "rideable",
-   "fuel",
    "unstackable",
    "earlyGame"
   ],
@@ -2011,7 +1999,6 @@
    "redstoneComp",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:cherry_chest_boat": [
@@ -2020,7 +2007,6 @@
    "container",
    "craftable",
    "rideable",
-   "fuel",
    "unstackable",
    "earlyGame"
   ],
@@ -2029,7 +2015,6 @@
    "block",
    "craftable",
    "decoration",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:cherry_fence": [
@@ -2038,7 +2023,6 @@
    "craftable",
    "decoration",
    "flammable",
-   "fuel",
    "waterloggable",
    "earlyGame"
   ],
@@ -2048,7 +2032,6 @@
    "craftable",
    "decoration",
    "flammable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:cherry_hanging_sign": [
@@ -2056,7 +2039,6 @@
    "decoration",
    "craftable",
    "placeable",
-   "fuel",
    "waterloggable",
    "earlyGame"
   ],
@@ -2076,7 +2058,6 @@
    "mineable",
    "renewable",
    "flammable",
-   "fuel",
    "overworld",
    "earlyGame"
   ],
@@ -2086,7 +2067,6 @@
    "craftable",
    "renewable",
    "flammable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:cherry_pressure_plate": [
@@ -2094,7 +2074,6 @@
    "redstoneComp",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:cherry_sapling": [
@@ -2112,7 +2091,6 @@
    "container",
    "craftable",
    "decoration",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:cherry_sign": [
@@ -2120,7 +2098,6 @@
    "decoration",
    "craftable",
    "placeable",
-   "fuel",
    "waterloggable",
    "earlyGame"
   ],
@@ -2129,7 +2106,6 @@
    "block",
    "craftable",
    "flammable",
-   "fuel",
    "waterloggable",
    "earlyGame"
   ],
@@ -2138,7 +2114,6 @@
    "block",
    "craftable",
    "flammable",
-   "fuel",
    "waterloggable",
    "earlyGame"
   ],
@@ -2146,7 +2121,6 @@
    "wood",
    "block",
    "craftable",
-   "fuel",
    "waterloggable",
    "earlyGame"
   ],
@@ -2156,7 +2130,6 @@
    "craftable",
    "renewable",
    "flammable",
-   "fuel",
    "overworld",
    "earlyGame"
   ],
@@ -2165,7 +2138,6 @@
    "block",
    "container",
    "craftable",
-   "fuel",
    "waterloggable",
    "earlyGame"
   ],
@@ -2206,7 +2178,6 @@
    "container",
    "craftable",
    "decoration",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:chiseled_copper": [
@@ -2536,7 +2507,6 @@
    "block",
    "craftable",
    "village",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:conduit": [
@@ -2902,7 +2872,6 @@
    "block",
    "workstation",
    "craftable",
-   "fuel",
    "earlyGame",
    "placeable"
   ],
@@ -3296,14 +3265,12 @@
    "wood",
    "boat",
    "craftable",
-   "rideable",
-   "fuel"
+   "rideable"
   ],
   "minecraft:dark_oak_button": [
    "wood",
    "redstoneComp",
    "craftable",
-   "fuel",
    "placeable"
   ],
   "minecraft:dark_oak_chest_boat": [
@@ -3311,15 +3278,13 @@
    "boat",
    "container",
    "craftable",
-   "rideable",
-   "fuel"
+   "rideable"
   ],
   "minecraft:dark_oak_door": [
    "wood",
    "block",
    "decoration",
    "craftable",
-   "fuel",
    "placeable"
   ],
   "minecraft:dark_oak_fence": [
@@ -3328,7 +3293,6 @@
    "decoration",
    "craftable",
    "flammable",
-   "fuel",
    "placeable"
   ],
   "minecraft:dark_oak_fence_gate": [
@@ -3337,7 +3301,6 @@
    "decoration",
    "craftable",
    "flammable",
-   "fuel",
    "placeable"
   ],
   "minecraft:dark_oak_hanging_sign": [
@@ -3360,7 +3323,6 @@
    "block",
    "mineable",
    "renewable",
-   "fuel",
    "flammable",
    "placeable"
   ],
@@ -3369,7 +3331,6 @@
    "block",
    "craftable",
    "renewable",
-   "fuel",
    "flammable",
    "placeable"
   ],
@@ -3377,7 +3338,6 @@
    "wood",
    "redstoneComp",
    "craftable",
-   "fuel",
    "placeable"
   ],
   "minecraft:dark_oak_sapling": [
@@ -3399,14 +3359,12 @@
    "wood",
    "decoration",
    "craftable",
-   "fuel",
    "placeable"
   ],
   "minecraft:dark_oak_slab": [
    "wood",
    "block",
    "craftable",
-   "fuel",
    "flammable",
    "placeable"
   ],
@@ -3414,7 +3372,6 @@
    "wood",
    "block",
    "craftable",
-   "fuel",
    "flammable",
    "placeable"
   ],
@@ -3422,7 +3379,6 @@
    "wood",
    "block",
    "craftable",
-   "fuel",
    "waterloggable",
    "placeable"
   ],
@@ -3431,7 +3387,6 @@
    "block",
    "craftable",
    "renewable",
-   "fuel",
    "flammable",
    "placeable"
   ],
@@ -3517,7 +3472,6 @@
    "plant",
    "decoration",
    "desert",
-   "fuel",
    "flammable",
    "placeable"
   ],
@@ -5688,8 +5642,7 @@
    "block",
    "craftable",
    "placeable",
-   "flammable",
-   "fuel"
+   "flammable"
   ],
   "minecraft:jungle_fence_gate": [
    "wood",
@@ -5697,8 +5650,7 @@
    "block",
    "craftable",
    "placeable",
-   "flammable",
-   "fuel"
+   "flammable"
   ],
   "minecraft:jungle_hanging_sign": [
    "wood",
@@ -5726,8 +5678,7 @@
    "mineable",
    "placeable",
    "renewable",
-   "flammable",
-   "fuel"
+   "flammable"
   ],
   "minecraft:jungle_planks": [
    "wood",
@@ -5736,8 +5687,7 @@
    "craftable",
    "placeable",
    "renewable",
-   "flammable",
-   "fuel"
+   "flammable"
   ],
   "minecraft:jungle_pressure_plate": [
    "wood",
@@ -5779,7 +5729,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "waterloggable"
   ],
   "minecraft:jungle_stairs": [
@@ -5789,7 +5738,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "waterloggable"
   ],
   "minecraft:jungle_trapdoor": [
@@ -5807,8 +5755,7 @@
    "craftable",
    "placeable",
    "renewable",
-   "flammable",
-   "fuel"
+   "flammable"
   ],
   "minecraft:kelp": [
    "plant",
@@ -6566,8 +6513,7 @@
    "boat",
    "rideable",
    "craftable",
-   "swamp",
-   "fuel"
+   "swamp"
   ],
   "minecraft:mangrove_button": [
    "wood",
@@ -6589,8 +6535,7 @@
    "block",
    "craftable",
    "decoration",
-   "swamp",
-   "fuel"
+   "swamp"
   ],
   "minecraft:mangrove_fence": [
    "wood",
@@ -6634,7 +6579,6 @@
    "mineable",
    "renewable",
    "craftable",
-   "fuel",
    "flammable"
   ],
   "minecraft:mangrove_planks": [
@@ -6642,7 +6586,6 @@
    "block",
    "craftable",
    "swamp",
-   "fuel",
    "flammable",
    "earlyGame"
   ],
@@ -6690,8 +6633,7 @@
    "craftable",
    "decoration",
    "swamp",
-   "waterloggable",
-   "fuel"
+   "waterloggable"
   ],
   "minecraft:mangrove_stairs": [
    "wood",
@@ -6699,8 +6641,7 @@
    "craftable",
    "decoration",
    "swamp",
-   "waterloggable",
-   "fuel"
+   "waterloggable"
   ],
   "minecraft:mangrove_trapdoor": [
    "wood",
@@ -6708,8 +6649,7 @@
    "craftable",
    "decoration",
    "swamp",
-   "waterloggable",
-   "fuel"
+   "waterloggable"
   ],
   "minecraft:mangrove_wood": [
    "wood",
@@ -6718,7 +6658,6 @@
    "mineable",
    "renewable",
    "craftable",
-   "fuel",
    "flammable"
   ],
   "minecraft:map": [
@@ -7439,7 +7378,6 @@
    "redstoneComp",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:oak_boat": [
@@ -7448,7 +7386,6 @@
    "craftable",
    "rideable",
    "unstackable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:oak_button": [
@@ -7457,7 +7394,6 @@
    "block",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:oak_chest_boat": [
@@ -7476,7 +7412,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:oak_fence": [
@@ -7486,7 +7421,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:oak_fence_gate": [
@@ -7505,7 +7439,6 @@
    "decoration",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:oak_leaves": [
@@ -7523,7 +7456,6 @@
    "mineable",
    "renewable",
    "placeable",
-   "fuel",
    "flammable",
    "earlyGame"
   ],
@@ -7533,7 +7465,6 @@
    "craftable",
    "placeable",
    "renewable",
-   "fuel",
    "flammable",
    "earlyGame"
   ],
@@ -7543,7 +7474,6 @@
    "block",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:oak_sapling": [
@@ -7562,7 +7492,6 @@
    "decoration",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:oak_sign": [
@@ -7571,7 +7500,6 @@
    "decoration",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:oak_slab": [
@@ -7581,7 +7509,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:oak_stairs": [
@@ -7591,7 +7518,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:oak_trapdoor": [
@@ -7601,7 +7527,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:oak_wood": [
@@ -7610,7 +7535,6 @@
    "craftable",
    "placeable",
    "renewable",
-   "fuel",
    "flammable",
    "earlyGame"
   ],
@@ -7991,7 +7915,6 @@
    "craftable",
    "rideable",
    "unstackable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:pale_oak_button": [
@@ -8000,7 +7923,6 @@
    "block",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:pale_oak_chest_boat": [
@@ -8019,7 +7941,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:pale_oak_fence": [
@@ -8029,7 +7950,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:pale_oak_fence_gate": [
@@ -8048,7 +7968,6 @@
    "decoration",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:pale_oak_leaves": [
@@ -8066,7 +7985,6 @@
    "mineable",
    "renewable",
    "placeable",
-   "fuel",
    "flammable",
    "earlyGame"
   ],
@@ -8076,7 +7994,6 @@
    "craftable",
    "placeable",
    "renewable",
-   "fuel",
    "flammable",
    "earlyGame"
   ],
@@ -8086,7 +8003,6 @@
    "block",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:pale_oak_sapling": [
@@ -8105,7 +8021,6 @@
    "decoration",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:pale_oak_sign": [
@@ -8114,7 +8029,6 @@
    "decoration",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:pale_oak_slab": [
@@ -8124,7 +8038,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:pale_oak_stairs": [
@@ -8134,7 +8047,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:pale_oak_trapdoor": [
@@ -8144,7 +8056,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:pale_oak_wood": [
@@ -8153,7 +8064,6 @@
    "craftable",
    "placeable",
    "renewable",
-   "fuel",
    "flammable",
    "earlyGame"
   ],
@@ -10030,8 +9940,7 @@
    "iron",
    "craftable",
    "placeable",
-   "village",
-   "fuel"
+   "village"
   ],
   "minecraft:smoker": [
    "stone",
@@ -10321,7 +10230,6 @@
    "redstoneComp",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:spruce_chest_boat": [
@@ -10339,7 +10247,6 @@
    "decoration",
    "craftable",
    "placeable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:spruce_fence": [
@@ -10349,7 +10256,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "waterloggable"
   ],
   "minecraft:spruce_fence_gate": [
@@ -10358,15 +10264,13 @@
    "decoration",
    "craftable",
    "placeable",
-   "flammable",
-   "fuel"
+   "flammable"
   ],
   "minecraft:spruce_hanging_sign": [
    "wood",
    "decoration",
    "craftable",
    "placeable",
-   "fuel",
    "waterloggable"
   ],
   "minecraft:spruce_leaves": [
@@ -10385,7 +10289,6 @@
    "renewable",
    "placeable",
    "flammable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:spruce_planks": [
@@ -10395,15 +10298,13 @@
    "placeable",
    "renewable",
    "flammable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:spruce_pressure_plate": [
    "wood",
    "redstoneComp",
    "craftable",
-   "placeable",
-   "fuel"
+   "placeable"
   ],
   "minecraft:spruce_sapling": [
    "plant",
@@ -10419,15 +10320,13 @@
    "container",
    "decoration",
    "craftable",
-   "placeable",
-   "fuel"
+   "placeable"
   ],
   "minecraft:spruce_sign": [
    "wood",
    "decoration",
    "craftable",
    "placeable",
-   "fuel",
    "waterloggable"
   ],
   "minecraft:spruce_slab": [
@@ -10437,7 +10336,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "waterloggable"
   ],
   "minecraft:spruce_stairs": [
@@ -10447,7 +10345,6 @@
    "craftable",
    "placeable",
    "flammable",
-   "fuel",
    "waterloggable"
   ],
   "minecraft:spruce_trapdoor": [
@@ -10456,7 +10353,6 @@
    "decoration",
    "craftable",
    "placeable",
-   "fuel",
    "waterloggable"
   ],
   "minecraft:spruce_wood": [
@@ -10465,8 +10361,7 @@
    "craftable",
    "placeable",
    "renewable",
-   "flammable",
-   "fuel"
+   "flammable"
   ],
   "minecraft:spyglass": [
    "tool",
@@ -10486,7 +10381,6 @@
    "craftable",
    "renewable",
    "stackable",
-   "fuel",
    "earlyGame"
   ],
   "minecraft:sticky_piston": [
@@ -10665,7 +10559,6 @@
    "block",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "overworld",
@@ -10677,7 +10570,6 @@
    "craftable",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "earlyGame"
@@ -10688,7 +10580,6 @@
    "craftable",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "earlyGame"
@@ -10698,7 +10589,6 @@
    "block",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "overworld",
@@ -10710,7 +10600,6 @@
    "craftable",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "earlyGame"
@@ -10720,7 +10609,6 @@
    "block",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "overworld",
@@ -10732,7 +10620,6 @@
    "craftable",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "earlyGame"
@@ -10759,7 +10646,6 @@
    "block",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "overworld",
@@ -10771,7 +10657,6 @@
    "craftable",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "earlyGame"
@@ -10781,7 +10666,6 @@
    "block",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "jungle",
@@ -10793,7 +10677,6 @@
    "craftable",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "earlyGame"
@@ -10803,7 +10686,6 @@
    "block",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "swamp",
@@ -10815,7 +10697,6 @@
    "craftable",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "earlyGame"
@@ -10825,7 +10706,6 @@
    "block",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "overworld",
@@ -10837,7 +10717,6 @@
    "craftable",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "earlyGame"
@@ -10847,7 +10726,6 @@
    "block",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "overworld",
@@ -10859,7 +10737,6 @@
    "craftable",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "earlyGame"
@@ -10869,7 +10746,6 @@
    "block",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "snow",
@@ -10881,7 +10757,6 @@
    "craftable",
    "placeable",
    "burnable",
-   "fuel",
    "flammable",
    "renewable",
    "earlyGame"
