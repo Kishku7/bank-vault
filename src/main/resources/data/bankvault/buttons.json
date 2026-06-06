@@ -221,34 +221,6 @@
     ]
    },
    {
-    "label": "Candles",
-    "icon": "minecraft:candle",
-    "words": [
-     "candle"
-    ]
-   },
-   {
-    "label": "Carpets",
-    "icon": "minecraft:red_carpet",
-    "words": [
-     "carpet"
-    ]
-   },
-   {
-    "label": "Banners",
-    "icon": "minecraft:white_banner",
-    "words": [
-     "banner"
-    ]
-   },
-   {
-    "label": "Patterns",
-    "icon": "minecraft:creeper_banner_pattern",
-    "words": [
-     "bannerPattern"
-    ]
-   },
-   {
     "label": "Pottery",
     "icon": "minecraft:decorated_pot",
     "words": [
@@ -260,6 +232,21 @@
     "icon": "minecraft:creeper_head",
     "words": [
      "head"
+    ]
+   },
+   {
+    "label": "Books",
+    "icon": "minecraft:book",
+    "words": [
+     "book"
+    ]
+   },
+   {
+    "label": "Music",
+    "icon": "minecraft:jukebox",
+    "words": [
+     "music",
+     "jukebox"
     ]
    }
   ],
@@ -283,35 +270,6 @@
     "icon": "minecraft:lantern",
     "words": [
      "lightSource"
-    ]
-   },
-   {
-    "label": "Dyes",
-    "icon": "minecraft:red_dye",
-    "words": [
-     "dye"
-    ]
-   },
-   {
-    "label": "Books",
-    "icon": "minecraft:book",
-    "words": [
-     "book"
-    ]
-   },
-   {
-    "label": "Music",
-    "icon": "minecraft:jukebox",
-    "words": [
-     "music",
-     "jukebox"
-    ]
-   },
-   {
-    "label": "Oxidizable",
-    "icon": "minecraft:exposed_copper",
-    "words": [
-     "oxidizable"
     ]
    }
   ],
@@ -387,6 +345,20 @@
     "label": "Trinkets",
     "icon": "minecraft:totem_of_undying",
     "dynamic": "trinkets"
+   },
+   {
+    "label": "Banners",
+    "icon": "minecraft:white_banner",
+    "words": [
+     "banner"
+    ]
+   },
+   {
+    "label": "Patterns",
+    "icon": "minecraft:creeper_banner_pattern",
+    "words": [
+     "bannerPattern"
+    ]
    }
   ],
   {
@@ -436,6 +408,13 @@
     "icon": "minecraft:coal",
     "words": [
      "fuel"
+    ]
+   },
+   {
+    "label": "Dyes",
+    "icon": "minecraft:red_dye",
+    "words": [
+     "dye"
     ]
    }
   ],

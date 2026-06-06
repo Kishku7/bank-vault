@@ -264,7 +264,8 @@
    "craftable",
    "renewable",
    "burnable",
-   "flammable"
+   "flammable",
+   "gate"
   ],
   "minecraft:acacia_hanging_sign": [
    "wood",
@@ -652,7 +653,8 @@
    "craftable",
    "renewable",
    "burnable",
-   "flammable"
+   "flammable",
+   "gate"
   ],
   "minecraft:bamboo_hanging_sign": [
    "bamboo",
@@ -938,7 +940,8 @@
    "craftable",
    "renewable",
    "burnable",
-   "flammable"
+   "flammable",
+   "gate"
   ],
   "minecraft:birch_hanging_sign": [
    "wood",
@@ -1053,7 +1056,6 @@
    "rawWood"
   ],
   "minecraft:black_banner": [
-   "wool",
    "banner",
    "colored",
    "craftable",
@@ -1062,7 +1064,6 @@
    "burnable"
   ],
   "minecraft:black_bed": [
-   "wool",
    "wood",
    "bed",
    "block",
@@ -1251,7 +1252,6 @@
    "nether"
   ],
   "minecraft:blue_banner": [
-   "wool",
    "banner",
    "colored",
    "craftable",
@@ -1260,7 +1260,6 @@
    "burnable"
   ],
   "minecraft:blue_bed": [
-   "wool",
    "wood",
    "bed",
    "block",
@@ -1455,7 +1454,6 @@
   ],
   "minecraft:bordure_indented_banner_pattern": [
    "bannerPattern",
-   "banner",
    "paper",
    "craftable",
    "earlyGame"
@@ -1555,7 +1553,8 @@
    "craftable",
    "decoration",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "slab"
   ],
   "minecraft:brick_stairs": [
    "brick",
@@ -1563,7 +1562,8 @@
    "craftable",
    "decoration",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "stairs"
   ],
   "minecraft:brick_wall": [
    "brick",
@@ -1571,7 +1571,8 @@
    "craftable",
    "decoration",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "wall"
   ],
   "minecraft:bricks": [
    "brick",
@@ -1582,7 +1583,6 @@
   ],
   "minecraft:brown_banner": [
    "banner",
-   "wool",
    "colored",
    "craftable",
    "decoration",
@@ -1591,7 +1591,6 @@
   ],
   "minecraft:brown_bed": [
    "bed",
-   "wool",
    "wood",
    "colored",
    "craftable",
@@ -1625,7 +1624,8 @@
    "decoration",
    "placeable",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "carpet"
   ],
   "minecraft:brown_concrete": [
    "concrete",
@@ -1671,7 +1671,6 @@
    "harness",
    "leather",
    "glass",
-   "wool",
    "colored",
    "craftable",
    "wearable",
@@ -2030,7 +2029,8 @@
    "block",
    "craftable",
    "decoration",
-   "earlyGame"
+   "earlyGame",
+   "door"
   ],
   "minecraft:cherry_fence": [
    "wood",
@@ -2039,7 +2039,8 @@
    "decoration",
    "flammable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "fence"
   ],
   "minecraft:cherry_fence_gate": [
    "wood",
@@ -2047,7 +2048,8 @@
    "craftable",
    "decoration",
    "flammable",
-   "earlyGame"
+   "earlyGame",
+   "gate"
   ],
   "minecraft:cherry_hanging_sign": [
    "wood",
@@ -2055,7 +2057,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "sign"
   ],
   "minecraft:cherry_leaves": [
    "plant",
@@ -2116,7 +2119,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "sign"
   ],
   "minecraft:cherry_slab": [
    "wood",
@@ -2124,7 +2128,8 @@
    "craftable",
    "flammable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "slab"
   ],
   "minecraft:cherry_stairs": [
    "wood",
@@ -2132,14 +2137,16 @@
    "craftable",
    "flammable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "stairs"
   ],
   "minecraft:cherry_trapdoor": [
    "wood",
    "block",
    "craftable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "trapdoor"
   ],
   "minecraft:cherry_wood": [
    "wood",
@@ -2400,7 +2407,8 @@
    "decoration",
    "waterloggable",
    "cave",
-   "earlyGame"
+   "earlyGame",
+   "slab"
   ],
   "minecraft:cobbled_deepslate_stairs": [
    "stone",
@@ -2409,7 +2417,8 @@
    "decoration",
    "waterloggable",
    "cave",
-   "earlyGame"
+   "earlyGame",
+   "stairs"
   ],
   "minecraft:cobbled_deepslate_wall": [
    "stone",
@@ -2418,7 +2427,8 @@
    "decoration",
    "waterloggable",
    "cave",
-   "earlyGame"
+   "earlyGame",
+   "wall"
   ],
   "minecraft:cobblestone": [
    "stone",
@@ -2435,7 +2445,8 @@
    "craftable",
    "decoration",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "slab"
   ],
   "minecraft:cobblestone_stairs": [
    "stone",
@@ -2443,7 +2454,8 @@
    "craftable",
    "decoration",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "stairs"
   ],
   "minecraft:cobblestone_wall": [
    "stone",
@@ -2451,7 +2463,8 @@
    "craftable",
    "decoration",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "wall"
   ],
   "minecraft:cobweb": [
    "string",
@@ -2680,7 +2693,8 @@
    "decoration",
    "craftable",
    "oxidizable",
-   "placeable"
+   "placeable",
+   "door"
   ],
   "minecraft:copper_golem_spawn_egg": [
    "egg",
@@ -2820,7 +2834,8 @@
    "craftable",
    "oxidizable",
    "waterloggable",
-   "placeable"
+   "placeable",
+   "trapdoor"
   ],
   "minecraft:cornflower": [
    "flower",
@@ -2945,7 +2960,8 @@
    "decoration",
    "nether",
    "craftable",
-   "placeable"
+   "placeable",
+   "door"
   ],
   "minecraft:crimson_fence": [
    "wood",
@@ -2953,7 +2969,8 @@
    "decoration",
    "nether",
    "craftable",
-   "placeable"
+   "placeable",
+   "fence"
   ],
   "minecraft:crimson_fence_gate": [
    "wood",
@@ -2961,7 +2978,8 @@
    "decoration",
    "nether",
    "craftable",
-   "placeable"
+   "placeable",
+   "gate"
   ],
   "minecraft:crimson_fungus": [
    "plant",
@@ -2977,7 +2995,8 @@
    "decoration",
    "nether",
    "craftable",
-   "placeable"
+   "placeable",
+   "sign"
   ],
   "minecraft:crimson_hyphae": [
    "wood",
@@ -3031,21 +3050,24 @@
    "decoration",
    "nether",
    "craftable",
-   "placeable"
+   "placeable",
+   "sign"
   ],
   "minecraft:crimson_slab": [
    "wood",
    "block",
    "nether",
    "craftable",
-   "placeable"
+   "placeable",
+   "slab"
   ],
   "minecraft:crimson_stairs": [
    "wood",
    "block",
    "nether",
    "craftable",
-   "placeable"
+   "placeable",
+   "stairs"
   ],
   "minecraft:crimson_stem": [
    "wood",
@@ -3061,7 +3083,8 @@
    "block",
    "nether",
    "craftable",
-   "placeable"
+   "placeable",
+   "trapdoor"
   ],
   "minecraft:crossbow": [
    "weapon",
@@ -3097,7 +3120,8 @@
    "decoration",
    "craftable",
    "oxidizable",
-   "placeable"
+   "placeable",
+   "slab"
   ],
   "minecraft:cut_copper_stairs": [
    "copper",
@@ -3105,7 +3129,8 @@
    "decoration",
    "craftable",
    "oxidizable",
-   "placeable"
+   "placeable",
+   "stairs"
   ],
   "minecraft:cut_red_sandstone": [
    "stone",
@@ -3121,7 +3146,8 @@
    "decoration",
    "desert",
    "craftable",
-   "placeable"
+   "placeable",
+   "slab"
   ],
   "minecraft:cut_sandstone": [
    "stone",
@@ -3137,11 +3163,11 @@
    "decoration",
    "desert",
    "craftable",
-   "placeable"
+   "placeable",
+   "slab"
   ],
   "minecraft:cyan_banner": [
    "banner",
-   "wool",
    "colored",
    "decoration",
    "craftable",
@@ -3149,7 +3175,6 @@
   ],
   "minecraft:cyan_bed": [
    "bed",
-   "wool",
    "wood",
    "colored",
    "craftable",
@@ -3169,7 +3194,8 @@
    "honey",
    "craftable",
    "waterloggable",
-   "placeable"
+   "placeable",
+   "candle"
   ],
   "minecraft:cyan_carpet": [
    "wool",
@@ -3177,7 +3203,8 @@
    "colored",
    "craftable",
    "flammable",
-   "placeable"
+   "placeable",
+   "carpet"
   ],
   "minecraft:cyan_concrete": [
    "concrete",
@@ -3215,7 +3242,8 @@
    "craftable",
    "ghast",
    "sky",
-   "rideable"
+   "rideable",
+   "harness"
   ],
   "minecraft:cyan_shulker_box": [
    "container",
@@ -3308,7 +3336,8 @@
    "block",
    "decoration",
    "craftable",
-   "placeable"
+   "placeable",
+   "door"
   ],
   "minecraft:dark_oak_fence": [
    "wood",
@@ -3316,7 +3345,8 @@
    "decoration",
    "craftable",
    "flammable",
-   "placeable"
+   "placeable",
+   "fence"
   ],
   "minecraft:dark_oak_fence_gate": [
    "wood",
@@ -3324,13 +3354,15 @@
    "decoration",
    "craftable",
    "flammable",
-   "placeable"
+   "placeable",
+   "gate"
   ],
   "minecraft:dark_oak_hanging_sign": [
    "wood",
    "decoration",
    "craftable",
-   "placeable"
+   "placeable",
+   "sign"
   ],
   "minecraft:dark_oak_leaves": [
    "plant",
@@ -3384,28 +3416,32 @@
    "wood",
    "decoration",
    "craftable",
-   "placeable"
+   "placeable",
+   "sign"
   ],
   "minecraft:dark_oak_slab": [
    "wood",
    "block",
    "craftable",
    "flammable",
-   "placeable"
+   "placeable",
+   "slab"
   ],
   "minecraft:dark_oak_stairs": [
    "wood",
    "block",
    "craftable",
    "flammable",
-   "placeable"
+   "placeable",
+   "stairs"
   ],
   "minecraft:dark_oak_trapdoor": [
    "wood",
    "block",
    "craftable",
    "waterloggable",
-   "placeable"
+   "placeable",
+   "trapdoor"
   ],
   "minecraft:dark_oak_wood": [
    "wood",
@@ -3430,7 +3466,8 @@
    "ocean",
    "decoration",
    "craftable",
-   "placeable"
+   "placeable",
+   "slab"
   ],
   "minecraft:dark_prismarine_stairs": [
    "prismarine",
@@ -3438,7 +3475,8 @@
    "ocean",
    "decoration",
    "craftable",
-   "placeable"
+   "placeable",
+   "stairs"
   ],
   "minecraft:daylight_detector": [
    "redstoneComp",
@@ -3601,7 +3639,8 @@
    "block",
    "decoration",
    "craftable",
-   "placeable"
+   "placeable",
+   "slab"
   ],
   "minecraft:deepslate_brick_stairs": [
    "stone",
@@ -3609,7 +3648,8 @@
    "block",
    "decoration",
    "craftable",
-   "placeable"
+   "placeable",
+   "stairs"
   ],
   "minecraft:deepslate_brick_wall": [
    "stone",
@@ -3617,7 +3657,8 @@
    "block",
    "decoration",
    "craftable",
-   "placeable"
+   "placeable",
+   "wall"
   ],
   "minecraft:deepslate_bricks": [
    "stone",
@@ -3708,7 +3749,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "slab"
   ],
   "minecraft:deepslate_tile_stairs": [
    "stone",
@@ -3716,7 +3758,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "stairs"
   ],
   "minecraft:deepslate_tile_wall": [
    "stone",
@@ -3724,7 +3767,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "wall"
   ],
   "minecraft:deepslate_tiles": [
    "stone",
@@ -3879,7 +3923,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "slab"
   ],
   "minecraft:diorite_stairs": [
    "stone",
@@ -3887,7 +3932,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "stairs"
   ],
   "minecraft:diorite_wall": [
    "stone",
@@ -3895,7 +3941,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "wall"
   ],
   "minecraft:dirt": [
    "soil",
@@ -4144,7 +4191,8 @@
    "craftable",
    "placeable",
    "end",
-   "waterloggable"
+   "waterloggable",
+   "slab"
   ],
   "minecraft:end_stone_brick_stairs": [
    "stone",
@@ -4154,7 +4202,8 @@
    "craftable",
    "placeable",
    "end",
-   "waterloggable"
+   "waterloggable",
+   "stairs"
   ],
   "minecraft:end_stone_brick_wall": [
    "stone",
@@ -4164,7 +4213,8 @@
    "craftable",
    "placeable",
    "end",
-   "waterloggable"
+   "waterloggable",
+   "wall"
   ],
   "minecraft:end_stone_bricks": [
    "stone",
@@ -4291,7 +4341,8 @@
    "decoration",
    "oxidizable",
    "craftable",
-   "placeable"
+   "placeable",
+   "door"
   ],
   "minecraft:exposed_copper_golem_statue": [
    "copper",
@@ -4327,7 +4378,8 @@
    "oxidizable",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "trapdoor"
   ],
   "minecraft:exposed_cut_copper": [
    "copper",
@@ -4344,7 +4396,8 @@
    "oxidizable",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "slab"
   ],
   "minecraft:exposed_cut_copper_stairs": [
    "copper",
@@ -4353,7 +4406,8 @@
    "oxidizable",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "stairs"
   ],
   "minecraft:exposed_lightning_rod": [
    "copper",
@@ -4877,7 +4931,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "slab"
   ],
   "minecraft:granite_stairs": [
    "stone",
@@ -4885,14 +4940,16 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "stairs"
   ],
   "minecraft:granite_wall": [
    "stone",
    "block",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "wall"
   ],
   "minecraft:grass_block": [
    "block",
@@ -4913,7 +4970,6 @@
    "earlyGame"
   ],
   "minecraft:gray_banner": [
-   "wool",
    "banner",
    "decoration",
    "colored",
@@ -4921,7 +4977,6 @@
    "placeable"
   ],
   "minecraft:gray_bed": [
-   "wool",
    "bed",
    "colored",
    "craftable",
@@ -4941,7 +4996,8 @@
    "colored",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "candle"
   ],
   "minecraft:gray_carpet": [
    "wool",
@@ -4949,7 +5005,8 @@
    "colored",
    "craftable",
    "placeable",
-   "flammable"
+   "flammable",
+   "carpet"
   ],
   "minecraft:gray_concrete": [
    "concrete",
@@ -5034,7 +5091,6 @@
    "flammable"
   ],
   "minecraft:green_banner": [
-   "wool",
    "banner",
    "decoration",
    "colored",
@@ -5042,7 +5098,6 @@
    "placeable"
   ],
   "minecraft:green_bed": [
-   "wool",
    "bed",
    "colored",
    "craftable",
@@ -5062,7 +5117,8 @@
    "colored",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "candle"
   ],
   "minecraft:green_carpet": [
    "wool",
@@ -5070,7 +5126,8 @@
    "colored",
    "craftable",
    "placeable",
-   "flammable"
+   "flammable",
+   "carpet"
   ],
   "minecraft:green_concrete": [
    "concrete",
@@ -5489,7 +5546,8 @@
    "redstoneComp",
    "craftable",
    "placeable",
-   "village"
+   "village",
+   "door"
   ],
   "minecraft:iron_golem_spawn_egg": [
    "egg",
@@ -5604,7 +5662,8 @@
    "redstoneComp",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "trapdoor"
   ],
   "minecraft:item_frame": [
    "wood",
@@ -5662,7 +5721,8 @@
    "jungle",
    "block",
    "craftable",
-   "placeable"
+   "placeable",
+   "door"
   ],
   "minecraft:jungle_fence": [
    "wood",
@@ -5670,7 +5730,8 @@
    "block",
    "craftable",
    "placeable",
-   "flammable"
+   "flammable",
+   "fence"
   ],
   "minecraft:jungle_fence_gate": [
    "wood",
@@ -5678,7 +5739,8 @@
    "block",
    "craftable",
    "placeable",
-   "flammable"
+   "flammable",
+   "gate"
   ],
   "minecraft:jungle_hanging_sign": [
    "wood",
@@ -5759,7 +5821,8 @@
    "craftable",
    "placeable",
    "flammable",
-   "waterloggable"
+   "waterloggable",
+   "slab"
   ],
   "minecraft:jungle_stairs": [
    "wood",
@@ -5768,7 +5831,8 @@
    "craftable",
    "placeable",
    "flammable",
-   "waterloggable"
+   "waterloggable",
+   "stairs"
   ],
   "minecraft:jungle_trapdoor": [
    "wood",
@@ -5776,7 +5840,8 @@
    "block",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "trapdoor"
   ],
   "minecraft:jungle_wood": [
    "wood",
@@ -5960,7 +6025,6 @@
   ],
   "minecraft:light_blue_banner": [
    "banner",
-   "wool",
    "colored",
    "craftable",
    "decoration",
@@ -5968,7 +6032,6 @@
   ],
   "minecraft:light_blue_bed": [
    "bed",
-   "wool",
    "wood",
    "block",
    "colored",
@@ -5990,7 +6053,8 @@
    "string",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "candle"
   ],
   "minecraft:light_blue_carpet": [
    "wool",
@@ -5998,7 +6062,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "flammable"
+   "flammable",
+   "carpet"
   ],
   "minecraft:light_blue_concrete": [
    "concrete",
@@ -6030,7 +6095,6 @@
   "minecraft:light_blue_harness": [
    "harness",
    "leather",
-   "wool",
    "glass",
    "colored",
    "craftable",
@@ -6080,7 +6144,6 @@
   ],
   "minecraft:light_gray_banner": [
    "banner",
-   "wool",
    "colored",
    "craftable",
    "decoration",
@@ -6088,7 +6151,6 @@
   ],
   "minecraft:light_gray_bed": [
    "bed",
-   "wool",
    "wood",
    "block",
    "colored",
@@ -6110,7 +6172,8 @@
    "string",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "candle"
   ],
   "minecraft:light_gray_carpet": [
    "wool",
@@ -6118,7 +6181,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "flammable"
+   "flammable",
+   "carpet"
   ],
   "minecraft:light_gray_concrete": [
    "concrete",
@@ -6150,7 +6214,6 @@
   "minecraft:light_gray_harness": [
    "harness",
    "leather",
-   "wool",
    "glass",
    "colored",
    "craftable",
@@ -6242,7 +6305,6 @@
   ],
   "minecraft:lime_banner": [
    "banner",
-   "wool",
    "colored",
    "craftable",
    "decoration",
@@ -6250,7 +6312,6 @@
   ],
   "minecraft:lime_bed": [
    "bed",
-   "wool",
    "wood",
    "block",
    "colored",
@@ -6272,7 +6333,8 @@
    "string",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "candle"
   ],
   "minecraft:lime_carpet": [
    "wool",
@@ -6280,7 +6342,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "flammable"
+   "flammable",
+   "carpet"
   ],
   "minecraft:lime_concrete": [
    "concrete",
@@ -6312,7 +6375,6 @@
   "minecraft:lime_harness": [
    "harness",
    "leather",
-   "wool",
    "glass",
    "colored",
    "craftable",
@@ -6401,7 +6463,6 @@
   ],
   "minecraft:magenta_banner": [
    "banner",
-   "wool",
    "colored",
    "craftable",
    "decoration",
@@ -6409,7 +6470,6 @@
   ],
   "minecraft:magenta_bed": [
    "bed",
-   "wool",
    "wood",
    "block",
    "colored",
@@ -6431,7 +6491,8 @@
    "string",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "candle"
   ],
   "minecraft:magenta_carpet": [
    "wool",
@@ -6439,7 +6500,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "flammable"
+   "flammable",
+   "carpet"
   ],
   "minecraft:magenta_concrete": [
    "concrete",
@@ -6471,7 +6533,6 @@
   "minecraft:magenta_harness": [
    "harness",
    "leather",
-   "wool",
    "glass",
    "colored",
    "craftable",
@@ -6566,7 +6627,8 @@
    "block",
    "craftable",
    "decoration",
-   "swamp"
+   "swamp",
+   "door"
   ],
   "minecraft:mangrove_fence": [
    "wood",
@@ -6575,7 +6637,8 @@
    "decoration",
    "swamp",
    "flammable",
-   "waterloggable"
+   "waterloggable",
+   "fence"
   ],
   "minecraft:mangrove_fence_gate": [
    "wood",
@@ -6584,7 +6647,8 @@
    "decoration",
    "swamp",
    "flammable",
-   "waterloggable"
+   "waterloggable",
+   "gate"
   ],
   "minecraft:mangrove_hanging_sign": [
    "wood",
@@ -6592,7 +6656,8 @@
    "craftable",
    "placeable",
    "swamp",
-   "waterloggable"
+   "waterloggable",
+   "sign"
   ],
   "minecraft:mangrove_leaves": [
    "plant",
@@ -6658,7 +6723,8 @@
    "craftable",
    "placeable",
    "swamp",
-   "waterloggable"
+   "waterloggable",
+   "sign"
   ],
   "minecraft:mangrove_slab": [
    "wood",
@@ -6666,7 +6732,8 @@
    "craftable",
    "decoration",
    "swamp",
-   "waterloggable"
+   "waterloggable",
+   "slab"
   ],
   "minecraft:mangrove_stairs": [
    "wood",
@@ -6674,7 +6741,8 @@
    "craftable",
    "decoration",
    "swamp",
-   "waterloggable"
+   "waterloggable",
+   "stairs"
   ],
   "minecraft:mangrove_trapdoor": [
    "wood",
@@ -6682,7 +6750,8 @@
    "craftable",
    "decoration",
    "swamp",
-   "waterloggable"
+   "waterloggable",
+   "trapdoor"
   ],
   "minecraft:mangrove_wood": [
    "wood",
@@ -6761,7 +6830,6 @@
   ],
   "minecraft:mojang_banner_pattern": [
    "bannerPattern",
-   "banner",
    "paper",
    "craftable",
    "rare"
@@ -6788,7 +6856,8 @@
    "craftable",
    "renewable",
    "compostable",
-   "placeable"
+   "placeable",
+   "carpet"
   ],
   "minecraft:mossy_cobblestone": [
    "stone",
@@ -6803,21 +6872,24 @@
    "block",
    "craftable",
    "decoration",
-   "waterloggable"
+   "waterloggable",
+   "slab"
   ],
   "minecraft:mossy_cobblestone_stairs": [
    "stone",
    "block",
    "craftable",
    "decoration",
-   "waterloggable"
+   "waterloggable",
+   "stairs"
   ],
   "minecraft:mossy_cobblestone_wall": [
    "stone",
    "block",
    "craftable",
    "decoration",
-   "waterloggable"
+   "waterloggable",
+   "wall"
   ],
   "minecraft:mossy_stone_brick_slab": [
    "stone",
@@ -6825,7 +6897,8 @@
    "block",
    "craftable",
    "decoration",
-   "waterloggable"
+   "waterloggable",
+   "slab"
   ],
   "minecraft:mossy_stone_brick_stairs": [
    "stone",
@@ -6833,7 +6906,8 @@
    "block",
    "craftable",
    "decoration",
-   "waterloggable"
+   "waterloggable",
+   "stairs"
   ],
   "minecraft:mossy_stone_brick_wall": [
    "stone",
@@ -6841,7 +6915,8 @@
    "block",
    "craftable",
    "decoration",
-   "waterloggable"
+   "waterloggable",
+   "wall"
   ],
   "minecraft:mossy_stone_bricks": [
    "stone",
@@ -6870,7 +6945,8 @@
    "craftable",
    "decoration",
    "swamp",
-   "waterloggable"
+   "waterloggable",
+   "slab"
   ],
   "minecraft:mud_brick_stairs": [
    "brick",
@@ -6878,7 +6954,8 @@
    "craftable",
    "decoration",
    "swamp",
-   "waterloggable"
+   "waterloggable",
+   "stairs"
   ],
   "minecraft:mud_brick_wall": [
    "brick",
@@ -6886,7 +6963,8 @@
    "craftable",
    "decoration",
    "swamp",
-   "waterloggable"
+   "waterloggable",
+   "wall"
   ],
   "minecraft:mud_bricks": [
    "brick",
@@ -7629,7 +7707,6 @@
   ],
   "minecraft:orange_banner": [
    "banner",
-   "wool",
    "colored",
    "craftable",
    "placeable",
@@ -7638,7 +7715,6 @@
   ],
   "minecraft:orange_bed": [
    "bed",
-   "wool",
    "colored",
    "craftable",
    "placeable",
@@ -7660,7 +7736,8 @@
    "placeable",
    "honey",
    "string",
-   "earlyGame"
+   "earlyGame",
+   "candle"
   ],
   "minecraft:orange_carpet": [
    "carpet",
@@ -7710,7 +7787,8 @@
    "wearable",
    "colored",
    "craftable",
-   "sky"
+   "sky",
+   "harness"
   ],
   "minecraft:orange_shulker_box": [
    "container",
@@ -8211,7 +8289,6 @@
    "creativeOnly"
   ],
   "minecraft:pink_banner": [
-   "wool",
    "banner",
    "decoration",
    "colored",
@@ -8220,7 +8297,6 @@
    "flammable"
   ],
   "minecraft:pink_bed": [
-   "wool",
    "wood",
    "bed",
    "colored",
@@ -8243,7 +8319,8 @@
    "colored",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "candle"
   ],
   "minecraft:pink_carpet": [
    "wool",
@@ -8251,7 +8328,8 @@
    "colored",
    "craftable",
    "placeable",
-   "flammable"
+   "flammable",
+   "carpet"
   ],
   "minecraft:pink_concrete": [
    "concrete",
@@ -8286,12 +8364,12 @@
   "minecraft:pink_harness": [
    "leather",
    "glass",
-   "wool",
    "colored",
    "craftable",
    "ghast",
    "rideable",
-   "sky"
+   "sky",
+   "harness"
   ],
   "minecraft:pink_petals": [
    "plant",
@@ -8896,7 +8974,6 @@
    "earlyGame"
   ],
   "minecraft:purple_banner": [
-   "wool",
    "banner",
    "decoration",
    "colored",
@@ -8905,7 +8982,6 @@
    "flammable"
   ],
   "minecraft:purple_bed": [
-   "wool",
    "wood",
    "bed",
    "colored",
@@ -8928,7 +9004,8 @@
    "colored",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "candle"
   ],
   "minecraft:purple_carpet": [
    "wool",
@@ -8936,7 +9013,8 @@
    "colored",
    "craftable",
    "placeable",
-   "flammable"
+   "flammable",
+   "carpet"
   ],
   "minecraft:purple_concrete": [
    "concrete",
@@ -8971,12 +9049,12 @@
   "minecraft:purple_harness": [
    "leather",
    "glass",
-   "wool",
    "colored",
    "craftable",
    "ghast",
    "rideable",
-   "sky"
+   "sky",
+   "harness"
   ],
   "minecraft:purple_shulker_box": [
    "container",
@@ -9228,7 +9306,6 @@
    "lateGame"
   ],
   "minecraft:red_banner": [
-   "wool",
    "banner",
    "decoration",
    "colored",
@@ -9237,7 +9314,6 @@
    "flammable"
   ],
   "minecraft:red_bed": [
-   "wool",
    "wood",
    "bed",
    "colored",
@@ -9260,7 +9336,8 @@
    "colored",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "candle"
   ],
   "minecraft:red_carpet": [
    "wool",
@@ -9268,7 +9345,8 @@
    "colored",
    "craftable",
    "placeable",
-   "flammable"
+   "flammable",
+   "carpet"
   ],
   "minecraft:red_concrete": [
    "concrete",
@@ -9303,12 +9381,12 @@
   "minecraft:red_harness": [
    "leather",
    "glass",
-   "wool",
    "colored",
    "craftable",
    "ghast",
    "rideable",
-   "sky"
+   "sky",
+   "harness"
   ],
   "minecraft:red_mushroom": [
    "mushroom",
@@ -9924,7 +10002,6 @@
   ],
   "minecraft:skull_banner_pattern": [
    "bannerPattern",
-   "banner",
    "craftable",
    "nether",
    "wither",
@@ -10290,7 +10367,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "earlyGame"
+   "earlyGame",
+   "door"
   ],
   "minecraft:spruce_fence": [
    "wood",
@@ -10299,7 +10377,8 @@
    "craftable",
    "placeable",
    "flammable",
-   "waterloggable"
+   "waterloggable",
+   "fence"
   ],
   "minecraft:spruce_fence_gate": [
    "wood",
@@ -10307,14 +10386,16 @@
    "decoration",
    "craftable",
    "placeable",
-   "flammable"
+   "flammable",
+   "gate"
   ],
   "minecraft:spruce_hanging_sign": [
    "wood",
    "decoration",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "sign"
   ],
   "minecraft:spruce_leaves": [
    "plant",
@@ -10372,7 +10453,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "sign"
   ],
   "minecraft:spruce_slab": [
    "wood",
@@ -10398,7 +10480,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "waterloggable"
+   "waterloggable",
+   "trapdoor"
   ],
   "minecraft:spruce_wood": [
    "wood",
@@ -10556,7 +10639,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "stairs"
   ],
   "minecraft:stone_sword": [
    "stone",
@@ -11161,7 +11245,8 @@
    "placeable",
    "waterloggable",
    "decoration",
-   "earlyGame"
+   "earlyGame",
+   "slab"
   ],
   "minecraft:tuff_brick_stairs": [
    "stone",
@@ -11171,7 +11256,8 @@
    "placeable",
    "waterloggable",
    "decoration",
-   "earlyGame"
+   "earlyGame",
+   "stairs"
   ],
   "minecraft:tuff_brick_wall": [
    "stone",
@@ -11181,7 +11267,8 @@
    "placeable",
    "waterloggable",
    "decoration",
-   "earlyGame"
+   "earlyGame",
+   "wall"
   ],
   "minecraft:tuff_bricks": [
    "stone",
@@ -11198,7 +11285,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "slab"
   ],
   "minecraft:tuff_stairs": [
    "stone",
@@ -11206,7 +11294,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "stairs"
   ],
   "minecraft:tuff_wall": [
    "stone",
@@ -11214,7 +11303,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "wall"
   ],
   "minecraft:turtle_egg": [
    "egg",
@@ -11348,7 +11438,8 @@
    "placeable",
    "nether",
    "renewable",
-   "lateGame"
+   "lateGame",
+   "door"
   ],
   "minecraft:warped_fence": [
    "wood",
@@ -11358,7 +11449,8 @@
    "placeable",
    "waterloggable",
    "nether",
-   "lateGame"
+   "lateGame",
+   "fence"
   ],
   "minecraft:warped_fence_gate": [
    "wood",
@@ -11367,7 +11459,8 @@
    "placeable",
    "nether",
    "renewable",
-   "lateGame"
+   "lateGame",
+   "gate"
   ],
   "minecraft:warped_fungus": [
    "plant",
@@ -11396,7 +11489,8 @@
    "placeable",
    "waterloggable",
    "nether",
-   "lateGame"
+   "lateGame",
+   "sign"
   ],
   "minecraft:warped_hyphae": [
    "wood",
@@ -11461,7 +11555,8 @@
    "placeable",
    "waterloggable",
    "nether",
-   "lateGame"
+   "lateGame",
+   "sign"
   ],
   "minecraft:warped_slab": [
    "wood",
@@ -11470,7 +11565,8 @@
    "placeable",
    "waterloggable",
    "nether",
-   "lateGame"
+   "lateGame",
+   "slab"
   ],
   "minecraft:warped_stairs": [
    "wood",
@@ -11479,7 +11575,8 @@
    "placeable",
    "waterloggable",
    "nether",
-   "lateGame"
+   "lateGame",
+   "stairs"
   ],
   "minecraft:warped_stem": [
    "wood",
@@ -11498,7 +11595,8 @@
    "placeable",
    "waterloggable",
    "nether",
-   "lateGame"
+   "lateGame",
+   "trapdoor"
   ],
   "minecraft:warped_wart_block": [
    "block",
@@ -11570,7 +11668,8 @@
    "block",
    "craftable",
    "placeable",
-   "earlyGame"
+   "earlyGame",
+   "door"
   ],
   "minecraft:waxed_copper_golem_statue": [
    "copper",
@@ -11604,7 +11703,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "trapdoor"
   ],
   "minecraft:waxed_cut_copper": [
    "copper",
@@ -11620,7 +11720,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "slab"
   ],
   "minecraft:waxed_cut_copper_stairs": [
    "copper",
@@ -11628,7 +11729,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "stairs"
   ],
   "minecraft:waxed_exposed_chiseled_copper": [
    "copper",
@@ -11685,7 +11787,8 @@
    "block",
    "craftable",
    "placeable",
-   "earlyGame"
+   "earlyGame",
+   "door"
   ],
   "minecraft:waxed_exposed_copper_golem_statue": [
    "copper",
@@ -11719,7 +11822,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "trapdoor"
   ],
   "minecraft:waxed_exposed_cut_copper": [
    "copper",
@@ -11735,7 +11839,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "slab"
   ],
   "minecraft:waxed_exposed_cut_copper_stairs": [
    "copper",
@@ -11743,7 +11848,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "earlyGame"
+   "earlyGame",
+   "stairs"
   ],
   "minecraft:waxed_exposed_lightning_rod": [
    "copper",
@@ -11868,7 +11974,8 @@
    "placeable",
    "waterloggable",
    "oxidized",
-   "waxed"
+   "waxed",
+   "trapdoor"
   ],
   "minecraft:waxed_oxidized_cut_copper": [
    "copper",
@@ -12015,7 +12122,8 @@
    "placeable",
    "waterloggable",
    "oxidized",
-   "waxed"
+   "waxed",
+   "trapdoor"
   ],
   "minecraft:waxed_weathered_cut_copper": [
    "copper",
@@ -12158,7 +12266,8 @@
    "placeable",
    "waterloggable",
    "renewable",
-   "oxidized"
+   "oxidized",
+   "trapdoor"
   ],
   "minecraft:weathered_cut_copper": [
    "copper",
@@ -12231,7 +12340,6 @@
    "compostable"
   ],
   "minecraft:white_banner": [
-   "wool",
    "banner",
    "decoration",
    "earlyGame",
@@ -12240,7 +12348,6 @@
    "colored"
   ],
   "minecraft:white_bed": [
-   "wool",
    "bed",
    "block",
    "earlyGame",
@@ -12262,7 +12369,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "colored"
+   "colored",
+   "candle"
   ],
   "minecraft:white_carpet": [
    "wool",
@@ -12272,7 +12380,8 @@
    "craftable",
    "placeable",
    "flammable",
-   "colored"
+   "colored",
+   "carpet"
   ],
   "minecraft:white_concrete": [
    "concrete",
@@ -12310,7 +12419,8 @@
    "lateGame",
    "craftable",
    "ghast",
-   "colored"
+   "colored",
+   "harness"
   ],
   "minecraft:white_shulker_box": [
    "container",
@@ -12512,7 +12622,6 @@
    "unique"
   ],
   "minecraft:yellow_banner": [
-   "wool",
    "banner",
    "decoration",
    "earlyGame",
@@ -12521,7 +12630,6 @@
    "colored"
   ],
   "minecraft:yellow_bed": [
-   "wool",
    "bed",
    "block",
    "earlyGame",
@@ -12543,7 +12651,8 @@
    "craftable",
    "placeable",
    "waterloggable",
-   "colored"
+   "colored",
+   "candle"
   ],
   "minecraft:yellow_carpet": [
    "wool",
@@ -12553,7 +12662,8 @@
    "craftable",
    "placeable",
    "flammable",
-   "colored"
+   "colored",
+   "carpet"
   ],
   "minecraft:yellow_concrete": [
    "concrete",
@@ -12591,7 +12701,8 @@
    "lateGame",
    "craftable",
    "ghast",
-   "colored"
+   "colored",
+   "harness"
   ],
   "minecraft:yellow_shulker_box": [
    "container",
@@ -12712,7 +12823,8 @@
    "craftable",
    "placeable",
    "colored",
-   "modded"
+   "modded",
+   "bed"
   ],
   "travelersbackpack:blank_upgrade": [
    "upgrade",
@@ -12739,7 +12851,8 @@
    "craftable",
    "placeable",
    "colored",
-   "modded"
+   "modded",
+   "bed"
   ],
   "travelersbackpack:bookshelf": [
    "container",
@@ -12754,7 +12867,8 @@
    "craftable",
    "placeable",
    "colored",
-   "modded"
+   "modded",
+   "bed"
   ],
   "travelersbackpack:cactus": [
    "container",
@@ -12811,7 +12925,8 @@
    "craftable",
    "placeable",
    "colored",
-   "modded"
+   "modded",
+   "bed"
   ],
   "travelersbackpack:diamond": [
    "container",
@@ -12905,7 +13020,8 @@
    "craftable",
    "placeable",
    "colored",
-   "modded"
+   "modded",
+   "bed"
   ],
   "travelersbackpack:green_sleeping_bag": [
    "wool",
@@ -12913,7 +13029,8 @@
    "craftable",
    "placeable",
    "colored",
-   "modded"
+   "modded",
+   "bed"
   ],
   "travelersbackpack:hay": [
    "container",
@@ -12992,7 +13109,8 @@
    "colored",
    "placeable",
    "modded",
-   "craftable"
+   "craftable",
+   "bed"
   ],
   "travelersbackpack:light_gray_sleeping_bag": [
    "wool",
@@ -13000,7 +13118,8 @@
    "colored",
    "placeable",
    "modded",
-   "craftable"
+   "craftable",
+   "bed"
   ],
   "travelersbackpack:lime_sleeping_bag": [
    "wool",
@@ -13008,7 +13127,8 @@
    "colored",
    "placeable",
    "modded",
-   "craftable"
+   "craftable",
+   "bed"
   ],
   "travelersbackpack:magenta_sleeping_bag": [
    "wool",
@@ -13016,7 +13136,8 @@
    "colored",
    "placeable",
    "modded",
-   "craftable"
+   "craftable",
+   "bed"
   ],
   "travelersbackpack:magma_cube": [
    "container",
@@ -13079,7 +13200,8 @@
    "colored",
    "placeable",
    "modded",
-   "craftable"
+   "craftable",
+   "bed"
   ],
   "travelersbackpack:pickup_upgrade": [
    "upgrade",
@@ -13101,7 +13223,8 @@
    "colored",
    "placeable",
    "modded",
-   "craftable"
+   "craftable",
+   "bed"
   ],
   "travelersbackpack:pumpkin": [
    "container",
@@ -13118,7 +13241,8 @@
    "colored",
    "placeable",
    "modded",
-   "craftable"
+   "craftable",
+   "bed"
   ],
   "travelersbackpack:quartz": [
    "quartz",
@@ -13135,7 +13259,8 @@
    "colored",
    "placeable",
    "modded",
-   "craftable"
+   "craftable",
+   "bed"
   ],
   "travelersbackpack:redstone": [
    "redstone",
@@ -13260,7 +13385,8 @@
    "colored",
    "placeable",
    "modded",
-   "craftable"
+   "craftable",
+   "bed"
   ],
   "travelersbackpack:wither": [
    "container",
@@ -13286,7 +13412,8 @@
    "colored",
    "placeable",
    "modded",
-   "craftable"
+   "craftable",
+   "bed"
   ]
  }
 }
