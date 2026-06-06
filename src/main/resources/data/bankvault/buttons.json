@@ -1,0 +1,11 @@
+{
+  "buttonSize": 20,
+  "rows": [
+    ["wood", "stone", "copper"],
+    ["fabric", "colored", "lights"],
+    ["containers", "nature", "nether_end"],
+    ["ocean", "redstone", "gear"],
+    ["food", "enchanting", "potions"],
+    ["treasure", "materials", "uncategorized"]
+  ]
+}

@@ -1,109 +1,109 @@
 {
   "tabs": [
     {
-      "id": "wood",
+      "id": "wood", "icon": "minecraft:oak_log",
       "name": "Wood",
       "glyph": "\u25a4",
       "order": 1
     },
     {
-      "id": "stone",
+      "id": "stone", "icon": "minecraft:stone_bricks",
       "name": "Stone & Masonry",
       "glyph": "\u25a6",
       "order": 2
     },
     {
-      "id": "copper",
+      "id": "copper", "icon": "minecraft:copper_block",
       "name": "Copper",
       "glyph": "\u2b22",
       "order": 3
     },
     {
-      "id": "fabric",
+      "id": "fabric", "icon": "minecraft:white_wool",
       "name": "Fabric & Color",
       "glyph": "\u273f",
       "order": 4
     },
     {
-      "id": "colored",
+      "id": "colored", "icon": "minecraft:lime_concrete",
       "name": "Colored Blocks",
       "glyph": "\u25a9",
       "order": 5
     },
     {
-      "id": "lights",
+      "id": "lights", "icon": "minecraft:lantern",
       "name": "Lights",
       "glyph": "\u263c",
       "order": 6
     },
     {
-      "id": "containers",
+      "id": "containers", "icon": "minecraft:chest",
       "name": "Containers",
       "glyph": "\u2b1a",
       "order": 7
     },
     {
-      "id": "nature",
+      "id": "nature", "icon": "minecraft:oak_sapling",
       "name": "Nature & Plants",
       "glyph": "\u2698",
       "order": 8
     },
     {
-      "id": "nether_end",
+      "id": "nether_end", "icon": "minecraft:netherrack",
       "name": "Nether & End",
       "glyph": "\u2622",
       "order": 9
     },
     {
-      "id": "ocean",
+      "id": "ocean", "icon": "minecraft:prismarine",
       "name": "Ocean & Ice",
       "glyph": "\u2248",
       "order": 10
     },
     {
-      "id": "redstone",
+      "id": "redstone", "icon": "minecraft:redstone",
       "name": "Redstone & Transport",
       "glyph": "\u25c9",
       "order": 11
     },
     {
-      "id": "gear",
+      "id": "gear", "icon": "minecraft:diamond_sword",
       "name": "Gear & Combat",
       "glyph": "\u2694",
       "order": 12
     },
     {
-      "id": "food",
+      "id": "food", "icon": "minecraft:bread",
       "name": "Food & Farming",
       "glyph": "\u2726",
       "order": 13
     },
     {
-      "id": "enchanting",
+      "id": "enchanting", "icon": "minecraft:enchanted_book",
       "name": "Enchanting & Trims",
       "glyph": "\u2756",
       "order": 14
     },
     {
-      "id": "potions",
+      "id": "potions", "icon": "minecraft:brewing_stand",
       "name": "Potions",
       "glyph": "\u2697",
       "order": 15
     },
     {
-      "id": "treasure",
+      "id": "treasure", "icon": "minecraft:diamond",
       "name": "Magic & Treasure",
       "glyph": "\u2666",
       "order": 16
     },
     {
-      "id": "materials",
+      "id": "materials", "icon": "minecraft:iron_ingot",
       "name": "Materials & Utility",
       "glyph": "\u2736",
       "order": 17
     },
     {
-      "id": "uncategorized",
+      "id": "uncategorized", "icon": "minecraft:barrier",
       "name": "Uncategorized",
       "glyph": "\u25cc",
       "order": 18

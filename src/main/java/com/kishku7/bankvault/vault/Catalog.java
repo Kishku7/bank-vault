@@ -27,7 +27,7 @@ import java.util.Set;
  */
 public final class Catalog {
 
-    public record Tab(String id, String name, String glyph, int order) {}
+    public record Tab(String id, String name, String glyph, int order, String icon) {}
 
     private static final Gson GSON = new Gson();
     private static final List<String> DEFAULT = List.of("uncategorized");
@@ -39,6 +39,7 @@ public final class Catalog {
     private static Map<String, String[]> sortLists;
     private static Map<String, Map<String, List<String>>> tabSort;
     private static Map<String, Map<String, Map<String, Integer>>> tabOrder; // tab -> mode -> itemId -> rank
+    private static Set<String> tabsWithItems;
 
     private Catalog() {}
 
@@ -48,7 +49,7 @@ public final class Catalog {
         Path dir = FabricLoader.getInstance().getConfigDir().resolve("bankvault");
         try { Files.createDirectories(dir); }
         catch (Exception e) { BankVault.LOGGER.error("[Bank Vault] config dir create failed", e); return; }
-        for (String f : List.of("categories.json", "sort_family.json", "sort_type.json")) {
+        for (String f : List.of("categories.json", "sort_family.json", "sort_type.json", "buttons.json")) {
             Path dst = dir.resolve(f);
             if (Files.exists(dst)) continue;
             try (InputStream in = Catalog.class.getResourceAsStream("/data/bankvault/" + f)) {
@@ -74,6 +75,7 @@ public final class Catalog {
         if (Files.exists(cfg)) {
             try (Reader r = Files.newBufferedReader(cfg, StandardCharsets.UTF_8)) {
                 parse(GSON.fromJson(r, JsonObject.class));
+                fillMissingIcons();
                 BankVault.LOGGER.info("[Bank Vault] catalog from config: {} tabs, {} items", tabs.size(), itemTabs.size());
                 loadOrderFile("family");
                 loadOrderFile("type");
@@ -126,7 +128,8 @@ public final class Catalog {
         root.getAsJsonArray("tabs").forEach(e -> {
             JsonObject t = e.getAsJsonObject();
             tabs.add(new Tab(t.get("id").getAsString(), t.get("name").getAsString(),
-                    t.get("glyph").getAsString(), t.get("order").getAsInt()));
+                    t.get("glyph").getAsString(), t.get("order").getAsInt(),
+                    t.has("icon") ? t.get("icon").getAsString() : ""));
         });
         tabs.sort(java.util.Comparator.comparingInt(Tab::order));
         for (Map.Entry<String, JsonElement> e : root.getAsJsonObject("items").entrySet()) {
@@ -168,13 +171,59 @@ public final class Catalog {
             }
     }
 
+    /** v1.2: a config-dir categories.json written before v1.2 has no "icon" fields. Backfill
+     *  any missing icon from the bundled defaults (matched by tab id) so buttons never render
+     *  blank on upgraded installs. User-set icons are never overwritten. */
+    private static void fillMissingIcons() {
+        if (tabs.stream().noneMatch(t -> t.icon() == null || t.icon().isEmpty())) return;
+        Map<String, String> bundled = new HashMap<>();
+        try (InputStream in = Catalog.class.getResourceAsStream("/data/bankvault/categories.json")) {
+            if (in == null) return;
+            JsonObject root = GSON.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), JsonObject.class);
+            root.getAsJsonArray("tabs").forEach(e -> {
+                JsonObject t = e.getAsJsonObject();
+                if (t.has("icon")) bundled.put(t.get("id").getAsString(), t.get("icon").getAsString());
+            });
+        } catch (Exception e) {
+            BankVault.LOGGER.error("[Bank Vault] bundled icon backfill failed", e);
+            return;
+        }
+        int filled = 0;
+        for (int i = 0; i < tabs.size(); i++) {
+            Tab t = tabs.get(i);
+            if ((t.icon() == null || t.icon().isEmpty()) && bundled.containsKey(t.id())) {
+                tabs.set(i, new Tab(t.id(), t.name(), t.glyph(), t.order(), bundled.get(t.id())));
+                filled++;
+            }
+        }
+        if (filled > 0) BankVault.LOGGER.info("[Bank Vault] backfilled {} tab icons from bundled defaults", filled);
+    }
+
     /** Drop all cached catalog/sort data and re-read the JSON files (config dir first). */
     public static synchronized void reload() {
-        tabs = null; itemTabs = null; colors = null; sortLists = null; tabSort = null; tabOrder = null;
+        tabs = null; itemTabs = null; colors = null; sortLists = null; tabSort = null; tabOrder = null; tabsWithItems = null;
         ensureLoaded();
     }
 
     public static List<Tab> tabs() { ensureLoaded(); return tabs; }
+
+    /** Tab by id, or null when the id is not configured. */
+    public static Tab tab(String id) {
+        ensureLoaded();
+        for (Tab t : tabs) if (t.id().equals(id)) return t;
+        return null;
+    }
+
+    /** True when at least one catalog item is assigned to this tab (smart-sort records exist). */
+    public static synchronized boolean hasItems(String tabId) {
+        ensureLoaded();
+        if (tabsWithItems == null) {
+            Set<String> s = new java.util.HashSet<>();
+            for (List<String> l : itemTabs.values()) s.addAll(l);
+            tabsWithItems = s;
+        }
+        return tabsWithItems.contains(tabId);
+    }
 
     public static List<String> tabsFor(String itemId) { ensureLoaded(); return itemTabs.getOrDefault(itemId, DEFAULT); }
 

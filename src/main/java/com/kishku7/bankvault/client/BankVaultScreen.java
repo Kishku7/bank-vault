@@ -17,6 +17,7 @@ import net.minecraft.client.input.CharacterEvent;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ContainerInput;
@@ -61,14 +62,18 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private String selectedTab = null; // resolved to the first configured tab on init
     private SortMode sortMode = SortMode.SMART_FAMILY;
     private boolean countDesc = true;
-    private int scrollRow = 0, tabScroll = 0;
+    private int scrollRow = 0, btnScroll = 0;
     private final List<Entry> view = new ArrayList<>();
     private final Map<String, String> nameCache = new HashMap<>();
 
     // layout (absolute unless noted Rel = panel-relative for real slots)
     private int px, py, pw, ph;
     private int railX, railW, railTop, railBottom;
-    private int tabTop, tabBottom, tabRowH = 20, visibleTabs;
+    private int btnTop, btnBottom, btnSize = 20, btnGap = 2;
+    private record BtnCell(Catalog.Tab tab, int x, int y) {}
+    private final List<BtnCell> btnCells = new ArrayList<>();
+    private int btnRowsTotal, btnVisRows;
+    private final Map<String, ItemStack> iconCache = new HashMap<>();
     private int gridX, gridY, gridBottom, slot = 18, cols, rows;
     private int sbarX, sbarTop, sbarBottom;
     private int rpX, rpY;                       // right panel (native inventory) top-left, absolute
@@ -116,6 +121,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         this.upgradeCount = data.upgradeCount();
         this.capacity = data.capacity();
         this.permLevel = data.permLevel();
+        if (railW > 0) recomputeButtons();
         rebuild();
     }
 
@@ -193,7 +199,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         // Height: just enough to fit the tab rail (or the right panel cluster), capped to the screen.
         if (selectedTab == null || Catalog.tabs().stream().noneMatch(t -> t.id().equals(selectedTab)))
             selectedTab = Catalog.tabs().isEmpty() ? "uncategorized" : Catalog.tabs().get(0).id();
-        int tabsNeeded = Catalog.tabs().size() * 20 + 16;
+        int tabsNeeded = ButtonLayout.rows().size() * (ButtonLayout.buttonSize() + 2) + 16;
         int tRowsPre = (this.menu.trinketSlotCount + 8) / 9;
         int clusterNeeded = RP_H + 6 + 18 + 14 + (tRowsPre > 0 ? tRowsPre * 18 + 4 : 0) + 81;   // +81: Sharing corner (v1.1)
         int gridNeeded = sbH + 6 + 6 * 18 + 6 + sbH;             // sort row + 6 grid rows min + search row
@@ -233,13 +239,12 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
 
         // --- full-height left rail ---
         railX = px + 8;
-        railW = Math.max(110, Math.min(160, pw - 439));
+        btnSize = ButtonLayout.buttonSize();
+        int maxCols = 1;
+        for (List<String> r : ButtonLayout.rows()) maxCols = Math.max(maxCols, r.size());
+        railW = Math.max(30, Math.min(160, maxCols * (btnSize + btnGap) - btnGap + 10));
         railTop = contentTop; railBottom = py + ph - 8;
-        tabTop = railTop + 4; tabBottom = railBottom - 4;
-        int tabCount = Math.max(1, Catalog.tabs().size());
-        int railInner = tabBottom - tabTop;
-        tabRowH = Math.max(16, Math.min(28, railInner / tabCount));
-        visibleTabs = Math.max(1, railInner / tabRowH);
+        btnTop = railTop + 5; btnBottom = railBottom - 5;
 
         // --- middle column: sort row on top, grid stretching down, search bar at the bottom ---
         gridX = railX + railW + 8;
@@ -267,7 +272,9 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         searchBoxW = Math.max(60, goX - 4 - searchBoxX);
 
         positionRealSlots();
-        clampTabScroll();
+        recomputeButtons();
+        if (!btnCells.isEmpty() && btnCells.stream().noneMatch(b -> b.tab().id().equals(selectedTab)))
+            selectedTab = btnCells.get(0).tab().id();
         rebuild();
     }
 
@@ -322,7 +329,58 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         }
     }
 
-    private void clampTabScroll() { tabScroll = Math.max(0, Math.min(tabScroll, Math.max(0, Catalog.tabs().size() - visibleTabs))); }
+    private void clampBtnScroll() { btnScroll = Math.max(0, Math.min(btnScroll, Math.max(0, btnRowsTotal - btnVisRows))); }
+
+    /** Build the category-button cells from the layout rows (v1.2: buttons instead of tabs).
+     *  A button is hidden when its category has no smart-sort records -- except Uncategorized,
+     *  which shows only while the vault actually holds uncategorized items. */
+    private void recomputeButtons() {
+        btnCells.clear();
+        int step = btnSize + btnGap;
+        int y = 0, rowsUsed = 0;
+        for (List<String> row : ButtonLayout.rows()) {
+            int col = 0;
+            for (String id : row) {
+                Catalog.Tab t = Catalog.tab(id);
+                if (t == null || !buttonVisible(t.id())) continue;
+                btnCells.add(new BtnCell(t, railX + 5 + col * step, y));
+                col++;
+            }
+            if (col > 0) { y += step; rowsUsed++; }
+        }
+        btnRowsTotal = rowsUsed;
+        btnVisRows = Math.max(1, (btnBottom - btnTop) / step);
+        clampBtnScroll();
+    }
+
+    private boolean buttonVisible(String tabId) {
+        if (Catalog.hasItems(tabId)) return true;
+        if (!tabId.equals("uncategorized")) return false;
+        for (Entry e : entries) if (Catalog.tabsFor(idOf(e)).contains("uncategorized")) return true;
+        return false;
+    }
+
+    private BtnCell buttonAt(int mx, int my) {
+        if (my < btnTop || my >= btnBottom) return null;
+        int step = btnSize + btnGap;
+        for (BtnCell bc : btnCells) {
+            int by = btnTop + bc.y() - btnScroll * step;
+            if (inside(mx, my, bc.x(), by, btnSize, btnSize)) return bc;
+        }
+        return null;
+    }
+
+    private ItemStack iconFor(Catalog.Tab t) {
+        return iconCache.computeIfAbsent(t.id(), k -> {
+            String s = t.icon();
+            if (s != null && !s.isEmpty()) {
+                Identifier iid = Identifier.tryParse(s);
+                if (iid != null && BuiltInRegistries.ITEM.containsKey(iid))
+                    return new ItemStack(BuiltInRegistries.ITEM.getValue(iid));
+            }
+            return new ItemStack(Items.CHEST);
+        });
+    }
 
     private int totalRows() { return (int) Math.ceil(view.size() / (double) Math.max(1, cols)); }
     private int maxRow() { return Math.max(0, totalRows() - rows); }
@@ -444,6 +502,9 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         this.extractTooltip(g, mouseX, mouseY);
         Entry h = gridItemAt(mouseX, mouseY);
         if (h != null) g.setTooltipForNextFrame(this.font, h.stack(), mouseX, mouseY);
+        BtnCell bt = buttonAt(mouseX, mouseY);
+        if (bt != null) g.setTooltipForNextFrame(this.font,
+                Component.literal(bt.tab().name() + " \u2014 " + abbrev(tabTotal(bt.tab().id()))), mouseX, mouseY);
     }
 
     private void drawCustom(GuiGraphicsExtractor g, int mouseX, int mouseY) {
@@ -469,25 +530,27 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         g.fill(closeX, closeY, closeX + closeSize, closeY + closeSize, closeHov ? CLOSE_HOV : CLOSE);
         g.text(this.font, "✕", closeX + (closeSize - this.font.width("✕")) / 2, closeY + 3, TITLE);
 
-        // left rail + tabs
+        // left rail + category buttons (v1.2: buttons instead of tabs)
         panel(g, railX, railTop, railW, railBottom - railTop, false);
-        List<Catalog.Tab> tabs = Catalog.tabs();
-        int rowH = tabRowH - 2;
-        int ty = tabTop;
-        for (int idx = tabScroll; idx < tabs.size() && idx < tabScroll + visibleTabs; idx++) {
-            Catalog.Tab tab = tabs.get(idx);
-            boolean sel = tab.id().equals(selectedTab);
-            boolean hov = inside(mouseX, mouseY, railX + 4, ty, railW - 8, rowH);
-            g.fill(railX + 4, ty, railX + railW - 4, ty + rowH, sel ? 0xFF4A3A12 : (hov ? 0xFF3A3A42 : WELL));
-            if (sel) g.fill(railX + 4, ty, railX + 7, ty + rowH, ACCENT);
-            int textY = ty + (rowH - 7) / 2;
-            textScaled(g, tab.glyph() + " " + tab.name(), railX + 10, textY, sel ? ACCENT : TEXT, TAB_SCALE);
-            String cnt = abbrev(tabTotal(tab.id()));
-            textScaled(g, cnt, railX + railW - 8 - (int) (this.font.width(cnt) * TAB_SCALE), textY, SUBTLE, TAB_SCALE);
-            ty += tabRowH;
+        int bStep = btnSize + btnGap;
+        g.enableScissor(railX + 1, btnTop, railX + railW - 1, btnBottom);
+        for (BtnCell cell : btnCells) {
+            int bx = cell.x(), by = btnTop + cell.y() - btnScroll * bStep;
+            if (by + btnSize < btnTop || by > btnBottom) continue;
+            boolean sel = cell.tab().id().equals(selectedTab);
+            boolean hov = inside(mouseX, mouseY, bx, by, btnSize, btnSize);
+            g.fill(bx, by, bx + btnSize, by + btnSize, sel ? 0xFF4A3A12 : (hov ? 0xFF3A3A42 : WELL));
+            if (sel) {
+                g.fill(bx, by, bx + btnSize, by + 1, ACCENT);
+                g.fill(bx, by + btnSize - 1, bx + btnSize, by + btnSize, ACCENT);
+                g.fill(bx, by, bx + 1, by + btnSize, ACCENT);
+                g.fill(bx + btnSize - 1, by, bx + btnSize, by + btnSize, ACCENT);
+            }
+            g.item(iconFor(cell.tab()), bx + (btnSize - 16) / 2, by + (btnSize - 16) / 2);
         }
-        if (tabScroll > 0) g.text(this.font, "▲", railX + railW - 12, railTop + 2, SUBTLE);
-        if (tabScroll + visibleTabs < tabs.size()) g.text(this.font, "▼", railX + railW - 12, railBottom - 10, SUBTLE);
+        g.disableScissor();
+        if (btnScroll > 0) g.text(this.font, "\u25b2", railX + railW - 12, railTop + 2, SUBTLE);
+        if (btnScroll + btnVisRows < btnRowsTotal) g.text(this.font, "\u25bc", railX + railW - 12, railBottom - 10, SUBTLE);
 
         // sort buttons (top of the grid column)
         SortMode[] modes = SortMode.values();
@@ -833,12 +896,8 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             if (modes[i] == SortMode.COUNT && sortMode == SortMode.COUNT) countDesc = !countDesc; else sortMode = modes[i];
             rebuild(); return true;
         }
-        List<Catalog.Tab> tabs = Catalog.tabs();
-        int rowH = tabRowH - 2, ty2 = tabTop;
-        for (int idx = tabScroll; idx < tabs.size() && idx < tabScroll + visibleTabs; idx++) {
-            if (inside(mx, my, railX + 4, ty2, railW - 8, rowH)) { selectedTab = tabs.get(idx).id(); scrollRow = 0; rebuild(); return true; }
-            ty2 += tabRowH;
-        }
+        BtnCell bc = buttonAt(mx, my);
+        if (bc != null) { selectedTab = bc.tab().id(); scrollRow = 0; rebuild(); return true; }
         if (button == 1 && inside(mx, my, upgX, upgY, upgSize, upgSize) && permLevel >= 3
                 && this.menu.getCarried().isEmpty()) { ClientPlayNetworking.send(new UpgradePayload(false)); return true; }
 
@@ -978,7 +1037,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
         int mx = (int) mouseX, my = (int) mouseY;
-        if (inside(mx, my, railX, tabTop, railW, tabBottom - tabTop)) { tabScroll -= (int) Math.signum(scrollY); clampTabScroll(); return true; }
+        if (inside(mx, my, railX, btnTop, railW, btnBottom - btnTop)) { btnScroll -= (int) Math.signum(scrollY); clampBtnScroll(); return true; }
         if (inside(mx, my, gridX, gridY, cols * slot, rows * slot) || inside(mx, my, sbarX, sbarTop, SB_W, sbarBottom - sbarTop)) {
             scrollBy(-(int) Math.signum(scrollY)); return true;
         }
