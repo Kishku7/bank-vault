@@ -338,7 +338,7 @@
    },
    {
     "label": "Fuel",
-    "icon": "minecraft:coal",
+    "icon": "minecraft:lava_bucket",
     "words": [
      "fuel"
     ]
