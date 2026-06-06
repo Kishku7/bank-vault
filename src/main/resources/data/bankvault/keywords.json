@@ -1314,7 +1314,8 @@
    "projectile",
    "renewable",
    "earlyGame",
-   "odd"
+   "odd",
+   "mobDrop"
   ],
   "minecraft:blue_glazed_terracotta": [
    "terracotta",
@@ -1647,7 +1648,8 @@
    "renewable",
    "stackable",
    "earlyGame",
-   "odd"
+   "odd",
+   "mobDrop"
   ],
   "minecraft:brown_glazed_terracotta": [
    "terracotta",
@@ -3957,7 +3959,8 @@
    "gravity",
    "teleport",
    "endGame",
-   "otherMaterial"
+   "otherMaterial",
+   "mobDrop"
   ],
   "minecraft:dragon_head": [
    "head",
@@ -4037,7 +4040,8 @@
    "farmable",
    "renewable",
    "earlyGame",
-   "odd"
+   "odd",
+   "mobDrop"
   ],
   "minecraft:elder_guardian_spawn_egg": [
    "technical",
@@ -5218,7 +5222,8 @@
    "village",
    "flammable",
    "compostable",
-   "odd"
+   "food",
+   "otherMaterial"
   ],
   "minecraft:heart_of_the_sea": [
    "gem",
@@ -10053,7 +10058,8 @@
    "rare",
    "placeable",
    "renewable",
-   "ocean"
+   "ocean",
+   "mobDrop"
   ],
   "minecraft:sniffer_spawn_egg": [
    "egg",
@@ -11162,7 +11168,8 @@
    "turtle",
    "placeable",
    "renewable",
-   "ocean"
+   "ocean",
+   "mobDrop"
   ],
   "minecraft:turtle_helmet": [
    "armor",
