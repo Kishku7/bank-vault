@@ -21,7 +21,7 @@
    },
    {
     "label": "Copper",
-    "icon": "minecraft:copper_block",
+    "icon": "minecraft:copper_ingot",
     "words": [
      "copper"
     ]
@@ -86,7 +86,7 @@
    },
    {
     "label": "Amethyst",
-    "icon": "minecraft:amethyst_shard",
+    "icon": "minecraft:amethyst_block",
     "words": [
      "amethyst"
     ]
@@ -103,7 +103,6 @@
     "icon": "minecraft:obsidian",
     "words": [
      "obsidian",
-     "coral",
      "clay"
     ]
    }
@@ -118,7 +117,7 @@
    },
    {
     "label": "Prismarine",
-    "icon": "minecraft:prismarine_shard",
+    "icon": "minecraft:dark_prismarine",
     "words": [
      "prismarine"
     ]
@@ -246,9 +245,10 @@
     ]
    },
    {
-    "label": "Books",
-    "icon": "minecraft:book",
+    "label": "Misc",
+    "icon": "minecraft:painting",
     "words": [
+     "coral",
      "book"
     ]
    },

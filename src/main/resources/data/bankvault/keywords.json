@@ -1158,7 +1158,6 @@
   ],
   "minecraft:black_terracotta": [
    "terracotta",
-   "clay",
    "block",
    "colored",
    "smeltable",
@@ -1374,7 +1373,6 @@
   ],
   "minecraft:blue_terracotta": [
    "terracotta",
-   "clay",
    "block",
    "colored",
    "smeltable",
@@ -1719,7 +1717,6 @@
   ],
   "minecraft:brown_terracotta": [
    "terracotta",
-   "clay",
    "block",
    "colored",
    "craftable",
@@ -5039,7 +5036,6 @@
   ],
   "minecraft:gray_terracotta": [
    "terracotta",
-   "clay",
    "block",
    "colored",
    "craftable",
@@ -5161,7 +5157,6 @@
   ],
   "minecraft:green_terracotta": [
    "terracotta",
-   "clay",
    "block",
    "colored",
    "craftable",
@@ -6100,7 +6095,6 @@
   ],
   "minecraft:light_blue_terracotta": [
    "terracotta",
-   "clay",
    "colored",
    "block",
    "craftable",
@@ -6218,7 +6212,6 @@
   ],
   "minecraft:light_gray_terracotta": [
    "terracotta",
-   "clay",
    "colored",
    "block",
    "craftable",
@@ -6379,7 +6372,6 @@
   ],
   "minecraft:lime_terracotta": [
    "terracotta",
-   "clay",
    "colored",
    "block",
    "craftable",
@@ -6536,7 +6528,6 @@
   ],
   "minecraft:magenta_terracotta": [
    "terracotta",
-   "clay",
    "colored",
    "block",
    "craftable",
@@ -7775,7 +7766,6 @@
   ],
   "minecraft:orange_terracotta": [
    "terracotta",
-   "clay",
    "block",
    "colored",
    "craftable",
@@ -10947,7 +10937,6 @@
   ],
   "minecraft:terracotta": [
    "terracotta",
-   "clay",
    "block",
    "smeltable",
    "mineable",
