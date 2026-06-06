@@ -40,15 +40,19 @@ public final class ButtonLayout {
         }
     }
 
+    /** One layout row: a section header (section != null), a plain gap (empty buttons),
+     *  or a row of buttons. */
+    public record Row(String section, List<BtnDef> buttons) {}
+
     private static final Gson GSON = new Gson();
     private static int buttonSize = 20;
-    private static List<List<BtnDef>> rows;
+    private static List<Row> rows;
     private static long mtime = -1;
 
     private ButtonLayout() {}
 
     public static synchronized int buttonSize() { ensureLoaded(); return buttonSize; }
-    public static synchronized List<List<BtnDef>> rows() { ensureLoaded(); return rows; }
+    public static synchronized List<Row> rows() { ensureLoaded(); return rows; }
 
     /** Fast path: load once if never loaded; no disk access afterwards. */
     private static void ensureLoaded() {
@@ -85,10 +89,14 @@ public final class ButtonLayout {
 
     private static void parse(JsonObject root) {
         if (root.has("buttonSize")) buttonSize = Math.max(18, Math.min(32, root.get("buttonSize").getAsInt()));
-        List<List<BtnDef>> out = new ArrayList<>();
+        List<Row> out = new ArrayList<>();
         JsonArray rr = root.getAsJsonArray("rows");
         if (rr != null) for (JsonElement re : rr) {
-            if (re.isJsonPrimitive() && "gap".equals(re.getAsString())) { out.add(new ArrayList<>()); continue; }
+            if (re.isJsonPrimitive() && "gap".equals(re.getAsString())) { out.add(new Row(null, new ArrayList<>())); continue; }
+            if (re.isJsonObject() && re.getAsJsonObject().has("section")) {
+                out.add(new Row(re.getAsJsonObject().get("section").getAsString(), new ArrayList<>()));
+                continue;
+            }
             List<BtnDef> row = new ArrayList<>();
             for (JsonElement e : re.getAsJsonArray()) {
                 if (e.isJsonPrimitive()) {
@@ -105,9 +113,10 @@ public final class ButtonLayout {
                         row.add(new BtnDef(label, icon, null, words.isEmpty() ? null : words, dynamic));
                 }
             }
-            if (!row.isEmpty()) out.add(row);
+            if (!row.isEmpty()) out.add(new Row(null, row));
         }
-        while (!out.isEmpty() && out.get(out.size() - 1).isEmpty()) out.remove(out.size() - 1);
+        while (!out.isEmpty() && out.get(out.size() - 1).section() == null
+                && out.get(out.size() - 1).buttons().isEmpty()) out.remove(out.size() - 1);
         rows = out;
     }
 }

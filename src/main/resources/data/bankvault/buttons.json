@@ -1,6 +1,9 @@
 {
  "buttonSize": 18,
  "rows": [
+  {
+   "section": "Materials"
+  },
   [
    {
     "label": "Wood",
@@ -154,7 +157,9 @@
     ]
    }
   ],
-  "gap",
+  {
+   "section": "Building & Decor"
+  },
   [
    {
     "label": "Slabs",
@@ -310,7 +315,9 @@
     ]
    }
   ],
-  "gap",
+  {
+   "section": "Gear & Combat"
+  },
   [
    {
     "label": "Combat",
@@ -382,7 +389,9 @@
     "dynamic": "trinkets"
    }
   ],
-  "gap",
+  {
+   "section": "Food & Nature"
+  },
   [
    {
     "label": "Food",
@@ -430,7 +439,9 @@
     ]
    }
   ],
-  "gap",
+  {
+   "section": "Tech & Sources"
+  },
   [
    {
     "label": "Redstone",
@@ -488,7 +499,9 @@
     ]
    }
   ],
-  "gap",
+  {
+   "section": "World"
+  },
   [
    {
     "label": "Overworld",
@@ -593,7 +606,9 @@
     ]
    }
   ],
-  "gap",
+  {
+   "section": "Other"
+  },
   [
    "uncategorized"
   ]
