@@ -402,17 +402,12 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     }
 
     private boolean buttonVisible(ButtonLayout.BtnDef d) {
-        if (d.dynamic() != null)
-            return ("everything".equals(d.dynamic()) && !entries.isEmpty())
-                    || ("trinkets".equals(d.dynamic()) && BankVault.TRINKETS)
-                    || (d.words() != null && Keywords.anyItemHas(d.words()));
-        if (d.words() != null) return Keywords.anyItemHas(d.words());
-        String tabId = d.category();
-        if (Catalog.tab(tabId) == null) return false;
-        if (Catalog.hasItems(tabId)) return true;
-        if (!tabId.equals("uncategorized")) return false;
-        for (Entry e : entries) if (isUncategorized(e)) return true;
-        return false;
+        if ("everything".equals(d.dynamic())) return !entries.isEmpty();
+        // rc.7 (Dave): visibility follows the VAULT CONTENTS -- a button shows only while the
+        // bank holds at least one item under it. Depositing reveals its buttons; emptying a
+        // category hides them again. This also subsumes the absent-mod concern: items from
+        // mods that are not loaded can never be deposited, so their buttons can never appear.
+        return btnTotal(d) > 0;
     }
 
     /** The button definition currently selected, or null. */
