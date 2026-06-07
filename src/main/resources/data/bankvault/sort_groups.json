@@ -507,70 +507,66 @@
   "family": [
    [
     "White",
-    3
+    2
    ],
    [
     "Light Gray",
-    3
+    2
    ],
    [
     "Gray",
-    3
+    2
    ],
    [
     "Black",
-    3
+    2
    ],
    [
     "Brown",
-    3
+    2
    ],
    [
     "Red",
-    3
+    2
    ],
    [
     "Orange",
-    3
+    2
    ],
    [
     "Yellow",
-    3
+    2
    ],
    [
     "Lime",
-    3
+    2
    ],
    [
     "Green",
-    3
+    2
    ],
    [
     "Cyan",
-    3
+    2
    ],
    [
     "Light Blue",
-    3
+    2
    ],
    [
     "Blue",
-    3
+    2
    ],
    [
     "Purple",
-    3
+    2
    ],
    [
     "Magenta",
-    3
+    2
    ],
    [
     "Pink",
-    3
-   ],
-   [
-    "Plain",
     2
    ]
   ],
@@ -582,10 +578,6 @@
    [
     "Carpets",
     16
-   ],
-   [
-    "Other",
-    18
    ]
   ]
  },

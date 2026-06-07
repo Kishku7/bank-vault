@@ -653,7 +653,9 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             for (BtnCell bc : btnCells) {
                 if ("everything".equals(bc.def().dynamic())) continue;   // it matches all by design
                 if (matchesDef(bc.def(), e))
-                    return bc.section() + " \u2192 " + btnLabel(bc.def());
+                    return everythingSelected()
+                            ? btnLabel(bc.def()) + " (" + bc.section() + ")"   // rc.4 (Dave): A-Z by family name
+                            : bc.section() + " \u2192 " + btnLabel(bc.def());
             }
             return "Elsewhere";
         }
@@ -685,9 +687,13 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
      *  no generated ranked lists; A-Z and Count keep their natural letter/range sections). */
     private boolean foundUnderGrouping() {
         if (!searchText.trim().isEmpty()) return true;
-        ButtonLayout.BtnDef d = selectedDef();
-        return d != null && "everything".equals(d.dynamic())
+        return everythingSelected()
                 && (sortMode == SortMode.SMART_FAMILY || sortMode == SortMode.SMART_TYPE);
+    }
+
+    private boolean everythingSelected() {
+        ButtonLayout.BtnDef d = selectedDef();
+        return d != null && "everything".equals(d.dynamic());
     }
 
     /** Count-mode section buckets (Dave's ranges). */
@@ -723,7 +729,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         switch (sortMode) {
             case COUNT: return (a, b) -> countDesc ? Long.compare(b.count(), a.count()) : Long.compare(a.count(), b.count());
             case ALPHA: return alpha();
-            case SMART_TYPE: return smartType();
+            case SMART_TYPE: return everythingSelected() ? smartFamily() : smartType();   // rc.4: Everything mirrors family
             default: return smartFamily();
         }
     }

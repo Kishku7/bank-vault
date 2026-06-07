@@ -7937,7 +7937,6 @@
    "decoration",
    "craftable",
    "placeable",
-   "wool",
    "wood",
    "earlyGame",
    "stickMade"
@@ -12704,7 +12703,6 @@
    "modded"
   ],
   "travelersbackpack:black_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "craftable",
    "placeable",
@@ -12734,7 +12732,6 @@
    "modded"
   ],
   "travelersbackpack:blue_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "craftable",
    "placeable",
@@ -12750,7 +12747,6 @@
    "modded"
   ],
   "travelersbackpack:brown_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "craftable",
    "placeable",
@@ -12809,7 +12805,6 @@
    "modded"
   ],
   "travelersbackpack:cyan_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "craftable",
    "placeable",
@@ -12906,7 +12901,6 @@
    "modded"
   ],
   "travelersbackpack:gray_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "craftable",
    "placeable",
@@ -12915,7 +12909,6 @@
    "bed"
   ],
   "travelersbackpack:green_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "craftable",
    "placeable",
@@ -12997,7 +12990,6 @@
    "craftable"
   ],
   "travelersbackpack:light_blue_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "colored",
    "placeable",
@@ -13006,7 +12998,6 @@
    "bed"
   ],
   "travelersbackpack:light_gray_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "colored",
    "placeable",
@@ -13015,7 +13006,6 @@
    "bed"
   ],
   "travelersbackpack:lime_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "colored",
    "placeable",
@@ -13024,7 +13014,6 @@
    "bed"
   ],
   "travelersbackpack:magenta_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "colored",
    "placeable",
@@ -13088,7 +13077,6 @@
    "jungle"
   ],
   "travelersbackpack:orange_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "colored",
    "placeable",
@@ -13112,7 +13100,6 @@
    "overworld"
   ],
   "travelersbackpack:pink_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "colored",
    "placeable",
@@ -13129,7 +13116,6 @@
    "pumpkin"
   ],
   "travelersbackpack:purple_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "colored",
    "placeable",
@@ -13147,7 +13133,6 @@
    "nether"
   ],
   "travelersbackpack:red_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "colored",
    "placeable",
@@ -13178,7 +13163,6 @@
    "desert"
   ],
   "travelersbackpack:sheep": [
-   "wool",
    "container",
    "backpack",
    "wearable",
@@ -13276,7 +13260,6 @@
    "ancientCity"
   ],
   "travelersbackpack:white_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "colored",
    "placeable",
@@ -13303,7 +13286,6 @@
    "overworld"
   ],
   "travelersbackpack:yellow_sleeping_bag": [
-   "wool",
    "sleepingBag",
    "colored",
    "placeable",
