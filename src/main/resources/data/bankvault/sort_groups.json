@@ -48,10 +48,6 @@
    [
     "Warped",
     5
-   ],
-   [
-    "Other",
-    2
    ]
   ],
   "type": [
@@ -65,31 +61,15 @@
    ],
    [
     "Wood",
-    9
+    12
    ],
    [
     "Stripped Wood",
-    9
-   ],
-   [
-    "Hyphae",
-    2
-   ],
-   [
-    "Stripped Hyphae",
-    2
+    11
    ],
    [
     "Planks",
     12
-   ],
-   [
-    "Mosaic",
-    1
-   ],
-   [
-    "Other",
-    2
    ]
   ]
  },

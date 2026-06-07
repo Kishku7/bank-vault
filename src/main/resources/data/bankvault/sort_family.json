@@ -1679,8 +1679,8 @@
   "minecraft:pale_oak_planks",
   "minecraft:bamboo_block",
   "minecraft:stripped_bamboo_block",
-  "minecraft:bamboo_planks",
   "minecraft:bamboo_mosaic",
+  "minecraft:bamboo_planks",
   "minecraft:crimson_stem",
   "minecraft:stripped_crimson_stem",
   "minecraft:crimson_hyphae",
@@ -1690,9 +1690,7 @@
   "minecraft:stripped_warped_stem",
   "minecraft:warped_hyphae",
   "minecraft:stripped_warped_hyphae",
-  "minecraft:warped_planks",
-  "minecraft:creaking_heart",
-  "minecraft:stick"
+  "minecraft:warped_planks"
  ],
  "kw:Stone & Brick": [
   "minecraft:cobbled_deepslate",
@@ -2182,7 +2180,9 @@
   "minecraft:clay",
   "minecraft:clay_ball",
   "minecraft:flint",
+  "minecraft:stick",
   "minecraft:coarse_dirt",
+  "minecraft:creaking_heart",
   "minecraft:crimson_nylium",
   "minecraft:crying_obsidian",
   "minecraft:dirt",

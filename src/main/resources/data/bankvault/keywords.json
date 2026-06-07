@@ -2892,7 +2892,7 @@
    "mineable",
    "rare",
    "placeable",
-   "rawWood"
+   "otherMaterial"
   ],
   "minecraft:creaking_spawn_egg": [
    "egg",
@@ -10394,7 +10394,7 @@
    "renewable",
    "stackable",
    "earlyGame",
-   "rawWood"
+   "otherMaterial"
   ],
   "minecraft:sticky_piston": [
    "redstoneComp",
