@@ -1691,9 +1691,7 @@
   "minecraft:warped_hyphae",
   "minecraft:stripped_warped_hyphae",
   "minecraft:warped_planks",
-  "minecraft:resin_block",
   "minecraft:creaking_heart",
-  "minecraft:resin_clump",
   "minecraft:stick"
  ],
  "kw:Stone & Brick": [
@@ -2197,6 +2195,8 @@
   "minecraft:podzol",
   "minecraft:purpur_block",
   "minecraft:purpur_pillar",
+  "minecraft:resin_block",
+  "minecraft:resin_clump",
   "minecraft:respawn_anchor",
   "minecraft:rooted_dirt",
   "minecraft:soul_sand",

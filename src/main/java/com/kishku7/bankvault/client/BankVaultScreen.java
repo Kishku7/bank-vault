@@ -84,7 +84,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private record BtnCell(ButtonLayout.BtnDef def, String section, int x, int y) {}
     private final List<BtnCell> btnCells = new ArrayList<>();
     private int btnMaxScroll, btnContentH;
-    private static final int BTN_SECTION_GAP = 6, BTN_SECTION_HDR = 10;
+    private static final int BTN_SECTION_GAP = 6, BTN_SECTION_HDR = 12;   // full-size header font
     private record SectionMark(String text, int y) {}
     private final List<SectionMark> btnSections = new ArrayList<>();
     private final Map<String, ItemStack> iconCache = new HashMap<>();
@@ -870,7 +870,9 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         for (SectionMark sm : btnSections) {
             int sy = btnTop + sm.y() - btnScroll * bStep;
             if (sy + 8 < btnTop || sy > btnBottom) continue;
-            textScaled(g, sm.text(), railX + 5, sy + 2, SUBTLE, 0.75f);
+            // Dave (2026-06-07): 0.75x was unreadable at 2x -- same font/size as the grid
+            // section titles (full-size, see FONT RULE: never fractional-scale UI text), white.
+            textScaled(g, sm.text(), railX + 5, sy + 2, 0xFFFFFFFF, 1.0f);
         }
         for (BtnCell cell : btnCells) {
             int bx = cell.x(), by = btnTop + cell.y() - btnScroll * bStep;

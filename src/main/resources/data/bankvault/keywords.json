@@ -9507,7 +9507,7 @@
    "decoration",
    "overworld",
    "renewable",
-   "rawWood"
+   "otherMaterial"
   ],
   "minecraft:resin_brick": [
    "resin",
@@ -9556,7 +9556,7 @@
    "renewable",
    "overworld",
    "smeltable",
-   "rawWood"
+   "otherMaterial"
   ],
   "minecraft:respawn_anchor": [
    "obsidian",
