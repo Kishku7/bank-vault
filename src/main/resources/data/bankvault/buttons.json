@@ -510,6 +510,13 @@
     "words": [
      "mushroom"
     ]
+   },
+   {
+    "label": "Aether",
+    "icon": "minecraft:glowstone",
+    "words": [
+     "aether"
+    ]
    }
   ],
   {

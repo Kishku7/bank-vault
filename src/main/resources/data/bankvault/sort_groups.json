@@ -73,7 +73,7 @@
   "family": [
    [
     "Oak",
-    5
+    7
    ],
    [
     "Spruce",
@@ -118,12 +118,16 @@
    [
     "Warped",
     5
+   ],
+   [
+    "Modded Wood",
+    126
    ]
   ],
   "type": [
    [
     "Logs",
-    12
+    13
    ],
    [
     "Stripped Logs",
@@ -131,7 +135,7 @@
    ],
    [
     "Wood",
-    12
+    13
    ],
    [
     "Stripped Wood",
@@ -140,6 +144,10 @@
    [
     "Planks",
     12
+   ],
+   [
+    "Modded Wood",
+    126
    ]
   ]
  },
@@ -905,11 +913,15 @@
    ],
    [
     "Stone",
-    40
+    66
    ],
    [
     "Copper",
     8
+   ],
+   [
+    "Other",
+    64
    ]
   ],
   "type": [
@@ -919,11 +931,15 @@
    ],
    [
     "Stone",
-    40
+    66
    ],
    [
     "Copper",
     8
+   ],
+   [
+    "Other",
+    64
    ]
   ]
  },
@@ -935,11 +951,15 @@
    ],
    [
     "Stone",
-    37
+    57
    ],
    [
     "Copper",
     8
+   ],
+   [
+    "Other",
+    48
    ]
   ],
   "type": [
@@ -949,11 +969,15 @@
    ],
    [
     "Stone",
-    37
+    57
    ],
    [
     "Copper",
     8
+   ],
+   [
+    "Other",
+    48
    ]
   ]
  },
@@ -961,13 +985,21 @@
   "family": [
    [
     "Stone",
-    26
+    45
+   ],
+   [
+    "Other",
+    69
    ]
   ],
   "type": [
    [
     "Stone",
-    26
+    45
+   ],
+   [
+    "Other",
+    69
    ]
   ]
  },
@@ -984,6 +1016,10 @@
    [
     "Metal",
     1
+   ],
+   [
+    "Other",
+    19
    ]
   ],
   "type": [
@@ -998,6 +1034,10 @@
    [
     "Metal",
     1
+   ],
+   [
+    "Other",
+    19
    ]
   ]
  },
@@ -1010,16 +1050,20 @@
    [
     "Stone",
     1
+   ],
+   [
+    "Other",
+    28
    ]
   ],
   "type": [
    [
     "Fences",
-    13
+    27
    ],
    [
     "Gates",
-    12
+    26
    ]
   ]
  },
@@ -1036,6 +1080,10 @@
    [
     "Metal",
     1
+   ],
+   [
+    "Other",
+    19
    ]
   ],
   "type": [
@@ -1050,6 +1098,10 @@
    [
     "Metal",
     1
+   ],
+   [
+    "Other",
+    19
    ]
   ]
  },
@@ -1058,16 +1110,20 @@
    [
     "Wood",
     24
+   ],
+   [
+    "Other",
+    28
    ]
   ],
   "type": [
    [
     "Signs",
-    12
+    26
    ],
    [
     "Hanging Signs",
-    12
+    26
    ]
   ]
  },
@@ -1089,7 +1145,7 @@
   "family": [
    [
     "Beds",
-    16
+    34
    ],
    [
     "Sleeping Bags",
@@ -1099,66 +1155,70 @@
   "type": [
    [
     "White",
-    2
+    3
    ],
    [
     "Light Gray",
-    2
+    3
    ],
    [
     "Gray",
-    2
+    3
    ],
    [
     "Black",
-    2
+    3
    ],
    [
     "Brown",
-    2
+    3
    ],
    [
     "Red",
-    2
+    3
    ],
    [
     "Orange",
-    2
+    3
    ],
    [
     "Yellow",
-    2
+    3
    ],
    [
     "Lime",
-    2
+    3
    ],
    [
     "Green",
-    2
+    3
    ],
    [
     "Cyan",
-    2
+    3
    ],
    [
     "Light Blue",
-    2
+    3
    ],
    [
     "Blue",
-    2
+    3
    ],
    [
     "Purple",
-    2
+    3
    ],
    [
     "Magenta",
-    2
+    3
    ],
    [
     "Pink",
+    3
+   ],
+   [
+    "Plain",
     2
    ]
   ]
@@ -1187,7 +1247,7 @@
    ],
    [
     "Chest Boats",
-    10
+    20
    ],
    [
     "Other",
@@ -1217,7 +1277,7 @@
    ],
    [
     "Chest Boats",
-    10
+    20
    ],
    [
     "Other",
@@ -1229,7 +1289,7 @@
   "family": [
    [
     "Torches",
-    2
+    5
    ],
    [
     "Soul Torches",
@@ -1241,7 +1301,7 @@
    ],
    [
     "Lanterns",
-    9
+    30
    ],
    [
     "Soul Lanterns",
@@ -1281,7 +1341,7 @@
    ],
    [
     "Campfires",
-    1
+    3
    ],
    [
     "Soul Campfires",
@@ -1293,13 +1353,13 @@
    ],
    [
     "Other",
-    10
+    11
    ]
   ],
   "type": [
    [
     "Torches",
-    2
+    5
    ],
    [
     "Soul Torches",
@@ -1311,7 +1371,7 @@
    ],
    [
     "Lanterns",
-    9
+    30
    ],
    [
     "Soul Lanterns",
@@ -1351,7 +1411,7 @@
    ],
    [
     "Campfires",
-    1
+    3
    ],
    [
     "Soul Campfires",
@@ -1363,7 +1423,7 @@
    ],
    [
     "Other",
-    10
+    11
    ]
   ]
  },
@@ -1371,11 +1431,11 @@
   "family": [
    [
     "Swords",
-    7
+    20
    ],
    [
     "Axes",
-    7
+    21
    ],
    [
     "Maces",
@@ -1421,7 +1481,7 @@
    ],
    [
     "Other",
-    2
+    29
    ]
   ]
  },
@@ -1429,23 +1489,23 @@
   "family": [
    [
     "Pickaxes",
-    8
+    22
    ],
    [
     "Axes",
-    7
+    21
    ],
    [
     "Shovels",
-    7
+    21
    ],
    [
     "Hoes",
-    7
+    16
    ],
    [
     "Utility",
-    17
+    19
    ]
   ],
   "type": [
@@ -1479,7 +1539,7 @@
    ],
    [
     "Other",
-    18
+    71
    ]
   ]
  },
@@ -1487,11 +1547,11 @@
   "family": [
    [
     "Leather",
-    5
+    6
    ],
    [
     "Chainmail",
-    4
+    5
    ],
    [
     "Copper",
@@ -1499,11 +1559,11 @@
    ],
    [
     "Golden",
-    6
+    7
    ],
    [
     "Iron",
-    6
+    7
    ],
    [
     "Turtle",
@@ -1511,33 +1571,33 @@
    ],
    [
     "Diamond",
-    6
+    7
    ],
    [
     "Netherite",
-    6
+    7
    ],
    [
     "Other",
-    3
+    88
    ]
   ],
   "type": [
    [
     "Helmets",
-    8
+    23
    ],
    [
     "Chestplates",
-    7
+    22
    ],
    [
     "Leggings",
-    7
+    22
    ],
    [
     "Bootss",
-    7
+    24
    ],
    [
     "Horse Armor",
@@ -1545,7 +1605,7 @@
    ],
    [
     "Other",
-    8
+    37
    ]
   ]
  },
@@ -1557,7 +1617,7 @@
    ],
    [
     "Crops & Fruit",
-    15
+    18
    ],
    [
     "Baked & Cooked",
@@ -1565,7 +1625,7 @@
    ],
    [
     "Other",
-    6
+    12
    ]
   ],
   "type": [
@@ -1575,7 +1635,7 @@
    ],
    [
     "Crops & Fruit",
-    15
+    18
    ],
    [
     "Baked & Cooked",
@@ -1583,7 +1643,7 @@
    ],
    [
     "Other",
-    6
+    12
    ]
   ]
  },
@@ -1591,15 +1651,15 @@
   "family": [
    [
     "Terrain",
-    5
+    17
    ],
    [
     "Saplings",
-    8
+    31
    ],
    [
     "Leaves",
-    14
+    54
    ],
    [
     "Mushrooms",
@@ -1607,7 +1667,7 @@
    ],
    [
     "Vines & Roots",
-    8
+    10
    ],
    [
     "Flowers",
@@ -1615,21 +1675,21 @@
    ],
    [
     "Grasses & More",
-    35
+    63
    ]
   ],
   "type": [
    [
     "Terrain",
-    5
+    17
    ],
    [
     "Saplings",
-    8
+    31
    ],
    [
     "Leaves",
-    14
+    54
    ],
    [
     "Mushrooms",
@@ -1637,7 +1697,7 @@
    ],
    [
     "Vines & Roots",
-    8
+    10
    ],
    [
     "Flowers",
@@ -1645,7 +1705,7 @@
    ],
    [
     "Grasses & More",
-    35
+    63
    ]
   ]
  },
@@ -1813,7 +1873,7 @@
    ],
    [
     "Boats & Rafts",
-    20
+    40
    ],
    [
     "Saddles",
@@ -1839,7 +1899,7 @@
    ],
    [
     "Boats & Rafts",
-    20
+    40
    ],
    [
     "Saddles",
@@ -1863,7 +1923,7 @@
    ],
    [
     "Music Discs",
-    21
+    35
    ],
    [
     "Disc Fragments",
@@ -1881,7 +1941,7 @@
    ],
    [
     "Music Discs",
-    21
+    35
    ],
    [
     "Disc Fragments",
@@ -1890,6 +1950,44 @@
    [
     "Goat Horns",
     1
+   ]
+  ]
+ },
+ "kw:Aether": {
+  "family": [
+   [
+    "The Aether",
+    404
+   ],
+   [
+    "Aether II",
+    700
+   ],
+   [
+    "Redux",
+    214
+   ],
+   [
+    "Deep Aether",
+    446
+   ]
+  ],
+  "type": [
+   [
+    "The Aether",
+    404
+   ],
+   [
+    "Aether II",
+    700
+   ],
+   [
+    "Redux",
+    214
+   ],
+   [
+    "Deep Aether",
+    446
    ]
   ]
  }

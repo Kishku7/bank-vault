@@ -13623,6 +13623,8676 @@
    "modded",
    "lootOnly",
    "wither"
+  ],
+  "aether:aechor_petal": [
+   "aether",
+   "modded"
+  ],
+  "aether:aechor_plant_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:aerbunny_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:aerogel": [
+   "aether",
+   "modded"
+  ],
+  "aether:aerogel_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether:aerogel_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether:aerogel_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether:aerwhale_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:aether_dirt": [
+   "aether",
+   "modded"
+  ],
+  "aether:aether_dirt_path": [
+   "aether",
+   "modded"
+  ],
+  "aether:aether_farmland": [
+   "aether",
+   "modded"
+  ],
+  "aether:aether_grass_block": [
+   "aether",
+   "modded"
+  ],
+  "aether:aether_portal": [
+   "aether",
+   "modded"
+  ],
+  "aether:aether_portal_frame": [
+   "aether",
+   "modded"
+  ],
+  "aether:agility_cape": [
+   "aether",
+   "modded"
+  ],
+  "aether:altar": [
+   "aether",
+   "modded"
+  ],
+  "aether:ambrosium_block": [
+   "aether",
+   "modded"
+  ],
+  "aether:ambrosium_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether:ambrosium_shard": [
+   "aether",
+   "modded"
+  ],
+  "aether:ambrosium_torch": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether:angelic_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether:angelic_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether:angelic_stone": [
+   "aether",
+   "modded"
+  ],
+  "aether:angelic_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether:berry_bush": [
+   "aether",
+   "modded",
+   "plant",
+   "food",
+   "edible"
+  ],
+  "aether:berry_bush_stem": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block",
+   "plant",
+   "food",
+   "edible"
+  ],
+  "aether:black_moa_egg": [
+   "aether",
+   "modded"
+  ],
+  "aether:blue_aercloud": [
+   "aether",
+   "modded"
+  ],
+  "aether:blue_berry": [
+   "aether",
+   "modded",
+   "food",
+   "edible"
+  ],
+  "aether:blue_cape": [
+   "aether",
+   "modded"
+  ],
+  "aether:blue_gummy_swet": [
+   "aether",
+   "modded",
+   "food",
+   "edible"
+  ],
+  "aether:blue_moa_egg": [
+   "aether",
+   "modded"
+  ],
+  "aether:blue_swet_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:book_of_lore": [
+   "aether",
+   "modded"
+  ],
+  "aether:boss_doorway_angelic_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:boss_doorway_carved_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:boss_doorway_hellfire_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:boss_doorway_light_angelic_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:boss_doorway_light_hellfire_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:boss_doorway_sentry_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:bronze_dungeon_key": [
+   "aether",
+   "modded"
+  ],
+  "aether:candy_cane": [
+   "aether",
+   "modded"
+  ],
+  "aether:candy_cane_sword": [
+   "aether",
+   "modded",
+   "hand2hand"
+  ],
+  "aether:carved_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether:carved_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether:carved_stone": [
+   "aether",
+   "modded"
+  ],
+  "aether:carved_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether:chainmail_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:chest_mimic": [
+   "aether",
+   "modded"
+  ],
+  "aether:cloud_staff": [
+   "aether",
+   "modded"
+  ],
+  "aether:cockatrice_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:cold_aercloud": [
+   "aether",
+   "modded"
+  ],
+  "aether:cold_parachute": [
+   "aether",
+   "modded"
+  ],
+  "aether:crystal_fruit_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether:crystal_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether:decorated_holiday_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether:diamond_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:enchanted_aether_grass_block": [
+   "aether",
+   "modded"
+  ],
+  "aether:enchanted_berry": [
+   "aether",
+   "modded",
+   "food",
+   "edible"
+  ],
+  "aether:enchanted_dart": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether:enchanted_dart_shooter": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether:enchanted_gravitite": [
+   "aether",
+   "modded"
+  ],
+  "aether:evil_whirlwind_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:fire_minion_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:flaming_sword": [
+   "aether",
+   "modded",
+   "hand2hand"
+  ],
+  "aether:flying_cow_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:freezer": [
+   "aether",
+   "modded"
+  ],
+  "aether:frosted_ice": [
+   "aether",
+   "modded"
+  ],
+  "aether:gingerbread_man": [
+   "aether",
+   "modded"
+  ],
+  "aether:gold_dungeon_key": [
+   "aether",
+   "modded"
+  ],
+  "aether:golden_aercloud": [
+   "aether",
+   "modded"
+  ],
+  "aether:golden_amber": [
+   "aether",
+   "modded"
+  ],
+  "aether:golden_dart": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether:golden_dart_shooter": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether:golden_feather": [
+   "aether",
+   "modded"
+  ],
+  "aether:golden_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:golden_gummy_swet": [
+   "aether",
+   "modded",
+   "food",
+   "edible"
+  ],
+  "aether:golden_oak_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether:golden_oak_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether:golden_oak_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether:golden_oak_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether:golden_parachute": [
+   "aether",
+   "modded"
+  ],
+  "aether:golden_pendant": [
+   "aether",
+   "modded"
+  ],
+  "aether:golden_ring": [
+   "aether",
+   "modded"
+  ],
+  "aether:golden_swet_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:gravitite_axe": [
+   "aether",
+   "modded",
+   "tool",
+   "hand2hand"
+  ],
+  "aether:gravitite_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:gravitite_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:gravitite_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:gravitite_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:gravitite_hoe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:gravitite_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:gravitite_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether:gravitite_pickaxe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:gravitite_shovel": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:gravitite_sword": [
+   "aether",
+   "modded",
+   "hand2hand"
+  ],
+  "aether:hammer_of_kingbdogz": [
+   "aether",
+   "modded"
+  ],
+  "aether:healing_stone": [
+   "aether",
+   "modded"
+  ],
+  "aether:hellfire_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether:hellfire_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether:hellfire_stone": [
+   "aether",
+   "modded"
+  ],
+  "aether:hellfire_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether:holiday_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether:holy_sword": [
+   "aether",
+   "modded",
+   "hand2hand"
+  ],
+  "aether:holystone": [
+   "aether",
+   "modded"
+  ],
+  "aether:holystone_axe": [
+   "aether",
+   "modded",
+   "tool",
+   "hand2hand"
+  ],
+  "aether:holystone_brick_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether:holystone_brick_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether:holystone_brick_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether:holystone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether:holystone_button": [
+   "aether",
+   "modded"
+  ],
+  "aether:holystone_hoe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:holystone_pickaxe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:holystone_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether:holystone_shovel": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:holystone_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether:holystone_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether:holystone_sword": [
+   "aether",
+   "modded",
+   "hand2hand"
+  ],
+  "aether:holystone_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether:ice_pendant": [
+   "aether",
+   "modded"
+  ],
+  "aether:ice_ring": [
+   "aether",
+   "modded"
+  ],
+  "aether:icestone": [
+   "aether",
+   "modded"
+  ],
+  "aether:icestone_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether:icestone_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether:icestone_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether:incubator": [
+   "aether",
+   "modded"
+  ],
+  "aether:invisibility_cloak": [
+   "aether",
+   "modded"
+  ],
+  "aether:iron_bubble": [
+   "aether",
+   "modded"
+  ],
+  "aether:iron_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:iron_pendant": [
+   "aether",
+   "modded"
+  ],
+  "aether:iron_ring": [
+   "aether",
+   "modded"
+  ],
+  "aether:leather_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:life_shard": [
+   "aether",
+   "modded"
+  ],
+  "aether:light_angelic_stone": [
+   "aether",
+   "modded"
+  ],
+  "aether:light_hellfire_stone": [
+   "aether",
+   "modded"
+  ],
+  "aether:lightning_knife": [
+   "aether",
+   "modded"
+  ],
+  "aether:lightning_sword": [
+   "aether",
+   "modded",
+   "hand2hand"
+  ],
+  "aether:locked_angelic_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:locked_carved_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:locked_hellfire_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:locked_light_angelic_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:locked_light_hellfire_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:locked_sentry_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:mimic_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:moa_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:mossy_holystone": [
+   "aether",
+   "modded"
+  ],
+  "aether:mossy_holystone_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether:mossy_holystone_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether:mossy_holystone_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether:music_disc_aether_tune": [
+   "aether",
+   "modded",
+   "music"
+  ],
+  "aether:music_disc_ascending_dawn": [
+   "aether",
+   "modded",
+   "music"
+  ],
+  "aether:music_disc_chinchilla": [
+   "aether",
+   "modded",
+   "music"
+  ],
+  "aether:music_disc_high": [
+   "aether",
+   "modded",
+   "music"
+  ],
+  "aether:music_disc_klepto": [
+   "aether",
+   "modded",
+   "music"
+  ],
+  "aether:music_disc_sliders_wrath": [
+   "aether",
+   "modded",
+   "music"
+  ],
+  "aether:nature_staff": [
+   "aether",
+   "modded"
+  ],
+  "aether:neptune_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:neptune_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:neptune_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:neptune_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:neptune_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:netherite_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:obsidian_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:obsidian_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:obsidian_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:obsidian_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:obsidian_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:phoenix_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:phoenix_bow": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether:phoenix_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:phoenix_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:phoenix_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:phoenix_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:phyg_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:pig_slayer": [
+   "aether",
+   "modded"
+  ],
+  "aether:pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether:pillar_top": [
+   "aether",
+   "modded"
+  ],
+  "aether:poison_dart": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether:poison_dart_shooter": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether:present": [
+   "aether",
+   "modded"
+  ],
+  "aether:purple_flower": [
+   "aether",
+   "modded",
+   "flower",
+   "plant"
+  ],
+  "aether:quicksoil": [
+   "aether",
+   "modded"
+  ],
+  "aether:quicksoil_glass": [
+   "aether",
+   "modded"
+  ],
+  "aether:quicksoil_glass_pane": [
+   "aether",
+   "modded"
+  ],
+  "aether:red_cape": [
+   "aether",
+   "modded"
+  ],
+  "aether:regeneration_stone": [
+   "aether",
+   "modded"
+  ],
+  "aether:sentry_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:sentry_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:sentry_stone": [
+   "aether",
+   "modded"
+  ],
+  "aether:sheepuff_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:shield_of_repulsion": [
+   "aether",
+   "modded"
+  ],
+  "aether:silver_dungeon_key": [
+   "aether",
+   "modded"
+  ],
+  "aether:skyroot_axe": [
+   "aether",
+   "modded",
+   "tool",
+   "hand2hand"
+  ],
+  "aether:skyroot_axolotl_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether:skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether:skyroot_boat": [
+   "aether",
+   "modded",
+   "boat"
+  ],
+  "aether:skyroot_bookshelf": [
+   "aether",
+   "modded"
+  ],
+  "aether:skyroot_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether:skyroot_button": [
+   "aether",
+   "modded"
+  ],
+  "aether:skyroot_chest_boat": [
+   "aether",
+   "modded",
+   "boat",
+   "container"
+  ],
+  "aether:skyroot_cod_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether:skyroot_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "aether:skyroot_fence": [
+   "aether",
+   "modded",
+   "fence",
+   "block"
+  ],
+  "aether:skyroot_fence_gate": [
+   "aether",
+   "modded",
+   "gate",
+   "block"
+  ],
+  "aether:skyroot_hanging_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether:skyroot_hoe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:skyroot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether:skyroot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether:skyroot_milk_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether:skyroot_pickaxe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:skyroot_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether:skyroot_poison_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether:skyroot_powder_snow_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether:skyroot_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether:skyroot_pufferfish_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether:skyroot_remedy_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether:skyroot_salmon_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether:skyroot_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether:skyroot_shovel": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:skyroot_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether:skyroot_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether:skyroot_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether:skyroot_stick": [
+   "aether",
+   "modded"
+  ],
+  "aether:skyroot_sword": [
+   "aether",
+   "modded",
+   "hand2hand"
+  ],
+  "aether:skyroot_tadpole_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether:skyroot_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "aether:skyroot_tropical_fish_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether:skyroot_water_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether:skyroot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether:slider_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:stripped_skyroot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether:stripped_skyroot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether:sun_altar": [
+   "aether",
+   "modded"
+  ],
+  "aether:sun_spirit_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:swet_ball": [
+   "aether",
+   "modded"
+  ],
+  "aether:swet_cape": [
+   "aether",
+   "modded"
+  ],
+  "aether:trapped_angelic_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:trapped_carved_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:trapped_hellfire_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:trapped_light_angelic_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:trapped_light_hellfire_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:trapped_sentry_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:treasure_chest": [
+   "aether",
+   "modded"
+  ],
+  "aether:treasure_doorway_angelic_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:treasure_doorway_carved_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:treasure_doorway_hellfire_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:treasure_doorway_light_angelic_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:treasure_doorway_light_hellfire_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:treasure_doorway_sentry_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether:unstable_obsidian": [
+   "aether",
+   "modded"
+  ],
+  "aether:valkyrie_axe": [
+   "aether",
+   "modded",
+   "tool",
+   "hand2hand"
+  ],
+  "aether:valkyrie_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:valkyrie_cape": [
+   "aether",
+   "modded"
+  ],
+  "aether:valkyrie_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:valkyrie_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:valkyrie_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:valkyrie_hoe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:valkyrie_lance": [
+   "aether",
+   "modded"
+  ],
+  "aether:valkyrie_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:valkyrie_pickaxe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:valkyrie_queen_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:valkyrie_shovel": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:valkyrie_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:vampire_blade": [
+   "aether",
+   "modded"
+  ],
+  "aether:victory_medal": [
+   "aether",
+   "modded"
+  ],
+  "aether:whirlwind_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether:white_apple": [
+   "aether",
+   "modded",
+   "food",
+   "edible"
+  ],
+  "aether:white_cape": [
+   "aether",
+   "modded"
+  ],
+  "aether:white_flower": [
+   "aether",
+   "modded",
+   "flower",
+   "plant"
+  ],
+  "aether:white_moa_egg": [
+   "aether",
+   "modded"
+  ],
+  "aether:yellow_cape": [
+   "aether",
+   "modded"
+  ],
+  "aether:zanite_axe": [
+   "aether",
+   "modded",
+   "tool",
+   "hand2hand"
+  ],
+  "aether:zanite_block": [
+   "aether",
+   "modded"
+  ],
+  "aether:zanite_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:zanite_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:zanite_gemstone": [
+   "aether",
+   "modded"
+  ],
+  "aether:zanite_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:zanite_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:zanite_hoe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:zanite_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether:zanite_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether:zanite_pendant": [
+   "aether",
+   "modded"
+  ],
+  "aether:zanite_pickaxe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:zanite_ring": [
+   "aether",
+   "modded"
+  ],
+  "aether:zanite_shovel": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether:zanite_sword": [
+   "aether",
+   "modded",
+   "hand2hand"
+  ],
+  "aether:zephyr_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:aechor_cutting": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:aechor_petal": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:aechor_plant_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:aerbunny_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:aerwhale_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:aether_bush": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:aether_dirt": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:aether_dirt_path": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:aether_farmland": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:aether_fern": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:aether_grass_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:aether_portal": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:aether_portal_frame": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:aether_quartz": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:agiosite": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:agiosite_base_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:agiosite_base_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:agiosite_brick_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:agiosite_brick_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:agiosite_brick_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:agiosite_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:agiosite_capstone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:agiosite_capstone_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:agiosite_flagstones": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:agiosite_keystone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:agiosite_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:agiosite_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:agiosite_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:agiosite_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:alkahest": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:alkahest_purifier": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:altar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amber_darts": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amber_hourglass": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_base_beam": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_base_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:amberoot_beam": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_bookshelf": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_button": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_deposit": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "aether_ii:amberoot_fence": [
+   "aether",
+   "modded",
+   "fence",
+   "block"
+  ],
+  "aether_ii:amberoot_fence_gate": [
+   "aether",
+   "modded",
+   "gate",
+   "block"
+  ],
+  "aether_ii:amberoot_floorboards": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_hanging_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_ii:amberoot_highlight": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:amberoot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:amberoot_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:amberoot_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_ii:amberoot_shelf": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_shingles": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_ii:amberoot_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:amberoot_small_shingles": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:amberoot_top_beam": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_top_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:amberoot_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "aether_ii:amberoot_trunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:amberoot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:ambrelinn_moss_block": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:ambrelinn_moss_carpet": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:ambrelinn_moss_vines": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:ambrosium_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ambrosium_campfire": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:ambrosium_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ambrosium_shard": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ambrosium_torch": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:animal_stash": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:antitoxin_vial": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:antivenom_vial": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arctic_burrukai_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:arctic_ice": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arctic_kirrid_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:arctic_packed_ice": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arctic_snow": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arctic_snow_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arctic_snowball": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arctic_taegore_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:arilum": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arilum_bulbs": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arilum_plant": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arilum_shoot": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_alkahest_canister": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_axe": [
+   "aether",
+   "modded",
+   "tool",
+   "hand2hand"
+  ],
+  "aether_ii:arkenium_bars": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:arkenium_canister": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_chain": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:arkenium_chip": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_core": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_crossbow": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether_ii:arkenium_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "aether_ii:arkenium_forge": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_framed_crude_scatterglass": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_framed_crude_scatterglass_pane": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_framed_scatterglass": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_framed_scatterglass_pane": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:arkenium_hammer": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:arkenium_hestveil_canister": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:arkenium_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:arkenium_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_pickaxe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_ii:arkenium_pike": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_shield": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:arkenium_shortsword": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:arkenium_shovel": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_ii:arkenium_taluton_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:arkenium_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "aether_ii:arkenium_trowel": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:artisans_bench": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:bandage": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:beast_pelt": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:beast_pelt_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:beast_pelt_bundle": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:beast_pelt_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:beast_pelt_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:beast_pelt_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:beast_pelt_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:black_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:black_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:black_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:black_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:blade_poa": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:blooming_arilum": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:blooming_arilum_plant": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:blue_aercloud": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:blue_aercloud_glider": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:blue_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:blue_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:blue_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:blue_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:blue_swet_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:blueberry": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:blueberry_bush": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:blueberry_bush_stem": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block",
+   "plant"
+  ],
+  "aether_ii:blueberry_moa_feed": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:boss_doorway_block": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_ii:brettl_cane": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:brettl_flower": [
+   "aether",
+   "modded",
+   "flower",
+   "plant"
+  ],
+  "aether_ii:brettl_grass": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:brettl_grass_bundle": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:brettl_plant": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:brettl_plant_tip": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:brettl_rope": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:broken_item": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:broken_item_template": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:brown_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:brown_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:brown_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:brown_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:bryalinn_moss_block": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:bryalinn_moss_carpet": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:bryalinn_moss_flowers": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:bryalinn_moss_vines": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:burrukai_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:burrukai_plate_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:burrukai_plate_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:burrukai_plate_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:burrukai_plate_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:burrukai_plate_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:burrukai_plate_shield": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:burrukai_rib_cut": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:burrukai_ribs": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:carrion_cutting": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:carrion_sprout_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:charge_catalyst": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:charm_of_agility_1": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:charm_of_damage_1": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:charm_of_defense_1": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:charm_of_dexterity_1": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:charm_of_efficiency_1": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:charm_of_health_1": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:charm_of_knockback_1": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:charm_of_reach_1": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:charm_of_resistance_1": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:charm_of_toughness_1": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:cloud_skiff": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:cloudtwine": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:cloudwool_bedroll": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:cloudwool_roofing": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:coarse_aether_dirt": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:cockatrice_feather": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:cockatrice_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:cold_aercloud": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:cold_aercloud_glider": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:corrobonite_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:corrobonite_cluster": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:corrobonite_crystal": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:corrobonite_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:crude_scatterglass": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:crude_scatterglass_pane": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:curved_arkenium_bars": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:cyan_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:cyan_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:cyan_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:cyan_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:dart_shooter": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether_ii:detonation_sentry_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:enchanted_aether_grass_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:enchanted_blueberry": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:enchanted_moa_feed": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:enchanted_orange": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:enchanted_swet_jelly": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:enchanted_wyndberry": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:engraved_disc_aerwhale": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:engraved_disc_approaches": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:engraved_disc_ascending_dawn": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:engraved_disc_chinchilla": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:engraved_disc_demise": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:engraved_disc_high": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:engraved_disc_revolutions": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:eye_of_the_mimic": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:faded_holystone_base_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:faded_holystone_base_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:faded_holystone_brick_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:faded_holystone_brick_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:faded_holystone_brick_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:faded_holystone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:faded_holystone_capstone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:faded_holystone_capstone_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:faded_holystone_flagstones": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:faded_holystone_headstone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:faded_holystone_keystone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:faded_holystone_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ferrosite": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ferrosite_mud": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ferrosite_sand": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:floral_arkenium_bars": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:flying_cow_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:fossilized_corrobonite": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:fossilized_glint": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:fossilized_zanite": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:fragile_arctic_ice": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:frosted_arctic_ice": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:frosted_ice": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:glint_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:glint_coin": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:glint_gemstone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:glint_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:glitterwing_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:golden_aercloud": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:golden_aercloud_glider": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:golden_amber": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:golden_amber_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:golden_swet_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:golden_wyndberry": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:gravitite_axe": [
+   "aether",
+   "modded",
+   "tool",
+   "hand2hand"
+  ],
+  "aether_ii:gravitite_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:gravitite_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:gravitite_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:gravitite_core": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:gravitite_crossbow": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether_ii:gravitite_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:gravitite_hammer": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:gravitite_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:gravitite_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:gravitite_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:gravitite_pickaxe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_ii:gravitite_pike": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:gravitite_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:gravitite_shield": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:gravitite_shortsword": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:gravitite_shovel": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_ii:gravitite_taluton_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:gravitite_trowel": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:gray_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:gray_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:gray_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:gray_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:greatboa_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatboa_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:greatboa_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_ii:greatoak_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatoak_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:greatoak_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_ii:greatroot_base_beam": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatroot_base_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:greatroot_beam": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatroot_bookshelf": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatroot_button": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatroot_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "aether_ii:greatroot_fence": [
+   "aether",
+   "modded",
+   "fence",
+   "block"
+  ],
+  "aether_ii:greatroot_fence_gate": [
+   "aether",
+   "modded",
+   "gate",
+   "block"
+  ],
+  "aether_ii:greatroot_floorboards": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatroot_hanging_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_ii:greatroot_highlight": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatroot_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatroot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:greatroot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:greatroot_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:greatroot_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatroot_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_ii:greatroot_shelf": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatroot_shingles": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatroot_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_ii:greatroot_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:greatroot_small_shingles": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatroot_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:greatroot_top_beam": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatroot_top_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:greatroot_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "aether_ii:greatroot_trunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:greatroot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:green_aercloud": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:green_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:green_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:green_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:green_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:gridded_quicksoil_glass": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:gridded_quicksoil_glass_pane": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:guardian_lamp": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:guardian_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:guardian_log_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:guardian_roots": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:guardian_trunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:guardian_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:guardian_wood_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:guidebook_page": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:hammer_of_demolition": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:hanging_undergrowth": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:hanging_undergrowth_plant": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:healing_stone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:hesperose": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:hestveil": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:highfields_burrukai_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:highfields_kirrid_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:highfields_taegore_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:holpupea": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_axe": [
+   "aether",
+   "modded",
+   "tool",
+   "hand2hand"
+  ],
+  "aether_ii:holystone_base_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_base_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_bookshelf": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_brick_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:holystone_brick_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:holystone_brick_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:holystone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_button": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_capstone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_capstone_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_crossbow": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether_ii:holystone_flagstones": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_furnace": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_hammer": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_headstone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_keystone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_lever": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_pickaxe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_ii:holystone_pike": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_quartz_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_rock": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_shortsword": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_shovel": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_ii:holystone_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:holystone_smoker": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:holystone_trowel": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:holystone_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:icestone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:icestone_base_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:icestone_base_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:icestone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:icestone_bricks_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:icestone_bricks_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:icestone_bricks_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:icestone_capstone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:icestone_capstone_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:icestone_flagstones": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:icestone_keystone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:icestone_pendant": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:icestone_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:icestone_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:icestone_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:icestone_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:ichorite": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ichorite_base_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ichorite_base_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ichorite_brick_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:ichorite_brick_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:ichorite_brick_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:ichorite_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ichorite_capstone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ichorite_capstone_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ichorite_flagstones": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ichorite_keystone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ichorite_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ichorite_runestone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:ichorite_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:ichorite_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:ichorite_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:inert_arkenium": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:inert_arkenium_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:inert_gravitite": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:inert_gravitite_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:infected_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:infected_log_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:infected_trunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:infected_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:infected_wood_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:irradiated_armor": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_armor_result": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_chunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_chunk_result": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_dust": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_dust_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_greatboa_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_greatboa_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:irradiated_greatoak_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_greatoak_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:irradiated_greatroot_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_greatroot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:irradiated_holystone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_holystone_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:irradiated_holystone_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:irradiated_holystone_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:irradiated_skybirch_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_skybirch_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:irradiated_skypine_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_skypine_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:irradiated_skyplane_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_skyplane_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:irradiated_skyroot_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_skyroot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:irradiated_tool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_tool_result": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_weapon": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_weapon_result": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_wisproot_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_wisproot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:irradiated_wisptop_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:irradiated_wisptop_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:kinetic_thrusters": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:kirrid_cutlet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:kirrid_loin": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:kirrid_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:large_arctic_ice_crystal": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:large_moa_saddlebag": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:lasso": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:light_blue_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:light_blue_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:light_blue_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:light_blue_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:light_gray_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:light_gray_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:light_gray_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:light_gray_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:lilichime": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:lime_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:lime_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:lime_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:lime_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:locked_block": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_ii:lucent_guardian_roots": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:magenta_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:magenta_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:magenta_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:magenta_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:magnetic_burrukai_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:magnetic_kirrid_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:magnetic_shroom": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:magnetic_shroom_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:magnetic_shroom_stem": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:magnetic_taegore_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:marbled_base_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:marbled_base_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:marbled_brick_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:marbled_brick_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:marbled_brick_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:marbled_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:marbled_capstone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:marbled_capstone_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:marbled_flagstones": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:marbled_ichorite": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:marbled_ichorite_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:marbled_ichorite_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:marbled_ichorite_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:marbled_keystone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:marbled_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:medium_aether_grass": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:medium_arctic_ice_crystal": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:moa_egg": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:moa_feather": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:moa_feed": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:moa_saddle": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:moa_saddlebag": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:moa_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:mossy_holystone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:mossy_holystone_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:mossy_holystone_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:mossy_holystone_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:mossy_wisproot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:mossy_wisproot_log_base": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:mossy_wisproot_trunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:mossy_wisproot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:mural": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:mural_item": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:music_player": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:mycelial_aether_dirt": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:neptune_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:neptune_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:neptune_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:neptune_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:neptune_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:neptune_scale": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:orange": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:orange_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:orange_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:orange_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:orange_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:orange_tree": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:outpost_campfire": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:patterned_arkenium_bars": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:phyg_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:pink_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:pink_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:pink_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:pink_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:pluracian": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:poasprout": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:pointed_holystone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:pointed_ichorite": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:purple_aercloud": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:purple_aercloud_glider": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:purple_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:purple_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:purple_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:purple_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:quicksoil": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:quicksoil_glass": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:quicksoil_glass_pane": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:raw_taegore_meat": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:red_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:red_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:red_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:red_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:roasted_skyroot_lizard_on_a_stick": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:rotgrowth_vines": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:rotshroom": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:rotshroom_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:rotshroom_cluster": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:rotshroom_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:rotshroom_stem": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:rotshroom_toadstool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:rusted_ferrosite": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:rustic_arkenium_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:satival_bulb": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:satival_shoot": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:scatterglass": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:scatterglass_bolt": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:scatterglass_pane": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:scatterglass_shard": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:scatterglass_vial": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:secret_amberoot_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "aether_ii:secret_amberoot_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "aether_ii:secret_greatroot_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "aether_ii:secret_greatroot_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "aether_ii:secret_skyroot_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "aether_ii:secret_skyroot_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "aether_ii:secret_wisproot_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "aether_ii:secret_wisproot_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "aether_ii:sentry_base_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:sentry_base_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:sentry_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:sentry_brick_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:sentry_brick_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:sentry_brick_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:sentry_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:sentry_button": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:sentry_capstone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:sentry_capstone_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:sentry_crate": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:sentry_crate_mimic_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:sentry_flagstones": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:sentry_golem_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:sentry_lightstone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:sentry_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:sentry_servo": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:sentry_spawner": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:sentry_tile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:sentry_trap": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:shayelinn_moss_block": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:shayelinn_moss_carpet": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:shayelinn_moss_vines": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:sheepuff_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:shelf_rotshroom": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:shelf_rotshroom_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:shield_fern": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:shimmering_silt": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:short_aether_grass": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:shroudwing_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:skephid_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:sky_roots": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skybirch_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skybirch_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:skybirch_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_ii:skypine_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skypine_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:skypine_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_ii:skyplane_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyplane_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:skyplane_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_ii:skyroot_axe": [
+   "aether",
+   "modded",
+   "tool",
+   "hand2hand"
+  ],
+  "aether_ii:skyroot_axolotl_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether_ii:skyroot_barrel": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_base_beam": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_base_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:skyroot_beam": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:skyroot_bookshelf": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether_ii:skyroot_button": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_chest": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_cod_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether_ii:skyroot_crafting_table": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_crossbow": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether_ii:skyroot_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "aether_ii:skyroot_fence": [
+   "aether",
+   "modded",
+   "fence",
+   "block"
+  ],
+  "aether_ii:skyroot_fence_gate": [
+   "aether",
+   "modded",
+   "gate",
+   "block"
+  ],
+  "aether_ii:skyroot_floorboards": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_framed_crude_scatterglass": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_framed_crude_scatterglass_pane": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_framed_scatterglass": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_framed_scatterglass_pane": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_hammer": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_hanging_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_ii:skyroot_highlight": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_ladder": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:skyroot_lizard_on_a_stick": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_lizard_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:skyroot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:skyroot_milk_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether_ii:skyroot_pickaxe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_ii:skyroot_pike": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_pinecone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:skyroot_powder_snow_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether_ii:skyroot_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_pufferfish_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether_ii:skyroot_salmon_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether_ii:skyroot_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_ii:skyroot_shelf": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_shield": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:skyroot_shingles": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_shortsword": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_shovel": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_ii:skyroot_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_ii:skyroot_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:skyroot_small_shingles": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:skyroot_stick": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_tadpole_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether_ii:skyroot_top_beam": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_top_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:skyroot_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "aether_ii:skyroot_tropical_fish_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether_ii:skyroot_trowel": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_trunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_twig": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:skyroot_water_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "aether_ii:skyroot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:slider_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:small_arctic_ice_crystal": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:smooth_ichorite": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:smooth_ichorite_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:smooth_ichorite_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:smooth_ichorite_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:splint": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:spotted_magnetic_shroom_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:storm_aercloud": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:stripped_amberoot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:stripped_amberoot_trunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:stripped_amberoot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:stripped_greatroot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:stripped_greatroot_trunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:stripped_greatroot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:stripped_guardian_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:stripped_guardian_log_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:stripped_guardian_trunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:stripped_guardian_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:stripped_guardian_wood_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:stripped_infected_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:stripped_infected_log_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:stripped_infected_trunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:stripped_infected_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:stripped_infected_wood_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:stripped_skyroot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:stripped_skyroot_trunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:stripped_skyroot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:stripped_wisproot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:stripped_wisproot_trunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:stripped_wisproot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:swet_gel": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:swet_jelly": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:swet_sugar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:taegore_steak": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:tall_aether_grass": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:tangled_branches": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:tarabloom": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:tarahesp_flowers": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:tempest_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_ii:tiled_quicksoil_glass": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:tiled_quicksoil_glass_pane": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:treasure_doorway_block": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_ii:undergrowth_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:undergrowth_vines": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_ii:undershale": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_ambrosium_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_arkenium_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_base_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_base_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_brick_button": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_brick_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_brick_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:undershale_brick_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:undershale_brick_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:undershale_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_capstone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_capstone_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_flagstones": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_glint_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_gravitite_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:undershale_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:undershale_tile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:undershale_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_ii:undershale_zanite_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:unstable_guardian_roots": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:unstable_holystone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:unstable_obsidian": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:unstable_undershale": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:valkyrie_sprout": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:valkyrie_tea": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:valkyrie_wings": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:veradexian_vase": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:water_vial": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:white_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:white_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:white_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:white_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:wisproot_base_beam": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wisproot_base_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:wisproot_beam": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wisproot_bookshelf": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wisproot_button": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wisproot_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "aether_ii:wisproot_fence": [
+   "aether",
+   "modded",
+   "fence",
+   "block"
+  ],
+  "aether_ii:wisproot_fence_gate": [
+   "aether",
+   "modded",
+   "gate",
+   "block"
+  ],
+  "aether_ii:wisproot_floorboards": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wisproot_hanging_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_ii:wisproot_highlight": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wisproot_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wisproot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:wisproot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:wisproot_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:wisproot_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wisproot_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_ii:wisproot_shelf": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wisproot_shingles": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wisproot_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_ii:wisproot_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_ii:wisproot_small_shingles": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wisproot_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_ii:wisproot_top_beam": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wisproot_top_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:wisproot_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "aether_ii:wisproot_trunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wisproot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_ii:wisptop_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wisptop_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_ii:wisptop_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_ii:woven_skyroot_sticks": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:wyndberry": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:yellow_arilum_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_ii:yellow_cloudwool": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:yellow_cloudwool_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:yellow_skyroot_bed": [
+   "aether",
+   "modded",
+   "bed"
+  ],
+  "aether_ii:zanite_axe": [
+   "aether",
+   "modded",
+   "tool",
+   "hand2hand"
+  ],
+  "aether_ii:zanite_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:zanite_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:zanite_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:zanite_crossbow": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether_ii:zanite_gemstone": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:zanite_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:zanite_hammer": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:zanite_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:zanite_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:zanite_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:zanite_pendant": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:zanite_pickaxe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_ii:zanite_pike": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:zanite_shears": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_ii:zanite_shield": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "aether_ii:zanite_shortsword": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:zanite_shovel": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_ii:zanite_trowel": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:zephyr_husk": [
+   "aether",
+   "modded"
+  ],
+  "aether_ii:zephyr_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_redux:aerbound_cape": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:angilite": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:angilite_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_redux:angilite_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_redux:angilite_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_redux:aurum": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:bleakmoss_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:bleakmoss_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:bleakmoss_holystone": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:bleakmoss_holystone_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_redux:bleakmoss_holystone_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_redux:bleakmoss_holystone_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_redux:blighted_aether_grass_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:blightwillow_boat": [
+   "aether",
+   "modded",
+   "boat"
+  ],
+  "aether_redux:blightwillow_bookshelf": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:blightwillow_button": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:blightwillow_chest_boat": [
+   "aether",
+   "modded",
+   "boat",
+   "container"
+  ],
+  "aether_redux:blightwillow_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "aether_redux:blightwillow_fence": [
+   "aether",
+   "modded",
+   "fence",
+   "block"
+  ],
+  "aether_redux:blightwillow_fence_gate": [
+   "aether",
+   "modded",
+   "gate",
+   "block"
+  ],
+  "aether_redux:blightwillow_hanging_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_redux:blightwillow_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:blightwillow_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_redux:blightwillow_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:blightwillow_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:blightwillow_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:blightwillow_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:blightwillow_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_redux:blightwillow_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_redux:blightwillow_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_redux:blightwillow_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_redux:blightwillow_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "aether_redux:blightwillow_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:blightwillow_wood_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:bloomtail": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:boss_doorway_carved_base": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_redux:boss_doorway_carved_pillar": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_redux:boss_doorway_sentry_base": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_redux:boss_doorway_sentry_pillar": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_redux:caelgae_clump": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:caelgae_patch": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:carved_base": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:carved_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:cat_fish_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "aether_redux:cloud_cap_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:crystal_boat": [
+   "aether",
+   "modded",
+   "boat"
+  ],
+  "aether_redux:crystal_bookshelf": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:crystal_button": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:crystal_chest_boat": [
+   "aether",
+   "modded",
+   "boat",
+   "container"
+  ],
+  "aether_redux:crystal_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "aether_redux:crystal_fence": [
+   "aether",
+   "modded",
+   "fence",
+   "block"
+  ],
+  "aether_redux:crystal_fence_gate": [
+   "aether",
+   "modded",
+   "gate",
+   "block"
+  ],
+  "aether_redux:crystal_hanging_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_redux:crystal_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:crystal_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:crystal_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:crystal_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:crystal_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_redux:crystal_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_redux:crystal_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_redux:crystal_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "aether_redux:crystal_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:crystal_wood_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:daggerbloom": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:echysia": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:flareblossom": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:gilded_holystone": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:gilded_holystone_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_redux:gilded_holystone_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_redux:gilded_holystone_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_redux:gildenmoss_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:gildenmoss_carpet": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:gildleaf_amber_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:gildleaf_amber_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:gildleaf_boat": [
+   "aether",
+   "modded",
+   "boat"
+  ],
+  "aether_redux:gildleaf_bookshelf": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:gildleaf_button": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:gildleaf_chest_boat": [
+   "aether",
+   "modded",
+   "boat",
+   "container"
+  ],
+  "aether_redux:gildleaf_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "aether_redux:gildleaf_fence": [
+   "aether",
+   "modded",
+   "fence",
+   "block"
+  ],
+  "aether_redux:gildleaf_fence_gate": [
+   "aether",
+   "modded",
+   "gate",
+   "block"
+  ],
+  "aether_redux:gildleaf_hanging_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_redux:gildleaf_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:gildleaf_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_redux:gildleaf_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:gildleaf_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:gildleaf_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:gildleaf_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:gildleaf_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_redux:gildleaf_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_redux:gildleaf_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_redux:gildleaf_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_redux:gildleaf_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "aether_redux:gildleaf_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:gildleaf_wood_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:gloomshade": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:golden_clovers": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:golden_vines": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_redux:golden_vines_plant": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_redux:holysilt": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:infected_blightwillow_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_redux:infused_veridium_axe": [
+   "aether",
+   "modded",
+   "tool",
+   "hand2hand"
+  ],
+  "aether_redux:infused_veridium_dart_shooter": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether_redux:infused_veridium_hoe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_redux:infused_veridium_pickaxe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_redux:infused_veridium_shovel": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_redux:infused_veridium_sword": [
+   "aether",
+   "modded",
+   "hand2hand"
+  ],
+  "aether_redux:locked_carved_base": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_redux:locked_carved_pillar": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_redux:locked_polished_sentrite": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_redux:locked_runelight": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_redux:locked_sentry_base": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_redux:locked_sentry_pillar": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_redux:logicator": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:lucky_clover": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:lumina": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:luxweed": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:moonfir_boat": [
+   "aether",
+   "modded",
+   "boat"
+  ],
+  "aether_redux:moonfir_bookshelf": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:moonfir_button": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:moonfir_chest_boat": [
+   "aether",
+   "modded",
+   "boat",
+   "container"
+  ],
+  "aether_redux:moonfir_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "aether_redux:moonfir_fence": [
+   "aether",
+   "modded",
+   "fence",
+   "block"
+  ],
+  "aether_redux:moonfir_fence_gate": [
+   "aether",
+   "modded",
+   "gate",
+   "block"
+  ],
+  "aether_redux:moonfir_hanging_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_redux:moonfir_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:moonfir_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_redux:moonfir_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:moonfir_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:moonfir_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:moonfir_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:moonfir_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_redux:moonfir_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "aether_redux:moonfir_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_redux:moonfir_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_redux:moonfir_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "aether_redux:moonfir_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:moonfir_wood_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:music_disc_sentience": [
+   "aether",
+   "modded",
+   "music"
+  ],
+  "aether_redux:polished_angilite": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:polished_angilite_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_redux:polished_angilite_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_redux:polished_angilite_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_redux:polished_sentrite": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:polished_sentrite_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_redux:polished_sentrite_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_redux:polished_sentrite_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_redux:raw_veridium": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:raw_veridium_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:refined_sentrite": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:refined_sentrite_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:runelight": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:runic_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_redux:seaweed_salad": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:sentrite": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:sentrite_bars": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:sentrite_brick_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_redux:sentrite_brick_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_redux:sentrite_brick_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_redux:sentrite_bricks": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:sentrite_chain": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:sentrite_chunk": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:sentrite_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "aether_redux:sentrite_shears": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_redux:sentrite_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "aether_redux:sentrite_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "aether_redux:sentrite_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "aether_redux:sentry_base": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:sentry_pillar": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:shaded_vines": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_redux:shaded_vines_plant": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "aether_redux:silveroot_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:silveroot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_redux:silveroot_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_redux:skysprouts": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:spirolyctil": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:stormfir_leaf_pile": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:stormfir_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "aether_redux:stormfir_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "aether_redux:stripped_blightwillow_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:stripped_blightwillow_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:stripped_blightwillow_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:stripped_blightwillow_wood_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:stripped_crystal_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:stripped_crystal_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:stripped_crystal_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:stripped_crystal_wood_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:stripped_gildleaf_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:stripped_gildleaf_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:stripped_gildleaf_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:stripped_gildleaf_wood_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:stripped_moonfir_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:stripped_moonfir_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:stripped_moonfir_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "aether_redux:stripped_moonfir_wood_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "aether_redux:trapped_carved_base": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_redux:trapped_carved_pillar": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_redux:trapped_sentry_base": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_redux:trapped_sentry_pillar": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "aether_redux:turbo_verbena": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:veridium_axe": [
+   "aether",
+   "modded",
+   "tool",
+   "hand2hand"
+  ],
+  "aether_redux:veridium_block": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:veridium_dart": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether_redux:veridium_dart_shooter": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "aether_redux:veridium_hoe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_redux:veridium_ingot": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:veridium_nugget": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:veridium_ore": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:veridium_pickaxe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_redux:veridium_shovel": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "aether_redux:veridium_sword": [
+   "aether",
+   "modded",
+   "hand2hand"
+  ],
+  "aether_redux:willow_spores": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:wynd_oat_panicle": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:wynd_oats": [
+   "aether",
+   "modded"
+  ],
+  "aether_redux:wyndsprouts": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:adibium_block": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:adibium_gemstone": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:adibium_ore": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aercloud_grass_block": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aercloud_necklace": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aercloud_root_carpet": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aercloud_roots": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aerglow_blossom": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aerglow_blossom_block": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aerglow_fish_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "deep_aether:aerglow_grass_block": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aerglow_grass_path": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aerlavender": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aersmog": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aerwhale_saddle": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aerwhale_totem": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aether_cattails": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aether_coarse_dirt": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aether_dirt_bricks": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aether_dirt_bricks_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:aether_dirt_bricks_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:aether_dirt_bricks_vertical_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:aether_dirt_bricks_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:aether_fish_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "deep_aether:aether_moss_block": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "deep_aether:aether_moss_carpet": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "deep_aether:aether_mud": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aether_mud_bricks": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aether_mud_bricks_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:aether_mud_bricks_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:aether_mud_bricks_vertical_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:aether_mud_bricks_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:afterburner": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:agate_block": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:agate_gemstone": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:agate_ore": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:ambrosium_tiki_torch": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "deep_aether:antidote": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aseterite": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aseterite_bricks": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aseterite_bricks_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:aseterite_bricks_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:aseterite_bricks_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:aseterite_pillar": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:aseterite_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:aseterite_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:aseterite_vertical_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:aseterite_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:baby_zephyr_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "deep_aether:big_holystone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:big_holystone_bricks_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:big_holystone_bricks_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:big_holystone_bricks_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:bio_crystal": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:blade_of_luck": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:blightmoss_holystone_brick_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:blightmoss_holystone_brick_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:blightmoss_holystone_brick_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:blightmoss_holystone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:blightmoss_holystone_tile_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:blightmoss_holystone_tile_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:blightmoss_holystone_tile_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:blightmoss_holystone_tiles": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:blue_aercloud_mushroom_block": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:blue_aercloud_mushrooms": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:blue_roseroot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "deep_aether:blue_roseroot_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "deep_aether:blue_squash": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:blue_squash_slice": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:boss_doorway_light_nimbus_pillar": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:boss_doorway_light_nimbus_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:boss_doorway_nimbus_pillar": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:boss_doorway_nimbus_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:brass_dungeon_key": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:bronze_compass": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:carved_blue_squash": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:carved_green_squash": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:carved_purple_squash": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:chaos_emerald": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:chiseled_aseterite_bricks": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:chiseled_holystone": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:chromatic_aercloud": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:clorite": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:clorite_bricks": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:clorite_bricks_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:clorite_bricks_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:clorite_bricks_vertical_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:clorite_pillar": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:clorite_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:clorite_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:clorite_vertical_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:clorite_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:cloud_cape": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:cloudbloom_bouquet": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:cloudbloom_carpet": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:cobbled_aseterite": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:cobbled_aseterite_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:cobbled_aseterite_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:cobbled_aseterite_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:combiner": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:conberry_boat": [
+   "aether",
+   "modded",
+   "boat"
+  ],
+  "deep_aether:conberry_button": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:conberry_chest_boat": [
+   "aether",
+   "modded",
+   "boat",
+   "container"
+  ],
+  "deep_aether:conberry_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "deep_aether:conberry_fence": [
+   "aether",
+   "modded",
+   "fence",
+   "block"
+  ],
+  "deep_aether:conberry_fence_gate": [
+   "aether",
+   "modded",
+   "gate",
+   "block"
+  ],
+  "deep_aether:conberry_hanging_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "deep_aether:conberry_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "deep_aether:conberry_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:conberry_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "deep_aether:conberry_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:conberry_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:conberry_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "deep_aether:conberry_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "deep_aether:conberry_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:conberry_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:conberry_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "deep_aether:conberry_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:conberry_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:cooked_aerglow_fish": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:cooked_quail": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:cruderoot_boat": [
+   "aether",
+   "modded",
+   "boat"
+  ],
+  "deep_aether:cruderoot_button": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:cruderoot_chest_boat": [
+   "aether",
+   "modded",
+   "boat",
+   "container"
+  ],
+  "deep_aether:cruderoot_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "deep_aether:cruderoot_fence": [
+   "aether",
+   "modded",
+   "fence",
+   "block"
+  ],
+  "deep_aether:cruderoot_fence_gate": [
+   "aether",
+   "modded",
+   "gate",
+   "block"
+  ],
+  "deep_aether:cruderoot_hanging_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "deep_aether:cruderoot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "deep_aether:cruderoot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:cruderoot_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:cruderoot_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:cruderoot_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "deep_aether:cruderoot_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "deep_aether:cruderoot_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:cruderoot_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:cruderoot_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "deep_aether:cruderoot_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:cruderoot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:echaisy": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:enchanted_antidote": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:enchanted_blossom": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:feather_grass": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "deep_aether:floaty_scarf": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:flowering_blue_roseroot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "deep_aether:flowering_roseroot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "deep_aether:frosted_holystone_brick_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:frosted_holystone_brick_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:frosted_holystone_brick_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:frosted_holystone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:frosted_holystone_tile_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:frosted_holystone_tile_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:frosted_holystone_tile_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:frosted_holystone_tiles": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:frozen_goldenleaf_berries": [
+   "aether",
+   "modded",
+   "food",
+   "edible"
+  ],
+  "deep_aether:gentle_wind_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "deep_aether:gilded_holystone_brick_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:gilded_holystone_brick_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:gilded_holystone_brick_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:gilded_holystone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:gilded_holystone_tile_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:gilded_holystone_tile_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:gilded_holystone_tile_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:gilded_holystone_tiles": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:glowing_spores": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:glowing_vine": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "deep_aether:gold_compass": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:golden_aspess": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:golden_flower": [
+   "aether",
+   "modded",
+   "flower",
+   "plant"
+  ],
+  "deep_aether:golden_grass_seeds": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:golden_heights_dirt_path": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:golden_heights_grass_block": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:golden_swet_ball": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:goldenleaf_berries": [
+   "aether",
+   "modded",
+   "food",
+   "edible"
+  ],
+  "deep_aether:gravitite_ring": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:green_squash": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:green_squash_slice": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:highstone": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:highstone_adibium_ore": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:highstone_agate_ore": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:highstone_oratie_ore": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:holystone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:holystone_bricks_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:holystone_bricks_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:holystone_bricks_vertical_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:holystone_pillar": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:holystone_pillar_down": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:holystone_pillar_up": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:holystone_tile_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:holystone_tile_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:holystone_tile_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:holystone_tiles": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:iaspove": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:light_nimbus_pillar": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:light_nimbus_stone": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:lightcap_mushroom_block": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:lightcap_mushrooms": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:locked_light_nimbus_pillar": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:locked_light_nimbus_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:locked_nimbus_pillar": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:locked_nimbus_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:locked_skyroot_planks": [
+   "aether",
+   "modded",
+   "creativeOnly",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:medal_of_honor": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:medium_golden_grass": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "deep_aether:mini_golden_grass": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "deep_aether:moa_fodder": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:moa_totem": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:mossy_holystone_brick_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:mossy_holystone_brick_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:mossy_holystone_brick_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:mossy_holystone_bricks": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:mossy_holystone_tile_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:mossy_holystone_tile_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:mossy_holystone_tile_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:mossy_holystone_tiles": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:muddy_yagroot_roots": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:music_disc_a_morning_wish": [
+   "aether",
+   "modded",
+   "music"
+  ],
+  "deep_aether:music_disc_above_the_rain": [
+   "aether",
+   "modded",
+   "music"
+  ],
+  "deep_aether:music_disc_atta": [
+   "aether",
+   "modded",
+   "music"
+  ],
+  "deep_aether:music_disc_cyclone": [
+   "aether",
+   "modded",
+   "music"
+  ],
+  "deep_aether:music_disc_faent": [
+   "aether",
+   "modded",
+   "music"
+  ],
+  "deep_aether:music_disc_himininn": [
+   "aether",
+   "modded",
+   "music"
+  ],
+  "deep_aether:music_disc_nabooru": [
+   "aether",
+   "modded",
+   "music"
+  ],
+  "deep_aether:nimbus_pillar": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:nimbus_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:nimbus_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:nimbus_stone": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:nimbus_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:oratie_block": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:oratie_ingot": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:oratie_ore": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:packed_aether_mud": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:pink_aercloud_mushroom_block": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:pink_aercloud_mushrooms": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:poison": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:poison_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "deep_aether:polished_aseterite": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:polished_aseterite_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:polished_aseterite_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:polished_aseterite_vertical_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:polished_aseterite_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:polished_clorite": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:polished_clorite_bricks": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:polished_clorite_bricks_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:polished_clorite_bricks_vertical_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:polished_clorite_bricks_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:polished_clorite_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:polished_clorite_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:polished_clorite_vertical_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:polished_clorite_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:purple_squash": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:purple_squash_slice": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:quail_egg": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:quail_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "deep_aether:radiant_orchid": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:rain_aercloud": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:raw_aerglow_fish": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:raw_clorite": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:raw_clorite_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:raw_clorite_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:raw_clorite_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:raw_oratie": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:raw_oratie_block": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:raw_quail": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:remedy_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "deep_aether:roseroot_boat": [
+   "aether",
+   "modded",
+   "boat"
+  ],
+  "deep_aether:roseroot_bookshelf": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:roseroot_button": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:roseroot_chest": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:roseroot_chest_boat": [
+   "aether",
+   "modded",
+   "boat",
+   "container"
+  ],
+  "deep_aether:roseroot_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "deep_aether:roseroot_fence": [
+   "aether",
+   "modded",
+   "fence",
+   "block"
+  ],
+  "deep_aether:roseroot_fence_gate": [
+   "aether",
+   "modded",
+   "gate",
+   "block"
+  ],
+  "deep_aether:roseroot_hanging_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "deep_aether:roseroot_hedge": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:roseroot_ladder": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:roseroot_leaf_carpet": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:roseroot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "deep_aether:roseroot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:roseroot_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "deep_aether:roseroot_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:roseroot_post": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:roseroot_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:roseroot_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "deep_aether:roseroot_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "deep_aether:roseroot_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:roseroot_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:roseroot_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "deep_aether:roseroot_trapped_chest": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:roseroot_vertical_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:roseroot_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:roseroot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:rotten_roseroot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:short_golden_grass": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "deep_aether:silver_compass": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:sky_tulips": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:skyjade": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:skyjade_axe": [
+   "aether",
+   "modded",
+   "tool",
+   "hand2hand"
+  ],
+  "deep_aether:skyjade_block": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:skyjade_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:skyjade_chain": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:skyjade_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:skyjade_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:skyjade_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:skyjade_hoe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "deep_aether:skyjade_lantern": [
+   "aether",
+   "modded",
+   "lightSource"
+  ],
+  "deep_aether:skyjade_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:skyjade_moa_armor": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:skyjade_nugget": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:skyjade_ore": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:skyjade_pendant": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:skyjade_pickaxe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "deep_aether:skyjade_ring": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:skyjade_shield": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:skyjade_shovel": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "deep_aether:skyjade_sword": [
+   "aether",
+   "modded",
+   "hand2hand"
+  ],
+  "deep_aether:skyroot_aerglow_fish_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "deep_aether:skyroot_virulent_quicksand": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:skyroot_virulent_quicksand_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "deep_aether:slider_eye": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:spooky_ring": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:squall_block": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:squall_plate": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:squash_seeds": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:sterling_aercloud": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:storm_bow": [
+   "aether",
+   "modded",
+   "ranged"
+  ],
+  "deep_aether:storm_sword": [
+   "aether",
+   "modded",
+   "hand2hand"
+  ],
+  "deep_aether:stormforged_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:stormforged_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:stormforged_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:stormforged_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:stormforged_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:stormforged_smithing_template": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:stratus_axe": [
+   "aether",
+   "modded",
+   "tool",
+   "hand2hand"
+  ],
+  "deep_aether:stratus_block": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:stratus_boots": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:stratus_chestplate": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:stratus_debris": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:stratus_gloves": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:stratus_helmet": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:stratus_hoe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "deep_aether:stratus_ingot": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:stratus_leggings": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:stratus_pickaxe": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "deep_aether:stratus_ring": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:stratus_scrap": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:stratus_shield": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:stratus_shovel": [
+   "aether",
+   "modded",
+   "tool"
+  ],
+  "deep_aether:stratus_smithing_template": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:stratus_sword": [
+   "aether",
+   "modded",
+   "hand2hand"
+  ],
+  "deep_aether:stripped_conberry_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:stripped_conberry_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "deep_aether:stripped_conberry_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:stripped_conberry_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:stripped_cruderoot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:stripped_cruderoot_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "deep_aether:stripped_cruderoot_post": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:stripped_cruderoot_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:stripped_cruderoot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:stripped_rose_post": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:stripped_roseroot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:stripped_roseroot_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "deep_aether:stripped_roseroot_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:stripped_roseroot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:stripped_sunroot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:stripped_sunroot_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "deep_aether:stripped_sunroot_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:stripped_sunroot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:stripped_yagroot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:stripped_yagroot_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "deep_aether:stripped_yagroot_post": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:stripped_yagroot_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:stripped_yagroot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:sun_clock": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:sun_core": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:sunroot_boat": [
+   "aether",
+   "modded",
+   "boat"
+  ],
+  "deep_aether:sunroot_button": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:sunroot_chest_boat": [
+   "aether",
+   "modded",
+   "boat",
+   "container"
+  ],
+  "deep_aether:sunroot_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "deep_aether:sunroot_fence": [
+   "aether",
+   "modded",
+   "fence",
+   "block"
+  ],
+  "deep_aether:sunroot_fence_gate": [
+   "aether",
+   "modded",
+   "gate",
+   "block"
+  ],
+  "deep_aether:sunroot_hanger": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:sunroot_hanging_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "deep_aether:sunroot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "deep_aether:sunroot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:sunroot_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "deep_aether:sunroot_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:sunroot_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:sunroot_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "deep_aether:sunroot_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "deep_aether:sunroot_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:sunroot_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:sunroot_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "deep_aether:sunroot_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:sunroot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:tall_aerlavender": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:tall_aether_cattails": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:tall_alien_plant": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:tall_feather_grass": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "deep_aether:tall_glowing_grass": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "deep_aether:tall_golden_grass": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "deep_aether:trapped_light_nimbus_pillar": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:trapped_light_nimbus_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:trapped_nimbus_pillar": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:trapped_nimbus_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:trapped_skyroot_planks": [
+   "aether",
+   "modded",
+   "creativeOnly",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:treasure_doorway_light_nimbus_pillar": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:treasure_doorway_light_nimbus_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:treasure_doorway_nimbus_pillar": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:treasure_doorway_nimbus_stone": [
+   "aether",
+   "modded",
+   "creativeOnly"
+  ],
+  "deep_aether:venomite_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "deep_aether:vertical_cruderoot_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:vertical_roseroot_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:vertical_yagroot_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:virulent_quicksand": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:virulent_quicksand_bucket": [
+   "aether",
+   "modded",
+   "bucket"
+  ],
+  "deep_aether:wind_shield": [
+   "aether",
+   "modded",
+   "armor"
+  ],
+  "deep_aether:windfly_spawn_egg": [
+   "aether",
+   "modded",
+   "egg",
+   "technical",
+   "creativeOnly"
+  ],
+  "deep_aether:yagroot_boat": [
+   "aether",
+   "modded",
+   "boat"
+  ],
+  "deep_aether:yagroot_bookshelf": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:yagroot_button": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:yagroot_chest": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:yagroot_chest_boat": [
+   "aether",
+   "modded",
+   "boat",
+   "container"
+  ],
+  "deep_aether:yagroot_door": [
+   "aether",
+   "modded",
+   "door",
+   "block"
+  ],
+  "deep_aether:yagroot_fence": [
+   "aether",
+   "modded",
+   "fence",
+   "block"
+  ],
+  "deep_aether:yagroot_fence_gate": [
+   "aether",
+   "modded",
+   "gate",
+   "block"
+  ],
+  "deep_aether:yagroot_hanging_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "deep_aether:yagroot_hedge": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:yagroot_ladder": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:yagroot_leaf_carpet": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:yagroot_leaves": [
+   "aether",
+   "modded",
+   "plant",
+   "block"
+  ],
+  "deep_aether:yagroot_log": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:yagroot_log_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block",
+   "rawWood"
+  ],
+  "deep_aether:yagroot_planks": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:yagroot_post": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:yagroot_pressure_plate": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:yagroot_roots": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:yagroot_sapling": [
+   "aether",
+   "modded",
+   "plant",
+   "growable"
+  ],
+  "deep_aether:yagroot_sign": [
+   "aether",
+   "modded",
+   "sign"
+  ],
+  "deep_aether:yagroot_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:yagroot_stairs": [
+   "aether",
+   "modded",
+   "stairs",
+   "block"
+  ],
+  "deep_aether:yagroot_trapdoor": [
+   "aether",
+   "modded",
+   "trapdoor",
+   "block"
+  ],
+  "deep_aether:yagroot_trapped_chest": [
+   "aether",
+   "modded"
+  ],
+  "deep_aether:yagroot_vertical_slab": [
+   "aether",
+   "modded",
+   "slab",
+   "block"
+  ],
+  "deep_aether:yagroot_vine": [
+   "aether",
+   "modded",
+   "plant"
+  ],
+  "deep_aether:yagroot_wall": [
+   "aether",
+   "modded",
+   "wall",
+   "block"
+  ],
+  "deep_aether:yagroot_wood": [
+   "aether",
+   "modded",
+   "rawWood",
+   "block"
+  ],
+  "deep_aether:zephyr_totem": [
+   "aether",
+   "modded"
   ]
  }
 }

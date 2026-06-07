@@ -6063,6 +6063,18 @@
     "enchant",
     "name"
    ]
+  },
+  "kw:Aether": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
   }
  }
 }

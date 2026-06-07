@@ -57,6 +57,8 @@ public final class BankCommand {
                         .executes(c -> upgrade(c.getSource())))
                 .then(Commands.literal("fillall").requires(s -> s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER))
                         .executes(c -> fillAll(c.getSource())))
+                .then(Commands.literal("clearall").requires(s -> s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER))
+                        .executes(c -> clearAll(c.getSource())))
                 .then(Commands.literal("reload").requires(s -> s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER))
                         .executes(c -> reloadCatalog(c.getSource())))
                 .then(Commands.literal("withdraw")
@@ -236,11 +238,12 @@ public final class BankCommand {
         // carrier items are only obtainable WITH potion contents -- plain forms are uncraftable
         java.util.Set<String> componentOnly = java.util.Set.of("minecraft:potion", "minecraft:splash_potion",
                 "minecraft:lingering_potion", "minecraft:tipped_arrow");
-        for (String id : Catalog.itemIds()) {
-            if (componentOnly.contains(id)) continue;
-            Identifier rid = Identifier.tryParse(id.contains(":") ? id : "minecraft:" + id);
-            if (rid == null || !BuiltInRegistries.ITEM.containsKey(rid)) continue;
-            ItemStack s = new ItemStack(BuiltInRegistries.ITEM.getValue(rid));
+        // rc.5 (Dave): GENERIC -- walk the live item registry, not a curated list, so every
+        // loaded mod's items are included (mods we don't yet know about included).
+        for (Item item : BuiltInRegistries.ITEM) {
+            Identifier rid = BuiltInRegistries.ITEM.getKey(item);
+            if (componentOnly.contains(rid.toString())) continue;
+            ItemStack s = new ItemStack(item);
             if (s.isEmpty() || BankManager.hasExact(bank, s, ra)) continue;
             if (BankManager.depositStack(bank, s, ra) > 0) plain++;
         }
@@ -272,6 +275,22 @@ public final class BankCommand {
         final int fp = plain, fb = books, fpo = potions, fo = other;
         p.sendSystemMessage(Component.literal("\u00A76[Bank Vault]\u00A7r added (missing only): " + fp + " items, "
                 + fb + " enchanted books, " + fpo + " potions/arrows, " + fo + " ominous bottles. Upgrades set to max."));
+        return 1;
+    }
+
+    /** Op-only test utility (rc.5, Dave): wipe EVERYTHING out of your bank -- plain and special
+     *  (NBT) stacks both. Capacity/upgrades are untouched. */
+    private static int clearAll(CommandSourceStack src) {
+        ServerPlayer p = src.getPlayer();
+        if (p == null) return 0;
+        Bank bank = BankManager.getOrCreate(p);
+        long total = bank.totalItems();
+        int unique = bank.uniqueItems();
+        bank.items.clear();
+        bank.special.clear();
+        BankManager.save(bank);
+        com.kishku7.bankvault.net.ModNetworking.sendSync(p, bank);
+        p.sendSystemMessage(Component.literal(String.format("§6[Bank Vault]§r cleared %,d items (%d unique).", total, unique)));
         return 1;
     }
 
