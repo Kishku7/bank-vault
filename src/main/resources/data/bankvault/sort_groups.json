@@ -1227,7 +1227,7 @@
   "family": [
    [
     "Chests & Barrels",
-    12
+    13
    ],
    [
     "Travelers Backpacks",
@@ -1257,7 +1257,7 @@
   "type": [
    [
     "Chests & Barrels",
-    12
+    13
    ],
    [
     "Travelers Backpacks",
@@ -1885,7 +1885,7 @@
    ],
    [
     "Other",
-    11
+    15
    ]
   ],
   "type": [
@@ -1911,7 +1911,7 @@
    ],
    [
     "Other",
-    11
+    15
    ]
   ]
  },

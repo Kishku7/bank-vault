@@ -13697,7 +13697,8 @@
   ],
   "aether:agility_cape": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:altar": [
    "aether",
@@ -13760,7 +13761,8 @@
   ],
   "aether:black_moa_egg": [
    "aether",
-   "modded"
+   "modded",
+   "rideable"
   ],
   "aether:blue_aercloud": [
    "aether",
@@ -13774,7 +13776,8 @@
   ],
   "aether:blue_cape": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:blue_gummy_swet": [
    "aether",
@@ -13784,7 +13787,8 @@
   ],
   "aether:blue_moa_egg": [
    "aether",
-   "modded"
+   "modded",
+   "rideable"
   ],
   "aether:blue_swet_spawn_egg": [
    "aether",
@@ -13829,7 +13833,8 @@
   ],
   "aether:bronze_dungeon_key": [
    "aether",
-   "modded"
+   "modded",
+   "odd"
   ],
   "aether:candy_cane": [
    "aether",
@@ -13865,7 +13870,8 @@
   "aether:chainmail_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether:chest_mimic": [
    "aether",
@@ -13911,7 +13917,8 @@
   "aether:diamond_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether:enchanted_aether_grass_block": [
    "aether",
@@ -13977,7 +13984,8 @@
   ],
   "aether:gold_dungeon_key": [
    "aether",
-   "modded"
+   "modded",
+   "odd"
   ],
   "aether:golden_aercloud": [
    "aether",
@@ -14004,7 +14012,8 @@
   "aether:golden_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether:golden_gummy_swet": [
    "aether",
@@ -14042,11 +14051,13 @@
   ],
   "aether:golden_pendant": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:golden_ring": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:golden_swet_spawn_egg": [
    "aether",
@@ -14074,7 +14085,8 @@
   "aether:gravitite_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether:gravitite_helmet": [
    "aether",
@@ -14231,11 +14243,13 @@
   ],
   "aether:ice_pendant": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:ice_ring": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:icestone": [
    "aether",
@@ -14274,20 +14288,24 @@
   "aether:iron_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether:iron_pendant": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:iron_ring": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:leather_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether:life_shard": [
    "aether",
@@ -14423,7 +14441,8 @@
   "aether:neptune_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether:neptune_helmet": [
    "aether",
@@ -14438,7 +14457,8 @@
   "aether:netherite_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether:obsidian_boots": [
    "aether",
@@ -14453,7 +14473,8 @@
   "aether:obsidian_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether:obsidian_helmet": [
    "aether",
@@ -14483,7 +14504,8 @@
   "aether:phoenix_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether:phoenix_helmet": [
    "aether",
@@ -14548,7 +14570,8 @@
   ],
   "aether:red_cape": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:regeneration_stone": [
    "aether",
@@ -14579,11 +14602,13 @@
   ],
   "aether:shield_of_repulsion": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:silver_dungeon_key": [
    "aether",
-   "modded"
+   "modded",
+   "odd"
   ],
   "aether:skyroot_axe": [
    "aether",
@@ -14815,7 +14840,8 @@
   ],
   "aether:swet_cape": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:trapped_angelic_stone": [
    "aether",
@@ -14898,7 +14924,8 @@
   ],
   "aether:valkyrie_cape": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:valkyrie_chestplate": [
    "aether",
@@ -14908,7 +14935,8 @@
   "aether:valkyrie_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether:valkyrie_helmet": [
    "aether",
@@ -14976,7 +15004,8 @@
   ],
   "aether:white_cape": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:white_flower": [
    "aether",
@@ -14986,11 +15015,13 @@
   ],
   "aether:white_moa_egg": [
    "aether",
-   "modded"
+   "modded",
+   "rideable"
   ],
   "aether:yellow_cape": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:zanite_axe": [
    "aether",
@@ -15019,7 +15050,8 @@
   "aether:zanite_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether:zanite_helmet": [
    "aether",
@@ -15042,7 +15074,8 @@
   ],
   "aether:zanite_pendant": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:zanite_pickaxe": [
    "aether",
@@ -15051,7 +15084,8 @@
   ],
   "aether:zanite_ring": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether:zanite_shovel": [
    "aether",
@@ -15557,7 +15591,8 @@
   "aether_ii:arkenium_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether_ii:arkenium_hammer": [
    "aether",
@@ -15659,7 +15694,8 @@
   "aether_ii:beast_pelt_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether_ii:beast_pelt_helmet": [
    "aether",
@@ -15853,7 +15889,8 @@
   "aether_ii:burrukai_plate_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether_ii:burrukai_plate_helmet": [
    "aether",
@@ -16277,7 +16314,8 @@
   "aether_ii:gravitite_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether_ii:gravitite_hammer": [
    "aether",
@@ -16842,7 +16880,8 @@
   ],
   "aether_ii:icestone_pendant": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether_ii:icestone_pillar": [
    "aether",
@@ -17369,7 +17408,8 @@
   ],
   "aether_ii:moa_egg": [
    "aether",
-   "modded"
+   "modded",
+   "rideable"
   ],
   "aether_ii:moa_feather": [
    "aether",
@@ -17467,7 +17507,8 @@
   "aether_ii:neptune_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether_ii:neptune_helmet": [
    "aether",
@@ -17995,7 +18036,8 @@
   ],
   "aether_ii:skyroot_chest": [
    "aether",
-   "modded"
+   "modded",
+   "container"
   ],
   "aether_ii:skyroot_cod_bucket": [
    "aether",
@@ -18835,7 +18877,8 @@
   "aether_ii:zanite_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "aether_ii:zanite_hammer": [
    "aether",
@@ -18857,7 +18900,8 @@
   ],
   "aether_ii:zanite_pendant": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether_ii:zanite_pickaxe": [
    "aether",
@@ -18904,7 +18948,8 @@
   ],
   "aether_redux:aerbound_cape": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "aether_redux:angilite": [
    "aether",
@@ -20044,7 +20089,8 @@
   ],
   "deep_aether:aercloud_necklace": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "deep_aether:aercloud_root_carpet": [
    "aether",
@@ -20386,7 +20432,8 @@
   ],
   "deep_aether:brass_dungeon_key": [
    "aether",
-   "modded"
+   "modded",
+   "odd"
   ],
   "deep_aether:bronze_compass": [
    "aether",
@@ -20476,7 +20523,8 @@
   ],
   "deep_aether:cloud_cape": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "deep_aether:cloudbloom_bouquet": [
    "aether",
@@ -20910,7 +20958,8 @@
   ],
   "deep_aether:gravitite_ring": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "deep_aether:green_squash": [
    "aether",
@@ -21543,7 +21592,8 @@
   "deep_aether:skyjade_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "deep_aether:skyjade_helmet": [
    "aether",
@@ -21579,7 +21629,8 @@
   ],
   "deep_aether:skyjade_pendant": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "deep_aether:skyjade_pickaxe": [
    "aether",
@@ -21588,7 +21639,8 @@
   ],
   "deep_aether:skyjade_ring": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "deep_aether:skyjade_shield": [
    "aether",
@@ -21625,7 +21677,8 @@
   ],
   "deep_aether:spooky_ring": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "deep_aether:squall_block": [
    "aether",
@@ -21666,7 +21719,8 @@
   "deep_aether:stormforged_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "deep_aether:stormforged_helmet": [
    "aether",
@@ -21709,7 +21763,8 @@
   "deep_aether:stratus_gloves": [
    "aether",
    "modded",
-   "armor"
+   "armor",
+   "trinket"
   ],
   "deep_aether:stratus_helmet": [
    "aether",
@@ -21737,7 +21792,8 @@
   ],
   "deep_aether:stratus_ring": [
    "aether",
-   "modded"
+   "modded",
+   "trinket"
   ],
   "deep_aether:stratus_scrap": [
    "aether",
