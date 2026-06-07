@@ -299,6 +299,36 @@
    ]
   ]
  },
+ "kw:Iron": {
+  "family": [
+   [
+    "Ores & Raw",
+    4
+   ],
+   [
+    "Ingots & Nuggets",
+    2
+   ],
+   [
+    "Blocks & Building",
+    3
+   ],
+   [
+    "Utility",
+    3
+   ]
+  ],
+  "type": [
+   [
+    "Blocks",
+    6
+   ],
+   [
+    "Items",
+    6
+   ]
+  ]
+ },
  "kw:Glass": {
   "family": [
    [
