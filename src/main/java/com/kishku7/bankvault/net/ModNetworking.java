@@ -4,6 +4,7 @@ import com.kishku7.bankvault.inventory.BankVaultMenu;
 import com.kishku7.bankvault.vault.Bank;
 import com.kishku7.bankvault.vault.BankManager;
 import com.kishku7.bankvault.vault.StackStore;
+import com.kishku7.bankvault.vault.UserSettings;
 import com.kishku7.bankvault.vault.VaultCapacity;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -32,12 +33,15 @@ public final class ModNetworking {
         PayloadTypeRegistry.serverboundPlay().register(DepositAllPayload.TYPE, DepositAllPayload.CODEC);
         PayloadTypeRegistry.clientboundPlay().register(SharingStatePayload.TYPE, SharingStatePayload.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(ShareActionPayload.TYPE, ShareActionPayload.CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(UiStatePayload.TYPE, UiStatePayload.CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(UiStateSyncPayload.TYPE, UiStateSyncPayload.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(WithdrawPayload.TYPE, ModNetworking::onWithdraw);
         ServerPlayNetworking.registerGlobalReceiver(UpgradePayload.TYPE, ModNetworking::onUpgrade);
         ServerPlayNetworking.registerGlobalReceiver(DepositPayload.TYPE, ModNetworking::onDeposit);
         ServerPlayNetworking.registerGlobalReceiver(GridViewPayload.TYPE, ModNetworking::onGridView);
         ServerPlayNetworking.registerGlobalReceiver(DepositAllPayload.TYPE, ModNetworking::onDepositAll);
         ServerPlayNetworking.registerGlobalReceiver(ShareActionPayload.TYPE, ModNetworking::onShareAction);
+        ServerPlayNetworking.registerGlobalReceiver(UiStatePayload.TYPE, ModNetworking::onUiState);
     }
 
     public static void sendSync(ServerPlayer player, Bank bank) {
@@ -69,6 +73,24 @@ public final class ModNetworking {
         for (BankManager.Invite inv : BankManager.pendingInvites(player.getUUID()))
             is.add(new SharingStatePayload.InviteEntry(inv.inviterName, inv.level));
         ServerPlayNetworking.send(player, new SharingStatePayload(ms, is));
+    }
+
+    /** v1.2 last-use memory: persist the interaction in the server-side bucket files. */
+    private static void onUiState(UiStatePayload payload, ServerPlayNetworking.Context context) {
+        UserSettings.update(context.player(), payload.lastTab(), payload.tab(), payload.sort());
+    }
+
+    /** Push the player's remembered UI state (last tab + per-tab sorts); must be sent BEFORE
+     *  the menu-open packet so the screen finds it at init. */
+    public static void sendUiState(ServerPlayer player) {
+        UserSettings.Rec rec = UserSettings.get(player.getUUID());
+        List<UiStateSyncPayload.TabSort> ts = new ArrayList<>();
+        String lastTab = "";
+        if (rec != null) {
+            lastTab = rec.lastTab == null ? "" : rec.lastTab;
+            for (var e : rec.sorts.entrySet()) ts.add(new UiStateSyncPayload.TabSort(e.getKey(), e.getValue()));
+        }
+        ServerPlayNetworking.send(player, new UiStateSyncPayload(lastTab, ts));
     }
 
     /** Re-sync every online member of a bank (membership or contents changed). */

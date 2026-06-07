@@ -13,6 +13,7 @@ import com.kishku7.bankvault.vault.Keywords;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import com.kishku7.bankvault.net.ShareActionPayload;
 import com.kishku7.bankvault.net.SharingStatePayload;
+import com.kishku7.bankvault.net.UiStatePayload;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
@@ -285,6 +286,11 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
 
         positionRealSlots();
         recomputeButtons();
+        if (selectedKey == null && !ClientUiState.lastTab().isEmpty()
+                && btnCells.stream().anyMatch(b -> b.def().key().equals(ClientUiState.lastTab()))) {
+            selectedKey = ClientUiState.lastTab();             // v1.2: restore last tab examined
+            applySortString(ClientUiState.sortFor(selectedKey));
+        }
         if (!btnCells.isEmpty() && btnCells.stream().noneMatch(b -> b.def().key().equals(selectedKey)))
             selectedKey = btnCells.get(0).def().key();
         rebuild();
@@ -420,13 +426,44 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         });
     }
 
-    /** Sort identity for the selected button: category id, or the button's first word
-     *  (keyword buttons fall back to the catalog's "default" sort chain). */
+    /** Sort identity for the selected button: category id for category buttons, the stable
+     *  button key ("kw:<label>" / "dyn:<id>") for keyword/dynamic buttons -- the same key the
+     *  per-button entries in tabSort and the sort_family/sort_type files use. */
     private String sortKey() {
         ButtonLayout.BtnDef d = selectedDef();
         if (d == null) return "default";
         if (d.category() != null) return d.category();
-        return d.words() != null ? d.words().get(0) : "default";
+        return d.key();
+    }
+
+    /** Serialize the active sort for persistence (v1.2 last-use memory). */
+    private String sortString() {
+        switch (sortMode) {
+            case SMART_TYPE: return "type";
+            case ALPHA: return "alpha";
+            case COUNT: return countDesc ? "count_desc" : "count_asc";
+            default: return "family";
+        }
+    }
+
+    /** Apply a persisted sort string; null/unknown falls back to Smart(F). */
+    private void applySortString(String sv) {
+        if (sv == null) sv = "";
+        switch (sv) {
+            case "type": sortMode = SortMode.SMART_TYPE; break;
+            case "alpha": sortMode = SortMode.ALPHA; break;
+            case "count_desc": sortMode = SortMode.COUNT; countDesc = true; break;
+            case "count_asc": sortMode = SortMode.COUNT; countDesc = false; break;
+            default: sortMode = SortMode.SMART_FAMILY; break;
+        }
+    }
+
+    /** Mirror the interaction locally and persist it server-side (v1.2 last-use memory). */
+    private void sendUiState() {
+        if (selectedKey == null) return;
+        String sv = sortString();
+        ClientUiState.remember(selectedKey, sv);
+        ClientPlayNetworking.send(new UiStatePayload(selectedKey, selectedKey, sv));
     }
 
     private String btnLabel(ButtonLayout.BtnDef d) {
@@ -508,7 +545,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private Comparator<Entry> baseComparator() {
         switch (sortMode) {
             case COUNT: return (a, b) -> countDesc ? Long.compare(b.count(), a.count()) : Long.compare(a.count(), b.count());
-            case ALPHA: return Comparator.comparing(this::nameOf);
+            case ALPHA: return alpha();
             case SMART_TYPE: return smartType();
             default: return smartFamily();
         }
@@ -538,10 +575,26 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private Comparator<Entry> smartType() { return smart("type"); }
     private Comparator<Entry> smart(String mode) {
         ButtonLayout.BtnDef sd = selectedDef();
-        if (sd != null && sd.category() == null) return categorical(mode);
-        Comparator<Entry> cmp = null;
         String sk = sortKey();
-        for (String step : Catalog.sortSteps(sk, mode)) {
+        // v1.2: keyword/dynamic buttons with their own curated config use it; the categorical
+        // grouping stays as the fallback for buttons that have none.
+        if (sd != null && sd.category() == null && !Catalog.hasSortConfig(sk, mode)) return categorical(mode);
+        return chain(sk, mode, Catalog.sortSteps(sk, mode));
+    }
+
+    /** v1.2: A-Z is the plain display-name sort unless the tab opts in with an "alpha" step
+     *  chain in tabSort (e.g. ["lastword", "firstword"] -- group by the noun, then the variant). */
+    private Comparator<Entry> alpha() {
+        String sk = sortKey();
+        List<String> steps = Catalog.sortStepsExact(sk, "alpha");
+        if (steps == null || steps.isEmpty()) return Comparator.comparing(this::nameOf);
+        return chain(sk, "alpha", steps);
+    }
+
+    /** Interpret a sort step chain (shared by Smart family/type and the per-tab alpha sort). */
+    private Comparator<Entry> chain(String sk, String mode, List<String> steps) {
+        Comparator<Entry> cmp = null;
+        for (String step : steps) {
             Comparator<Entry> c;
             if (step.equals("list")) c = Comparator.comparingInt(e -> Catalog.orderIndex(sk, mode, idOf(e)));
             else if (step.equals("name")) c = Comparator.comparing(this::nameOf);
@@ -1047,10 +1100,18 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         SortMode[] modes = SortMode.values();
         for (int i = 0; i < 4; i++) if (inside(mx, my, sbX[i], sbY, sbW[i], sbH)) {
             if (modes[i] == SortMode.COUNT && sortMode == SortMode.COUNT) countDesc = !countDesc; else sortMode = modes[i];
+            sendUiState();                                         // v1.2: persist per-tab sort
             rebuild(); return true;
         }
         BtnCell bc = buttonAt(mx, my);
-        if (bc != null) { selectedKey = bc.def().key(); scrollRow = 0; rebuild(); return true; }
+        if (bc != null) {
+            selectedKey = bc.def().key();
+            scrollRow = 0;
+            applySortString(ClientUiState.sortFor(selectedKey));   // v1.2: each tab remembers its sort
+            sendUiState();
+            rebuild();
+            return true;
+        }
         if (button == 1 && inside(mx, my, upgX, upgY, upgSize, upgSize) && permLevel >= 3
                 && this.menu.getCarried().isEmpty()) { ClientPlayNetworking.send(new UpgradePayload(false)); return true; }
 

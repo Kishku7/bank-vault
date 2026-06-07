@@ -4,126 +4,126 @@
    "id": "wood",
    "icon": "minecraft:oak_log",
    "name": "Wood",
-   "glyph": "▤",
+   "glyph": "\u25a4",
    "order": 1
   },
   {
    "id": "stone",
    "icon": "minecraft:stone_bricks",
    "name": "Stone & Masonry",
-   "glyph": "▦",
+   "glyph": "\u25a6",
    "order": 2
   },
   {
    "id": "copper",
    "icon": "minecraft:copper_block",
    "name": "Copper",
-   "glyph": "⬢",
+   "glyph": "\u2b22",
    "order": 3
   },
   {
    "id": "fabric",
    "icon": "minecraft:white_wool",
    "name": "Fabric & Color",
-   "glyph": "✿",
+   "glyph": "\u273f",
    "order": 4
   },
   {
    "id": "colored",
    "icon": "minecraft:lime_concrete",
    "name": "Colored Blocks",
-   "glyph": "▩",
+   "glyph": "\u25a9",
    "order": 5
   },
   {
    "id": "lights",
    "icon": "minecraft:lantern",
    "name": "Lights",
-   "glyph": "☼",
+   "glyph": "\u263c",
    "order": 6
   },
   {
    "id": "containers",
    "icon": "minecraft:chest",
    "name": "Containers",
-   "glyph": "⬚",
+   "glyph": "\u2b1a",
    "order": 7
   },
   {
    "id": "nature",
    "icon": "minecraft:oak_sapling",
    "name": "Nature & Plants",
-   "glyph": "⚘",
+   "glyph": "\u2698",
    "order": 8
   },
   {
    "id": "nether_end",
    "icon": "minecraft:netherrack",
    "name": "Nether & End",
-   "glyph": "☢",
+   "glyph": "\u2622",
    "order": 9
   },
   {
    "id": "ocean",
    "icon": "minecraft:prismarine",
    "name": "Ocean & Ice",
-   "glyph": "≈",
+   "glyph": "\u2248",
    "order": 10
   },
   {
    "id": "redstone",
    "icon": "minecraft:redstone",
    "name": "Redstone & Transport",
-   "glyph": "◉",
+   "glyph": "\u25c9",
    "order": 11
   },
   {
    "id": "gear",
    "icon": "minecraft:diamond_sword",
    "name": "Gear & Combat",
-   "glyph": "⚔",
+   "glyph": "\u2694",
    "order": 12
   },
   {
    "id": "food",
    "icon": "minecraft:bread",
    "name": "Food & Farming",
-   "glyph": "✦",
+   "glyph": "\u2726",
    "order": 13
   },
   {
    "id": "enchanting",
    "icon": "minecraft:enchanted_book",
    "name": "Enchanting",
-   "glyph": "❖",
+   "glyph": "\u2756",
    "order": 14
   },
   {
    "id": "potions",
    "icon": "minecraft:brewing_stand",
    "name": "Potions",
-   "glyph": "⚗",
+   "glyph": "\u2697",
    "order": 15
   },
   {
    "id": "treasure",
    "icon": "minecraft:diamond",
    "name": "Magic & Treasure",
-   "glyph": "♦",
+   "glyph": "\u2666",
    "order": 16
   },
   {
    "id": "materials",
    "icon": "minecraft:iron_ingot",
    "name": "Materials & Utility",
-   "glyph": "✶",
+   "glyph": "\u2736",
    "order": 17
   },
   {
    "id": "uncategorized",
    "icon": "minecraft:barrier",
    "name": "Uncategorized",
-   "glyph": "◌",
+   "glyph": "\u25cc",
    "order": 18
   }
  ],
@@ -5298,6 +5298,737 @@
    ],
    "type": [
     "list",
+    "name"
+   ]
+  },
+  "kw:Wood": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Stone & Brick": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Copper": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Iron": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Gold": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Diamonds & Netherite": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Glass": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Wool": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Amethyst": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Quartz": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Bamboo": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Prismarine": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Terracotta": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Concrete": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Other Materials": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Slabs": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Stairs": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Walls": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Doors": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Fences": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Trapdoors": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Signs": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Beds": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Pottery": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Workstations": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Containers": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Lights": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Combat": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Ranged": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Tools": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Armor": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Explosives & Traps": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Templates": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "dyn:trinkets": {
+   "family": [
+    "name"
+   ],
+   "type": [
+    "name"
+   ]
+  },
+  "kw:Banners": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "firstword"
+   ]
+  },
+  "kw:Patterns": {
+   "family": [
+    "name"
+   ],
+   "type": [
+    "name"
+   ]
+  },
+  "kw:Potions": {
+   "family": [
+    "potion",
+    "potionpower",
+    "name"
+   ],
+   "type": [
+    "potion",
+    "potionpower",
+    "name"
+   ]
+  },
+  "kw:Splash Potions": {
+   "family": [
+    "potion",
+    "potionpower",
+    "name"
+   ],
+   "type": [
+    "potion",
+    "potionpower",
+    "name"
+   ]
+  },
+  "kw:Lingering Potions": {
+   "family": [
+    "potion",
+    "potionpower",
+    "name"
+   ],
+   "type": [
+    "potion",
+    "potionpower",
+    "name"
+   ]
+  },
+  "kw:Tipped Arrows": {
+   "family": [
+    "potion",
+    "potionpower",
+    "name"
+   ],
+   "type": [
+    "potion",
+    "potionpower",
+    "name"
+   ]
+  },
+  "kw:Misc Gear": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Food": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Plants": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Seeds": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Flowers": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Fuel": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Dyes": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Bone": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Mob Drops": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Redstone": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Transport": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "alpha": [
+    "lastword",
+    "firstword"
+   ]
+  },
+  "kw:Archaeology": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Ancient City": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Trial Chamber": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
+  "kw:Music": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
     "name"
    ]
   }

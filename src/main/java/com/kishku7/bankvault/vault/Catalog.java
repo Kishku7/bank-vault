@@ -244,6 +244,25 @@ public final class Catalog {
         return m.getOrDefault(mode, List.of("name"));
     }
 
+    /** True when an explicit per-tab sort config exists for this key+mode -- either a tabSort
+     *  step chain or a ranked list loaded from sort_family/sort_type. Keyword buttons use this
+     *  to choose between their own curated sort and the categorical fallback. */
+    public static boolean hasSortConfig(String key, String mode) {
+        ensureLoaded();
+        Map<String, List<String>> m = tabSort.get(key);
+        if (m != null && m.containsKey(mode)) return true;
+        Map<String, Map<String, Integer>> o = tabOrder.get(key);
+        return o != null && o.containsKey(mode);
+    }
+
+    /** Step chain for key+mode with NO "default" fallback; null when absent (A-Z stays a plain
+     *  name sort unless a tab opts in with an "alpha" chain). */
+    public static List<String> sortStepsExact(String key, String mode) {
+        ensureLoaded();
+        Map<String, List<String>> m = tabSort.get(key);
+        return m == null ? null : m.get(mode);
+    }
+
     /** Explicit rank of an item in a tab's curated order ("family"/"type" mode); items not in
      *  the list (or tabs without one) rank last so later steps (name) take over. The order list
      *  IS the sort -- the mod applies no logic of its own. */

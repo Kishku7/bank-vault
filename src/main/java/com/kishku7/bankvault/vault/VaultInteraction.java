@@ -39,6 +39,7 @@ public final class VaultInteraction {
         }
 
         Bank bank = BankManager.getOrCreate(player);
+        ModNetworking.sendUiState(player);   // v1.2: remembered tab + sorts land before the menu opens
         // Open the container menu (real inventory slots), then push the vault grid data.
         player.openMenu(new SimpleMenuProvider(
                 (id, inv, p) -> new BankVaultMenu(id, inv),

@@ -2,6 +2,7 @@ package com.kishku7.bankvault.client;
 
 import com.kishku7.bankvault.BankVault;
 import com.kishku7.bankvault.net.SharingStatePayload;
+import com.kishku7.bankvault.net.UiStateSyncPayload;
 import com.kishku7.bankvault.net.VaultSyncPayload;
 import com.kishku7.bankvault.registry.ModMenus;
 import net.fabricmc.api.ClientModInitializer;
@@ -23,6 +24,10 @@ public class BankVaultClient implements ClientModInitializer {
                     Minecraft mc = context.client();
                     if (mc.screen instanceof BankVaultScreen screen) screen.updateData(payload);
                 }));
+
+        // v1.2 last-use memory: arrives right before the menu-open packet; cached for screen init.
+        ClientPlayNetworking.registerGlobalReceiver(UiStateSyncPayload.TYPE, (payload, context) ->
+                context.client().execute(() -> ClientUiState.set(payload.lastTab(), payload.sorts())));
 
         ClientPlayNetworking.registerGlobalReceiver(SharingStatePayload.TYPE, (payload, context) ->
                 context.client().execute(() -> {

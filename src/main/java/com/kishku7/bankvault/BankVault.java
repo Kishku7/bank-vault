@@ -9,8 +9,10 @@ import com.kishku7.bankvault.registry.ModItems;
 import com.kishku7.bankvault.registry.ModMenus;
 import com.kishku7.bankvault.vault.Catalog;
 import com.kishku7.bankvault.vault.MultiblockManager;
+import com.kishku7.bankvault.vault.UserSettings;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
@@ -39,6 +41,9 @@ public class BankVault implements ModInitializer {
         Catalog.restoreMissingDefaults();
         Catalog.ensureLoaded();
         ModNetworking.registerCommon();
+
+        // v1.2 last-use memory: the 27 user_settings bucket files load once per server start.
+        ServerLifecycleEvents.SERVER_STARTING.register(server -> UserSettings.loadAll());
 
         PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
             if (MultiblockManager.isVaultBlock(state)) MultiblockManager.onRemoved(world, pos);
