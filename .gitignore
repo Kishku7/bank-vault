@@ -56,3 +56,6 @@ rel.log
 rel.err
 
 release/
+
+*.log
+*.err
