@@ -1,0 +1,1646 @@
+{
+ "kw:Wood": {
+  "family": [
+   [
+    "Oak",
+    5
+   ],
+   [
+    "Spruce",
+    5
+   ],
+   [
+    "Birch",
+    5
+   ],
+   [
+    "Jungle",
+    5
+   ],
+   [
+    "Acacia",
+    5
+   ],
+   [
+    "Dark Oak",
+    5
+   ],
+   [
+    "Mangrove",
+    5
+   ],
+   [
+    "Cherry",
+    5
+   ],
+   [
+    "Pale Oak",
+    5
+   ],
+   [
+    "Bamboo",
+    4
+   ],
+   [
+    "Crimson",
+    5
+   ],
+   [
+    "Warped",
+    5
+   ],
+   [
+    "Other",
+    4
+   ]
+  ],
+  "type": [
+   [
+    "Logs",
+    9
+   ],
+   [
+    "Stripped Logs",
+    9
+   ],
+   [
+    "Stems",
+    2
+   ],
+   [
+    "Stripped Stems",
+    2
+   ],
+   [
+    "Blocks",
+    2
+   ],
+   [
+    "Stripped Blocks",
+    1
+   ],
+   [
+    "Wood",
+    9
+   ],
+   [
+    "Stripped Wood",
+    9
+   ],
+   [
+    "Hyphae",
+    2
+   ],
+   [
+    "Stripped Hyphae",
+    2
+   ],
+   [
+    "Planks",
+    12
+   ],
+   [
+    "Mosaic",
+    1
+   ],
+   [
+    "Other",
+    3
+   ]
+  ]
+ },
+ "kw:Stone & Brick": {
+  "family": [
+   [
+    "Cobbled Deepslate",
+    1
+   ],
+   [
+    "Deepslate",
+    9
+   ],
+   [
+    "Cobblestone",
+    3
+   ],
+   [
+    "Blackstone",
+    6
+   ],
+   [
+    "Red Sandstone",
+    4
+   ],
+   [
+    "Sandstone",
+    5
+   ],
+   [
+    "End Stone",
+    2
+   ],
+   [
+    "Smooth Stone",
+    1
+   ],
+   [
+    "Dripstone",
+    2
+   ],
+   [
+    "Stone",
+    10
+   ],
+   [
+    "Granite",
+    2
+   ],
+   [
+    "Diorite",
+    2
+   ],
+   [
+    "Andesite",
+    2
+   ],
+   [
+    "Tuff",
+    5
+   ],
+   [
+    "Calcite",
+    1
+   ],
+   [
+    "Brick",
+    3
+   ],
+   [
+    "Prismarine",
+    1
+   ],
+   [
+    "Quartz",
+    1
+   ],
+   [
+    "Basalt",
+    3
+   ],
+   [
+    "Resin",
+    2
+   ],
+   [
+    "Other",
+    12
+   ]
+  ],
+  "type": [
+   [
+    "Plain",
+    40
+   ],
+   [
+    "Chiseled",
+    10
+   ],
+   [
+    "Cracked",
+    4
+   ],
+   [
+    "Mossy",
+    2
+   ],
+   [
+    "Smooth",
+    4
+   ],
+   [
+    "Polished",
+    9
+   ],
+   [
+    "Cut",
+    2
+   ],
+   [
+    "Infested",
+    6
+   ]
+  ]
+ },
+ "kw:Copper": {
+  "family": [
+   [
+    "Ore & Raw",
+    4
+   ],
+   [
+    "Ingots & Nuggets",
+    2
+   ],
+   [
+    "Stairs & Slabs",
+    16
+   ],
+   [
+    "Blocks",
+    42
+   ],
+   [
+    "Doors & Trapdoors",
+    16
+   ],
+   [
+    "Chests",
+    8
+   ],
+   [
+    "Lights",
+    17
+   ],
+   [
+    "Gear & Tools",
+    11
+   ],
+   [
+    "Utility",
+    8
+   ],
+   [
+    "Other",
+    3
+   ]
+  ],
+  "type": [
+   [
+    "Unoxidized",
+    22
+   ],
+   [
+    "Exposed",
+    15
+   ],
+   [
+    "Weathered",
+    15
+   ],
+   [
+    "Oxidized",
+    15
+   ],
+   [
+    "Waxed Unoxidized",
+    15
+   ],
+   [
+    "Waxed Exposed",
+    15
+   ],
+   [
+    "Waxed Weathered",
+    15
+   ],
+   [
+    "Waxed Oxidized",
+    15
+   ]
+  ]
+ },
+ "kw:Glass": {
+  "family": [
+   [
+    "Plain",
+    3
+   ],
+   [
+    "White",
+    2
+   ],
+   [
+    "Light Gray",
+    2
+   ],
+   [
+    "Gray",
+    2
+   ],
+   [
+    "Black",
+    2
+   ],
+   [
+    "Brown",
+    2
+   ],
+   [
+    "Red",
+    3
+   ],
+   [
+    "Orange",
+    2
+   ],
+   [
+    "Yellow",
+    2
+   ],
+   [
+    "Lime",
+    2
+   ],
+   [
+    "Green",
+    2
+   ],
+   [
+    "Cyan",
+    2
+   ],
+   [
+    "Light Blue",
+    2
+   ],
+   [
+    "Blue",
+    2
+   ],
+   [
+    "Purple",
+    2
+   ],
+   [
+    "Magenta",
+    2
+   ],
+   [
+    "Pink",
+    2
+   ],
+   [
+    "Other",
+    2
+   ]
+  ],
+  "type": [
+   [
+    "Blocks",
+    18
+   ],
+   [
+    "Panes",
+    17
+   ],
+   [
+    "Other",
+    3
+   ]
+  ]
+ },
+ "kw:Wool": {
+  "family": [
+   [
+    "White",
+    3
+   ],
+   [
+    "Light Gray",
+    3
+   ],
+   [
+    "Gray",
+    3
+   ],
+   [
+    "Black",
+    3
+   ],
+   [
+    "Brown",
+    3
+   ],
+   [
+    "Red",
+    3
+   ],
+   [
+    "Orange",
+    3
+   ],
+   [
+    "Yellow",
+    3
+   ],
+   [
+    "Lime",
+    3
+   ],
+   [
+    "Green",
+    3
+   ],
+   [
+    "Cyan",
+    3
+   ],
+   [
+    "Light Blue",
+    3
+   ],
+   [
+    "Blue",
+    3
+   ],
+   [
+    "Purple",
+    3
+   ],
+   [
+    "Magenta",
+    3
+   ],
+   [
+    "Pink",
+    3
+   ],
+   [
+    "Plain",
+    2
+   ]
+  ],
+  "type": [
+   [
+    "Wool",
+    16
+   ],
+   [
+    "Carpets",
+    16
+   ],
+   [
+    "Other",
+    18
+   ]
+  ]
+ },
+ "kw:Terracotta": {
+  "family": [
+   [
+    "Plain",
+    1
+   ],
+   [
+    "White",
+    2
+   ],
+   [
+    "Light Gray",
+    2
+   ],
+   [
+    "Gray",
+    2
+   ],
+   [
+    "Black",
+    2
+   ],
+   [
+    "Brown",
+    2
+   ],
+   [
+    "Red",
+    2
+   ],
+   [
+    "Orange",
+    2
+   ],
+   [
+    "Yellow",
+    2
+   ],
+   [
+    "Lime",
+    2
+   ],
+   [
+    "Green",
+    2
+   ],
+   [
+    "Cyan",
+    2
+   ],
+   [
+    "Light Blue",
+    2
+   ],
+   [
+    "Blue",
+    2
+   ],
+   [
+    "Purple",
+    2
+   ],
+   [
+    "Magenta",
+    2
+   ],
+   [
+    "Pink",
+    2
+   ]
+  ],
+  "type": [
+   [
+    "Terracotta",
+    17
+   ],
+   [
+    "Glazed",
+    16
+   ]
+  ]
+ },
+ "kw:Concrete": {
+  "family": [
+   [
+    "White",
+    2
+   ],
+   [
+    "Light Gray",
+    2
+   ],
+   [
+    "Gray",
+    2
+   ],
+   [
+    "Black",
+    2
+   ],
+   [
+    "Brown",
+    2
+   ],
+   [
+    "Red",
+    2
+   ],
+   [
+    "Orange",
+    2
+   ],
+   [
+    "Yellow",
+    2
+   ],
+   [
+    "Lime",
+    2
+   ],
+   [
+    "Green",
+    2
+   ],
+   [
+    "Cyan",
+    2
+   ],
+   [
+    "Light Blue",
+    2
+   ],
+   [
+    "Blue",
+    2
+   ],
+   [
+    "Purple",
+    2
+   ],
+   [
+    "Magenta",
+    2
+   ],
+   [
+    "Pink",
+    2
+   ]
+  ],
+  "type": [
+   [
+    "Concrete",
+    16
+   ],
+   [
+    "Powder",
+    16
+   ]
+  ]
+ },
+ "kw:Slabs": {
+  "family": [
+   [
+    "Wood",
+    14
+   ],
+   [
+    "Stone",
+    40
+   ],
+   [
+    "Copper",
+    8
+   ]
+  ],
+  "type": [
+   [
+    "Wood",
+    14
+   ],
+   [
+    "Stone",
+    40
+   ],
+   [
+    "Copper",
+    8
+   ]
+  ]
+ },
+ "kw:Stairs": {
+  "family": [
+   [
+    "Wood",
+    13
+   ],
+   [
+    "Stone",
+    37
+   ],
+   [
+    "Copper",
+    8
+   ]
+  ],
+  "type": [
+   [
+    "Wood",
+    13
+   ],
+   [
+    "Stone",
+    37
+   ],
+   [
+    "Copper",
+    8
+   ]
+  ]
+ },
+ "kw:Walls": {
+  "family": [
+   [
+    "Stone",
+    26
+   ]
+  ],
+  "type": [
+   [
+    "Stone",
+    26
+   ]
+  ]
+ },
+ "kw:Doors": {
+  "family": [
+   [
+    "Wood",
+    12
+   ],
+   [
+    "Copper",
+    8
+   ],
+   [
+    "Metal",
+    1
+   ]
+  ],
+  "type": [
+   [
+    "Wood",
+    12
+   ],
+   [
+    "Copper",
+    8
+   ],
+   [
+    "Metal",
+    1
+   ]
+  ]
+ },
+ "kw:Fences": {
+  "family": [
+   [
+    "Wood",
+    24
+   ],
+   [
+    "Stone",
+    1
+   ]
+  ],
+  "type": [
+   [
+    "Fences",
+    13
+   ],
+   [
+    "Gates",
+    12
+   ]
+  ]
+ },
+ "kw:Trapdoors": {
+  "family": [
+   [
+    "Wood",
+    12
+   ],
+   [
+    "Copper",
+    8
+   ],
+   [
+    "Metal",
+    1
+   ]
+  ],
+  "type": [
+   [
+    "Wood",
+    12
+   ],
+   [
+    "Copper",
+    8
+   ],
+   [
+    "Metal",
+    1
+   ]
+  ]
+ },
+ "kw:Signs": {
+  "family": [
+   [
+    "Wood",
+    24
+   ]
+  ],
+  "type": [
+   [
+    "Signs",
+    12
+   ],
+   [
+    "Hanging Signs",
+    12
+   ]
+  ]
+ },
+ "kw:Beds": {
+  "family": [
+   [
+    "Beds",
+    16
+   ],
+   [
+    "Sleeping Bags",
+    16
+   ]
+  ],
+  "type": [
+   [
+    "White",
+    2
+   ],
+   [
+    "Light Gray",
+    2
+   ],
+   [
+    "Gray",
+    2
+   ],
+   [
+    "Black",
+    2
+   ],
+   [
+    "Brown",
+    2
+   ],
+   [
+    "Red",
+    2
+   ],
+   [
+    "Orange",
+    2
+   ],
+   [
+    "Yellow",
+    2
+   ],
+   [
+    "Lime",
+    2
+   ],
+   [
+    "Green",
+    2
+   ],
+   [
+    "Cyan",
+    2
+   ],
+   [
+    "Light Blue",
+    2
+   ],
+   [
+    "Blue",
+    2
+   ],
+   [
+    "Purple",
+    2
+   ],
+   [
+    "Magenta",
+    2
+   ],
+   [
+    "Pink",
+    2
+   ]
+  ]
+ },
+ "kw:Containers": {
+  "family": [
+   [
+    "Chests",
+    9
+   ],
+   [
+    "Trapped Chests",
+    1
+   ],
+   [
+    "Ender Chests",
+    1
+   ],
+   [
+    "Barrels",
+    1
+   ],
+   [
+    "Shulker Boxes",
+    17
+   ],
+   [
+    "Bundles",
+    17
+   ],
+   [
+    "Minecarts",
+    1
+   ],
+   [
+    "Chest Boats",
+    10
+   ],
+   [
+    "Other",
+    59
+   ]
+  ],
+  "type": [
+   [
+    "Chests",
+    9
+   ],
+   [
+    "Trapped Chests",
+    1
+   ],
+   [
+    "Ender Chests",
+    1
+   ],
+   [
+    "Barrels",
+    1
+   ],
+   [
+    "Shulker Boxes",
+    17
+   ],
+   [
+    "Bundles",
+    17
+   ],
+   [
+    "Minecarts",
+    1
+   ],
+   [
+    "Chest Boats",
+    10
+   ],
+   [
+    "Other",
+    59
+   ]
+  ]
+ },
+ "kw:Lights": {
+  "family": [
+   [
+    "Torches",
+    2
+   ],
+   [
+    "Soul Torches",
+    1
+   ],
+   [
+    "Redstone Torches",
+    1
+   ],
+   [
+    "Lanterns",
+    9
+   ],
+   [
+    "Soul Lanterns",
+    1
+   ],
+   [
+    "Candles",
+    17
+   ],
+   [
+    "Sea Lanterns",
+    1
+   ],
+   [
+    "Glowstone",
+    1
+   ],
+   [
+    "Shroomlight",
+    1
+   ],
+   [
+    "Froglights",
+    3
+   ],
+   [
+    "End Rods",
+    1
+   ],
+   [
+    "Redstone Lamps",
+    1
+   ],
+   [
+    "Copper Bulbs",
+    8
+   ],
+   [
+    "Campfires",
+    1
+   ],
+   [
+    "Soul Campfires",
+    1
+   ],
+   [
+    "Jack o'Lanterns",
+    1
+   ],
+   [
+    "Other",
+    10
+   ]
+  ],
+  "type": [
+   [
+    "Torches",
+    2
+   ],
+   [
+    "Soul Torches",
+    1
+   ],
+   [
+    "Redstone Torches",
+    1
+   ],
+   [
+    "Lanterns",
+    9
+   ],
+   [
+    "Soul Lanterns",
+    1
+   ],
+   [
+    "Candles",
+    17
+   ],
+   [
+    "Sea Lanterns",
+    1
+   ],
+   [
+    "Glowstone",
+    1
+   ],
+   [
+    "Shroomlight",
+    1
+   ],
+   [
+    "Froglights",
+    3
+   ],
+   [
+    "End Rods",
+    1
+   ],
+   [
+    "Redstone Lamps",
+    1
+   ],
+   [
+    "Copper Bulbs",
+    8
+   ],
+   [
+    "Campfires",
+    1
+   ],
+   [
+    "Soul Campfires",
+    1
+   ],
+   [
+    "Jack o'Lanterns",
+    1
+   ],
+   [
+    "Other",
+    10
+   ]
+  ]
+ },
+ "kw:Combat": {
+  "family": [
+   [
+    "Swords",
+    7
+   ],
+   [
+    "Axes",
+    7
+   ],
+   [
+    "Maces",
+    1
+   ],
+   [
+    "Spears",
+    7
+   ],
+   [
+    "Tridents",
+    1
+   ]
+  ],
+  "type": [
+   [
+    "Wooden",
+    3
+   ],
+   [
+    "Stone",
+    3
+   ],
+   [
+    "Copper",
+    3
+   ],
+   [
+    "Golden",
+    3
+   ],
+   [
+    "Iron",
+    3
+   ],
+   [
+    "Diamond",
+    3
+   ],
+   [
+    "Netherite",
+    3
+   ],
+   [
+    "Other",
+    2
+   ]
+  ]
+ },
+ "kw:Tools": {
+  "family": [
+   [
+    "Pickaxes",
+    8
+   ],
+   [
+    "Axes",
+    7
+   ],
+   [
+    "Shovels",
+    7
+   ],
+   [
+    "Hoes",
+    7
+   ],
+   [
+    "Utility",
+    17
+   ]
+  ],
+  "type": [
+   [
+    "Wooden",
+    4
+   ],
+   [
+    "Stone",
+    4
+   ],
+   [
+    "Copper",
+    4
+   ],
+   [
+    "Golden",
+    4
+   ],
+   [
+    "Iron",
+    4
+   ],
+   [
+    "Diamond",
+    4
+   ],
+   [
+    "Netherite",
+    4
+   ],
+   [
+    "Other",
+    18
+   ]
+  ]
+ },
+ "kw:Armor": {
+  "family": [
+   [
+    "Leather",
+    5
+   ],
+   [
+    "Chainmail",
+    4
+   ],
+   [
+    "Copper",
+    6
+   ],
+   [
+    "Golden",
+    6
+   ],
+   [
+    "Iron",
+    6
+   ],
+   [
+    "Turtle",
+    1
+   ],
+   [
+    "Diamond",
+    6
+   ],
+   [
+    "Netherite",
+    6
+   ],
+   [
+    "Other",
+    3
+   ]
+  ],
+  "type": [
+   [
+    "Helmets",
+    8
+   ],
+   [
+    "Chestplates",
+    7
+   ],
+   [
+    "Leggings",
+    7
+   ],
+   [
+    "Bootss",
+    7
+   ],
+   [
+    "Horse Armor",
+    6
+   ],
+   [
+    "Other",
+    8
+   ]
+  ]
+ },
+ "kw:Food": {
+  "family": [
+   [
+    "Meat & Fish",
+    18
+   ],
+   [
+    "Crops & Fruit",
+    15
+   ],
+   [
+    "Baked & Cooked",
+    5
+   ],
+   [
+    "Other",
+    6
+   ]
+  ],
+  "type": [
+   [
+    "Meat & Fish",
+    18
+   ],
+   [
+    "Crops & Fruit",
+    15
+   ],
+   [
+    "Baked & Cooked",
+    5
+   ],
+   [
+    "Other",
+    6
+   ]
+  ]
+ },
+ "kw:Plants": {
+  "family": [
+   [
+    "Terrain",
+    5
+   ],
+   [
+    "Saplings",
+    8
+   ],
+   [
+    "Leaves",
+    12
+   ],
+   [
+    "Mushrooms",
+    4
+   ],
+   [
+    "Vines & Roots",
+    8
+   ],
+   [
+    "Flowers",
+    4
+   ],
+   [
+    "Grasses & More",
+    35
+   ]
+  ],
+  "type": [
+   [
+    "Terrain",
+    5
+   ],
+   [
+    "Saplings",
+    8
+   ],
+   [
+    "Leaves",
+    12
+   ],
+   [
+    "Mushrooms",
+    4
+   ],
+   [
+    "Vines & Roots",
+    8
+   ],
+   [
+    "Flowers",
+    4
+   ],
+   [
+    "Grasses & More",
+    35
+   ]
+  ]
+ },
+ "kw:Dyes": {
+  "family": [
+   [
+    "White",
+    2
+   ],
+   [
+    "Light Gray",
+    1
+   ],
+   [
+    "Gray",
+    1
+   ],
+   [
+    "Black",
+    1
+   ],
+   [
+    "Brown",
+    1
+   ],
+   [
+    "Red",
+    2
+   ],
+   [
+    "Orange",
+    2
+   ],
+   [
+    "Yellow",
+    1
+   ],
+   [
+    "Lime",
+    1
+   ],
+   [
+    "Green",
+    1
+   ],
+   [
+    "Cyan",
+    1
+   ],
+   [
+    "Light Blue",
+    1
+   ],
+   [
+    "Blue",
+    2
+   ],
+   [
+    "Purple",
+    1
+   ],
+   [
+    "Magenta",
+    1
+   ],
+   [
+    "Pink",
+    3
+   ],
+   [
+    "Plain",
+    25
+   ]
+  ],
+  "type": [
+   [
+    "Dyes",
+    16
+   ],
+   [
+    "Dye Sources",
+    31
+   ]
+  ]
+ },
+ "kw:Redstone": {
+  "family": [
+   [
+    "Redstone",
+    6
+   ],
+   [
+    "Transport",
+    4
+   ],
+   [
+    "Machines",
+    8
+   ],
+   [
+    "Signal",
+    13
+   ],
+   [
+    "Switches & Inputs",
+    40
+   ],
+   [
+    "Sensors",
+    9
+   ],
+   [
+    "Sound",
+    1
+   ],
+   [
+    "Other",
+    5
+   ]
+  ],
+  "type": [
+   [
+    "Redstone",
+    6
+   ],
+   [
+    "Transport",
+    4
+   ],
+   [
+    "Machines",
+    8
+   ],
+   [
+    "Signal",
+    13
+   ],
+   [
+    "Switches & Inputs",
+    40
+   ],
+   [
+    "Sensors",
+    9
+   ],
+   [
+    "Sound",
+    1
+   ],
+   [
+    "Other",
+    5
+   ]
+  ]
+ },
+ "kw:Transport": {
+  "family": [
+   [
+    "Rails",
+    4
+   ],
+   [
+    "Minecarts",
+    6
+   ],
+   [
+    "Boats & Rafts",
+    20
+   ],
+   [
+    "Saddles",
+    1
+   ],
+   [
+    "Harnesses",
+    16
+   ],
+   [
+    "Other",
+    6
+   ]
+  ],
+  "type": [
+   [
+    "Rails",
+    4
+   ],
+   [
+    "Minecarts",
+    6
+   ],
+   [
+    "Boats & Rafts",
+    20
+   ],
+   [
+    "Saddles",
+    1
+   ],
+   [
+    "Harnesses",
+    16
+   ],
+   [
+    "Other",
+    6
+   ]
+  ]
+ },
+ "kw:Music": {
+  "family": [
+   [
+    "Jukebox & Note Blocks",
+    2
+   ],
+   [
+    "Music Discs",
+    21
+   ],
+   [
+    "Disc Fragments",
+    1
+   ],
+   [
+    "Goat Horns",
+    1
+   ]
+  ],
+  "type": [
+   [
+    "Jukebox & Note Blocks",
+    2
+   ],
+   [
+    "Music Discs",
+    21
+   ],
+   [
+    "Disc Fragments",
+    1
+   ],
+   [
+    "Goat Horns",
+    1
+   ]
+  ]
+ }
+}

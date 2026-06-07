@@ -27,7 +27,8 @@ public class BankVaultClient implements ClientModInitializer {
 
         // v1.2 last-use memory: arrives right before the menu-open packet; cached for screen init.
         ClientPlayNetworking.registerGlobalReceiver(UiStateSyncPayload.TYPE, (payload, context) ->
-                context.client().execute(() -> ClientUiState.set(payload.lastTab(), payload.sorts())));
+                context.client().execute(() -> ClientUiState.set(payload.lastTab(), payload.sorts(),
+                        payload.showSections(), payload.pins())));
 
         ClientPlayNetworking.registerGlobalReceiver(SharingStatePayload.TYPE, (payload, context) ->
                 context.client().execute(() -> {

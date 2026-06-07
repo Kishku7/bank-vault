@@ -13,6 +13,7 @@ import com.kishku7.bankvault.vault.Keywords;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import com.kishku7.bankvault.net.ShareActionPayload;
 import com.kishku7.bankvault.net.SharingStatePayload;
+import com.kishku7.bankvault.net.PinPayload;
 import com.kishku7.bankvault.net.UiStatePayload;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -64,6 +65,13 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private int permLevel;
 
     private String selectedKey = null; // resolved to the first configured button on init
+    private boolean showSections = ClientUiState.showSections();   // v1.2 section titles checkbox
+    /** v1.2 sections: one virtual grid row -- a header (items empty) or up to {@code cols} items.
+     *  With the checkbox off this is just the flat view chunked into rows. */
+    private record VRow(String header, List<Entry> items) {}
+    private final List<VRow> vrows = new ArrayList<>();
+    private int secBoxX, secBoxW, pinBoxX, pinBoxW;                 // sort-row controls (right end)
+    private boolean ctrlVisible;
     private SortMode sortMode = SortMode.SMART_FAMILY;
     private boolean countDesc = true;
     private int scrollRow = 0, btnScroll = 0;
@@ -269,9 +277,15 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             sbX[i] = bx;
             bx += sbW[i] + 4;
         }
+        // v1.2: section-titles checkbox + Pin drop box, right-aligned on the sort row
+        secBoxW = 12;
+        pinBoxW = this.font.width("Pin") + 8;
         int gridAvailRight = rpX - 8 - SB_W - 4;
         cols = Math.max(1, Math.min(BankVaultMenu.VIEW_COLS, (gridAvailRight - gridX) / slot));
         sbarX = gridX + cols * slot + 4;
+        secBoxX = sbarX + SB_W - secBoxW;
+        pinBoxX = secBoxX - 4 - pinBoxW;
+        ctrlVisible = pinBoxX >= bx + 4;                           // hide both when the row is too tight
         srchY = py + ph - 8 - sbH;
         gridY = sbY + sbH + 6;
         gridBottom = srchY - 6;
@@ -463,7 +477,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         if (selectedKey == null) return;
         String sv = sortString();
         ClientUiState.remember(selectedKey, sv);
-        ClientPlayNetworking.send(new UiStatePayload(selectedKey, selectedKey, sv));
+        ClientPlayNetworking.send(new UiStatePayload(selectedKey, selectedKey, sv, ""));
     }
 
     private String btnLabel(ButtonLayout.BtnDef d) {
@@ -508,7 +522,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         });
     }
 
-    private int totalRows() { return (int) Math.ceil(view.size() / (double) Math.max(1, cols)); }
+    private int totalRows() { return vrows.size(); }
     private int maxRow() { return Math.max(0, totalRows() - rows); }
     private void scrollBy(int d) { scrollRow = Math.max(0, Math.min(scrollRow + d, maxRow())); sendGridView(); }
 
@@ -524,8 +538,57 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             view.add(e);
         }
         view.sort(comparator());
+        buildVRows(searching);
         scrollRow = Math.max(0, Math.min(scrollRow, maxRow()));
         sendGridView();
+    }
+
+    /** v1.2 sections: chunk the sorted view into virtual rows. Checkbox off = flat rows (old
+     *  behavior); on = header rows + ragged, top-left-aligned item rows per section. */
+    private void buildVRows(boolean searching) {
+        vrows.clear();
+        if (cols <= 0 || view.isEmpty()) return;
+        if (!showSections) {
+            for (int i = 0; i < view.size(); i += cols)
+                vrows.add(new VRow(null, List.copyOf(view.subList(i, Math.min(i + cols, view.size())))));
+            return;
+        }
+        Map<String, String> lbl = new HashMap<>();
+        for (Entry e : view) lbl.put(e.key(), sectionLabel(e));
+        if (searching) {
+            // search labels (Found under) don't follow the comparator: stable re-group, Pinned first
+            view.sort(Comparator
+                    .comparingInt((Entry e) -> "Pinned".equals(lbl.get(e.key())) ? 0 : 1)
+                    .thenComparing(e -> lbl.get(e.key())));
+        }
+        String cur = null;
+        List<Entry> run = new ArrayList<>();
+        for (Entry e : view) {
+            String l = lbl.get(e.key());
+            if (!l.equals(cur)) {
+                if (!run.isEmpty()) { vrows.add(new VRow(null, List.copyOf(run))); run.clear(); }
+                vrows.add(new VRow(l, List.of()));
+                cur = l;
+            }
+            run.add(e);
+            if (run.size() == cols) { vrows.add(new VRow(null, List.copyOf(run))); run.clear(); }
+        }
+        if (!run.isEmpty()) vrows.add(new VRow(null, List.copyOf(run)));
+    }
+
+    /** Entry shown in visible cell (r,c), or null (empty cell / header row / out of range). */
+    private Entry cellEntry(int r, int c) {
+        int vi = scrollRow + r;
+        if (vi < 0 || vi >= vrows.size() || c < 0 || c >= cols) return null;
+        VRow vr = vrows.get(vi);
+        if (vr.header() != null) return null;
+        return c < vr.items().size() ? vr.items().get(c) : null;
+    }
+
+    /** Section header occupying visible row r, or null. */
+    private String headerAt(int r) {
+        int vi = scrollRow + r;
+        return (vi >= 0 && vi < vrows.size()) ? vrows.get(vi).header() : null;
     }
 
     // -- sorting --
@@ -533,13 +596,87 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private Comparator<Entry> comparator() {
         Comparator<Entry> base = baseComparator();
         ButtonLayout.BtnDef d = selectedDef();
-        if (d == null || d.pins() == null) return base;
-        List<String> pins = d.pins();
-        Comparator<Entry> pinned = Comparator.comparingInt(e -> {
-            int i = pins.indexOf(idOf(e));
+        List<String> bp = (d == null || d.pins() == null) ? List.of() : d.pins();
+        List<String> up = selectedKey == null ? List.of() : ClientUiState.pinsFor(selectedKey);
+        if (bp.isEmpty() && up.isEmpty()) return base;
+        // v1.2 (Dave): pins ALWAYS lead, regardless of sort mode -- user pins, then button pins
+        Comparator<Entry> userPinned = Comparator.comparingInt(e -> {
+            int i = up.indexOf(idOf(e));
             return i < 0 ? Integer.MAX_VALUE : i;
         });
-        return pinned.thenComparing(base);
+        Comparator<Entry> pinned = Comparator.comparingInt(e -> {
+            int i = bp.indexOf(idOf(e));
+            return i < 0 ? Integer.MAX_VALUE : i;
+        });
+        return userPinned.thenComparing(pinned).thenComparing(base);
+    }
+
+    private boolean isPinned(String id) {
+        if (selectedKey != null && ClientUiState.pinsFor(selectedKey).contains(id)) return true;
+        ButtonLayout.BtnDef d = selectedDef();
+        return d != null && d.pins() != null && d.pins().contains(id);
+    }
+
+    /** Section title for one entry under the ACTIVE sort (v1.2 sections checkbox). Labels are
+     *  designed to form contiguous runs in comparator order; search mode re-groups explicitly. */
+    private String sectionLabel(Entry e) {
+        String id = idOf(e);
+        if (isPinned(id)) return "Pinned";
+        if (!searchText.trim().isEmpty()) {
+            for (BtnCell bc : btnCells) if (matchesDef(bc.def(), e))
+                return bc.section() + " \u2192 " + btnLabel(bc.def());
+            return "Elsewhere";
+        }
+        switch (sortMode) {
+            case COUNT: return countBucket(e.count());
+            case ALPHA: return alphaLetter(e);
+            default: {
+                String sk = sortKey();
+                String mode = sortMode == SortMode.SMART_TYPE ? "type" : "family";
+                String l = Catalog.groupLabel(sk, mode, id);
+                if (l != null) return l;
+                List<String> steps = Catalog.sortStepsExact(sk, mode);
+                if (steps != null && steps.contains("potion")) {
+                    String pk = potionEffectKey(e);
+                    return pk.equals("~") ? "Other" : prettyWords(pk);
+                }
+                ButtonLayout.BtnDef d = selectedDef();
+                if (d != null && d.category() == null && !Catalog.hasSortConfig(sk, mode)) {
+                    Catalog.Tab t = Catalog.tab(Catalog.tabsFor(id).get(0));
+                    return t != null ? t.name() : "Other";          // categorical fallback grouping
+                }
+                return d != null ? btnLabel(d) : "Items";           // single-section tab
+            }
+        }
+    }
+
+    /** Count-mode section buckets (Dave's ranges). */
+    private static String countBucket(long c) {
+        if (c <= 100) return "1-100";
+        if (c <= 1_000) return "101-1,000";
+        if (c <= 10_000) return "1,001-10,000";
+        if (c <= 100_000) return "10,001-100,000";
+        return "100,000+";
+    }
+
+    /** A-Z section letter: taken from the word the tab actually sorts by (last word when the
+     *  tab's alpha chain leads with "lastword"), absent letters simply never appear. */
+    private String alphaLetter(Entry e) {
+        String n = nameOf(e);
+        List<String> steps = Catalog.sortStepsExact(sortKey(), "alpha");
+        String word = (steps != null && !steps.isEmpty() && steps.get(0).equals("lastword")) ? lastWord(n) : n;
+        char c = word.isEmpty() ? '#' : word.charAt(0);
+        return Character.isLetter(c) ? String.valueOf(Character.toUpperCase(c)) : "#";
+    }
+
+    private static String prettyWords(String sv) {
+        StringBuilder b = new StringBuilder();
+        for (String w : sv.split("_")) {
+            if (w.isEmpty()) continue;
+            if (b.length() > 0) b.append(' ');
+            b.append(Character.toUpperCase(w.charAt(0))).append(w.substring(1));
+        }
+        return b.length() == 0 ? "Other" : b.toString();
     }
 
     private Comparator<Entry> baseComparator() {
@@ -769,21 +906,54 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             g.text(this.font, lbl, sbX[i] + (sbW[i] - this.font.width(lbl)) / 2, sbY + 3, active ? ACCENT : TEXT);
         }
 
+        // v1.2: Pin drop box + section-titles checkbox at the right end of the sort row
+        if (ctrlVisible) {
+            boolean carrying = !this.menu.getCarried().isEmpty();
+            boolean hovP = inside(mouseX, mouseY, pinBoxX, sbY, pinBoxW, sbH);
+            g.fill(pinBoxX, sbY, pinBoxX + pinBoxW, sbY + sbH, (hovP && carrying) ? 0xFF4A3A12 : WELL);
+            int pb = carrying ? ACCENT : SUBTLE;
+            g.fill(pinBoxX, sbY, pinBoxX + pinBoxW, sbY + 1, pb);
+            g.fill(pinBoxX, sbY + sbH - 1, pinBoxX + pinBoxW, sbY + sbH, pb);
+            g.fill(pinBoxX, sbY, pinBoxX + 1, sbY + sbH, pb);
+            g.fill(pinBoxX + pinBoxW - 1, sbY, pinBoxX + pinBoxW, sbY + sbH, pb);
+            g.text(this.font, "Pin", pinBoxX + (pinBoxW - this.font.width("Pin")) / 2, sbY + 3,
+                    carrying ? ACCENT : TEXT);
+
+            int cy = sbY + (sbH - secBoxW) / 2;
+            boolean hovS = inside(mouseX, mouseY, secBoxX, sbY, secBoxW, sbH);
+            g.fill(secBoxX, cy, secBoxX + secBoxW, cy + secBoxW, hovS ? 0xFF3A3A42 : WELL);
+            int cb2 = showSections ? ACCENT : SUBTLE;
+            g.fill(secBoxX, cy, secBoxX + secBoxW, cy + 1, cb2);
+            g.fill(secBoxX, cy + secBoxW - 1, secBoxX + secBoxW, cy + secBoxW, cb2);
+            g.fill(secBoxX, cy, secBoxX + 1, cy + secBoxW, cb2);
+            g.fill(secBoxX + secBoxW - 1, cy, secBoxX + secBoxW, cy + secBoxW, cb2);
+            if (showSections) g.fill(secBoxX + 3, cy + 3, secBoxX + secBoxW - 3, cy + secBoxW - 3, ACCENT);
+        }
+
         // vault grid (stretches to the search bar at the bottom)
         g.enableScissor(gridX, gridY, gridX + cols * slot, gridY + rows * slot);
         long flashLeft = flashEnd - System.currentTimeMillis();
         boolean flashOn = flashLeft > 0 && (flashLeft / 150) % 2 == 0;   // 3 blinks over ~900ms
-        int start = scrollRow * cols;
-        for (int r = 0; r < rows; r++) for (int c = 0; c < cols; c++) {
-            int idx = start + r * cols + c;
-            if (idx >= view.size()) continue;
-            int sx = gridX + c * slot, sy = gridY + r * slot;
-            boolean hov = inside(mouseX, mouseY, sx, sy, slot, slot);
-            g.fill(sx, sy, sx + slot - 1, sy + slot - 1, flashOn ? 0xFFA02820 : (hov ? 0xFF4A4A55 : SLOT_BG));
-            Entry e = view.get(idx);
-            g.item(e.stack(), sx + 1, sy + 1);
-            g.itemDecorations(this.font, e.stack(), sx + 1, sy + 1, null);
-            countText(g, abbrev(e.count()), sx, sy);
+        for (int r = 0; r < rows; r++) {
+            String hdr = headerAt(r);
+            int rowY = gridY + r * slot;
+            if (hdr != null) {                                   // v1.2 section title row
+                textScaled(g, hdr, gridX + 2, rowY + (slot - 8) / 2, ACCENT, 1.0f);
+                int hw = this.font.width(hdr);
+                if (gridX + hw + 8 < gridX + cols * slot - 4)
+                    g.fill(gridX + hw + 8, rowY + slot / 2, gridX + cols * slot - 4, rowY + slot / 2 + 1, 0xFF3A3A42);
+                continue;
+            }
+            for (int c = 0; c < cols; c++) {
+                Entry e = cellEntry(r, c);
+                if (e == null) continue;
+                int sx = gridX + c * slot, sy = rowY;
+                boolean hov = inside(mouseX, mouseY, sx, sy, slot, slot);
+                g.fill(sx, sy, sx + slot - 1, sy + slot - 1, flashOn ? 0xFFA02820 : (hov ? 0xFF4A4A55 : SLOT_BG));
+                g.item(e.stack(), sx + 1, sy + 1);
+                g.itemDecorations(this.font, e.stack(), sx + 1, sy + 1, null);
+                countText(g, abbrev(e.count()), sx, sy);
+            }
         }
         g.disableScissor();
 
@@ -1097,6 +1267,27 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         if (inside(mx, my, searchBoxX, srchY, searchBoxW, sbH)) { searchFocused = true; return true; }
         if (inside(mx, my, goX, srchY, goW2, sbH)) { searchFocused = false; rebuild(); return true; }
 
+        // v1.2: section-titles checkbox + Pin drop box (handled BEFORE anything that could
+        // treat the click as an item drop -- the cursor stack is never touched here)
+        if (ctrlVisible && inside(mx, my, secBoxX, sbY, secBoxW, sbH)) {
+            showSections = !showSections;
+            ClientUiState.rememberSections(showSections);
+            ClientPlayNetworking.send(new UiStatePayload(selectedKey == null ? "" : selectedKey, "", "",
+                    showSections ? "on" : "off"));
+            rebuild();
+            return true;
+        }
+        if (ctrlVisible && inside(mx, my, pinBoxX, sbY, pinBoxW, sbH)) {
+            ItemStack carried = this.menu.getCarried();
+            if (!carried.isEmpty() && selectedKey != null) {
+                String id = BuiltInRegistries.ITEM.getKey(carried.getItem()).toString();
+                ClientUiState.togglePinLocal(selectedKey, id);
+                ClientPlayNetworking.send(new PinPayload(selectedKey, id));
+                rebuild();
+            }
+            return true;   // swallow the click either way: items can never drop here
+        }
+
         SortMode[] modes = SortMode.values();
         for (int i = 0; i < 4; i++) if (inside(mx, my, sbX[i], sbY, sbW[i], sbH)) {
             if (modes[i] == SortMode.COUNT && sortMode == SortMode.COUNT) countDesc = !countDesc; else sortMode = modes[i];
@@ -1260,9 +1451,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
 
     private Entry gridItemAt(int mx, int my) {
         if (!inside(mx, my, gridX, gridY, cols * slot, rows * slot)) return null;
-        int c = (mx - gridX) / slot, r = (my - gridY) / slot;
-        int idx = scrollRow * cols + r * cols + c;
-        return (c >= 0 && c < cols && idx >= 0 && idx < view.size()) ? view.get(idx) : null;
+        return cellEntry((my - gridY) / slot, (mx - gridX) / slot);
     }
 
     /** Visible-page cell index (0..rows*cols) under the cursor, or -1. Matches the server's viewKeys order. */
@@ -1270,9 +1459,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         if (!inside(mx, my, gridX, gridY, cols * slot, rows * slot)) return -1;
         int c = (mx - gridX) / slot, r = (my - gridY) / slot;
         if (c < 0 || c >= cols || r < 0 || r >= rows) return -1;
-        int cell = r * cols + c;
-        int idx = scrollRow * cols + cell;
-        return idx < view.size() ? cell : -1;
+        return cellEntry(r, c) != null ? r * cols + c : -1;
     }
 
     /** Tell the server which bank key sits in each visible grid cell so a real-Slot click on the
@@ -1280,11 +1467,10 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private void sendGridView() {
         if (cols <= 0 || rows <= 0) return;
         int n = Math.min(rows * cols, BankVaultMenu.VIEW_SIZE);
-        int start = scrollRow * cols;
         List<String> keys = new ArrayList<>(n);
         for (int i = 0; i < n; i++) {
-            int idx = start + i;
-            keys.add(idx < view.size() ? view.get(idx).key() : "");
+            Entry e = cellEntry(i / cols, i % cols);
+            keys.add(e != null ? e.key() : "");
         }
         ClientPlayNetworking.send(new GridViewPayload(keys));
     }

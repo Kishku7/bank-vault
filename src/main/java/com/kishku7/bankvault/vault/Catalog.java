@@ -39,6 +39,8 @@ public final class Catalog {
     private static Map<String, String[]> sortLists;
     private static Map<String, Map<String, List<String>>> tabSort;
     private static Map<String, Map<String, Map<String, Integer>>> tabOrder; // tab -> mode -> itemId -> rank
+    private static Map<String, Map<String, List<String>>> tabOrderList;     // tab -> mode -> ordered ids
+    private static Map<String, Map<String, Map<String, String>>> groupLabels; // tab -> mode -> itemId -> section label
     private static Set<String> tabsWithItems;
 
     private Catalog() {}
@@ -49,7 +51,7 @@ public final class Catalog {
         Path dir = FabricLoader.getInstance().getConfigDir().resolve("bankvault");
         try { Files.createDirectories(dir); }
         catch (Exception e) { BankVault.LOGGER.error("[Bank Vault] config dir create failed", e); return; }
-        for (String f : List.of("categories.json", "sort_family.json", "sort_type.json", "buttons.json", "keywords.json")) {
+        for (String f : List.of("categories.json", "sort_family.json", "sort_type.json", "sort_groups.json", "buttons.json", "keywords.json")) {
             Path dst = dir.resolve(f);
             if (Files.exists(dst)) continue;
             try (InputStream in = Catalog.class.getResourceAsStream("/data/bankvault/" + f)) {
@@ -70,6 +72,8 @@ public final class Catalog {
         sortLists = new HashMap<>();
         tabSort = new HashMap<>();
         tabOrder = new HashMap<>();
+        tabOrderList = new HashMap<>();
+        groupLabels = new HashMap<>();
         // 1) config-dir override (live-editable, survives mod updates)
         Path cfg = FabricLoader.getInstance().getConfigDir().resolve("bankvault").resolve("categories.json");
         if (Files.exists(cfg)) {
@@ -79,10 +83,11 @@ public final class Catalog {
                 BankVault.LOGGER.info("[Bank Vault] catalog from config: {} tabs, {} items", tabs.size(), itemTabs.size());
                 loadOrderFile("family");
                 loadOrderFile("type");
+                loadGroupsFile();
                 return;
             } catch (Exception e) {
                 BankVault.LOGGER.error("[Bank Vault] config catalog load failed, falling back to bundled", e);
-                tabs.clear(); itemTabs.clear(); colors.clear(); sortLists.clear(); tabSort.clear(); tabOrder.clear();
+                tabs.clear(); itemTabs.clear(); colors.clear(); sortLists.clear(); tabSort.clear(); tabOrder.clear(); tabOrderList.clear(); groupLabels.clear();
             }
         }
         // 2) bundled default
@@ -96,6 +101,7 @@ public final class Catalog {
         }
         loadOrderFile("family");
         loadOrderFile("type");
+        loadGroupsFile();
     }
 
     /** sort_family.json / sort_type.json: {"<tab>": ["item_id", ...]} -- the array order IS the
@@ -116,12 +122,54 @@ public final class Catalog {
         int n = 0;
         for (String tab : root.keySet()) {
             Map<String, Integer> rank = new HashMap<>();
+            List<String> ordered = new ArrayList<>();
             int[] i = {0};
-            root.getAsJsonArray(tab).forEach(x -> rank.put(x.getAsString(), i[0]++));
+            root.getAsJsonArray(tab).forEach(x -> { rank.put(x.getAsString(), i[0]++); ordered.add(x.getAsString()); });
             tabOrder.computeIfAbsent(tab, k -> new HashMap<>()).put(mode, rank);
+            tabOrderList.computeIfAbsent(tab, k -> new HashMap<>()).put(mode, ordered);
             n += rank.size();
         }
         BankVault.LOGGER.info("[Bank Vault] sort_{}: {} tabs, {} ranked ids", mode, root.keySet().size(), n);
+    }
+
+    /** sort_groups.json (v1.2 sections): {"<tab>": {"family": [["Label", count], ...], "type":
+     *  [...]}} -- spans partition that tab's ranked list, in order. Resolved here into a direct
+     *  itemId -> label map per tab+mode. Config dir wins; bundled is the fallback. */
+    private static void loadGroupsFile() {
+        JsonObject root = null;
+        Path f = FabricLoader.getInstance().getConfigDir().resolve("bankvault").resolve("sort_groups.json");
+        if (Files.exists(f)) {
+            try (Reader r = Files.newBufferedReader(f, StandardCharsets.UTF_8)) { root = GSON.fromJson(r, JsonObject.class); }
+            catch (Exception e) { BankVault.LOGGER.error("[Bank Vault] sort_groups.json config load failed", e); }
+        }
+        if (root == null) {
+            try (InputStream in = Catalog.class.getResourceAsStream("/data/bankvault/sort_groups.json")) {
+                if (in != null) root = GSON.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), JsonObject.class);
+            } catch (Exception e) { BankVault.LOGGER.error("[Bank Vault] sort_groups.json bundled load failed", e); }
+        }
+        if (root == null) return;
+        int tabsN = 0;
+        for (String tab : root.keySet()) {
+            Map<String, List<String>> modes = tabOrderList.get(tab);
+            if (modes == null) continue;
+            JsonObject o = root.getAsJsonObject(tab);
+            Map<String, Map<String, String>> byMode = new HashMap<>();
+            for (String mode : o.keySet()) {
+                List<String> ordered = modes.get(mode);
+                if (ordered == null) continue;
+                Map<String, String> labels = new HashMap<>();
+                int idx = 0;
+                for (JsonElement se : o.getAsJsonArray(mode)) {
+                    String label = se.getAsJsonArray().get(0).getAsString();
+                    int count = se.getAsJsonArray().get(1).getAsInt();
+                    for (int k = 0; k < count && idx < ordered.size(); k++, idx++) labels.put(ordered.get(idx), label);
+                }
+                byMode.put(mode, labels);
+            }
+            groupLabels.put(tab, byMode);
+            tabsN++;
+        }
+        BankVault.LOGGER.info("[Bank Vault] sort_groups: {} tabs with section labels", tabsN);
     }
 
     private static void parse(JsonObject root) {
@@ -201,7 +249,7 @@ public final class Catalog {
 
     /** Drop all cached catalog/sort data and re-read the JSON files (config dir first). */
     public static synchronized void reload() {
-        tabs = null; itemTabs = null; colors = null; sortLists = null; tabSort = null; tabOrder = null; tabsWithItems = null;
+        tabs = null; itemTabs = null; colors = null; sortLists = null; tabSort = null; tabOrder = null; tabOrderList = null; groupLabels = null; tabsWithItems = null;
         ensureLoaded();
     }
 
@@ -274,6 +322,16 @@ public final class Catalog {
         if (rank == null) return Integer.MAX_VALUE;
         Integer r = rank.get(itemId);
         return r == null ? Integer.MAX_VALUE : r;
+    }
+
+    /** Section label for an item in a tab's curated order (v1.2 sections), or null when the
+     *  tab/mode has no group data. */
+    public static String groupLabel(String tabId, String mode, String itemId) {
+        ensureLoaded();
+        Map<String, Map<String, String>> m = groupLabels.get(tabId);
+        if (m == null) return null;
+        Map<String, String> labels = m.get(mode);
+        return labels == null ? null : labels.get(itemId);
     }
 
     /** Dye/dye-source color index 0-15 (white..black), or -1 if not a colored dye item. */

@@ -34,6 +34,7 @@ public final class ModNetworking {
         PayloadTypeRegistry.clientboundPlay().register(SharingStatePayload.TYPE, SharingStatePayload.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(ShareActionPayload.TYPE, ShareActionPayload.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(UiStatePayload.TYPE, UiStatePayload.CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(PinPayload.TYPE, PinPayload.CODEC);
         PayloadTypeRegistry.clientboundPlay().register(UiStateSyncPayload.TYPE, UiStateSyncPayload.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(WithdrawPayload.TYPE, ModNetworking::onWithdraw);
         ServerPlayNetworking.registerGlobalReceiver(UpgradePayload.TYPE, ModNetworking::onUpgrade);
@@ -42,6 +43,7 @@ public final class ModNetworking {
         ServerPlayNetworking.registerGlobalReceiver(DepositAllPayload.TYPE, ModNetworking::onDepositAll);
         ServerPlayNetworking.registerGlobalReceiver(ShareActionPayload.TYPE, ModNetworking::onShareAction);
         ServerPlayNetworking.registerGlobalReceiver(UiStatePayload.TYPE, ModNetworking::onUiState);
+        ServerPlayNetworking.registerGlobalReceiver(PinPayload.TYPE, ModNetworking::onPin);
     }
 
     public static void sendSync(ServerPlayer player, Bank bank) {
@@ -77,7 +79,13 @@ public final class ModNetworking {
 
     /** v1.2 last-use memory: persist the interaction in the server-side bucket files. */
     private static void onUiState(UiStatePayload payload, ServerPlayNetworking.Context context) {
-        UserSettings.update(context.player(), payload.lastTab(), payload.tab(), payload.sort());
+        UserSettings.update(context.player(), payload.lastTab(), payload.tab(), payload.sort(),
+                payload.sections());
+    }
+
+    /** v1.2 Pin hot area: toggle a per-tab user pin. */
+    private static void onPin(PinPayload payload, ServerPlayNetworking.Context context) {
+        UserSettings.togglePin(context.player(), payload.tab(), payload.itemId());
     }
 
     /** Push the player's remembered UI state (last tab + per-tab sorts); must be sent BEFORE
@@ -85,12 +93,16 @@ public final class ModNetworking {
     public static void sendUiState(ServerPlayer player) {
         UserSettings.Rec rec = UserSettings.get(player.getUUID());
         List<UiStateSyncPayload.TabSort> ts = new ArrayList<>();
+        List<UiStateSyncPayload.TabPins> tp = new ArrayList<>();
         String lastTab = "";
+        boolean sections = false;
         if (rec != null) {
             lastTab = rec.lastTab == null ? "" : rec.lastTab;
+            sections = rec.showSections;
             for (var e : rec.sorts.entrySet()) ts.add(new UiStateSyncPayload.TabSort(e.getKey(), e.getValue()));
+            for (var e : rec.pins.entrySet()) tp.add(new UiStateSyncPayload.TabPins(e.getKey(), e.getValue()));
         }
-        ServerPlayNetworking.send(player, new UiStateSyncPayload(lastTab, ts));
+        ServerPlayNetworking.send(player, new UiStateSyncPayload(lastTab, ts, sections, tp));
     }
 
     /** Re-sync every online member of a bank (membership or contents changed). */

@@ -40,6 +40,8 @@ public final class UserSettings {
         public String name = "";
         public String lastTab = "";
         public Map<String, String> sorts = new LinkedHashMap<>();
+        public boolean showSections = false;
+        public Map<String, List<String>> pins = new LinkedHashMap<>();
     }
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
@@ -95,6 +97,7 @@ public final class UserSettings {
             for (Map.Entry<String, Rec> e : m.entrySet()) {
                 if (e.getValue() == null) continue;
                 if (e.getValue().sorts == null) e.getValue().sorts = new LinkedHashMap<>();
+                if (e.getValue().pins == null) e.getValue().pins = new LinkedHashMap<>();
                 uuidBucket.put(e.getKey(), b);
                 players++;
             }
@@ -111,30 +114,61 @@ public final class UserSettings {
         return b == null ? null : buckets.get(b).get(id.toString());
     }
 
-    /** Record a UI interaction: {@code lastTab} always updates; when {@code tab} and
-     *  {@code sort} are both non-empty the per-tab sort memory updates too. Creates the
-     *  record on a player's first interaction; moves it between buckets after a rename. */
-    public static synchronized void update(ServerPlayer player, String lastTab, String tab, String sort) {
-        if (!loaded) loadAll();
+    /** Locate-or-create the player's record, moving it between buckets after a rename
+     *  (UUID key preserved). Returns the record; caller mutates then calls save(bucketOf). */
+    private static Rec recFor(ServerPlayer player, boolean[] dirty) {
         String uuid = player.getUUID().toString();
         String name = player.getGameProfile().name();
         String b = bucketFor(name);
         String old = uuidBucket.get(uuid);
         Rec r = old == null ? null : buckets.get(old).get(uuid);
-        boolean dirty = false;
-        if (r == null) { r = new Rec(); dirty = true; }
+        if (r == null) { r = new Rec(); dirty[0] = true; }
         if (old != null && !old.equals(b)) {            // renamed across initials: move buckets
             buckets.get(old).remove(uuid);
             save(old);
-            dirty = true;
+            dirty[0] = true;
         }
-        if (!name.equals(r.name)) { r.name = name; dirty = true; }
-        if (lastTab != null && !lastTab.isEmpty() && !lastTab.equals(r.lastTab)) { r.lastTab = lastTab; dirty = true; }
-        if (tab != null && !tab.isEmpty() && sort != null && !sort.isEmpty()
-                && !sort.equals(r.sorts.get(tab))) { r.sorts.put(tab, sort); dirty = true; }
+        if (!name.equals(r.name)) { r.name = name; dirty[0] = true; }
         buckets.computeIfAbsent(b, k -> new LinkedHashMap<>()).put(uuid, r);
         uuidBucket.put(uuid, b);
-        if (dirty) save(b);
+        return r;
+    }
+
+    private static String bucketOf(ServerPlayer player) { return bucketFor(player.getGameProfile().name()); }
+
+    /** Record a UI interaction: {@code lastTab} always updates; when {@code tab} and
+     *  {@code sort} are both non-empty the per-tab sort memory updates too; {@code sections}
+     *  ("on"/"off", empty = no change) flips the section-titles checkbox. Creates the record
+     *  on a player's first interaction. */
+    public static synchronized void update(ServerPlayer player, String lastTab, String tab, String sort,
+                                           String sections) {
+        if (!loaded) loadAll();
+        boolean[] dirty = {false};
+        Rec r = recFor(player, dirty);
+        if (lastTab != null && !lastTab.isEmpty() && !lastTab.equals(r.lastTab)) { r.lastTab = lastTab; dirty[0] = true; }
+        if (tab != null && !tab.isEmpty() && sort != null && !sort.isEmpty()
+                && !sort.equals(r.sorts.get(tab))) { r.sorts.put(tab, sort); dirty[0] = true; }
+        if (sections != null && !sections.isEmpty()) {
+            boolean v = "on".equals(sections);
+            if (v != r.showSections) { r.showSections = v; dirty[0] = true; }
+        }
+        if (dirty[0]) save(bucketOf(player));
+    }
+
+    /** Toggle a per-tab user pin (v1.2 Pin hot area). Capped at 54 pins per tab. */
+    public static synchronized void togglePin(ServerPlayer player, String tab, String itemId) {
+        if (!loaded) loadAll();
+        if (tab == null || tab.isEmpty() || itemId == null || itemId.isEmpty()
+                || tab.length() > 80 || itemId.length() > 256) return;
+        boolean[] dirty = {false};
+        Rec r = recFor(player, dirty);
+        List<String> l = r.pins.computeIfAbsent(tab, k -> new ArrayList<>());
+        if (!l.remove(itemId)) {
+            if (l.size() >= 54) return;
+            l.add(itemId);
+        }
+        if (l.isEmpty()) r.pins.remove(tab);
+        save(bucketOf(player));
     }
 
     /** Atomic per-bucket write: serialize to a tmp file, then move over the live one. */
