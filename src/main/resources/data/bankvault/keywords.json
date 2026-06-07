@@ -2289,7 +2289,8 @@
    "farmable",
    "placeable",
    "endGame",
-   "flower"
+   "flower",
+   "dirtSpecial"
   ],
   "minecraft:chorus_fruit": [
    "food",
@@ -2298,14 +2299,16 @@
    "end",
    "farmable",
    "renewable",
-   "endGame"
+   "endGame",
+   "dirtSpecial"
   ],
   "minecraft:chorus_plant": [
    "plant",
    "block",
    "end",
    "growable",
-   "endGame"
+   "endGame",
+   "dirtSpecial"
   ],
   "minecraft:clay": [
    "clay",
@@ -3084,7 +3087,8 @@
    "bartering",
    "mineable",
    "placeable",
-   "lateGame"
+   "lateGame",
+   "dirtSpecial"
   ],
   "minecraft:cut_copper": [
    "copper",
@@ -3961,9 +3965,7 @@
    "unique",
    "rare",
    "gravity",
-   "teleport",
    "endGame",
-   "otherMaterial",
    "mobDrop"
   ],
   "minecraft:dragon_head": [
@@ -7603,7 +7605,8 @@
    "mineable",
    "placeable",
    "renewable",
-   "midGame"
+   "midGame",
+   "dirtSpecial"
   ],
   "minecraft:ocelot_spawn_egg": [
    "egg",
@@ -8695,7 +8698,7 @@
    "renewable",
    "stackable",
    "endGame",
-   "odd"
+   "dirtSpecial"
   ],
   "minecraft:poppy": [
    "flower",
@@ -9023,7 +9026,7 @@
    "placeable",
    "decoration",
    "endGame",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:purpur_pillar": [
    "end",
@@ -9033,7 +9036,7 @@
    "placeable",
    "decoration",
    "endGame",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:purpur_slab": [
    "end",
@@ -9043,7 +9046,8 @@
    "placeable",
    "decoration",
    "waterloggable",
-   "endGame"
+   "endGame",
+   "dirtSpecial"
   ],
   "minecraft:purpur_stairs": [
    "end",
@@ -9053,7 +9057,8 @@
    "placeable",
    "decoration",
    "waterloggable",
-   "endGame"
+   "endGame",
+   "dirtSpecial"
   ],
   "minecraft:quartz": [
    "quartz",
