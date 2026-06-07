@@ -34,7 +34,6 @@ public final class ModNetworking {
         PayloadTypeRegistry.clientboundPlay().register(SharingStatePayload.TYPE, SharingStatePayload.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(ShareActionPayload.TYPE, ShareActionPayload.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(UiStatePayload.TYPE, UiStatePayload.CODEC);
-        PayloadTypeRegistry.serverboundPlay().register(PinPayload.TYPE, PinPayload.CODEC);
         PayloadTypeRegistry.clientboundPlay().register(UiStateSyncPayload.TYPE, UiStateSyncPayload.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(WithdrawPayload.TYPE, ModNetworking::onWithdraw);
         ServerPlayNetworking.registerGlobalReceiver(UpgradePayload.TYPE, ModNetworking::onUpgrade);
@@ -43,7 +42,6 @@ public final class ModNetworking {
         ServerPlayNetworking.registerGlobalReceiver(DepositAllPayload.TYPE, ModNetworking::onDepositAll);
         ServerPlayNetworking.registerGlobalReceiver(ShareActionPayload.TYPE, ModNetworking::onShareAction);
         ServerPlayNetworking.registerGlobalReceiver(UiStatePayload.TYPE, ModNetworking::onUiState);
-        ServerPlayNetworking.registerGlobalReceiver(PinPayload.TYPE, ModNetworking::onPin);
     }
 
     public static void sendSync(ServerPlayer player, Bank bank) {
@@ -83,10 +81,6 @@ public final class ModNetworking {
                 payload.sections());
     }
 
-    /** v1.2 Pin hot area: toggle a per-tab user pin. */
-    private static void onPin(PinPayload payload, ServerPlayNetworking.Context context) {
-        UserSettings.togglePin(context.player(), payload.tab(), payload.itemId());
-    }
 
     /** Push the player's remembered UI state (last tab + per-tab sorts); must be sent BEFORE
      *  the menu-open packet so the screen finds it at init. */
@@ -188,6 +182,7 @@ public final class ModNetworking {
         ServerPlayer player = context.player();
         if (player.containerMenu instanceof BankVaultMenu menu) {
             menu.setViewKeys(payload.keys());
+            menu.setCurrentTab(payload.tab());
         }
     }
 

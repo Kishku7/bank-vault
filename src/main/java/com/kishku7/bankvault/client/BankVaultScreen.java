@@ -13,7 +13,6 @@ import com.kishku7.bankvault.vault.Keywords;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import com.kishku7.bankvault.net.ShareActionPayload;
 import com.kishku7.bankvault.net.SharingStatePayload;
-import com.kishku7.bankvault.net.PinPayload;
 import com.kishku7.bankvault.net.UiStatePayload;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -923,7 +922,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                     carrying ? ACCENT : TEXT);
             if (hovP && !carrying)
                 g.setTooltipForNextFrame(this.font,
-                        java.util.List.of(Component.literal("Drag a stack here to pin or unpin it for this tab")),
+                        java.util.List.of(Component.literal("Drop a stack here to pin or unpin it for this tab (deposits it into the vault)")),
                         java.util.Optional.empty(), mouseX, mouseY);
 
             g.text(this.font, "Titles", titlesX, ctrlY + 3, showSections ? ACCENT : TEXT);
@@ -1287,7 +1286,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         }
         if (ctrlVisible && inside(mx, my, pinBoxX, ctrlY, pinBoxW, sbH)) {
             ItemStack carried = this.menu.getCarried();
-            if (!carried.isEmpty() && selectedKey != null) togglePin(carried);
+            if (!carried.isEmpty() && selectedKey != null) pinClick();
             return true;   // swallow the click either way: items can never drop here
         }
 
@@ -1439,29 +1438,31 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     @Override
     public boolean mouseReleased(MouseButtonEvent event) {
         draggingThumb = false;
-        // v1.2 beta.1: TRUE drag-and-drop pinning. A hold-drag from a slot never produces a
+        // v1.2 beta.2: TRUE drag-and-drop pinning. A hold-drag from a slot never produces a
         // second click -- the gesture ends in mouseReleased, and vanilla's quick-craft release
         // would scatter the carried stack into the dragged-over slots (this ate Dave's stack in
-        // alpha.16). Releasing over the Pin box toggles the pin, keeps the stack on the cursor,
-        // and disarms quick-craft (accesswidener: isQuickCrafting / quickCraftSlots).
+        // alpha.16). Releasing over the Pin box disarms quick-craft, then routes the drop through
+        // the REAL pin slot: the deposit + pin toggle run inside the vanilla click transaction.
         if (ctrlVisible && inside((int) event.x(), (int) event.y(), pinBoxX, ctrlY, pinBoxW, sbH)) {
             ItemStack carried = this.menu.getCarried();
             if (!carried.isEmpty() && selectedKey != null) {
-                togglePin(carried);
                 this.isQuickCrafting = false;
                 this.quickCraftSlots.clear();
+                pinClick();
             }
             return true;
         }
         return super.mouseReleased(event);
     }
 
-    /** Toggle the carried stack's per-tab user pin (shared by click and drag-release). */
-    private void togglePin(ItemStack carried) {
-        String id = BuiltInRegistries.ITEM.getKey(carried.getItem()).toString();
-        ClientUiState.togglePinLocal(selectedKey, id);
-        ClientPlayNetworking.send(new PinPayload(selectedKey, id));
-        rebuild();
+    /** Drop-to-pin (beta.2, shared by click and drag-release): route the gesture through the
+     *  REAL pin slot. The server deposits the carried stack into the vault and toggles its
+     *  per-tab pin inside the vanilla click transaction; the UiState sync + vault sync it
+     *  sends back update the pins and drive the rebuild. */
+    private void pinClick() {
+        int idx = BankVaultMenu.PIN_SLOT;
+        if (idx < this.menu.slots.size())
+            this.slotClicked(this.menu.slots.get(idx), idx, 0, ContainerInput.PICKUP);
     }
 
     @Override
@@ -1497,7 +1498,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             Entry e = cellEntry(i / cols, i % cols);
             keys.add(e != null ? e.key() : "");
         }
-        ClientPlayNetworking.send(new GridViewPayload(keys));
+        ClientPlayNetworking.send(new GridViewPayload(selectedKey == null ? "" : selectedKey, keys));
     }
 
     private static boolean inside(int mx, int my, int x, int y, int w, int h) { return mx >= x && mx < x + w && my >= y && my < y + h; }

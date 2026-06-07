@@ -5,6 +5,7 @@ import com.kishku7.bankvault.registry.ModMenus;
 import com.kishku7.bankvault.vault.Bank;
 import com.kishku7.bankvault.vault.BankManager;
 import com.kishku7.bankvault.vault.StackStore;
+import com.kishku7.bankvault.vault.UserSettings;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -38,8 +39,9 @@ import java.util.List;
  *   36      unload (containers only)       37      grab-me (output only)
  *   38      upgrade (chests only)
  *   39..42  armor (head/chest/legs/feet)   43      offhand
- *   44..47  2x2 crafting grid              48      crafting result
- *   49..    vault-grid view slots (invisible click targets; see clicked())
+ *   44..52  3x3 crafting grid              53      crafting result
+ *   54      pin (drop-to-pin deposit; see clicked())
+ *   55..    vault-grid view slots (invisible click targets; see clicked())
  *
  * The vault grid contents are synced for display by VaultSyncPayload; clicking a grid cell routes a
  * vanilla container click to the matching view slot, and clicked() implements infinite-source
@@ -53,11 +55,12 @@ public class BankVaultMenu extends AbstractContainerMenu {
     public static final int OFFHAND_SLOT = 43;
     public static final int CRAFT_FIRST = 44;                 // 44..52 full 3x3 grid
     public static final int CRAFT_RESULT = 53;
+    public static final int PIN_SLOT = 54;                    // drop-to-pin (real slot, invisible)
 
     // Vault grid backed by real Slots. The screen may not draw more cells than these caps so every
     // visible cell maps to one real view slot. Rows are generous: the grid fills vertical space.
     public static final int VIEW_COLS = 12, VIEW_ROWS = 36, VIEW_SIZE = VIEW_COLS * VIEW_ROWS;
-    public static final int VIEW_FIRST = CRAFT_RESULT + 1;    // 49
+    public static final int VIEW_FIRST = PIN_SLOT + 1;        // 55
     public static final int TRINKET_FIRST = VIEW_FIRST + VIEW_SIZE;   // trinket slots (if any) come last
 
     private static final EquipmentSlot[] ARMOR_ORDER =
@@ -78,11 +81,14 @@ public class BankVaultMenu extends AbstractContainerMenu {
     };
     private final TransientCraftingContainer craftSlots = new TransientCraftingContainer(this, 3, 3);
     private final ResultContainer resultSlots = new ResultContainer();
+    private final SimpleContainer pinBacking = new SimpleContainer(1);          // stays empty; pin slot is logical
     private final SimpleContainer viewBacking = new SimpleContainer(VIEW_SIZE); // stays empty; view slots are logical
     private final String[] viewKeys = new String[VIEW_SIZE]; // server-side: cell -> bank key
     private boolean processing = false;
     /** Number of trinket slots appended after the view block (0 when trinkets_updated is absent). */
     public int trinketSlotCount = 0;
+    /** Server-side: the tab the client grid currently shows (sent with every GridViewPayload). */
+    private String currentTab = "";
 
     public BankVaultMenu(int containerId, Inventory inv) {
         super(ModMenus.BANK_VAULT, containerId);
@@ -111,6 +117,13 @@ public class BankVaultMenu extends AbstractContainerMenu {
         // 44..52 full 3x3 crafting grid + 53 result (the vault doubles as a crafting table)
         for (int i = 0; i < 9; i++) addSlot(new Slot(craftSlots, i, 0, 0));
         addSlot(new ResultSlot(inv.player, craftSlots, resultSlots, 0, 0, 0));
+        // 54 pin: a REAL slot so drop-to-pin rides the vanilla click transaction (see clicked()).
+        // Invisible and inactive -- the screen routes Pin-box clicks and drag-releases here.
+        addSlot(new Slot(pinBacking, 0, -9999, -9999) {
+            @Override public boolean mayPlace(ItemStack stack) { return false; }
+            @Override public boolean mayPickup(Player player) { return false; }
+            @Override public boolean isActive() { return false; }
+        });
         // 49.. view slots: real Slots so vanilla container clicks are valid, but invisible
         // (off-screen + inactive) so they never render or get hovered.
         for (int i = 0; i < VIEW_SIZE; i++) {
@@ -148,11 +161,18 @@ public class BankVaultMenu extends AbstractContainerMenu {
         }
     }
 
+    /** Server-side: the tab whose contents the grid shows -- the pin target tab (drop-to-pin). */
+    public void setCurrentTab(String tab) { this.currentTab = tab == null ? "" : tab; }
+
     @Override
     public boolean stillValid(Player player) { return true; }
 
     @Override
     public void clicked(int slotId, int button, ContainerInput clickType, Player player) {
+        if (slotId == PIN_SLOT) {
+            handlePinClick(player);
+            return;
+        }
         if (slotId >= VIEW_FIRST && slotId < VIEW_FIRST + VIEW_SIZE) {
             handleViewClick(slotId - VIEW_FIRST, button, clickType, player);
             return;
@@ -213,6 +233,33 @@ public class BankVaultMenu extends AbstractContainerMenu {
         ModNetworking.sendSync(sp, bank);
         broadcastChanges();
         broadcastFullState();   // push the authoritative cursor + slots so the result sticks client-side
+    }
+
+    /**
+     * v1.2 beta.2 drop-to-pin: the Pin box is backed by a REAL slot so the gesture arrives as a
+     * vanilla container click. The carried stack is DEPOSITED into the vault and its item id is
+     * pin-toggled for the player's current tab, all inside the click transaction (no stateId
+     * desync). A full vault denies: the stack stays on the cursor and nothing toggles.
+     */
+    private void handlePinClick(Player player) {
+        if (!(player instanceof ServerPlayer sp)) return;   // client: server resync delivers the result
+        ItemStack carried = getCarried();
+        if (carried.isEmpty()) return;
+        Bank bank = BankManager.lookup(sp.getUUID());
+        if (bank == null || bank.levelOf(sp.getUUID()) < BankManager.DEPOSIT) return;
+        String id = BuiltInRegistries.ITEM.getKey(carried.getItem()).toString();
+        long acc = BankManager.depositStack(bank, carried, sp.level().registryAccess());
+        if (acc > 0) {
+            carried.shrink((int) acc);
+            if (carried.isEmpty()) setCarried(ItemStack.EMPTY);
+            if (currentTab != null && !currentTab.isEmpty()) UserSettings.togglePin(sp, currentTab, id);
+            ModNetworking.sendUiState(sp);   // pins changed -- must land before the vault sync rebuild
+        } else {
+            sp.sendSystemMessage(Component.literal("§cVault is full."));
+        }
+        ModNetworking.sendSync(sp, bank);
+        broadcastChanges();
+        broadcastFullState();   // authoritative cursor + slots so the result sticks client-side
     }
 
     /** Rebuild the display prototype (count 1) for a stored key: plain id or "id#hash" special. */

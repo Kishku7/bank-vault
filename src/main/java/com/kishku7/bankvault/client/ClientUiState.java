@@ -44,11 +44,6 @@ public final class ClientUiState {
         return l == null ? List.of() : List.copyOf(l);
     }
 
-    /** Mirror a local pin toggle (the server applies the same flip via PinPayload). */
-    public static synchronized void togglePinLocal(String tab, String itemId) {
-        List<String> l = pins.computeIfAbsent(tab, k -> new ArrayList<>());
-        if (!l.remove(itemId)) l.add(itemId);
-    }
 
     /** Mirror a local interaction so subsequent screen inits restore the newest state. */
     public static synchronized void remember(String tab, String sort) {
