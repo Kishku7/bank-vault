@@ -516,6 +516,11 @@
    "section": "Other"
   },
   [
+   {
+    "label": "Everything",
+    "icon": "texture:bankvault:textures/gui/infinity.png",
+    "dynamic": "everything"
+   },
    "uncategorized"
   ]
  ]

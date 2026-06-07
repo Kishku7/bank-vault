@@ -403,14 +403,15 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
 
     private boolean buttonVisible(ButtonLayout.BtnDef d) {
         if (d.dynamic() != null)
-            return ("trinkets".equals(d.dynamic()) && BankVault.TRINKETS)
+            return ("everything".equals(d.dynamic()) && !entries.isEmpty())
+                    || ("trinkets".equals(d.dynamic()) && BankVault.TRINKETS)
                     || (d.words() != null && Keywords.anyItemHas(d.words()));
         if (d.words() != null) return Keywords.anyItemHas(d.words());
         String tabId = d.category();
         if (Catalog.tab(tabId) == null) return false;
         if (Catalog.hasItems(tabId)) return true;
         if (!tabId.equals("uncategorized")) return false;
-        for (Entry e : entries) if (Catalog.tabsFor(idOf(e)).contains("uncategorized")) return true;
+        for (Entry e : entries) if (isUncategorized(e)) return true;
         return false;
     }
 
@@ -423,10 +424,34 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     /** Does this vault entry belong under the given button? A button may carry BOTH a word
      *  list and a dynamic matcher -- membership is the union of the two. */
     private boolean matchesDef(ButtonLayout.BtnDef d, Entry e) {
-        if (d.category() != null) return Catalog.inTab(idOf(e), d.category());
+        if (d.category() != null) {
+            // rc.3 (Dave): "uncategorized" = matched by NO other button. The old categories.json
+            // -only test surfaced items that already have keyword-button homes.
+            if ("uncategorized".equals(d.category())) return isUncategorized(e);
+            return Catalog.inTab(idOf(e), d.category());
+        }
         if (d.words() != null && Keywords.itemHasAny(idOf(e), d.words())) return true;
+        if ("everything".equals(d.dynamic())) return true;   // rc.3: Everything holds it all
         if ("trinkets".equals(d.dynamic())) return isTrinketCached(e);
         return false;
+    }
+
+    /** True when no button in the layout (besides Everything / Uncategorized itself) claims this
+     *  entry. Walks ButtonLayout.rows() directly so button visibility cannot skew the answer. */
+    private boolean isUncategorized(Entry e) {
+        String id = idOf(e);
+        for (ButtonLayout.Row lr : ButtonLayout.rows()) {
+            if (lr.section() != null || lr.buttons() == null) continue;
+            for (ButtonLayout.BtnDef d : lr.buttons()) {
+                if (d.category() != null) {
+                    if (!"uncategorized".equals(d.category()) && Catalog.inTab(id, d.category())) return false;
+                    continue;
+                }
+                if (d.words() != null && Keywords.itemHasAny(id, d.words())) return false;
+                if ("trinkets".equals(d.dynamic()) && isTrinketCached(e)) return false;
+            }
+        }
+        return true;
     }
 
     /** Dynamic trinket membership: ask the trinkets API whether any of the player's trinket
@@ -540,14 +565,14 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             view.add(e);
         }
         view.sort(comparator());
-        buildVRows(searching);
+        buildVRows(foundUnderGrouping());
         scrollRow = Math.max(0, Math.min(scrollRow, maxRow()));
         sendGridView();
     }
 
     /** v1.2 sections: chunk the sorted view into virtual rows. Checkbox off = flat rows (old
      *  behavior); on = header rows + ragged, top-left-aligned item rows per section. */
-    private void buildVRows(boolean searching) {
+    private void buildVRows(boolean foundUnder) {
         vrows.clear();
         if (cols <= 0 || view.isEmpty()) return;
         if (!showSections) {
@@ -557,8 +582,8 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         }
         Map<String, String> lbl = new HashMap<>();
         for (Entry e : view) lbl.put(e.key(), sectionLabel(e));
-        if (searching) {
-            // search labels (Found under) don't follow the comparator: stable re-group, Pinned first
+        if (foundUnder) {
+            // Found-under labels don't follow the comparator: stable re-group, Pinned first
             view.sort(Comparator
                     .comparingInt((Entry e) -> "Pinned".equals(lbl.get(e.key())) ? 0 : 1)
                     .thenComparing(e -> lbl.get(e.key())));
@@ -624,9 +649,12 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private String sectionLabel(Entry e) {
         String id = idOf(e);
         if (isPinned(id)) return "Pinned";
-        if (!searchText.trim().isEmpty()) {
-            for (BtnCell bc : btnCells) if (matchesDef(bc.def(), e))
-                return bc.section() + " \u2192 " + btnLabel(bc.def());
+        if (foundUnderGrouping()) {
+            for (BtnCell bc : btnCells) {
+                if ("everything".equals(bc.def().dynamic())) continue;   // it matches all by design
+                if (matchesDef(bc.def(), e))
+                    return bc.section() + " \u2192 " + btnLabel(bc.def());
+            }
             return "Elsewhere";
         }
         switch (sortMode) {
@@ -650,6 +678,16 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                 return d != null ? btnLabel(d) : "Items";           // single-section tab
             }
         }
+    }
+
+    /** Found-under grouping (Section -> Button) applies during global search AND on the
+     *  Everything tab's Smart modes (rc.3, Dave: categorize Everything programmatically --
+     *  no generated ranked lists; A-Z and Count keep their natural letter/range sections). */
+    private boolean foundUnderGrouping() {
+        if (!searchText.trim().isEmpty()) return true;
+        ButtonLayout.BtnDef d = selectedDef();
+        return d != null && "everything".equals(d.dynamic())
+                && (sortMode == SortMode.SMART_FAMILY || sortMode == SortMode.SMART_TYPE);
     }
 
     /** Count-mode section buckets (Dave's ranges). */
