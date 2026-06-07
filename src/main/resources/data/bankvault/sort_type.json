@@ -1938,27 +1938,27 @@
   "minecraft:deepslate_gold_ore",
   "minecraft:nether_gold_ore",
   "minecraft:gilded_blackstone",
-  "minecraft:raw_gold",
   "minecraft:raw_gold_block",
+  "minecraft:gold_block",
+  "minecraft:light_weighted_pressure_plate",
+  "minecraft:raw_gold",
   "minecraft:gold_nugget",
   "minecraft:gold_ingot",
-  "minecraft:gold_block",
-  "minecraft:golden_apple",
-  "minecraft:enchanted_golden_apple",
-  "minecraft:glistering_melon_slice",
-  "minecraft:golden_carrot",
   "minecraft:bell",
   "travelersbackpack:gold_tier_upgrade",
-  "minecraft:light_weighted_pressure_plate"
+  "minecraft:golden_apple",
+  "minecraft:enchanted_golden_apple",
+  "minecraft:golden_carrot",
+  "minecraft:glistering_melon_slice"
  ],
  "kw:Diamonds & Netherite": [
   "minecraft:diamond_ore",
   "minecraft:deepslate_diamond_ore",
-  "minecraft:diamond",
-  "minecraft:diamond_block",
   "minecraft:ancient_debris",
+  "minecraft:diamond",
   "minecraft:netherite_scrap",
   "minecraft:netherite_ingot",
+  "minecraft:diamond_block",
   "minecraft:netherite_block",
   "travelersbackpack:diamond_tier_upgrade",
   "travelersbackpack:netherite_tier_upgrade"
@@ -2056,15 +2056,15 @@
   "travelersbackpack:sheep"
  ],
  "kw:Amethyst": [
+  "minecraft:budding_amethyst",
   "minecraft:small_amethyst_bud",
   "minecraft:medium_amethyst_bud",
   "minecraft:large_amethyst_bud",
   "minecraft:amethyst_cluster",
-  "minecraft:amethyst_shard",
   "minecraft:amethyst_block",
-  "minecraft:budding_amethyst",
-  "minecraft:calibrated_sculk_sensor",
   "minecraft:tinted_glass",
+  "minecraft:calibrated_sculk_sensor",
+  "minecraft:amethyst_shard",
   "minecraft:spyglass"
  ],
  "kw:Quartz": [
@@ -2077,8 +2077,8 @@
   "minecraft:quartz_bricks",
   "minecraft:smooth_quartz",
   "minecraft:quartz_slab",
-  "minecraft:quartz_stairs",
   "minecraft:smooth_quartz_slab",
+  "minecraft:quartz_stairs",
   "minecraft:smooth_quartz_stairs",
   "minecraft:daylight_detector",
   "minecraft:comparator"
@@ -2087,6 +2087,7 @@
   "minecraft:bamboo",
   "minecraft:bamboo_block",
   "minecraft:stripped_bamboo_block",
+  "minecraft:scaffolding",
   "minecraft:bamboo_planks",
   "minecraft:bamboo_mosaic",
   "minecraft:bamboo_mosaic_slab",
@@ -2099,12 +2100,11 @@
   "minecraft:bamboo_trapdoor",
   "minecraft:bamboo_hanging_sign",
   "minecraft:bamboo_sign",
-  "minecraft:bamboo_chest_raft",
-  "minecraft:bamboo_raft",
+  "minecraft:bamboo_shelf",
   "minecraft:bamboo_button",
   "minecraft:bamboo_pressure_plate",
-  "minecraft:bamboo_shelf",
-  "minecraft:scaffolding"
+  "minecraft:bamboo_chest_raft",
+  "minecraft:bamboo_raft"
  ],
  "kw:Prismarine": [
   "minecraft:prismarine_shard",
@@ -2112,14 +2112,14 @@
   "minecraft:prismarine",
   "minecraft:prismarine_bricks",
   "minecraft:dark_prismarine",
-  "minecraft:sea_lantern",
   "minecraft:dark_prismarine_slab",
   "minecraft:prismarine_brick_slab",
   "minecraft:prismarine_slab",
   "minecraft:dark_prismarine_stairs",
   "minecraft:prismarine_brick_stairs",
   "minecraft:prismarine_stairs",
-  "minecraft:prismarine_wall"
+  "minecraft:prismarine_wall",
+  "minecraft:sea_lantern"
  ],
  "kw:Terracotta, Clay & Mud": [
   "minecraft:terracotta",

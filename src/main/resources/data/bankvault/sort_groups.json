@@ -329,6 +329,74 @@
    ]
   ]
  },
+ "kw:Gold": {
+  "family": [
+   [
+    "Ores & Raw",
+    6
+   ],
+   [
+    "Ingots & Nuggets",
+    2
+   ],
+   [
+    "Blocks & Building",
+    2
+   ],
+   [
+    "Golden Foods",
+    4
+   ],
+   [
+    "Utility",
+    2
+   ]
+  ],
+  "type": [
+   [
+    "Blocks",
+    7
+   ],
+   [
+    "Items",
+    5
+   ],
+   [
+    "Foods",
+    4
+   ]
+  ]
+ },
+ "kw:Diamonds & Netherite": {
+  "family": [
+   [
+    "Diamond",
+    5
+   ],
+   [
+    "Netherite",
+    5
+   ]
+  ],
+  "type": [
+   [
+    "Ores & Raw",
+    3
+   ],
+   [
+    "Refined",
+    3
+   ],
+   [
+    "Blocks",
+    2
+   ],
+   [
+    "Utility",
+    2
+   ]
+  ]
+ },
  "kw:Glass": {
   "family": [
    [
@@ -502,6 +570,146 @@
    [
     "Other",
     18
+   ]
+  ]
+ },
+ "kw:Amethyst": {
+  "family": [
+   [
+    "Growth",
+    5
+   ],
+   [
+    "Shard & Block",
+    2
+   ],
+   [
+    "Crafted",
+    3
+   ]
+  ],
+  "type": [
+   [
+    "Blocks",
+    8
+   ],
+   [
+    "Items",
+    2
+   ]
+  ]
+ },
+ "kw:Quartz": {
+  "family": [
+   [
+    "Ore & Raw",
+    3
+   ],
+   [
+    "Blocks",
+    5
+   ],
+   [
+    "Stairs & Slabs",
+    4
+   ],
+   [
+    "Redstone Devices",
+    2
+   ]
+  ],
+  "type": [
+   [
+    "Ore & Raw",
+    3
+   ],
+   [
+    "Blocks",
+    5
+   ],
+   [
+    "Stairs & Slabs",
+    4
+   ],
+   [
+    "Redstone Devices",
+    2
+   ]
+  ]
+ },
+ "kw:Bamboo": {
+  "family": [
+   [
+    "Bamboo & Blocks",
+    4
+   ],
+   [
+    "Planks & Mosaic",
+    2
+   ],
+   [
+    "Building",
+    13
+   ],
+   [
+    "Rafts",
+    2
+   ]
+  ],
+  "type": [
+   [
+    "Bamboo & Blocks",
+    4
+   ],
+   [
+    "Planks & Mosaic",
+    2
+   ],
+   [
+    "Building",
+    13
+   ],
+   [
+    "Rafts",
+    2
+   ]
+  ]
+ },
+ "kw:Prismarine": {
+  "family": [
+   [
+    "Drops",
+    2
+   ],
+   [
+    "Blocks",
+    3
+   ],
+   [
+    "Building",
+    7
+   ],
+   [
+    "Lights",
+    1
+   ]
+  ],
+  "type": [
+   [
+    "Drops",
+    2
+   ],
+   [
+    "Blocks",
+    3
+   ],
+   [
+    "Building",
+    7
+   ],
+   [
+    "Lights",
+    1
    ]
   ]
  },
