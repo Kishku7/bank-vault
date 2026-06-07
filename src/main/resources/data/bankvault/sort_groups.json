@@ -1174,20 +1174,12 @@
  "kw:Containers": {
   "family": [
    [
-    "Chests",
-    9
+    "Chests & Barrels",
+    12
    ],
    [
-    "Trapped Chests",
-    1
-   ],
-   [
-    "Ender Chests",
-    1
-   ],
-   [
-    "Barrels",
-    1
+    "Travelers Backpacks",
+    44
    ],
    [
     "Shulker Boxes",
@@ -1207,25 +1199,17 @@
    ],
    [
     "Other",
-    59
+    15
    ]
   ],
   "type": [
    [
-    "Chests",
-    9
+    "Chests & Barrels",
+    12
    ],
    [
-    "Trapped Chests",
-    1
-   ],
-   [
-    "Ender Chests",
-    1
-   ],
-   [
-    "Barrels",
-    1
+    "Travelers Backpacks",
+    44
    ],
    [
     "Shulker Boxes",
@@ -1245,7 +1229,7 @@
    ],
    [
     "Other",
-    59
+    15
    ]
   ]
  },
