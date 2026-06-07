@@ -70,7 +70,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
      *  With the checkbox off this is just the flat view chunked into rows. */
     private record VRow(String header, List<Entry> items) {}
     private final List<VRow> vrows = new ArrayList<>();
-    private int secBoxX, secBoxW, pinBoxX, pinBoxW;                 // sort-row controls (right end)
+    private int secBoxX, secBoxW, pinBoxX, pinBoxW, ctrlY, titlesX; // Pin box + Titles checkbox (search row)
     private boolean ctrlVisible;
     private SortMode sortMode = SortMode.SMART_FAMILY;
     private boolean countDesc = true;
@@ -277,15 +277,9 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             sbX[i] = bx;
             bx += sbW[i] + 4;
         }
-        // v1.2: section-titles checkbox + Pin drop box, right-aligned on the sort row
-        secBoxW = 12;
-        pinBoxW = this.font.width("Pin") + 8;
         int gridAvailRight = rpX - 8 - SB_W - 4;
         cols = Math.max(1, Math.min(BankVaultMenu.VIEW_COLS, (gridAvailRight - gridX) / slot));
         sbarX = gridX + cols * slot + 4;
-        secBoxX = sbarX + SB_W - secBoxW;
-        pinBoxX = secBoxX - 4 - pinBoxW;
-        ctrlVisible = pinBoxX >= bx + 4;                           // hide both when the row is too tight
         srchY = py + ph - 8 - sbH;
         gridY = sbY + sbH + 6;
         gridBottom = srchY - 6;
@@ -296,7 +290,16 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         goW2 = this.font.width("↵") + 10;
         goX = sbarX + SB_W - goW2;
         searchBoxX = gridX;
-        searchBoxW = Math.max(60, goX - 4 - searchBoxX);
+        // v1.2: "Pin" drop box + "Titles" checkbox live on the search row, left of the go
+        // button -- the sort row is always too tight for them (alpha.15 hid them there).
+        ctrlY = srchY;
+        secBoxW = 12;
+        pinBoxW = this.font.width("Pin") + 8;
+        secBoxX = goX - 6 - secBoxW;
+        titlesX = secBoxX - 2 - this.font.width("Titles");
+        pinBoxX = titlesX - 8 - pinBoxW;
+        ctrlVisible = pinBoxX >= searchBoxX + 64;                  // keep a usable search box
+        searchBoxW = Math.max(60, (ctrlVisible ? pinBoxX : goX) - 4 - searchBoxX);
 
         positionRealSlots();
         recomputeButtons();
@@ -906,21 +909,22 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             g.text(this.font, lbl, sbX[i] + (sbW[i] - this.font.width(lbl)) / 2, sbY + 3, active ? ACCENT : TEXT);
         }
 
-        // v1.2: Pin drop box + section-titles checkbox at the right end of the sort row
+        // v1.2: Pin drop box + "Titles" checkbox on the search row (left of the go button)
         if (ctrlVisible) {
             boolean carrying = !this.menu.getCarried().isEmpty();
-            boolean hovP = inside(mouseX, mouseY, pinBoxX, sbY, pinBoxW, sbH);
-            g.fill(pinBoxX, sbY, pinBoxX + pinBoxW, sbY + sbH, (hovP && carrying) ? 0xFF4A3A12 : WELL);
+            boolean hovP = inside(mouseX, mouseY, pinBoxX, ctrlY, pinBoxW, sbH);
+            g.fill(pinBoxX, ctrlY, pinBoxX + pinBoxW, ctrlY + sbH, (hovP && carrying) ? 0xFF4A3A12 : WELL);
             int pb = carrying ? ACCENT : SUBTLE;
-            g.fill(pinBoxX, sbY, pinBoxX + pinBoxW, sbY + 1, pb);
-            g.fill(pinBoxX, sbY + sbH - 1, pinBoxX + pinBoxW, sbY + sbH, pb);
-            g.fill(pinBoxX, sbY, pinBoxX + 1, sbY + sbH, pb);
-            g.fill(pinBoxX + pinBoxW - 1, sbY, pinBoxX + pinBoxW, sbY + sbH, pb);
-            g.text(this.font, "Pin", pinBoxX + (pinBoxW - this.font.width("Pin")) / 2, sbY + 3,
+            g.fill(pinBoxX, ctrlY, pinBoxX + pinBoxW, ctrlY + 1, pb);
+            g.fill(pinBoxX, ctrlY + sbH - 1, pinBoxX + pinBoxW, ctrlY + sbH, pb);
+            g.fill(pinBoxX, ctrlY, pinBoxX + 1, ctrlY + sbH, pb);
+            g.fill(pinBoxX + pinBoxW - 1, ctrlY, pinBoxX + pinBoxW, ctrlY + sbH, pb);
+            g.text(this.font, "Pin", pinBoxX + (pinBoxW - this.font.width("Pin")) / 2, ctrlY + 3,
                     carrying ? ACCENT : TEXT);
 
-            int cy = sbY + (sbH - secBoxW) / 2;
-            boolean hovS = inside(mouseX, mouseY, secBoxX, sbY, secBoxW, sbH);
+            g.text(this.font, "Titles", titlesX, ctrlY + 3, showSections ? ACCENT : TEXT);
+            int cy = ctrlY + (sbH - secBoxW) / 2;
+            boolean hovS = inside(mouseX, mouseY, titlesX, ctrlY, secBoxX + secBoxW - titlesX, sbH);
             g.fill(secBoxX, cy, secBoxX + secBoxW, cy + secBoxW, hovS ? 0xFF3A3A42 : WELL);
             int cb2 = showSections ? ACCENT : SUBTLE;
             g.fill(secBoxX, cy, secBoxX + secBoxW, cy + 1, cb2);
@@ -1269,7 +1273,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
 
         // v1.2: section-titles checkbox + Pin drop box (handled BEFORE anything that could
         // treat the click as an item drop -- the cursor stack is never touched here)
-        if (ctrlVisible && inside(mx, my, secBoxX, sbY, secBoxW, sbH)) {
+        if (ctrlVisible && inside(mx, my, titlesX, ctrlY, secBoxX + secBoxW - titlesX, sbH)) {
             showSections = !showSections;
             ClientUiState.rememberSections(showSections);
             ClientPlayNetworking.send(new UiStatePayload(selectedKey == null ? "" : selectedKey, "", "",
@@ -1277,7 +1281,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             rebuild();
             return true;
         }
-        if (ctrlVisible && inside(mx, my, pinBoxX, sbY, pinBoxW, sbH)) {
+        if (ctrlVisible && inside(mx, my, pinBoxX, ctrlY, pinBoxW, sbH)) {
             ItemStack carried = this.menu.getCarried();
             if (!carried.isEmpty() && selectedKey != null) {
                 String id = BuiltInRegistries.ITEM.getKey(carried.getItem()).toString();
