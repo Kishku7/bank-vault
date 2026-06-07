@@ -273,7 +273,14 @@ public final class Catalog {
         return tabsWithItems.contains(tabId);
     }
 
-    public static List<String> tabsFor(String itemId) { ensureLoaded(); return itemTabs.getOrDefault(itemId, DEFAULT); }
+    /** Tabs an item belongs to; items unknown to the catalog OR mapped to an EMPTY list land
+     *  in "uncategorized" (beta.1 fix: config catalogs can carry "id": [] entries -- get(0) on
+     *  the raw list crashed every rebuild on categorical tabs, freezing the grid). */
+    public static List<String> tabsFor(String itemId) {
+        ensureLoaded();
+        List<String> l = itemTabs.getOrDefault(itemId, DEFAULT);
+        return l.isEmpty() ? DEFAULT : l;
+    }
 
     public static boolean inTab(String itemId, String tab) { return tabsFor(itemId).contains(tab); }
 

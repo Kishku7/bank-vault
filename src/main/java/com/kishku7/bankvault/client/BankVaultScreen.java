@@ -921,6 +921,10 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             g.fill(pinBoxX + pinBoxW - 1, ctrlY, pinBoxX + pinBoxW, ctrlY + sbH, pb);
             g.text(this.font, "Pin", pinBoxX + (pinBoxW - this.font.width("Pin")) / 2, ctrlY + 3,
                     carrying ? ACCENT : TEXT);
+            if (hovP && !carrying)
+                g.setTooltipForNextFrame(this.font,
+                        java.util.List.of(Component.literal("Drag a stack here to pin or unpin it for this tab")),
+                        java.util.Optional.empty(), mouseX, mouseY);
 
             g.text(this.font, "Titles", titlesX, ctrlY + 3, showSections ? ACCENT : TEXT);
             int cy = ctrlY + (sbH - secBoxW) / 2;
@@ -1283,12 +1287,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         }
         if (ctrlVisible && inside(mx, my, pinBoxX, ctrlY, pinBoxW, sbH)) {
             ItemStack carried = this.menu.getCarried();
-            if (!carried.isEmpty() && selectedKey != null) {
-                String id = BuiltInRegistries.ITEM.getKey(carried.getItem()).toString();
-                ClientUiState.togglePinLocal(selectedKey, id);
-                ClientPlayNetworking.send(new PinPayload(selectedKey, id));
-                rebuild();
-            }
+            if (!carried.isEmpty() && selectedKey != null) togglePin(carried);
             return true;   // swallow the click either way: items can never drop here
         }
 
@@ -1440,7 +1439,29 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     @Override
     public boolean mouseReleased(MouseButtonEvent event) {
         draggingThumb = false;
+        // v1.2 beta.1: TRUE drag-and-drop pinning. A hold-drag from a slot never produces a
+        // second click -- the gesture ends in mouseReleased, and vanilla's quick-craft release
+        // would scatter the carried stack into the dragged-over slots (this ate Dave's stack in
+        // alpha.16). Releasing over the Pin box toggles the pin, keeps the stack on the cursor,
+        // and disarms quick-craft (accesswidener: isQuickCrafting / quickCraftSlots).
+        if (ctrlVisible && inside((int) event.x(), (int) event.y(), pinBoxX, ctrlY, pinBoxW, sbH)) {
+            ItemStack carried = this.menu.getCarried();
+            if (!carried.isEmpty() && selectedKey != null) {
+                togglePin(carried);
+                this.isQuickCrafting = false;
+                this.quickCraftSlots.clear();
+            }
+            return true;
+        }
         return super.mouseReleased(event);
+    }
+
+    /** Toggle the carried stack's per-tab user pin (shared by click and drag-release). */
+    private void togglePin(ItemStack carried) {
+        String id = BuiltInRegistries.ITEM.getKey(carried.getItem()).toString();
+        ClientUiState.togglePinLocal(selectedKey, id);
+        ClientPlayNetworking.send(new PinPayload(selectedKey, id));
+        rebuild();
     }
 
     @Override
