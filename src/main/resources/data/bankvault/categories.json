@@ -4891,6 +4891,7 @@
    "propagule",
    "leaves",
    "azalea",
+   "wart_block",
    "mushroom",
    "fungus",
    "roots",
@@ -5308,6 +5309,18 @@
     "name"
    ]
   },
+  "kw:Dirt & Special": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
+   ]
+  },
   "kw:Wood": {
    "family": [
     "list",
@@ -5622,6 +5635,18 @@
    "alpha": [
     "lastword",
     "firstword"
+   ]
+  },
+  "kw:Sticks": {
+   "family": [
+    "list",
+    "enchant",
+    "name"
+   ],
+   "type": [
+    "list",
+    "enchant",
+    "name"
    ]
   },
   "kw:Beds": {

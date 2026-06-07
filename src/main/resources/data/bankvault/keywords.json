@@ -517,7 +517,8 @@
    "craftable",
    "renewable",
    "earlyGame",
-   "armor"
+   "armor",
+   "stickMade"
   ],
   "minecraft:arms_up_pottery_sherd": [
    "pottery",
@@ -816,7 +817,8 @@
    "renewable",
    "mineable",
    "farmable",
-   "odd"
+   "odd",
+   "dirtSpecial"
   ],
   "minecraft:bee_spawn_egg": [
    "egg",
@@ -841,7 +843,8 @@
    "renewable",
    "burnable",
    "farmable",
-   "odd"
+   "odd",
+   "dirtSpecial"
   ],
   "minecraft:beetroot": [
    "food",
@@ -2244,7 +2247,7 @@
    "decoration",
    "overworld",
    "earlyGame",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:chiseled_sandstone": [
    "stone",
@@ -2368,7 +2371,7 @@
    "overworld",
    "earlyGame",
    "farmable",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:coast_armor_trim_smithing_template": [
    "smithingTemplate",
@@ -2987,7 +2990,7 @@
    "nether",
    "mineable",
    "placeable",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:crimson_planks": [
    "wood",
@@ -3909,7 +3912,7 @@
    "overworld",
    "earlyGame",
    "farmable",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:dirt_path": [
    "soil",
@@ -3917,7 +3920,8 @@
    "decoration",
    "placeable",
    "village",
-   "technical"
+   "technical",
+   "dirtSpecial"
   ],
   "minecraft:disc_fragment_5": [
    "music",
@@ -4381,7 +4385,8 @@
    "block",
    "farmable",
    "placeable",
-   "technical"
+   "technical",
+   "dirtSpecial"
   ],
   "minecraft:feather": [
    "mobDrop",
@@ -4661,7 +4666,8 @@
    "placeable",
    "map",
    "cave",
-   "decorMisc"
+   "decorMisc",
+   "stickMade"
   ],
   "minecraft:glow_lichen": [
    "plant",
@@ -4903,7 +4909,7 @@
    "overworld",
    "earlyGame",
    "farmable",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:gravel": [
    "block",
@@ -4914,7 +4920,7 @@
    "renewable",
    "overworld",
    "earlyGame",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:gray_banner": [
    "banner",
@@ -5273,7 +5279,8 @@
    "bee",
    "renewable",
    "farmable",
-   "odd"
+   "odd",
+   "dirtSpecial"
   ],
   "minecraft:honey_bottle": [
    "honey",
@@ -5281,7 +5288,8 @@
    "edible",
    "bee",
    "renewable",
-   "stackable"
+   "stackable",
+   "dirtSpecial"
   ],
   "minecraft:honeycomb": [
    "honey",
@@ -5289,7 +5297,8 @@
    "farmable",
    "renewable",
    "stackable",
-   "odd"
+   "odd",
+   "dirtSpecial"
   ],
   "minecraft:honeycomb_block": [
    "honey",
@@ -5300,7 +5309,8 @@
    "decoration",
    "renewable",
    "farmable",
-   "decorMisc"
+   "decorMisc",
+   "dirtSpecial"
   ],
   "minecraft:hopper": [
    "redstoneComp",
@@ -5620,7 +5630,8 @@
    "decoration",
    "craftable",
    "placeable",
-   "decorMisc"
+   "decorMisc",
+   "stickMade"
   ],
   "minecraft:jack_o_lantern": [
    "block",
@@ -5825,7 +5836,8 @@
    "placeable",
    "waterloggable",
    "earlyGame",
-   "climbable"
+   "climbable",
+   "stickMade"
   ],
   "minecraft:lantern": [
    "lightSource",
@@ -7132,7 +7144,8 @@
    "mineable",
    "placeable",
    "overworld",
-   "rare"
+   "rare",
+   "dirtSpecial"
   ],
   "minecraft:name_tag": [
    "tool",
@@ -7250,7 +7263,7 @@
    "nether",
    "compostable",
    "lateGame",
-   "otherMaterial"
+   "plant"
   ],
   "minecraft:netherite_axe": [
    "tool",
@@ -7923,7 +7936,8 @@
    "placeable",
    "wool",
    "wood",
-   "earlyGame"
+   "earlyGame",
+   "stickMade"
   ],
   "minecraft:pale_hanging_moss": [
    "plant",
@@ -8409,7 +8423,7 @@
    "overworld",
    "renewable",
    "farmable",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:pointed_dripstone": [
    "stone",
@@ -9346,7 +9360,8 @@
    "placeable",
    "smeltable",
    "overworld",
-   "glass"
+   "glass",
+   "dirtSpecial"
   ],
   "minecraft:red_sandstone": [
    "stone",
@@ -9505,7 +9520,7 @@
    "decoration",
    "overworld",
    "renewable",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:resin_brick": [
    "resin",
@@ -9513,7 +9528,7 @@
    "stackable",
    "renewable",
    "overworld",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:resin_brick_slab": [
    "resin",
@@ -9521,7 +9536,8 @@
    "block",
    "craftable",
    "placeable",
-   "decoration"
+   "decoration",
+   "dirtSpecial"
   ],
   "minecraft:resin_brick_stairs": [
    "resin",
@@ -9529,7 +9545,8 @@
    "block",
    "craftable",
    "placeable",
-   "decoration"
+   "decoration",
+   "dirtSpecial"
   ],
   "minecraft:resin_brick_wall": [
    "resin",
@@ -9538,7 +9555,8 @@
    "craftable",
    "placeable",
    "decoration",
-   "waterloggable"
+   "waterloggable",
+   "dirtSpecial"
   ],
   "minecraft:resin_bricks": [
    "resin",
@@ -9546,7 +9564,7 @@
    "craftable",
    "placeable",
    "decoration",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:resin_clump": [
    "resin",
@@ -9554,7 +9572,7 @@
    "renewable",
    "overworld",
    "smeltable",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:respawn_anchor": [
    "obsidian",
@@ -9563,7 +9581,9 @@
    "craftable",
    "placeable",
    "explosive",
-   "lateGame"
+   "lateGame",
+   "workstation",
+   "teleport"
   ],
   "minecraft:rib_armor_trim_smithing_template": [
    "smithingTemplate",
@@ -9579,7 +9599,7 @@
    "overworld",
    "cave",
    "mineable",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:rose_bush": [
    "flower",
@@ -9633,7 +9653,8 @@
    "placeable",
    "desert",
    "overworld",
-   "glass"
+   "glass",
+   "dirtSpecial"
   ],
   "minecraft:sandstone": [
    "stone",
@@ -9675,7 +9696,8 @@
    "placeable",
    "renewable",
    "flammable",
-   "waterloggable"
+   "waterloggable",
+   "stickMade"
   ],
   "minecraft:scrape_pottery_sherd": [
    "pottery",
@@ -10136,7 +10158,7 @@
    "mineable",
    "placeable",
    "lateGame",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:soul_soil": [
    "block",
@@ -10144,7 +10166,7 @@
    "mineable",
    "placeable",
    "lateGame",
-   "otherMaterial"
+   "dirtSpecial"
   ],
   "minecraft:soul_torch": [
    "lightSource",
@@ -10392,7 +10414,7 @@
    "renewable",
    "stackable",
    "earlyGame",
-   "otherMaterial"
+   "stickMade"
   ],
   "minecraft:sticky_piston": [
    "redstoneComp",
@@ -11363,7 +11385,8 @@
    "mineable",
    "placeable",
    "growable",
-   "lateGame"
+   "lateGame",
+   "dirtSpecial"
   ],
   "minecraft:warped_planks": [
    "wood",
@@ -11462,7 +11485,7 @@
    "renewable",
    "compostable",
    "lateGame",
-   "otherMaterial"
+   "plant"
   ],
   "minecraft:water_bucket": [
    "bucket",

@@ -1,4 +1,58 @@
 {
+ "kw:Dirt & Special": {
+  "family": [
+   [
+    "Soils",
+    8
+   ],
+   [
+    "Sands & Gravel",
+    3
+   ],
+   [
+    "Soul",
+    2
+   ],
+   [
+    "Nylium",
+    2
+   ],
+   [
+    "Resin",
+    8
+   ],
+   [
+    "Honey",
+    6
+   ]
+  ],
+  "type": [
+   [
+    "Soils",
+    8
+   ],
+   [
+    "Sands & Gravel",
+    3
+   ],
+   [
+    "Soul",
+    2
+   ],
+   [
+    "Nylium",
+    2
+   ],
+   [
+    "Resin",
+    8
+   ],
+   [
+    "Honey",
+    6
+   ]
+  ]
+ },
  "kw:Wood": {
   "family": [
    [
@@ -771,6 +825,20 @@
    ]
   ]
  },
+ "kw:Sticks": {
+  "family": [
+   [
+    "Sticks",
+    7
+   ]
+  ],
+  "type": [
+   [
+    "Sticks",
+    7
+   ]
+  ]
+ },
  "kw:Beds": {
   "family": [
    [
@@ -1301,7 +1369,7 @@
    ],
    [
     "Leaves",
-    12
+    14
    ],
    [
     "Mushrooms",
@@ -1331,7 +1399,7 @@
    ],
    [
     "Leaves",
-    12
+    14
    ],
    [
     "Mushrooms",
@@ -1527,7 +1595,7 @@
    ],
    [
     "Other",
-    6
+    12
    ]
   ],
   "type": [
@@ -1553,7 +1621,7 @@
    ],
    [
     "Other",
-    6
+    12
    ]
   ]
  },

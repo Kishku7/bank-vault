@@ -6,6 +6,13 @@
   },
   [
    {
+    "label": "Dirt & Special",
+    "icon": "minecraft:grass_block",
+    "words": [
+     "dirtSpecial"
+    ]
+   },
+   {
     "label": "Wood",
     "icon": "minecraft:oak_log",
     "words": [
@@ -55,16 +62,16 @@
     "words": [
      "glass"
     ]
-   },
+   }
+  ],
+  [
    {
     "label": "Wool",
     "icon": "minecraft:white_wool",
     "words": [
      "wool"
     ]
-   }
-  ],
-  [
+   },
    {
     "label": "Amethyst",
     "icon": "minecraft:amethyst_block",
@@ -173,14 +180,21 @@
     ]
    },
    {
+    "label": "Sticks",
+    "icon": "minecraft:stick",
+    "words": [
+     "stickMade"
+    ]
+   }
+  ],
+  [
+   {
     "label": "Beds",
     "icon": "minecraft:red_bed",
     "words": [
      "bed"
     ]
-   }
-  ],
-  [
+   },
    {
     "label": "Pottery",
     "icon": "minecraft:decorated_pot",
@@ -417,7 +431,8 @@
      "boat",
      "rideable",
      "glider",
-     "climbable"
+     "climbable",
+     "teleport"
     ]
    },
    {
