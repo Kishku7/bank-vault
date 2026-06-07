@@ -2239,12 +2239,12 @@
   ],
   "minecraft:chiseled_resin_bricks": [
    "resin",
-   "brick",
    "block",
    "craftable",
    "decoration",
    "overworld",
-   "earlyGame"
+   "earlyGame",
+   "otherMaterial"
   ],
   "minecraft:chiseled_sandstone": [
    "stone",
@@ -4407,7 +4407,6 @@
   "minecraft:field_masoned_banner_pattern": [
    "paper",
    "bannerPattern",
-   "brick",
    "craftable"
   ],
   "minecraft:filled_map": [
@@ -4525,7 +4524,6 @@
   "minecraft:flower_pot": [
    "decoration",
    "block",
-   "brick",
    "craftable",
    "placeable",
    "pottery"
@@ -4916,7 +4914,7 @@
    "renewable",
    "overworld",
    "earlyGame",
-   "stone"
+   "otherMaterial"
   ],
   "minecraft:gray_banner": [
    "banner",
@@ -6387,11 +6385,11 @@
    "creativeOnly"
   ],
   "minecraft:lodestone": [
-   "stone",
    "block",
    "craftable",
    "placeable",
-   "midGame"
+   "midGame",
+   "otherMaterial"
   ],
   "minecraft:loom": [
    "wood",
@@ -6880,7 +6878,8 @@
    "block",
    "swamp",
    "mineable",
-   "renewable"
+   "renewable",
+   "mud"
   ],
   "minecraft:mud_brick_slab": [
    "block",
@@ -6907,12 +6906,12 @@
    "wall"
   ],
   "minecraft:mud_bricks": [
-   "brick",
    "block",
    "craftable",
    "decoration",
    "swamp",
-   "renewable"
+   "renewable",
+   "mud"
   ],
   "minecraft:muddy_mangrove_roots": [
    "block",
@@ -7915,7 +7914,8 @@
    "placeable",
    "swamp",
    "renewable",
-   "earlyGame"
+   "earlyGame",
+   "mud"
   ],
   "minecraft:painting": [
    "decoration",
@@ -8768,7 +8768,6 @@
   ],
   "minecraft:prismarine_bricks": [
    "prismarine",
-   "brick",
    "block",
    "ocean",
    "craftable",
@@ -9062,7 +9061,6 @@
   ],
   "minecraft:quartz_bricks": [
    "quartz",
-   "brick",
    "block",
    "craftable",
    "placeable",
@@ -9511,11 +9509,11 @@
   ],
   "minecraft:resin_brick": [
    "resin",
-   "brick",
    "smeltable",
    "stackable",
    "renewable",
-   "overworld"
+   "overworld",
+   "otherMaterial"
   ],
   "minecraft:resin_brick_slab": [
    "resin",
@@ -9544,11 +9542,11 @@
   ],
   "minecraft:resin_bricks": [
    "resin",
-   "brick",
    "block",
    "craftable",
    "placeable",
-   "decoration"
+   "decoration",
+   "otherMaterial"
   ],
   "minecraft:resin_clump": [
    "resin",
@@ -13144,7 +13142,6 @@
    "odd"
   ],
   "travelersbackpack:sandstone": [
-   "stone",
    "container",
    "backpack",
    "wearable",

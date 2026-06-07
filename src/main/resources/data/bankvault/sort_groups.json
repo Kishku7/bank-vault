@@ -76,16 +76,12 @@
  "kw:Stone & Brick": {
   "family": [
    [
-    "Cobbled Deepslate",
-    1
-   ],
-   [
     "Deepslate",
-    9
+    10
    ],
    [
-    "Cobblestone",
-    3
+    "Stone",
+    14
    ],
    [
     "Blackstone",
@@ -97,35 +93,19 @@
    ],
    [
     "Sandstone",
-    5
+    4
    ],
    [
     "End Stone",
     2
    ],
    [
-    "Smooth Stone",
-    1
-   ],
-   [
     "Dripstone",
     2
    ],
    [
-    "Stone",
-    10
-   ],
-   [
-    "Granite",
-    2
-   ],
-   [
-    "Diorite",
-    2
-   ],
-   [
-    "Andesite",
-    2
+    "Granite, Diorite & Andesite",
+    6
    ],
    [
     "Tuff",
@@ -136,38 +116,30 @@
     1
    ],
    [
-    "Brick",
-    3
+    "Bricks",
+    2
    ],
    [
-    "Prismarine",
-    1
-   ],
-   [
-    "Quartz",
-    1
+    "Nether Bricks",
+    6
    ],
    [
     "Basalt",
     3
    ],
    [
-    "Resin",
-    2
-   ],
-   [
     "Other",
-    12
+    1
    ]
   ],
   "type": [
    [
     "Plain",
-    40
+    30
    ],
    [
     "Chiseled",
-    10
+    9
    ],
    [
     "Cracked",
@@ -449,7 +421,7 @@
    ]
   ]
  },
- "kw:Terracotta": {
+ "kw:Terracotta, Clay & Mud": {
   "family": [
    [
     "Plain",
@@ -518,6 +490,14 @@
    [
     "Pink",
     2
+   ],
+   [
+    "Clay",
+    2
+   ],
+   [
+    "Mud",
+    3
    ]
   ],
   "type": [
@@ -528,6 +508,14 @@
    [
     "Glazed",
     16
+   ],
+   [
+    "Clay",
+    2
+   ],
+   [
+    "Mud",
+    3
    ]
   ]
  },

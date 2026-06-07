@@ -94,10 +94,12 @@
     ]
    },
    {
-    "label": "Terracotta",
+    "label": "Terracotta, Clay & Mud",
     "icon": "minecraft:terracotta",
     "words": [
-     "terracotta"
+     "terracotta",
+     "clay",
+     "mud"
     ]
    },
    {
@@ -112,7 +114,6 @@
     "icon": "minecraft:obsidian",
     "words": [
      "obsidian",
-     "clay",
      "otherMaterial"
     ]
    }
