@@ -1,6 +1,8 @@
 package com.kishku7.bankvault.vault;
 
 import com.google.gson.Gson;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.kishku7.bankvault.BankVault;
@@ -44,6 +46,7 @@ public final class Keywords {
         mtime = m;
         itemWords = new HashMap<>();
         wordCounts = new HashMap<>();
+        loadedWordCounts = null;   // rc.6: recompute registry-filtered counts after reload
         if (m >= 0) {
             try (Reader r = Files.newBufferedReader(cfg, StandardCharsets.UTF_8)) {
                 parse(GSON.fromJson(r, JsonObject.class));
@@ -94,21 +97,47 @@ public final class Keywords {
         return false;
     }
 
-    /** True when at least one item in the table carries one of the given words
-     *  (hide-empty rule for keyword buttons). */
+    /** Word counts restricted to items whose mod is actually LOADED (registry-present).
+     *  Computed lazily on first use -- registries are final by screen time, NOT at parse
+     *  time (mod init order is arbitrary) -- and cached until the next config (re)load.
+     *  rc.6 (Dave): the Aether button must not appear on installs without an Aether mod;
+     *  generic for any modded keyword button, known or future. */
+    private static Map<String, Integer> loadedWordCounts;
+
+    private static Map<String, Integer> loadedCounts() {
+        if (loadedWordCounts == null) {
+            Map<String, Integer> m = new HashMap<>();
+            for (Map.Entry<String, List<String>> e : itemWords.entrySet()) {
+                Identifier id = Identifier.tryParse(e.getKey());
+                if (id == null || !BuiltInRegistries.ITEM.containsKey(id)) continue;
+                for (String w : e.getValue()) m.merge(w, 1, Integer::sum);
+            }
+            loadedWordCounts = m;
+        }
+        return loadedWordCounts;
+    }
+
+    /** True when at least one REGISTERED item carries one of the given words
+     *  (hide-empty rule for keyword buttons -- absent mods leave their buttons hidden). */
     public static synchronized boolean anyItemHas(List<String> words) {
         ensureLoaded();
-        for (String w : words) if (wordCounts.getOrDefault(w, 0) > 0) return true;
+        Map<String, Integer> counts = loadedCounts();
+        for (String w : words) if (counts.getOrDefault(w, 0) > 0) return true;
         return false;
     }
 
-    /** Total catalogued items carrying any of the words (tooltip support). */
+    /** Total catalogued items carrying any of the words (tooltip support). rc.6 (Dave):
+     *  UNIVERSAL registry filter -- vanilla or modded, an item only counts when the running
+     *  game actually registers it. */
     public static synchronized Set<String> itemsWithAny(List<String> words) {
         ensureLoaded();
         Set<String> out = new HashSet<>();
-        for (Map.Entry<String, List<String>> e : itemWords.entrySet())
+        for (Map.Entry<String, List<String>> e : itemWords.entrySet()) {
+            Identifier id = Identifier.tryParse(e.getKey());
+            if (id == null || !BuiltInRegistries.ITEM.containsKey(id)) continue;
             for (String w : words)
                 if (e.getValue().contains(w)) { out.add(e.getKey()); break; }
+        }
         return out;
     }
 }
