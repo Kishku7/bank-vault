@@ -47,10 +47,85 @@ public final class Catalog {
 
     /** Write any MISSING config file from the bundled defaults (per-file: delete one and only
      *  that one is restored on next init). Existing files are never touched. */
+
+    /** Config data version (Dave, 1.2.1 spec). Bump whenever the bundled data files change in
+     *  a way upgrades must pick up, and record the delta in MIGRATION_LOG. Rule 1: a config
+     *  file with no "version" field is pre-1.2.1 and needs an upgrade. */
+    public static final String DATA_VERSION = "1.2.1";
+
+    /** Rule 3: the tracked deltas between data versions, newest last. */
+    private static final List<String> MIGRATION_LOG = List.of(
+            "1.2.1: first versioned data. Pre-1.2.1 configs lack the 1.2 line's kw:/dyn: ranked"
+                    + " lists, section-group labels, buttons.json and keywords.json; generated"
+                    + " files are replaced with the bundled spec, user-editable files gain"
+                    + " missing entries (user edits kept).");
+
+    /** Generated, spec-owned files: on upgrade these are REPLACED with the bundled spec. */
+    private static final List<String> GENERATED_FILES = List.of(
+            "categories.json", "sort_family.json", "sort_type.json", "sort_groups.json");
+    /** User-editable files: on upgrade, missing elements are ADDED; user edits always win. */
+    private static final List<String> USER_FILES = List.of("buttons.json", "keywords.json");
+
+    /** Rules 2/4/5 (Dave, 1.2.1): bring an older config up to spec, then stamp it with the
+     *  new version. Generated files are replaced wholesale; user-editable files deep-gain
+     *  missing elements from the bundled spec. Runs before missing-file restore. */
+    private static void migrateConfig(Path dir) {
+        for (String f : GENERATED_FILES) {
+            Path dst = dir.resolve(f);
+            if (!Files.exists(dst) || DATA_VERSION.equals(readDataVersion(dst))) continue;
+            try (InputStream in = Catalog.class.getResourceAsStream("/data/bankvault/" + f)) {
+                if (in == null) continue;
+                Files.copy(in, dst, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+                BankVault.LOGGER.info("[Bank Vault] config upgraded (replaced): {} -> {}", f, DATA_VERSION);
+            } catch (Exception e) {
+                BankVault.LOGGER.error("[Bank Vault] config upgrade failed: {}", f, e);
+            }
+        }
+        for (String f : USER_FILES) {
+            Path dst = dir.resolve(f);
+            if (!Files.exists(dst) || DATA_VERSION.equals(readDataVersion(dst))) continue;
+            try (InputStream in = Catalog.class.getResourceAsStream("/data/bankvault/" + f)) {
+                if (in == null) continue;
+                JsonObject bundled = GSON.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), JsonObject.class);
+                JsonObject cfg = null;
+                try (Reader r = Files.newBufferedReader(dst, StandardCharsets.UTF_8)) {
+                    cfg = GSON.fromJson(r, JsonObject.class);
+                } catch (Exception ignored) {}
+                if (cfg == null) cfg = new JsonObject();
+                mergeMissing(bundled, cfg);
+                cfg.addProperty("version", DATA_VERSION);
+                Files.writeString(dst, GSON.toJson(cfg), StandardCharsets.UTF_8);
+                BankVault.LOGGER.info("[Bank Vault] config upgraded (merged, user edits kept): {} -> {}", f, DATA_VERSION);
+            } catch (Exception e) {
+                BankVault.LOGGER.error("[Bank Vault] config upgrade failed: {}", f, e);
+            }
+        }
+    }
+
+    /** Rule 1: missing "version" = pre-1.2.1. */
+    private static String readDataVersion(Path f) {
+        try (Reader r = Files.newBufferedReader(f, StandardCharsets.UTF_8)) {
+            JsonObject o = GSON.fromJson(r, JsonObject.class);
+            if (o != null && o.has("version")) return o.get("version").getAsString();
+        } catch (Exception ignored) {}
+        return "pre-1.2.1";
+    }
+
+    /** Recursive: keys the config lacks are added from the bundled spec; existing keys (user
+     *  edits) always win. Objects recurse; arrays and scalars are atomic. */
+    private static void mergeMissing(JsonObject bundled, JsonObject cfg) {
+        for (Map.Entry<String, JsonElement> e : bundled.entrySet()) {
+            if (!cfg.has(e.getKey())) cfg.add(e.getKey(), e.getValue());
+            else if (e.getValue().isJsonObject() && cfg.get(e.getKey()).isJsonObject())
+                mergeMissing(e.getValue().getAsJsonObject(), cfg.get(e.getKey()).getAsJsonObject());
+        }
+    }
+
     public static synchronized void restoreMissingDefaults() {
         Path dir = FabricLoader.getInstance().getConfigDir().resolve("bankvault");
         try { Files.createDirectories(dir); }
         catch (Exception e) { BankVault.LOGGER.error("[Bank Vault] config dir create failed", e); return; }
+        migrateConfig(dir);   // 1.2.1: version-stamped configs upgrade in place (Dave)
         for (String f : List.of("categories.json", "sort_family.json", "sort_type.json", "sort_groups.json", "buttons.json", "keywords.json")) {
             Path dst = dir.resolve(f);
             if (Files.exists(dst)) continue;
@@ -121,6 +196,7 @@ public final class Catalog {
         if (root == null) return;
         int n = 0;
         for (String tab : root.keySet()) {
+            if ("version".equals(tab)) continue;   // 1.2.1 data-version stamp
             Map<String, Integer> rank = new HashMap<>();
             List<String> ordered = new ArrayList<>();
             int[] i = {0};
@@ -129,7 +205,7 @@ public final class Catalog {
             tabOrderList.computeIfAbsent(tab, k -> new HashMap<>()).put(mode, ordered);
             n += rank.size();
         }
-        BankVault.LOGGER.info("[Bank Vault] sort_{}: {} tabs, {} ranked ids", mode, root.keySet().size(), n);
+        BankVault.LOGGER.info("[Bank Vault] sort_{}: {} tabs, {} ranked ids", mode, tabOrder.size(), n);
     }
 
     /** sort_groups.json (v1.2 sections): {"<tab>": {"family": [["Label", count], ...], "type":
@@ -150,6 +226,7 @@ public final class Catalog {
         if (root == null) return;
         int tabsN = 0;
         for (String tab : root.keySet()) {
+            if ("version".equals(tab)) continue;   // 1.2.1 data-version stamp
             Map<String, List<String>> modes = tabOrderList.get(tab);
             if (modes == null) continue;
             JsonObject o = root.getAsJsonObject(tab);
