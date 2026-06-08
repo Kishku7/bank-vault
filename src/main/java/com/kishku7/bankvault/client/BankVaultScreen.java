@@ -138,6 +138,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         this.capacity = data.capacity();
         this.permLevel = data.permLevel();
         if (railW > 0) recomputeButtons();
+        resolveSelection();
         rebuild();
     }
 
@@ -302,14 +303,26 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
 
         positionRealSlots();
         recomputeButtons();
+        resolveSelection();
+        rebuild();
+    }
+
+    /**
+     * Resolve the selected category once buttons exist. Buttons are built from the vault contents,
+     * which arrive in VaultSyncPayload AFTER the menu opens -- so at init() btnCells is usually
+     * empty and the remembered tab can't be matched yet. This runs again from updateData() when the
+     * contents land, so the last-tab restore (and the first-button fallback) actually take effect.
+     * No-op while buttons are empty; never overrides a still-valid current selection.
+     */
+    private void resolveSelection() {
+        if (btnCells.isEmpty()) return;
         if (selectedKey == null && !ClientUiState.lastTab().isEmpty()
                 && btnCells.stream().anyMatch(b -> b.def().key().equals(ClientUiState.lastTab()))) {
             selectedKey = ClientUiState.lastTab();             // v1.2: restore last tab examined
             applySortString(ClientUiState.sortFor(selectedKey));
         }
-        if (!btnCells.isEmpty() && btnCells.stream().noneMatch(b -> b.def().key().equals(selectedKey)))
+        if (btnCells.stream().noneMatch(b -> b.def().key().equals(selectedKey)))
             selectedKey = btnCells.get(0).def().key();
-        rebuild();
     }
 
     /** Position every real slot (panel-relative coordinates; Slot.x/y are mutable via accesswidener). */
