@@ -1,5 +1,7 @@
 # Bank Vault
 
+[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white)](https://discord.gg/NVcgJJRsx)
+
 Retire the chest room. Build one vault instead.
 
 Bank Vault is a multiblock storage mod: a 3x3 iron "vault door" that opens into a
