@@ -1,5 +1,16 @@
 # Bank Vault
 
+## Branches
+
+- [26.2](https://github.com/Kishku7/bank-vault/tree/26.2)
+- [26.1.2](https://github.com/Kishku7/bank-vault/tree/26.1.2)
+- [1.21.11](https://github.com/Kishku7/bank-vault/tree/1.21.11)
+- [1.21.8](https://github.com/Kishku7/bank-vault/tree/1.21.8)
+- [1.21.5](https://github.com/Kishku7/bank-vault/tree/1.21.5)
+- [1.21.1](https://github.com/Kishku7/bank-vault/tree/1.21.1)
+- [1.20.6](https://github.com/Kishku7/bank-vault/tree/1.20.6)
+- [1.20.4](https://github.com/Kishku7/bank-vault/tree/1.20.4)
+
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white)](https://discord.gg/NVcgJJRsx)
 
 Retire the chest room. Build one vault instead.
