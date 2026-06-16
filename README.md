@@ -1,51 +1,50 @@
 # Bank Vault
 
-## Branches
-
-- [26.2](https://github.com/Kishku7/bank-vault/tree/26.2)
-- [26.1.2](https://github.com/Kishku7/bank-vault/tree/26.1.2)
-- [1.21.11](https://github.com/Kishku7/bank-vault/tree/1.21.11)
-- [1.21.8](https://github.com/Kishku7/bank-vault/tree/1.21.8)
-- [1.21.5](https://github.com/Kishku7/bank-vault/tree/1.21.5)
-- [1.21.1](https://github.com/Kishku7/bank-vault/tree/1.21.1)
-- [1.20.6](https://github.com/Kishku7/bank-vault/tree/1.20.6)
-- [1.20.4](https://github.com/Kishku7/bank-vault/tree/1.20.4)
-
-[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white)](https://discord.gg/NVcgJJRsx)
-
 Retire the chest room. Build one vault instead.
 
 Bank Vault is a multiblock storage mod: a 3x3 iron "vault door" that opens into a
 full-screen, creative-style browser of everything you own - category tabs, smart
 sorting, search, recursive container unloading, shared/guild vaults, and capacity you
 upgrade by feeding it chests. Per-player data is plain JSON under config/bankvault/.
+Client + server mod.
+
+[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white)](https://discord.gg/2ZxzbCzAHe)
+
+## Branches
+
+Source is organized by Minecraft line. Inside each branch the code is grouped
+**loader-on-top**: `Common/` (shared Architectury code, one folder per MC version),
+then `Fabric/`, `Forge/`, `NeoForge/`, each with a subfolder per Minecraft version.
+`main` (this branch) is the overview.
+
+- [1.20.x](https://github.com/Kishku7/bank-vault/tree/1.20.x) — Minecraft 1.20 – 1.20.6
+- [1.21.x](https://github.com/Kishku7/bank-vault/tree/1.21.x) — Minecraft 1.21 – 1.21.11
+- [26.1](https://github.com/Kishku7/bank-vault/tree/26.1) — Minecraft 26.1 – 26.1.2
+- [26.2](https://github.com/Kishku7/bank-vault/tree/26.2) — Minecraft 26.2 (pre-release)
 
 ## Supported platforms
 
-Source for each Minecraft version lives on its own branch, named for the version.
-`main` (this branch) is just the overview.
+| MC line | Fabric / Quilt | Forge | NeoForge |
+| --- | --- | --- | --- |
+| `1.20.x` (1.20 – 1.20.6)  | 1.20 – 1.20.6  | 1.20.1 | 1.20.1 (via the Forge jar), 1.20.2 – 1.20.4, 1.20.5 – 1.20.6 |
+| `1.21.x` (1.21 – 1.21.11) | 1.21 – 1.21.11 | —      | 1.21 – 1.21.11 |
+| `26.1` (26.1 – 26.1.2)    | 26.1 – 26.1.2  | —      | 26.1 – 26.1.2 |
+| `26.2` (pre-release)      | 26.2           | —      | 26.2 |
 
-| Branch    | Minecraft        | Fabric | Quilt | Forge | NeoForge |
-| ---       | ---              | :---:  | :---: | :---: | :---:    |
-| `1.20.4`  | 1.20 - 1.20.4    | Yes    | Yes   | Yes   | Yes      |
-| `1.20.6`  | 1.20.5 - 1.20.6  | Yes    | Yes   | -     | Yes      |
-| `1.21.1`  | 1.21 - 1.21.1    | Yes    | Yes   | -     | Yes      |
-| `1.21.5`  | 1.21.2 - 1.21.5  | Yes    | Yes   | -     | Yes      |
-| `1.21.8`  | 1.21.6 - 1.21.8  | Yes    | Yes   | -     | Yes      |
-| `1.21.11` | 1.21.9 - 1.21.11 | Yes    | Yes   | -     | Yes      |
-| `26.1.2`  | 26.1.2           | Yes    | Yes   | -     | Yes      |
-
-Quilt runs the Fabric build. Classic Forge ends at the 1.20.x family; newer families
-are Fabric + NeoForge (plus Quilt). Requires Fabric API on Fabric/Quilt.
+Quilt runs the Fabric build. Classic Forge ends with the 1.20.x line; newer lines are
+Fabric + NeoForge (plus Quilt). 26.x is standalone (no Architectury). Requires Fabric API
+on Fabric / Quilt.
 
 ## Building from source
 
-Check out the branch for your Minecraft version, then:
+Each loader+version folder is its own build root. Check out a branch and build the one you want:
 
-    ./gradlew :fabric:build        # or :neoforge:build / :forge:build
-    # 26.1.2 branch: cd fabric && ./gradlew build   (and cd neoforge && ./gradlew build)
+    # e.g. on the 1.20.x branch:
+    cd Fabric/1.20.6   && ./gradlew build
+    cd NeoForge/1.20.4-gap && ./gradlew build
 
-Each branch carries a BUILD.md with the exact loader tasks and universal-jar merge info.
+Architectury families pull their shared `common` from `../../Common/<version>` automatically.
+Each folder has a README describing what it builds.
 
 ## Downloads
 
