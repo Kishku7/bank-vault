@@ -1,0 +1,20 @@
+license = "All Rights Reserved"
+
+[[mods]]
+    modId = "bankvault"
+    version = "${mod_version}"
+    displayName = "Bank Vault"
+    description = '''A single multiblock vault with a creative-style categorized GUI. Form a 3x3 of Bank Vault blocks and store everything.'''
+
+[[dependencies.bankvault]]
+    modId = "neoforge"
+    type = "required"
+    versionRange = "[26.1.2.30-beta,)"
+    ordering = "NONE"
+    side = "BOTH"
+[[dependencies.bankvault]]
+    modId = "minecraft"
+    type = "required"
+    versionRange = "[26.1,)"
+    ordering = "NONE"
+    side = "BOTH"
