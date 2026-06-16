@@ -1,0 +1,61 @@
+# Gradle
+.gradle/
+build/
+out/
+
+# Fabric Loom run directory
+run/
+runs/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+*.launch
+
+# VS Code
+.vscode/
+
+# Build / run logs (backgrounded gradle output)
+build-out.txt
+run-out.txt
+run-pid.txt
+*.log
+
+# Temp / OS / editor cruft
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Planning / design docs — kept local, not shipped
+plan/
+docs/
+
+experiments/
+build-*.log
+build-*.err
+runserver.log
+runserver.err
+b2.log
+b2.err
+b3.log
+b3.err
+b4.log
+b4.err
+rs4.log
+rs4.err
+rel.log
+rel.err
+
+release/
+
+*.log
+*.err
