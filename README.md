@@ -26,15 +26,12 @@ then `Fabric/`, `Forge/`, `NeoForge/`, each with a subfolder per Minecraft versi
 
 | MC line | Fabric / Quilt | Forge | NeoForge |
 | --- | --- | --- | --- |
-| `1.20.x` (1.20 – 1.20.6)  | 1.20 – 1.20.6  | 1.20.1 | 1.20.1 (via the Forge jar), 1.20.2 – 1.20.4, 1.20.5 – 1.20.6 |
-| `1.21.x` (1.21 – 1.21.11) | 1.21 – 1.21.11 | —      | 1.21 – 1.21.11 |
-| `26.1` (26.1 – 26.1.2)    | 26.1 – 26.1.2  | —      | 26.1 – 26.1.2 |
-| `26.2` (pre-release)      | 26.2           | —      | 26.2 |
+| `1.20.x` (1.20-1.20.6)  | 1.20-1.20.6  | 1.20.1, 1.20.5-1.20.6 | 1.20.1 (via the Forge jar), 1.20.2-1.20.4, 1.20.5-1.20.6 |
+| `1.21.x` (1.21-1.21.11) | 1.21-1.21.11 | 1.21-1.21.8 | 1.21-1.21.11 |
+| `26.1` (26.1-26.1.2)    | 26.1-26.1.2  | -      | 26.1-26.1.2 |
+| `26.2` (pre-release)    | 26.2         | -      | 26.2 |
 
-Quilt runs the Fabric build. Classic Forge ends with the 1.20.x line; newer lines are
-Fabric + NeoForge (plus Quilt). 26.x is standalone (no Architectury). Requires Fabric API
-on Fabric / Quilt.
-
+Quilt runs the Fabric build. Forge is supported through 1.21.8 (the FG6 ceiling); 1.21.9+ and 26.x are Fabric + NeoForge (plus Quilt). 26.x is standalone (no Architectury). Requires Fabric API on Fabric / Quilt.
 ## Building from source
 
 Each loader+version folder is its own build root. Check out a branch and build the one you want:
