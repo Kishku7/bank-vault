@@ -22,4 +22,4 @@ Standalone. Built against 26.2-rc-2.
 
 - **Fabric API** - required.
 
-Part of the [`26.2` branch](../../README.md). [Modrinth](https://modrinth.com/mod/bank-vault) - [Releases](https://github.com/Kishku7/bank-vault/releases).
+Part of the [`26.2` branch](https://github.com/Kishku7/bank-vault/tree/26.2). [Modrinth](https://modrinth.com/mod/bank-vault) - [Releases](https://github.com/Kishku7/bank-vault/releases).

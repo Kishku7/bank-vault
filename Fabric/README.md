@@ -19,4 +19,4 @@ cd <version>
 ./gradlew build      # Windows: .\gradlew.bat build
 ```
 
-Output: `build/libs/bank-vault-*.jar`. Part of the [`26.2` branch](../README.md).
+Output: `build/libs/bank-vault-*.jar`. Part of the [`26.2` branch](https://github.com/Kishku7/bank-vault/tree/26.2).
