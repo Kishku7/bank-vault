@@ -1,20 +1,25 @@
-# Bank Vault - Fabric 26.2 (pre-release)
+# Bank Vault - Fabric 26.2 (Minecraft 26.2 (pre-release))
 
-Builds the **Fabric** jar for **Minecraft 26.2 (pre-release)**.
+Builds the **Fabric** jar for **Minecraft 26.2 (pre-release)**. Client + server mod.
 
 - Loader: Fabric
 - Minecraft: 26.2 (pre-release)
 - Java: 25
 - Mod version: 1.2.4
+- Standalone (self-contained; no shared Common).
 
-Build from this folder:
+## Build
 
 ```
-./gradlew build
+./gradlew build      # Windows: .\gradlew.bat build
 ```
 
-Output: `build/libs/bank-vault-1.2.4+26.2.jar`
+Output: `build/libs/bank-vault-*.jar`
 
-Standalone. Quilt runs this jar too.
+Standalone. Built against 26.2-rc-2.
 
-Client + server mod. Part of the [`26.2` branch](../../README.md). [Modrinth](https://modrinth.com/mod/bank-vault) - [Releases](https://github.com/Kishku7/bank-vault/releases).
+## Dependencies
+
+- **Fabric API** - required.
+
+Part of the [`26.2` branch](../../README.md). [Modrinth](https://modrinth.com/mod/bank-vault) - [Releases](https://github.com/Kishku7/bank-vault/releases).

@@ -1,15 +1,37 @@
-# Bank Vault - 26.2
+# Bank Vault - branch `26.2`
 
-Source for the Minecraft 26.2 pre-release line, organized loader-on-top: `Common/` (shared code), `Fabric/`, `Forge/`, `NeoForge/`, each with a subfolder per Minecraft version.
+Source for the Minecraft **26.2 (pre-release)** line of Bank Vault, organized **loader-on-top**. Client + server mod.
+These are standalone builds - no Architectury, no `Common/`.
 
-These are standalone builds (no Architectury on 26.x).
+> **Pre-release line.** Published to Modrinth as **beta** only; no GitHub release is cut until 26.2 is stable. The NeoForge build targets a local NeoForge 26.2 alpha (no public NeoForge 26.2 yet).
 
-### `Fabric/`
+## Platforms
 
-- [`26.2`](Fabric/26.2/) - Minecraft 26.2 (pre-release)
+- [`Fabric/`](Fabric) - 1 build(s); see its README for versions and exclusions.
+- [`NeoForge/`](NeoForge) - 1 build(s); see its README for versions and exclusions.
 
-### `NeoForge/`
+## Not supported on this line
 
-- [`26.2`](NeoForge/26.2/) - Minecraft 26.2 (pre-release)
+- **Forge** is not built for the 26.x line - ForgeGradle 6 cannot build unobfuscated Minecraft 26.x and there is no FG7.
+- **Quilt** is not supported on the 26.x line - Quilt retired Quilted Fabric API at 26.1, so the Fabric API path Bank Vault uses on Fabric is no longer provided on Quilt for 26.x. (Quilt remains supported on the 1.20.x and 1.21.x branches.)
 
-Client + server mod (Java 25). [Modrinth](https://modrinth.com/mod/bank-vault) - [Releases](https://github.com/Kishku7/bank-vault/releases) - overview: [`main`](https://github.com/Kishku7/bank-vault).
+## Build
+
+Each loader+version folder is its own standalone Gradle build root:
+
+```
+cd <Loader>/<version>
+./gradlew build      # Windows: .\gradlew.bat build
+```
+
+Output: `build/libs/bank-vault-*.jar`. Requires Java 25.
+
+## Links
+
+- Other branches: [`1.20.x`](https://github.com/Kishku7/bank-vault/tree/1.20.x), [`1.21.x`](https://github.com/Kishku7/bank-vault/tree/1.21.x), [`26.1`](https://github.com/Kishku7/bank-vault/tree/26.1)
+- Overview: [`main`](https://github.com/Kishku7/bank-vault/tree/main)
+- Modrinth: https://modrinth.com/mod/bank-vault
+- Releases: https://github.com/Kishku7/bank-vault/releases
+- Discord: https://discord.gg/2ZxzbCzAHe
+
+By Kishku7. All Rights Reserved.
