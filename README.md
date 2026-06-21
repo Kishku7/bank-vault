@@ -32,6 +32,5 @@ Output: `build/libs/bank-vault-*.jar`. Requires Java 25.
 - Overview: [`main`](https://github.com/Kishku7/bank-vault/tree/main)
 - Modrinth: https://modrinth.com/mod/bank-vault
 - Releases: https://github.com/Kishku7/bank-vault/releases
-- Discord: https://discord.gg/2ZxzbCzAHe
 
 By Kishku7. All Rights Reserved.
