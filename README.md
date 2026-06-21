@@ -7,7 +7,6 @@ creative-style browser of everything you own - category tabs, smart sorting, sea
 container unloading, shared / guild vaults, and capacity you upgrade by feeding it chests. Per-player
 data is plain JSON under `config/bankvault/`. Client + server mod.
 
-[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white)](https://discord.gg/2ZxzbCzAHe)
 
 ## Branches
 
@@ -74,6 +73,5 @@ automatically. Each folder has a README describing exactly what it builds.
 
 - Releases: https://github.com/Kishku7/bank-vault/releases
 - Modrinth: https://modrinth.com/mod/bank-vault
-- Discord: https://discord.gg/2ZxzbCzAHe
 
 By Kishku7. All Rights Reserved.
