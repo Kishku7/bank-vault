@@ -73,7 +73,7 @@ public final class ContainerExtractor {
             stack.get(DataComponents.CONTAINER).nonEmptyItemCopyStream().forEach(out::add);
         if (stack.has(DataComponents.BUNDLE_CONTENTS)) {
             BundleContents bc = stack.get(DataComponents.BUNDLE_CONTENTS);
-            if (bc != null && !bc.isEmpty()) bc.itemCopyStream().forEach(out::add);
+            if (bc != null && !bc.isEmpty()) bc.itemCopies().forEach(out::add);
         }
         for (DataComponentType<?> type : SOFT_CONTAINERS) {
             if (stack.has(type) && stack.get(type) instanceof ItemContainerContents icc)
