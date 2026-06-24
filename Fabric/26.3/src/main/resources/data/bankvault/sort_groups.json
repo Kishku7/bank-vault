@@ -109,6 +109,10 @@
     5
    ],
    [
+    "Poplar",
+    5
+   ],
+   [
     "Bamboo",
     4
    ],
@@ -128,23 +132,23 @@
   "type": [
    [
     "Logs",
-    13
+    14
    ],
    [
     "Stripped Logs",
-    12
-   ],
-   [
-    "Wood",
     13
    ],
    [
+    "Wood",
+    14
+   ],
+   [
     "Stripped Wood",
-    11
+    12
    ],
    [
     "Planks",
-    12
+    13
    ],
    [
     "Modded Wood",
@@ -155,48 +159,16 @@
  "kw:Stone & Brick": {
   "family": [
    [
-    "Calcite",
-    1
-   ],
-   [
-    "Tuff",
-    5
+    "Deepslate",
+    10
    ],
    [
     "Stone",
     14
    ],
    [
-    "Granite, Diorite & Andesite",
-    6
-   ],
-   [
-    "Deepslate",
-    10
-   ],
-   [
-    "Basalt",
-    3
-   ],
-   [
     "Blackstone",
     6
-   ],
-   [
-    "Dripstone",
-    1
-   ],
-   [
-    "Cinnabar",
-    4
-   ],
-   [
-    "Bricks",
-    1
-   ],
-   [
-    "Nether Bricks",
-    5
    ],
    [
     "Red Sandstone",
@@ -207,38 +179,54 @@
     4
    ],
    [
-    "Sulfur",
-    5
-   ],
-   [
     "End Stone",
     2
    ],
    [
-    "Other",
+    "Dripstone",
     1
+   ],
+   [
+    "Granite, Diorite & Andesite",
+    6
+   ],
+   [
+    "Tuff",
+    5
+   ],
+   [
+    "Calcite",
+    1
+   ],
+   [
+    "Bricks",
+    3
+   ],
+   [
+    "Nether Bricks",
+    5
+   ],
+   [
+    "Basalt",
+    3
+   ],
+   [
+    "Other",
+    8
    ]
   ],
   "type": [
    [
     "Plain",
-    23
-   ],
-   [
-    "Brick",
-    10
-   ],
-   [
-    "Polished",
-    9
+    32
    ],
    [
     "Chiseled",
-    10
+    11
    ],
    [
     "Cracked",
-    5
+    4
    ],
    [
     "Mossy",
@@ -249,12 +237,16 @@
     4
    ],
    [
+    "Polished",
+    11
+   ],
+   [
     "Cut",
     2
    ],
    [
     "Infested",
-    7
+    6
    ]
   ]
  },
@@ -528,67 +520,67 @@
   "family": [
    [
     "White",
-    2
+    4
    ],
    [
     "Light Gray",
-    2
+    4
    ],
    [
     "Gray",
-    2
+    4
    ],
    [
     "Black",
-    2
+    4
    ],
    [
     "Brown",
-    2
+    4
    ],
    [
     "Red",
-    2
+    4
    ],
    [
     "Orange",
-    2
+    4
    ],
    [
     "Yellow",
-    2
+    4
    ],
    [
     "Lime",
-    2
+    4
    ],
    [
     "Green",
-    2
+    4
    ],
    [
     "Cyan",
-    2
+    4
    ],
    [
     "Light Blue",
-    2
+    4
    ],
    [
     "Blue",
-    2
+    4
    ],
    [
     "Purple",
-    2
+    4
    ],
    [
     "Magenta",
-    2
+    4
    ],
    [
     "Pink",
-    2
+    4
    ]
   ],
   "type": [
@@ -599,6 +591,10 @@
    [
     "Carpets",
     16
+   ],
+   [
+    "Other",
+    32
    ]
   ]
  },
@@ -921,306 +917,54 @@
  "kw:Slabs": {
   "family": [
    [
-    "Birch",
-    1
-   ],
-   [
-    "Diorite",
-    2
-   ],
-   [
-    "Pale Oak",
-    1
-   ],
-   [
-    "Quartz",
-    2
-   ],
-   [
-    "Tuff",
-    3
-   ],
-   [
-    "Andesite",
-    2
-   ],
-   [
-    "Deepslate",
-    4
+    "Wood",
+    15
    ],
    [
     "Stone",
-    7
-   ],
-   [
-    "Blackstone",
-    3
-   ],
-   [
-    "Dark Oak",
-    1
-   ],
-   [
-    "Mud",
-    1
-   ],
-   [
-    "Oak",
-    1
-   ],
-   [
-    "Spruce",
-    1
-   ],
-   [
-    "Bricks",
-    1
-   ],
-   [
-    "Cinnabar",
-    3
-   ],
-   [
-    "Crimson",
-    1
-   ],
-   [
-    "Granite",
-    2
-   ],
-   [
-    "Mangrove",
-    1
-   ],
-   [
-    "Nether",
-    2
-   ],
-   [
-    "Acacia",
-    1
+    68
    ],
    [
     "Copper",
     8
    ],
    [
-    "Jungle",
-    1
-   ],
-   [
-    "Red Sandstone",
-    3
-   ],
-   [
-    "Resin",
-    1
-   ],
-   [
-    "Bamboo",
-    2
-   ],
-   [
-    "End Stone",
-    1
-   ],
-   [
-    "Sandstone",
-    3
-   ],
-   [
-    "Sulfur",
-    3
-   ],
-   [
-    "Prismarine",
-    3
-   ],
-   [
-    "Warped",
-    1
-   ],
-   [
-    "Purpur",
-    1
-   ],
-   [
-    "Cherry",
-    1
-   ],
-   [
     "Other",
-    90
+    84
    ]
   ],
   "type": [
    [
-    "Plain",
-    77
+    "Wood",
+    15
    ],
    [
-    "Brick",
-    38
+    "Stone",
+    68
    ],
    [
-    "Polished",
-    14
+    "Copper",
+    8
    ],
    [
-    "Mossy",
-    6
-   ],
-   [
-    "Cobbled",
-    2
-   ],
-   [
-    "Smooth",
-    5
-   ],
-   [
-    "Cut",
-    10
-   ],
-   [
-    "Tile",
-    5
-   ],
-   [
-    "Mosaic",
-    1
+    "Other",
+    84
    ]
   ]
  },
  "kw:Stairs": {
   "family": [
    [
-    "Birch",
-    1
-   ],
-   [
-    "Diorite",
-    2
-   ],
-   [
-    "Pale Oak",
-    1
-   ],
-   [
-    "Quartz",
-    2
-   ],
-   [
-    "Tuff",
-    3
-   ],
-   [
-    "Andesite",
-    2
-   ],
-   [
-    "Deepslate",
-    4
+    "Wood",
+    14
    ],
    [
     "Stone",
-    5
-   ],
-   [
-    "Blackstone",
-    3
-   ],
-   [
-    "Dark Oak",
-    1
-   ],
-   [
-    "Mud",
-    1
-   ],
-   [
-    "Oak",
-    1
-   ],
-   [
-    "Spruce",
-    1
-   ],
-   [
-    "Bricks",
-    1
-   ],
-   [
-    "Cinnabar",
-    3
-   ],
-   [
-    "Crimson",
-    1
-   ],
-   [
-    "Granite",
-    2
-   ],
-   [
-    "Mangrove",
-    1
-   ],
-   [
-    "Nether",
-    2
-   ],
-   [
-    "Acacia",
-    1
+    59
    ],
    [
     "Copper",
     8
-   ],
-   [
-    "Jungle",
-    1
-   ],
-   [
-    "Red Sandstone",
-    2
-   ],
-   [
-    "Resin",
-    1
-   ],
-   [
-    "Bamboo",
-    2
-   ],
-   [
-    "End Stone",
-    1
-   ],
-   [
-    "Sandstone",
-    2
-   ],
-   [
-    "Sulfur",
-    3
-   ],
-   [
-    "Prismarine",
-    3
-   ],
-   [
-    "Warped",
-    1
-   ],
-   [
-    "Purpur",
-    1
-   ],
-   [
-    "Cherry",
-    1
    ],
    [
     "Other",
@@ -1229,146 +973,42 @@
   ],
   "type": [
    [
-    "Plain",
-    62
+    "Wood",
+    14
    ],
    [
-    "Brick",
-    32
+    "Stone",
+    59
    ],
    [
-    "Polished",
-    12
-   ],
-   [
-    "Mossy",
-    6
-   ],
-   [
-    "Cobbled",
-    2
-   ],
-   [
-    "Smooth",
-    4
-   ],
-   [
-    "Cut",
+    "Copper",
     8
    ],
    [
-    "Tile",
-    5
-   ],
-   [
-    "Mosaic",
-    1
+    "Other",
+    68
    ]
   ]
  },
  "kw:Walls": {
   "family": [
    [
-    "Diorite",
-    1
-   ],
-   [
-    "Tuff",
-    3
-   ],
-   [
-    "Andesite",
-    1
-   ],
-   [
-    "Deepslate",
-    4
-   ],
-   [
     "Stone",
-    4
-   ],
-   [
-    "Blackstone",
-    3
-   ],
-   [
-    "Mud",
-    1
-   ],
-   [
-    "Bricks",
-    1
-   ],
-   [
-    "Cinnabar",
-    3
-   ],
-   [
-    "Granite",
-    1
-   ],
-   [
-    "Nether",
-    2
-   ],
-   [
-    "Red Sandstone",
-    1
-   ],
-   [
-    "Resin",
-    1
-   ],
-   [
-    "End Stone",
-    1
-   ],
-   [
-    "Sandstone",
-    1
-   ],
-   [
-    "Sulfur",
-    3
-   ],
-   [
-    "Prismarine",
-    1
+    47
    ],
    [
     "Other",
-    88
+    73
    ]
   ],
   "type": [
    [
-    "Plain",
-    67
+    "Stone",
+    47
    ],
    [
-    "Brick",
-    30
-   ],
-   [
-    "Polished",
-    9
-   ],
-   [
-    "Mossy",
-    6
-   ],
-   [
-    "Cobbled",
-    2
-   ],
-   [
-    "Smooth",
-    1
-   ],
-   [
-    "Tile",
-    5
+    "Other",
+    73
    ]
   ]
  },
@@ -1376,7 +1016,7 @@
   "family": [
    [
     "Wood",
-    12
+    13
    ],
    [
     "Copper",
@@ -1394,7 +1034,7 @@
   "type": [
    [
     "Wood",
-    12
+    13
    ],
    [
     "Copper",
@@ -1414,7 +1054,7 @@
   "family": [
    [
     "Wood",
-    24
+    26
    ],
    [
     "Stone",
@@ -1428,11 +1068,11 @@
   "type": [
    [
     "Fences",
-    27
+    28
    ],
    [
     "Gates",
-    26
+    27
    ]
   ]
  },
@@ -1440,7 +1080,7 @@
   "family": [
    [
     "Wood",
-    12
+    13
    ],
    [
     "Copper",
@@ -1458,7 +1098,7 @@
   "type": [
    [
     "Wood",
-    12
+    13
    ],
    [
     "Copper",
@@ -1478,7 +1118,7 @@
   "family": [
    [
     "Wood",
-    24
+    26
    ],
    [
     "Other",
@@ -1488,11 +1128,11 @@
   "type": [
    [
     "Signs",
-    26
+    27
    ],
    [
     "Hanging Signs",
-    26
+    27
    ]
   ]
  },
@@ -1616,11 +1256,11 @@
    ],
    [
     "Chest Boats",
-    20
+    21
    ],
    [
     "Other",
-    15
+    16
    ]
   ],
   "type": [
@@ -1646,11 +1286,11 @@
    ],
    [
     "Chest Boats",
-    20
+    21
    ],
    [
     "Other",
-    15
+    16
    ]
   ]
  },
@@ -2024,15 +1664,15 @@
    ],
    [
     "Saplings",
-    31
+    32
    ],
    [
     "Leaves",
-    54
+    57
    ],
    [
     "Mushrooms",
-    4
+    5
    ],
    [
     "Vines & Roots",
@@ -2044,7 +1684,7 @@
    ],
    [
     "Grasses & More",
-    63
+    64
    ]
   ],
   "type": [
@@ -2054,15 +1694,15 @@
    ],
    [
     "Saplings",
-    31
+    32
    ],
    [
     "Leaves",
-    54
+    57
    ],
    [
     "Mushrooms",
-    4
+    5
    ],
    [
     "Vines & Roots",
@@ -2074,7 +1714,7 @@
    ],
    [
     "Grasses & More",
-    63
+    64
    ]
   ]
  },
@@ -2180,7 +1820,7 @@
    ],
    [
     "Switches & Inputs",
-    40
+    44
    ],
    [
     "Sensors",
@@ -2214,7 +1854,7 @@
    ],
    [
     "Switches & Inputs",
-    40
+    44
    ],
    [
     "Sensors",
@@ -2242,7 +1882,7 @@
    ],
    [
     "Boats & Rafts",
-    40
+    42
    ],
    [
     "Saddles",
@@ -2268,7 +1908,7 @@
    ],
    [
     "Boats & Rafts",
-    40
+    42
    ],
    [
     "Saddles",
@@ -2292,7 +1932,7 @@
    ],
    [
     "Music Discs",
-    35
+    36
    ],
    [
     "Disc Fragments",
@@ -2310,7 +1950,7 @@
    ],
    [
     "Music Discs",
-    35
+    36
    ],
    [
     "Disc Fragments",
@@ -2325,96 +1965,14 @@
  "kw:Aether": {
   "family": [
    [
-    "The Aether",
-    404
-   ],
-   [
-    "Aether II",
-    700
-   ],
-   [
-    "Redux",
-    214
-   ],
-   [
-    "Deep Aether",
-    446
+    "Other",
+    1764
    ]
   ],
   "type": [
    [
-    "The Aether",
-    404
-   ],
-   [
-    "Aether II",
-    700
-   ],
-   [
-    "Redux",
-    214
-   ],
-   [
-    "Deep Aether",
-    446
-   ]
-  ]
- },
- "kw:Other Materials": {
-  "family": [
-   [
-    "Coal",
-    2
-   ],
-   [
-    "Lapis",
-    3
-   ],
-   [
-    "Flint",
-    1
-   ],
-   [
-    "Bricks",
-    2
-   ],
-   [
-    "Dripstone",
-    1
-   ],
-   [
-    "Sulfur",
-    1
-   ],
-   [
-    "Hay",
-    1
-   ],
-   [
-    "Lodestone",
-    1
-   ],
-   [
-    "Creaking",
-    1
-   ],
-   [
-    "Dried Ghast",
-    1
-   ]
-  ],
-  "type": [
-   [
-    "Ores",
-    4
-   ],
-   [
-    "Blocks",
-    7
-   ],
-   [
-    "Materials",
-    3
+    "Other",
+    1764
    ]
   ]
  }

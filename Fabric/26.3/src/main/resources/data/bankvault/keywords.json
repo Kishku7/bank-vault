@@ -22555,6 +22555,582 @@
   ],
   "minecraft:music_disc_bounce": [
    "music"
+  ],
+  "minecraft:poplar_planks": [
+   "wood",
+   "block",
+   "craftable",
+   "renewable",
+   "burnable",
+   "flammable",
+   "earlyGame",
+   "rawWood"
+  ],
+  "minecraft:poplar_log": [
+   "wood",
+   "block",
+   "renewable",
+   "burnable",
+   "flammable",
+   "craftable",
+   "earlyGame",
+   "rawWood"
+  ],
+  "minecraft:poplar_wood": [
+   "wood",
+   "block",
+   "craftable",
+   "renewable",
+   "burnable",
+   "flammable",
+   "earlyGame",
+   "rawWood"
+  ],
+  "minecraft:poplar_slab": [
+   "wood",
+   "block",
+   "slab",
+   "craftable",
+   "renewable",
+   "burnable",
+   "flammable",
+   "waterloggable"
+  ],
+  "minecraft:poplar_stairs": [
+   "wood",
+   "block",
+   "stairs",
+   "craftable",
+   "renewable",
+   "burnable",
+   "flammable",
+   "waterloggable"
+  ],
+  "minecraft:poplar_fence": [
+   "wood",
+   "block",
+   "fence",
+   "craftable",
+   "renewable",
+   "burnable",
+   "flammable",
+   "waterloggable"
+  ],
+  "minecraft:poplar_fence_gate": [
+   "wood",
+   "block",
+   "fence",
+   "redstoneComp",
+   "craftable",
+   "renewable",
+   "burnable",
+   "flammable",
+   "gate"
+  ],
+  "minecraft:poplar_door": [
+   "wood",
+   "block",
+   "door",
+   "decoration",
+   "craftable",
+   "renewable",
+   "burnable"
+  ],
+  "minecraft:poplar_trapdoor": [
+   "wood",
+   "block",
+   "trapdoor",
+   "redstoneComp",
+   "craftable",
+   "renewable",
+   "burnable",
+   "waterloggable"
+  ],
+  "minecraft:poplar_sign": [
+   "wood",
+   "sign",
+   "decoration",
+   "craftable",
+   "renewable",
+   "burnable",
+   "waterloggable"
+  ],
+  "minecraft:poplar_hanging_sign": [
+   "wood",
+   "sign",
+   "decoration",
+   "craftable",
+   "renewable",
+   "burnable",
+   "waterloggable"
+  ],
+  "minecraft:poplar_shelf": [
+   "wood",
+   "block",
+   "shelf",
+   "container",
+   "decoration",
+   "craftable",
+   "renewable"
+  ],
+  "minecraft:poplar_button": [
+   "wood",
+   "block",
+   "button",
+   "redstoneComp",
+   "craftable",
+   "renewable",
+   "burnable"
+  ],
+  "minecraft:poplar_pressure_plate": [
+   "wood",
+   "block",
+   "pressurePlate",
+   "redstoneComp",
+   "craftable",
+   "renewable",
+   "burnable"
+  ],
+  "minecraft:poplar_sapling": [
+   "plant",
+   "block",
+   "growable",
+   "renewable",
+   "compostable",
+   "earlyGame"
+  ],
+  "minecraft:poplar_boat": [
+   "wood",
+   "boat",
+   "rideable",
+   "craftable",
+   "renewable",
+   "earlyGame"
+  ],
+  "minecraft:poplar_chest_boat": [
+   "wood",
+   "boat",
+   "container",
+   "rideable",
+   "craftable",
+   "renewable",
+   "earlyGame"
+  ],
+  "minecraft:stripped_poplar_log": [
+   "wood",
+   "block",
+   "placeable",
+   "burnable",
+   "flammable",
+   "renewable",
+   "overworld",
+   "earlyGame",
+   "rawWood"
+  ],
+  "minecraft:stripped_poplar_wood": [
+   "wood",
+   "block",
+   "craftable",
+   "placeable",
+   "burnable",
+   "flammable",
+   "renewable",
+   "earlyGame",
+   "rawWood"
+  ],
+  "minecraft:orange_poplar_leaves": [
+   "plant",
+   "block",
+   "renewable",
+   "compostable",
+   "flammable",
+   "overworld"
+  ],
+  "minecraft:red_poplar_leaves": [
+   "plant",
+   "block",
+   "renewable",
+   "compostable",
+   "flammable",
+   "overworld"
+  ],
+  "minecraft:yellow_poplar_leaves": [
+   "plant",
+   "block",
+   "renewable",
+   "compostable",
+   "flammable",
+   "overworld"
+  ],
+  "minecraft:white_wool_slab": [
+   "wool",
+   "block",
+   "earlyGame",
+   "craftable",
+   "renewable",
+   "placeable",
+   "flammable",
+   "colored",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:white_wool_stairs": [
+   "wool",
+   "block",
+   "earlyGame",
+   "craftable",
+   "renewable",
+   "placeable",
+   "flammable",
+   "colored",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:light_gray_wool_slab": [
+   "wool",
+   "colored",
+   "block",
+   "craftable",
+   "renewable",
+   "flammable",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:light_gray_wool_stairs": [
+   "wool",
+   "colored",
+   "block",
+   "craftable",
+   "renewable",
+   "flammable",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:gray_wool_slab": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "placeable",
+   "farmable",
+   "renewable",
+   "flammable",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:gray_wool_stairs": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "placeable",
+   "farmable",
+   "renewable",
+   "flammable",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:black_wool_slab": [
+   "wool",
+   "block",
+   "colored",
+   "renewable",
+   "craftable",
+   "burnable",
+   "flammable",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:black_wool_stairs": [
+   "wool",
+   "block",
+   "colored",
+   "renewable",
+   "craftable",
+   "burnable",
+   "flammable",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:brown_wool_slab": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "renewable",
+   "flammable",
+   "decoration",
+   "earlyGame",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:brown_wool_stairs": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "renewable",
+   "flammable",
+   "decoration",
+   "earlyGame",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:red_wool_slab": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "placeable",
+   "flammable",
+   "renewable",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:red_wool_stairs": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "placeable",
+   "flammable",
+   "renewable",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:orange_wool_slab": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "placeable",
+   "flammable",
+   "renewable",
+   "earlyGame",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:orange_wool_stairs": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "placeable",
+   "flammable",
+   "renewable",
+   "earlyGame",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:yellow_wool_slab": [
+   "wool",
+   "block",
+   "earlyGame",
+   "craftable",
+   "renewable",
+   "placeable",
+   "flammable",
+   "colored",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:yellow_wool_stairs": [
+   "wool",
+   "block",
+   "earlyGame",
+   "craftable",
+   "renewable",
+   "placeable",
+   "flammable",
+   "colored",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:lime_wool_slab": [
+   "wool",
+   "colored",
+   "block",
+   "craftable",
+   "renewable",
+   "flammable",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:lime_wool_stairs": [
+   "wool",
+   "colored",
+   "block",
+   "craftable",
+   "renewable",
+   "flammable",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:green_wool_slab": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "placeable",
+   "farmable",
+   "renewable",
+   "flammable",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:green_wool_stairs": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "placeable",
+   "farmable",
+   "renewable",
+   "flammable",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:cyan_wool_slab": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "flammable",
+   "renewable",
+   "placeable",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:cyan_wool_stairs": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "flammable",
+   "renewable",
+   "placeable",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:light_blue_wool_slab": [
+   "wool",
+   "colored",
+   "block",
+   "craftable",
+   "renewable",
+   "flammable",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:light_blue_wool_stairs": [
+   "wool",
+   "colored",
+   "block",
+   "craftable",
+   "renewable",
+   "flammable",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:blue_wool_slab": [
+   "wool",
+   "block",
+   "colored",
+   "renewable",
+   "craftable",
+   "burnable",
+   "flammable",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:blue_wool_stairs": [
+   "wool",
+   "block",
+   "colored",
+   "renewable",
+   "craftable",
+   "burnable",
+   "flammable",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:purple_wool_slab": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "renewable",
+   "flammable",
+   "placeable",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:purple_wool_stairs": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "renewable",
+   "flammable",
+   "placeable",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:magenta_wool_slab": [
+   "wool",
+   "colored",
+   "block",
+   "craftable",
+   "renewable",
+   "flammable",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:magenta_wool_stairs": [
+   "wool",
+   "colored",
+   "block",
+   "craftable",
+   "renewable",
+   "flammable",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:pink_wool_slab": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "renewable",
+   "flammable",
+   "placeable",
+   "slab",
+   "waterloggable"
+  ],
+  "minecraft:pink_wool_stairs": [
+   "wool",
+   "block",
+   "colored",
+   "craftable",
+   "renewable",
+   "flammable",
+   "placeable",
+   "stairs",
+   "waterloggable"
+  ],
+  "minecraft:red_shrub": [
+   "plant",
+   "decoration",
+   "flammable",
+   "placeable"
+  ],
+  "minecraft:shelf_mushroom": [
+   "mushroom",
+   "plant",
+   "placeable",
+   "renewable",
+   "overworld",
+   "compostable"
   ]
  }
 }
