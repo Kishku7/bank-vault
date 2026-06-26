@@ -31,7 +31,7 @@ neoForge {
 }
 
 processResources {
-    def ep = [mod_version: mod_version]
+    def ep = [mod_version: mod_version, mcRange: project.mc_range, neoforgeRange: project.neoforge_range]
     inputs.properties(ep)
     filesMatching('META-INF/neoforge.mods.toml') { expand(ep) }
 }
