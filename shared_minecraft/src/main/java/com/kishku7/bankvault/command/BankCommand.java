@@ -3,6 +3,7 @@ package com.kishku7.bankvault.command;
 import com.kishku7.bankvault.vault.Bank;
 import com.kishku7.bankvault.vault.BankManager;
 import com.kishku7.bankvault.vault.Catalog;
+import com.kishku7.bankvault.vault.StackStore;
 import com.kishku7.bankvault.vault.VaultCapacity;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -161,11 +162,31 @@ public final class BankCommand {
         Bank bank = BankManager.lookup(p.getUUID());
         if (bank == null) return send(p, "§cYou don't belong to a bank.");
         if (bank.levelOf(p.getUUID()) < BankManager.MEMBER) return send(p, "§cDeposit-only members can't withdraw.");
-        Identifier id = parseId(itemArg.trim());
+        String arg = itemArg.trim();
+        // Component-bearing stacks live under "id#hash" special keys (enchanted/trimmed gear).
+        // Accept the key directly, and fall back to a UNIQUE special variant when the plain id
+        // has no plain-bucket stock. Additive fix 2026-07-02 (bot + human ergonomics); the old
+        // behavior for these inputs was only ever a failure message.
+        if (arg.contains("#")) {
+            return withdrawSpecial(p, bank, arg, count);
+        }
+        Identifier id = parseId(arg);
         if (id == null || !BuiltInRegistries.ITEM.containsKey(id)) return send(p, "§cUnknown item: " + itemArg);
         String key = id.toString();
         long taken = BankManager.withdraw(bank, key, count);
-        if (taken <= 0) return send(p, "§cNone of that item in the bank.");
+        if (taken <= 0) {
+            java.util.List<String> variants = new java.util.ArrayList<>();
+            for (String k : bank.special.keySet()) {
+                if (k.startsWith(key + "#")) variants.add(k);
+            }
+            if (variants.size() == 1) return withdrawSpecial(p, bank, variants.get(0), count);
+            if (variants.size() > 1) {
+                StringBuilder b = new StringBuilder("§eSeveral variants in the bank -- withdraw by key:");
+                for (String k : variants) b.append("\n§7  ").append(k).append(" x").append(bank.special.get(k).count);
+                return send(p, b.toString());
+            }
+            return send(p, "§cNone of that item in the bank.");
+        }
         Item item = BuiltInRegistries.ITEM.getValue(id);
         int max = new ItemStack(item).getMaxStackSize();
         long left = taken;
@@ -173,6 +194,26 @@ public final class BankCommand {
             int n = (int) Math.min(max, left);
             ItemStack stack = new ItemStack(item, n);
             if (!p.getInventory().add(stack)) p.drop(stack, false);
+            left -= n;
+        }
+        return send(p, String.format("§aWithdrew %,d %s.", taken, key));
+    }
+
+    /** Withdraw an exact special ("id#hash") stack with its components intact. */
+    private static int withdrawSpecial(ServerPlayer p, Bank bank, String key, int count) {
+        Bank.Special sp = bank.special.get(key);
+        if (sp == null) return send(p, "§cNo such stack in the bank: " + key);
+        ItemStack proto = StackStore.decode(sp.stack, p.level().registryAccess());
+        if (proto == null || proto.isEmpty()) return send(p, "§cCannot reconstruct " + key + " -- not withdrawn.");
+        long taken = BankManager.withdrawKey(bank, key, count);
+        if (taken <= 0) return send(p, "§cNone of that item in the bank.");
+        int max = proto.getMaxStackSize();
+        long left = taken;
+        while (left > 0) {
+            int n = (int) Math.min(max, left);
+            ItemStack out = proto.copy();
+            out.setCount(n);
+            if (!p.getInventory().add(out)) p.drop(out, false);
             left -= n;
         }
         return send(p, String.format("§aWithdrew %,d %s.", taken, key));
