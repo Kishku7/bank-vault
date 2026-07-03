@@ -1,36 +1,53 @@
-# Bank Vault - branch `26.2`
+# Bank Vault - branch `minecraft-1.20-26.3`
 
-Source for the Minecraft **26.2 (pre-release)** line of Bank Vault, organized **loader-on-top**. Client + server mod.
-These are standalone builds - no Architectury, no `Common/`.
+The single cross-version source for Bank Vault: **every playable Minecraft version from 1.20.0
+through the 26.3 snapshot**, built from one shared code base. Client + server mod. Standalone
+per-loader builds - **no Architectury** anywhere, at build time or runtime.
 
-> **Pre-release line.** Published to Modrinth as **beta** only; no GitHub release is cut until 26.2 is stable. The NeoForge build targets a local NeoForge 26.2 alpha (no public NeoForge 26.2 yet).
+## Layout
 
-## Platforms
+```
+shared_minecraft/        ONE business-code source (blocks, vault, menu, screen, commands, payloads)
+_codegen/                the version-drift brain: compat_*.py + cog_sources/ (era-emitted files)
+Fabric/<ver>/            thin build cells (loom); Fabric/26 = parameterized 26.x matrix cell
+NeoForge/<ver>/          thin build cells (ModDevGradle; 1.20.4 = NeoGradle 7); NeoForge/26 = matrix
+Forge/<ver>/             thin build cells (ForgeGradle 6)
+scripts/                 build-fabric / build-neoforge / build-forge walkers, cog-gen, check-sync
+dist/                    every release jar (line-keyed names), written by the walkers
+```
 
-- [`Fabric/`](Fabric) - 1 build(s); see its README for versions and exclusions.
-- [`NeoForge/`](NeoForge) - 1 build(s); see its README for versions and exclusions.
+Pre-26 cells build from a cog-materialized `gen/` tree (`scripts/cog-gen.ps1`); the 26 cells build
+straight from `shared_minecraft` except 26.3+, which also materializes (26.3-snapshot-2 removed the
+block `MapCodec` surface). `scripts/check-sync.ps1` is the drift tripwire between the cog sources
+and their plain 26 twins - run it before committing.
 
-## Not supported on this line
+## Coverage (1.4.0)
 
-- **Forge** is not built for the 26.x line - ForgeGradle 6 cannot build unobfuscated Minecraft 26.x and there is no FG7.
-- **Quilt** is not supported on the 26.x line - Quilt retired Quilted Fabric API at 26.1, so the Fabric API path Bank Vault uses on Fabric is no longer provided on Quilt for 26.x. (Quilt remains supported on the 1.20.x and 1.21.x branches.)
+| Loader   | Jars | Serves |
+|----------|------|--------|
+| Fabric   | 12   | 1.20 - 1.20.4, 1.20.5/6, 1.21 - 1.21.11 (every step), 26.1 - 26.3-snapshot |
+| NeoForge | 11   | 1.20.1 (via the Forge jar), 1.20.4, 1.20.5/6, 1.21 - 1.21.11, 26.1.2, 26.2 |
+| Forge    | 6    | 1.20.1, 1.20.6, 1.21 - 1.21.1, 1.21.5, 1.21.6 - 1.21.8 |
+
+Known honest gaps: NeoForge MC 26.1/26.1.1 (the loader there lacks `BreakBlockEvent`, added in
+26.1.2); Forge 1.21.9+ (no FG7); NeoForge 1.20.2/1.20.3 (loader era not covered). Every claimed
+(version, loader) pair is dedicated-server boot-gated before release.
 
 ## Build
 
-Each loader+version folder is its own standalone Gradle build root:
-
 ```
-cd <Loader>/<version>
-./gradlew build      # Windows: .\gradlew.bat build
+pwsh -File scripts/build-fabric.ps1     [cells...]   # all Fabric cells -> dist/
+pwsh -File scripts/build-neoforge.ps1   [cells...]
+pwsh -File scripts/build-forge.ps1      [cells...]
 ```
 
-Output: `build/libs/bank-vault-*.jar`. Requires Java 25.
+## Automation surface (1.4.0)
 
-## Links
+A hidden machine-readable command layer for automation clients (e.g. the M1 agent):
+`/bank api snapshot|list [page]|count <key>|find <query>|withdraw <n> <key>|deposit <n> <hand|id>`.
+Replies are single plain-ASCII lines: `BV|<op>|OK|...` / `BV|<op>|ERR|<reason>`. Keys are the
+bank's native keys (plain item ids, or `id#hash` for component-bearing stacks). Additive only -
+older clients are unaffected.
 
-- Other branches: [`1.20.x`](https://github.com/Kishku7/bank-vault/tree/1.20.x), [`1.21.x`](https://github.com/Kishku7/bank-vault/tree/1.21.x), [`26.1`](https://github.com/Kishku7/bank-vault/tree/26.1)
-- Overview: [`main`](https://github.com/Kishku7/bank-vault/tree/main)
-- Modrinth: https://modrinth.com/mod/bank-vault
-- Releases: https://github.com/Kishku7/bank-vault/releases
-
-By Kishku7. All Rights Reserved.
+MATRIX.md records the campaign state and per-era decisions; `_codegen/compat_core.py` documents
+every version boundary the build machinery knows about.
