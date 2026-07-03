@@ -1256,7 +1256,9 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     // -- input --
 
     @Override
-    public boolean keyPressed(KeyEvent event) {
+    public boolean keyPressed(KeyEvent event0) { return keyPressedImpl(Ev.key(event0)); }
+
+    private boolean keyPressedImpl(Ev event) {
         if (shInputActive) {
             if (event.input() == 258) { // TAB -- rc.4 (Dave): accept the autocomplete
                 String ghost = shCompletion();
@@ -1286,11 +1288,13 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             if (event.isConfirmation()) { searchFocused = false; return true; }
             return true; // consume all other keys while focused
         }
-        return super.keyPressed(event);
+return super.keyPressed((net.minecraft.client.input.KeyEvent) event.raw());
     }
 
     @Override
-    public boolean charTyped(CharacterEvent event) {
+    public boolean charTyped(CharacterEvent event0) { return charTypedImpl(Ev.chr(event0)); }
+
+    private boolean charTypedImpl(Ev event) {
         if (shInputActive) {
             if (event.isAllowedChatCharacter() && shInputText.length() < 16) {
                 shInputText = shInputText + event.codepointAsString();
@@ -1304,11 +1308,13 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             }
             return true;
         }
-        return super.charTyped(event);
+return super.charTyped((net.minecraft.client.input.CharacterEvent) event.raw());
     }
 
     @Override
-    public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
+    public boolean mouseClicked(MouseButtonEvent event0, boolean doubleClick) { return mouseClickedImpl(Ev.mouse(event0), doubleClick); }
+
+    private boolean mouseClickedImpl(Ev event, boolean doubleClick) {
         int mx = (int) event.x(), my = (int) event.y(), button = event.button();
 
         if (!inside(mx, my, searchBoxX, srchY, searchBoxW, sbH)) searchFocused = false;
@@ -1477,11 +1483,13 @@ ContainerInput ct = event.hasShiftDown() ? ContainerInput.QUICK_MOVE : Container
             }
         }
 
-        return super.mouseClicked(event, doubleClick);
+return super.mouseClicked((net.minecraft.client.input.MouseButtonEvent) event.raw(), doubleClick);
     }
 
     @Override
-    public boolean mouseDragged(MouseButtonEvent event, double dragX, double dragY) {
+    public boolean mouseDragged(MouseButtonEvent event0, double dragX, double dragY) { return mouseDraggedImpl(Ev.mouse(event0), dragX, dragY); }
+
+    private boolean mouseDraggedImpl(Ev event, double dragX, double dragY) {
         if (draggingThumb) {
             int trackTop = sbarTop + SB_W, trackBot = sbarBottom - SB_W;
             dragThumbY = Math.max(trackTop, Math.min(trackBot - SB_W, (int) event.y() - dragOffsetY));
@@ -1491,11 +1499,13 @@ ContainerInput ct = event.hasShiftDown() ? ContainerInput.QUICK_MOVE : Container
             sendGridView();
             return true;
         }
-        return super.mouseDragged(event, dragX, dragY);
+return super.mouseDragged((net.minecraft.client.input.MouseButtonEvent) event.raw(), dragX, dragY);
     }
 
     @Override
-    public boolean mouseReleased(MouseButtonEvent event) {
+    public boolean mouseReleased(MouseButtonEvent event0) { return mouseReleasedImpl(Ev.mouse(event0)); }
+
+    private boolean mouseReleasedImpl(Ev event) {
         draggingThumb = false;
         // v1.2 beta.2: TRUE drag-and-drop pinning. A hold-drag from a slot never produces a
         // second click -- the gesture ends in mouseReleased, and vanilla's quick-craft release
@@ -1511,7 +1521,7 @@ ContainerInput ct = event.hasShiftDown() ? ContainerInput.QUICK_MOVE : Container
             }
             return true;
         }
-        return super.mouseReleased(event);
+return super.mouseReleased((net.minecraft.client.input.MouseButtonEvent) event.raw());
     }
 
     /** Drop-to-pin (beta.2, shared by click and drag-release): route the gesture through the

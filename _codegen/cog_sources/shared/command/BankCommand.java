@@ -57,15 +57,30 @@ public final class BankCommand {
                 .then(Commands.literal("upgrade")
                         .executes(c -> upgrade(c.getSource())))
                 .then(Commands.literal("fillall").requires(s ->
+/* [[[cog
+import compat_core
+compat_core.emit_perm_gamemaster26(cog, ver)
+]]] */
 s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER)
+/* [[[end]]] */
                         )
                         .executes(c -> fillAll(c.getSource())))
                 .then(Commands.literal("clearall").requires(s ->
+/* [[[cog
+import compat_core
+compat_core.emit_perm_gamemaster26(cog, ver)
+]]] */
 s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER)
+/* [[[end]]] */
                         )
                         .executes(c -> clearAll(c.getSource())))
                 .then(Commands.literal("reload").requires(s ->
+/* [[[cog
+import compat_core
+compat_core.emit_perm_gamemaster26(cog, ver)
+]]] */
 s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER)
+/* [[[end]]] */
                         )
                         .executes(c -> reloadCatalog(c.getSource())))
                 // Hidden machine-readable surface for automation clients (M1). Not shown in help;

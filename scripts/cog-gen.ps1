@@ -74,4 +74,28 @@ Get-ChildItem (Join-Path $gen 'src\main\java') -Recurse -File -Filter *.java |
         & cog -r -I $cg -D loader=$Loader -D ver=$McVer -D codegen=$cg $_.FullName | Out-Null
         if ($LASTEXITCODE -ne 0) { throw ("cog failed: " + $_.FullName) }
     }
+# ---- 7c. GameProfile record-accessor rename: name() from 1.21.9; getName() before ----
+if ($v -lt [version]'1.21.9') {
+    Get-ChildItem (Join-Path $gen 'src\main\java') -Recurse -File -Filter *.java | ForEach-Object {
+        $t = Get-Content $_.FullName -Raw
+        if ($t -match 'Profile\(\)\.name\(\)') {
+            $t = $t -replace 'getGameProfile\(\)\.name\(\)', 'getGameProfile().getName()'
+            $t = $t -replace 'getProfile\(\)\.name\(\)', 'getProfile().getName()'
+            Set-Content $_.FullName $t -NoNewline
+        }
+    }
+}
+
+# ---- 7b. mojmap rename pass: Identifier -> ResourceLocation below 1.21.11 (same class, pure
+# mojmap rename at 1.21.11; a word-boundary tree rename in the disposable gen/ is exactly correct) ----
+if ($v -lt [version]'1.21.11') {
+    Get-ChildItem (Join-Path $gen 'src\main\java') -Recurse -File -Filter *.java | ForEach-Object {
+        $t = Get-Content $_.FullName -Raw
+        if ($t -match '\bIdentifier\b') {
+            $t = $t -replace '\bIdentifier\b', 'ResourceLocation'
+            Set-Content $_.FullName $t -NoNewline
+        }
+    }
+}
+
 Write-Host ("cog-gen OK: {0} (loader={1} pluralData={2} itemDefs={3} pf={4})" -f $Cell, $Loader, $pluralData, $itemDefs, $pf)

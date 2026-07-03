@@ -27,7 +27,7 @@ PLUS NeoForge/1.20.4 (BV already published that line; M1 skipped it).
 | 1.21.2  | [ ]    | [ ]      | --    | new |
 | 1.21.5  | [ ]    | [ ]      | [ ]   | existing |
 | 1.21.6  | [ ]    | --       | --    | new (M1 pattern) |
-| 1.21.8  | [ ]    | [ ]      | [ ]   | existing; Forge ceiling (FG6) |
+| 1.21.8  | [x]    | [x]      | [ ]   | existing; Forge ceiling (FG6) |
 | 1.21.11 | [x]    | [x]      | --    | existing |
 | 26      | [ ] x3 | [ ] x2   | --    | existing non-arch matrix cells (moved to <Loader>/26/) |
 
@@ -64,3 +64,4 @@ MC), record it in mod-version-gates.md and mark `--` here instead.)
 - 2026-07-03 02:05 _codegen skeleton in place: compat_core.py (BV drift axes: renamed@1.21.11, components@1.20.5, perms26, pluralData<1.21, itemDefs@1.21.4, PACK_FORMATS, SLOT_CHANGED_SIG per-era AW/AT table), cog-gen.ps1 (BV era rules: data-dir renames, items/ strip, pack.mcmeta), check-sync.ps1 (auto-discovering twins). Next: first pre-26 cell pair (Fabric+NeoForge 1.21.11) via M1 cell wiring; let the compiler enumerate drift.
 - 2026-07-03 02:55 MILESTONE: Fabric/1.21.11 cell BUILD SUCCESSFUL, 0 errors 0 warnings (first pre-26 cell from unified source). Mechanism proven: Gfx facade (text/item/pose/tooltip/entity-preview era names), era render entries (extractRenderState@26 vs render+renderBg+renderLabels pre-26), ClickType/payload-registry/copy-stream/TrinketCompat-stub cogs, AW namespace named. check-sync green across 15 twins. Commit a11bd7b.
 - 2026-07-03 03:20 NeoForge/1.21.11 green 0/0 (MDG 2.0.141, neo 21.11.42). New gates: BreakBlockEvent(26) vs BlockEvent.BreakEvent(pre-26); NeoForge 1.21.x deprecates CreativeModeTab.builder(Row,int) -> no-arg builder(). 1.21.11 ROW COMPLETE (Fabric+NeoForge). Next: 1.21.8 row (adds Forge).
+- 2026-07-03 03:55 1.21.8 Fabric+NeoForge green 0/0. New machinery: Ev input shim (input records @1.21.9 vs primitives), perms26 marker (permissions() @1.21.9), cog-gen tree renames (Identifier->ResourceLocation <1.21.11, GameProfile name()->getName() <1.21.9). 26 regression green, check-sync green. WATCH: 1.21.11 jar claims 1.21.9-1.21.11 -- verify GameProfile.name()/permissions() exist at 1.21.9/1.21.10 in the boot gate. Next: Forge/1.21.8 (first Forge cell).
