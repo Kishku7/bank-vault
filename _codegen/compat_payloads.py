@@ -234,6 +234,10 @@ def emit_container_extractor(cog, ver):
     implementation (1.2.4 line) kept as a template -- same public surface + Extension hooks."""
     if modern(ver):
         for ln in _twin_shared(os.path.join("inventory", "ContainerExtractor.java")):
+            # 26 renamed the copy-stream accessor; 1.20.5-1.21.x use nonEmptyItemsCopy()
+            if not compat_core.is26(ver):
+                ln = ln.replace(".nonEmptyItemCopyStream().forEach(out::add);",
+                                ".nonEmptyItemsCopy().forEach(out::add);")
             cog.outl(ln)
         return
     p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates", "ContainerExtractor_nbt.java")
