@@ -146,7 +146,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     @Override
     protected void containerTick() {
         super.containerTick();
-        // rc.4 (Dave): the host's member list must update live when someone accepts an invite.
+        // rc.4 (Kishku7): the host's member list must update live when someone accepts an invite.
         // Pushes cover the instant case; this heartbeat guarantees freshness even if one is missed.
         if (++shRefreshTicks >= 60) {   // every 3s
             shRefreshTicks = 0;
@@ -262,7 +262,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         btnSize = ButtonLayout.buttonSize();
         int maxCols = 1;
         for (ButtonLayout.Row r : ButtonLayout.rows()) maxCols = Math.max(maxCols, r.buttons().size());
-        railW = Math.max(30, Math.min(170, maxCols * (btnSize + btnGap) - btnGap + 10));   // 170: 8 cols at size 18 (Dave r26); grid drops to 11 cols
+        railW = Math.max(30, Math.min(170, maxCols * (btnSize + btnGap) - btnGap + 10));   // 170: 8 cols at size 18 (Kishku7 r26); grid drops to 11 cols
         railTop = contentTop; railBottom = py + ph - 8;
         btnTop = railTop + 5; btnBottom = railBottom - 5;
 
@@ -415,7 +415,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
 
     private boolean buttonVisible(ButtonLayout.BtnDef d) {
         if ("everything".equals(d.dynamic())) return !entries.isEmpty();
-        // rc.7 (Dave): visibility follows the VAULT CONTENTS -- a button shows only while the
+        // rc.7 (Kishku7): visibility follows the VAULT CONTENTS -- a button shows only while the
         // bank holds at least one item under it. Depositing reveals its buttons; emptying a
         // category hides them again. This also subsumes the absent-mod concern: items from
         // mods that are not loaded can never be deposited, so their buttons can never appear.
@@ -432,7 +432,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
      *  list and a dynamic matcher -- membership is the union of the two. */
     private boolean matchesDef(ButtonLayout.BtnDef d, Entry e) {
         if (d.category() != null) {
-            // rc.3 (Dave): "uncategorized" = matched by NO other button. The old categories.json
+            // rc.3 (Kishku7): "uncategorized" = matched by NO other button. The old categories.json
             // -only test surfaced items that already have keyword-button homes.
             if ("uncategorized".equals(d.category())) return isUncategorized(e);
             return Catalog.inTab(idOf(e), d.category());
@@ -467,7 +467,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private boolean isTrinketCached(Entry e) {
         if (!BankVault.TRINKETS || this.minecraft == null || this.minecraft.player == null) return false;
         return trinketCache.computeIfAbsent(e.key(), k -> {
-            // Dave: backpacks are NOT trinkets even though they occupy a trinket slot.
+            // Kishku7: backpacks are NOT trinkets even though they occupy a trinket slot.
             if (Keywords.wordsFor(idOf(e)).contains("backpack")) return false;
             try { return TrinketCompat.isTrinket(e.stack(), this.minecraft.player); }
             catch (Throwable t) { return false; }
@@ -633,7 +633,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         List<String> bp = (d == null || d.pins() == null) ? List.of() : d.pins();
         List<String> up = selectedKey == null ? List.of() : ClientUiState.pinsFor(selectedKey);
         if (bp.isEmpty() && up.isEmpty()) return base;
-        // v1.2 (Dave): pins ALWAYS lead, regardless of sort mode -- user pins, then button pins
+        // v1.2 (Kishku7): pins ALWAYS lead, regardless of sort mode -- user pins, then button pins
         Comparator<Entry> userPinned = Comparator.comparingInt(e -> {
             int i = up.indexOf(idOf(e));
             return i < 0 ? Integer.MAX_VALUE : i;
@@ -661,7 +661,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                 if ("everything".equals(bc.def().dynamic())) continue;   // it matches all by design
                 if (matchesDef(bc.def(), e))
                     return everythingSelected()
-                            ? btnLabel(bc.def()) + " (" + bc.section() + ")"   // rc.4 (Dave): A-Z by family name
+                            ? btnLabel(bc.def()) + " (" + bc.section() + ")"   // rc.4 (Kishku7): A-Z by family name
                             : bc.section() + " \u2192 " + btnLabel(bc.def());
             }
             return "Elsewhere";
@@ -690,7 +690,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     }
 
     /** Found-under grouping (Section -> Button) applies during global search AND on the
-     *  Everything tab's Smart modes (rc.3, Dave: categorize Everything programmatically --
+     *  Everything tab's Smart modes (rc.3, Kishku7: categorize Everything programmatically --
      *  no generated ranked lists; A-Z and Count keep their natural letter/range sections). */
     private boolean foundUnderGrouping() {
         if (!searchText.trim().isEmpty()) return true;
@@ -703,7 +703,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         return d != null && "everything".equals(d.dynamic());
     }
 
-    /** Count-mode section buckets (Dave's ranges). */
+    /** Count-mode section buckets (Kishku7's ranges). */
     private static String countBucket(long c) {
         if (c <= 100) return "1-100";
         if (c <= 1_000) return "101-1,000";
@@ -743,7 +743,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     /** SETTINGS-DRIVEN smart sort: interprets the step chain from categories.json tabSort.
      *  Steps: "name", "form", "oxidation", "color", "firstword", "lastword",
      *  "prefix:<list>", "tier:<list>" (ordered infix), "suffix:<list>". */
-    /** v1.2 (Dave): keyword/dynamic buttons sort CATEGORICALLY -- items group by their
+    /** v1.2 (Kishku7): keyword/dynamic buttons sort CATEGORICALLY -- items group by their
      *  primary catalog category (in category order), each group walking that category's
      *  curated order, then display name. Reads as: all the wood things together, all the
      *  redstone things together, in the same order the old tabs used. */
@@ -927,7 +927,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         for (SectionMark sm : btnSections) {
             int sy = btnTop + sm.y() - btnScroll * bStep;
             if (sy + 8 < btnTop || sy > btnBottom) continue;
-            // Dave (2026-06-07): 0.75x was unreadable at 2x -- same font/size as the grid
+            // Kishku7 (2026-06-07): 0.75x was unreadable at 2x -- same font/size as the grid
             // section titles (full-size, see FONT RULE: never fractional-scale UI text), white.
             textScaled(g, sm.text(), railX + 5, sy + 2, 0xFFFFFFFF, 1.0f);
         }
@@ -1080,7 +1080,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         // between the 3x3 crafting grid and the main inventory. All = 27 main + 9 hotbar;
         // Inventory = 27 main only. Strictly those slot ranges (server enforces too).
         {
-            // rc.2 (Dave): half-size buttons -- short labels, tight padding, 11px tall
+            // rc.2 (Kishku7): half-size buttons -- short labels, tight padding, 11px tall
             depAllW = this.font.width("All") + 6;
             depInvW = this.font.width("Inv") + 6;
             depY = rpY + 68;
@@ -1146,11 +1146,11 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                     g.fill(rpX + 9, yy - 1, rpX + RP_W - 9, yy, ACCENT);          // focused border cue
                     boolean blink = (System.currentTimeMillis() / 500) % 2 == 0;
                     if (shInputText.isEmpty()) {
-                        // rc.2 (Dave): make "type here" unmistakable -- cursor blinks from the start
+                        // rc.2 (Kishku7): make "type here" unmistakable -- cursor blinks from the start
                         if (blink) g.fill(rpX + 12, yy - 1, rpX + 13, yy + 9, TEXT);
                         g.text(this.font, trimTo("type a name; Tab fills, Enter sends", RP_W - 28), rpX + 15, yy, SUBTLE);
                     } else {
-                        // rc.3 (Dave): inline autocomplete -- grey remainder of the nearest online
+                        // rc.3 (Kishku7): inline autocomplete -- grey remainder of the nearest online
                         // name; narrows as more letters are typed; Enter sends the completed name.
                         g.text(this.font, trimTo(shInputText, RP_W - 24), rpX + 12, yy, TEXT);
                         int cx2 = rpX + 12 + this.font.width(shInputText);
@@ -1172,7 +1172,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                         boolean hov = inside(mouseX, mouseY, rpX + 8, yy, RP_W - 16, SH_ROW_H);
                         if (sel) g.fill(rpX + 8, yy, rpX + RP_W - 8, yy + SH_ROW_H, 0xFF4A3A12);
                         else if (hov && !self) g.fill(rpX + 8, yy, rpX + RP_W - 8, yy + SH_ROW_H, 0xFF3A3A42);
-                        // rc.4 (Dave): rank badges are Masters+ knowledge only
+                        // rc.4 (Kishku7): rank badges are Masters+ knowledge only
                         String tag = permLevel >= 3 ? levelTag(m.level()) : "";
                         g.text(this.font, trimTo((self ? "* " : "") + m.name(), RP_W - 20 - this.font.width(tag)),
                                 rpX + 10, yy + 2, sel ? ACCENT : TEXT);
@@ -1187,7 +1187,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                         boolean hov = inside(mouseX, mouseY, rpX + 8, yy, RP_W - 16, SH_ROW_H);
                         if (sel) g.fill(rpX + 8, yy, rpX + RP_W - 8, yy + SH_ROW_H, 0xFF4A3A12);
                         else if (hov) g.fill(rpX + 8, yy, rpX + RP_W - 8, yy + SH_ROW_H, 0xFF3A3A42);
-                        // rc.4 (Dave): the invitee is not told the offered rank
+                        // rc.4 (Kishku7): the invitee is not told the offered rank
                         g.text(this.font, trimTo("From " + ie.from(), RP_W - 20), rpX + 10, yy + 2, sel ? ACCENT : TEXT);
                     }
                 }
@@ -1260,7 +1260,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
 
     private boolean keyPressedImpl(Ev event) {
         if (shInputActive) {
-            if (event.input() == 258) { // TAB -- rc.4 (Dave): accept the autocomplete
+            if (event.input() == 258) { // TAB -- rc.4 (Kishku7): accept the autocomplete
                 String ghost = shCompletion();
                 if (!ghost.isEmpty()) shInputText = shInputText + ghost;
                 return true;
@@ -1397,7 +1397,7 @@ return super.charTyped((net.minecraft.client.input.CharacterEvent) event.raw());
                 if (inGroup) {
                     if (canInvite) ClientNet.sendToServer(new ShareActionPayload(ShareActionPayload.LEAVE, "", 0));
                 } else if (hasInvite) {
-                    // rc.2 (Dave): informed consent -- close the vault, confirm the merge, then accept.
+                    // rc.2 (Kishku7): informed consent -- close the vault, confirm the merge, then accept.
                     // rc.3: acts on the SELECTED invite (default = most recent), named in the dialog.
                     SharingStatePayload.InviteEntry chosen = shSelInvite >= 0 && shSelInvite < shInvites.size()
                             ? shInvites.get(shSelInvite) : shInvites.get(shInvites.size() - 1);
@@ -1415,7 +1415,7 @@ return super.charTyped((net.minecraft.client.input.CharacterEvent) event.raw());
                 return true;
             }
             if (shInputActive && inside(mx, my, rpX + 9, shListY + 1, RP_W - 18, 11)) {
-                return true;   // rc.2 (Dave): clicking the name box must NOT cancel the invite entry
+                return true;   // rc.2 (Kishku7): clicking the name box must NOT cancel the invite entry
             }
             if (!inGroup && !shInvites.isEmpty() && !shInputActive && shListH >= SH_ROW_H
                     && inside(mx, my, rpX + 8, shListY, RP_W - 16, shListH)) {
@@ -1509,7 +1509,7 @@ return super.mouseDragged((net.minecraft.client.input.MouseButtonEvent) event.ra
         draggingThumb = false;
         // v1.2 beta.2: TRUE drag-and-drop pinning. A hold-drag from a slot never produces a
         // second click -- the gesture ends in mouseReleased, and vanilla's quick-craft release
-        // would scatter the carried stack into the dragged-over slots (this ate Dave's stack in
+        // would scatter the carried stack into the dragged-over slots (this ate Kishku7's stack in
         // alpha.16). Releasing over the Pin box disarms quick-craft, then routes the drop through
         // the REAL pin slot: the deposit + pin toggle run inside the vanilla click transaction.
         if (ctrlVisible && inside((int) event.x(), (int) event.y(), pinBoxX, ctrlY, pinBoxW, sbH)) {

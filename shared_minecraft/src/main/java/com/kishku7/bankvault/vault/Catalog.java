@@ -48,7 +48,7 @@ public final class Catalog {
     /** Write any MISSING config file from the bundled defaults (per-file: delete one and only
      *  that one is restored on next init). Existing files are never touched. */
 
-    /** Config data version (Dave, 1.2.1 spec). Bump whenever the bundled data files change in
+    /** Config data version (Kishku7, 1.2.1 spec). Bump whenever the bundled data files change in
      *  a way upgrades must pick up, and record the delta in MIGRATION_LOG. Rule 1: a config
      *  file with no "version" field is pre-1.2.1 and needs an upgrade. */
     public static final String DATA_VERSION = "1.2.1";
@@ -66,7 +66,7 @@ public final class Catalog {
     /** User-editable files: on upgrade, missing elements are ADDED; user edits always win. */
     private static final List<String> USER_FILES = List.of("buttons.json", "keywords.json");
 
-    /** Rules 2/4/5 (Dave, 1.2.1): bring an older config up to spec, then stamp it with the
+    /** Rules 2/4/5 (Kishku7, 1.2.1): bring an older config up to spec, then stamp it with the
      *  new version. Generated files are replaced wholesale; user-editable files deep-gain
      *  missing elements from the bundled spec. Runs before missing-file restore. */
     private static void migrateConfig(Path dir) {
@@ -125,7 +125,7 @@ public final class Catalog {
         Path dir = Platform.configDir().resolve("bankvault");
         try { Files.createDirectories(dir); }
         catch (Exception e) { BankVault.LOGGER.error("[Bank Vault] config dir create failed", e); return; }
-        migrateConfig(dir);   // 1.2.1: version-stamped configs upgrade in place (Dave)
+        migrateConfig(dir);   // 1.2.1: version-stamped configs upgrade in place (Kishku7)
         for (String f : List.of("categories.json", "sort_family.json", "sort_type.json", "sort_groups.json", "buttons.json", "keywords.json")) {
             Path dst = dir.resolve(f);
             if (Files.exists(dst)) continue;

@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * Per-player UI memory (v1.2, Dave): last tab examined + last sort method per tab, persisted
+ * Per-player UI memory (v1.2, Kishku7): last tab examined + last sort method per tab, persisted
  * server-side under {@code config/bankvault/user_settings/}. 27 bucket files -- {@code a.json}
  * .. {@code z.json} plus {@code other.json} -- chosen by the FIRST LETTER of the player's name
  * (non a-z falls into "other"). Records are keyed by UUID inside each bucket, so name changes

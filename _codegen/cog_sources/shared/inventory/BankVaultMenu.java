@@ -251,7 +251,7 @@ if (clickType == ContainerInput.PICKUP && !carried.isEmpty()) {
                     if (take > 0) setCarried(proto.copyWithCount((int) take));
                 }
                 case QUICK_MOVE -> {                                  // shift-click: one stack to inventory.
-                    // Fill order (Dave, v1.1): main rows 1->3 first, hotbar LAST. Menu slots 0..26
+                    // Fill order (Kishku7, v1.1): main rows 1->3 first, hotbar LAST. Menu slots 0..26
                     // are inv rows top->bottom, 27..35 hotbar, so an ascending moveItemStackTo walks
                     // exactly that order -- and can never touch trinket/backpack slots (range-capped).
                     long take = BankManager.withdrawKey(bank, key, max);

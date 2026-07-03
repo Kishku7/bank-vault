@@ -349,7 +349,7 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
         // carrier items are only obtainable WITH potion contents -- plain forms are uncraftable
         java.util.Set<String> componentOnly = java.util.Set.of("minecraft:potion", "minecraft:splash_potion",
                 "minecraft:lingering_potion", "minecraft:tipped_arrow");
-        // rc.5 (Dave): GENERIC -- walk the live item registry, not a curated list, so every
+        // rc.5 (Kishku7): GENERIC -- walk the live item registry, not a curated list, so every
         // loaded mod's items are included (mods we don't yet know about included).
         for (Item item : BuiltInRegistries.ITEM) {
             Identifier rid = BuiltInRegistries.ITEM.getKey(item);
@@ -395,7 +395,7 @@ s.set(DataComponents.OMINOUS_BOTTLE_AMPLIFIER, new net.minecraft.world.item.comp
         return 1;
     }
 
-    /** Op-only test utility (rc.5, Dave): wipe EVERYTHING out of your bank -- plain and special
+    /** Op-only test utility (rc.5, Kishku7): wipe EVERYTHING out of your bank -- plain and special
      *  (NBT) stacks both. Capacity/upgrades are untouched. */
     private static int clearAll(CommandSourceStack src) {
         ServerPlayer p = src.getPlayer();

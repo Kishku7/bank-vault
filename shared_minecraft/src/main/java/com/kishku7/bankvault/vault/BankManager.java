@@ -254,7 +254,7 @@ public final class BankManager {
             String how = list.size() > 1
                     ? "\u00a7e/bank accept " + inv.inviterName + "\u00a7r (\u00a7e/bank accept\u00a7r takes the newest)"
                     : "\u00a7e/bank accept\u00a7r";
-            // rc.4 (Dave): no rank disclosure to the invitee -- only Masters+ see rank info
+            // rc.4 (Kishku7): no rank disclosure to the invitee -- only Masters+ see rank info
             target.sendSystemMessage(Component.literal(
                     "\u00a76[Bank Vault]\u00a7r " + inv.inviterName + " invited you to share their bank vault! "
                     + how + ", \u00a7e/bank decline\u00a7r, or open any Bank Vault to respond."));
@@ -333,7 +333,7 @@ public final class BankManager {
         pending.remove(inv);                                            // others stay pending
         if (pending.isEmpty()) invites.remove(key);
         save(group); writeJson(indexFile, index); writeJson(invitesFile, invites);
-        // rc.4 (Dave): rank named only when the new member is Master+ -- others just join
+        // rc.4 (Kishku7): rank named only when the new member is Master+ -- others just join
         return new AcceptResult(true,
                 "§aJoined " + inv.inviterName + "'s bank."
                         + (inv.level >= MASTER ? " You are a " + levelName(inv.level) + "." : "")
@@ -382,7 +382,7 @@ public final class BankManager {
                 if (heir != null) heir.level = OWNER;
             }
             save(bank);
-            // rc.4 (Dave): Owners/Masters are told when someone leaves the share
+            // rc.4 (Kishku7): Owners/Masters are told when someone leaves the share
             MinecraftServer server = player.level().getServer();
             if (server != null) {
                 String note = "\u00a76[Bank Vault]\u00a77 " + player.getGameProfile().name() + " left the bank."
@@ -425,7 +425,7 @@ public final class BankManager {
         t.level = newLevel;
         save(bank);
 
-        // rc.3 (Dave): promotions are announced to every online member; demotions only to
+        // rc.3 (Kishku7): promotions are announced to every online member; demotions only to
         // online Owners/Masters.
         MinecraftServer server = actor.level().getServer();
         if (server != null && newLevel != oldLevel) {

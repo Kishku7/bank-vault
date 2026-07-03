@@ -100,7 +100,7 @@ public final class Keywords {
     /** Word counts restricted to items whose mod is actually LOADED (registry-present).
      *  Computed lazily on first use -- registries are final by screen time, NOT at parse
      *  time (mod init order is arbitrary) -- and cached until the next config (re)load.
-     *  rc.6 (Dave): the Aether button must not appear on installs without an Aether mod;
+     *  rc.6 (Kishku7): the Aether button must not appear on installs without an Aether mod;
      *  generic for any modded keyword button, known or future. */
     private static Map<String, Integer> loadedWordCounts;
 
@@ -126,7 +126,7 @@ public final class Keywords {
         return false;
     }
 
-    /** Total catalogued items carrying any of the words (tooltip support). rc.6 (Dave):
+    /** Total catalogued items carrying any of the words (tooltip support). rc.6 (Kishku7):
      *  UNIVERSAL registry filter -- vanilla or modded, an item only counts when the running
      *  game actually registers it. */
     public static synchronized Set<String> itemsWithAny(List<String> words) {

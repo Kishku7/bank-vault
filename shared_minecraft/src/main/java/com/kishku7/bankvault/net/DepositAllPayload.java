@@ -10,7 +10,7 @@ import net.minecraft.resources.Identifier;
 /** Client -> server: bulk-deposit the player inventory into the vault.
  *  includeHotbar=false -> the 27 main slots only ("Deposit: Inventory");
  *  includeHotbar=true  -> 27 main + 9 hotbar ("Deposit: All").
- *  NEVER touches armor, offhand, trinket, backpack, or crafting slots (Dave, v1.1 spec). */
+ *  NEVER touches armor, offhand, trinket, backpack, or crafting slots (Kishku7, v1.1 spec). */
 public record DepositAllPayload(boolean includeHotbar) implements CustomPacketPayload {
 
     public static final Type<DepositAllPayload> TYPE =

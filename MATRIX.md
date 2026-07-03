@@ -7,8 +7,8 @@ PLUS NeoForge/1.20.4 (BV already published that line; M1 skipped it).
 
 ## Locked decisions
 - Version 1.4.0 (minor bump over highest line 1.3.0; unification + new features).
-- Build order: VERSION-MAJOR (one MC version across all loaders, then next) -- Dave 2026-07-03.
-- Architectury: TOTAL removal (Dave explicit + standing hard rule). No arch at build or runtime.
+- Build order: VERSION-MAJOR (one MC version across all loaders, then next) -- Kishku7 2026-07-03.
+- Architectury: TOTAL removal (Kishku7 explicit + standing hard rule). No arch at build or runtime.
 - New feature scope: hidden AI/M1-friendly surface (machine-readable outputs, stable id#hash keys,
   query commands). Additive only -- 1.2.x/1.3.0 clients stay protocol-compatible.
 - Publish HELD. Old branches retired only after their line passes the exhaustive boot gate.
