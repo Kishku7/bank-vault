@@ -1,0 +1,33 @@
+plugins {
+    id 'net.neoforged.gradle.userdev' version '7.0.190'
+}
+
+version = "${mod_version}+${minecraft_version}-neoforge"
+group = 'com.kishku7.bankvault'
+base { archivesName = 'bank-vault' }
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+// NeoGradle 7 (MDG only supports NeoForge 20.5+; 20.4 is the last NeoGradle-era line)
+minecraft {
+    accessTransformers { file('src/main/resources/META-INF/accesstransformer.cfg') }
+}
+
+dependencies {
+    implementation "net.neoforged:neoforge:${neo_version}"
+}
+
+processResources {
+    def ep = [mod_version: mod_version, neoforgeRange: project.neoforge_range, mcRange: project.mc_range]
+    inputs.properties(ep)
+    filesMatching('META-INF/mods.toml') { expand(ep) }
+}
+
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.named('compileJava', JavaCompile) { options.release = 17; options.compilerArgs += ['-Xlint:all'] }
+
+java { withSourcesJar() }
+
+// cog-materialized tree (scripts/cog-gen.ps1) -- java + era-corrected resources
+sourceSets.main.java.srcDir "gen/src/main/java"
+sourceSets.main.resources.srcDir "gen/src/main/resources"

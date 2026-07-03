@@ -219,7 +219,9 @@ def emit_bvpayload(cog, ver):
         "",
         "/** Pre-1.20.5 payload shim: BV's own channel-id + raw-buffer contract (CustomPacketPayload",
         " *  with StreamCodecs only exists from 1.20.5; 1.20.1 predates the interface entirely). */",
-        "public interface BvPayload {",
+        ("public interface BvPayload extends net.minecraft.network.protocol.common.custom.CustomPacketPayload {"
+         if compat_core._vt(ver) >= (1, 20, 2) else
+         "public interface BvPayload {"),
         "",
         "    ResourceLocation id();",
         "",

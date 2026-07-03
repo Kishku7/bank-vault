@@ -54,6 +54,10 @@ public final class ModNetworking {
         r.playToServer(UiStatePayload.TYPE, UiStatePayload.CODEC, (p, ctx) -> { if (ctx.player() instanceof ServerPlayer sp) onUiState(p, sp); });
     }
 
+    private static void sendToPlayerSeam(ServerPlayer player, net.minecraft.network.protocol.common.custom.CustomPacketPayload p) {
+        PacketDistributor.sendToPlayer(player, p);
+    }
+
     public static void sendSync(ServerPlayer player, Bank bank) {
         RegistryAccess ra = player.level().registryAccess();
         List<VaultSyncPayload.Entry> entries = new ArrayList<>();
@@ -68,7 +72,7 @@ public final class ModNetworking {
             ItemStack st = StackStore.decode(e.getValue().stack, ra);
             if (!st.isEmpty()) entries.add(new VaultSyncPayload.Entry(e.getKey(), st, e.getValue().count));
         }
-        PacketDistributor.sendToPlayer(player, new VaultSyncPayload(entries, bank.upgradeCount,
+        sendToPlayerSeam(player, new VaultSyncPayload(entries, bank.upgradeCount,
                 VaultCapacity.capacityFor(bank.upgradeCount), bank.levelOf(player.getUUID())));
         sendSharing(player);
     }
@@ -82,7 +86,7 @@ public final class ModNetworking {
         List<SharingStatePayload.InviteEntry> is = new ArrayList<>();
         for (BankManager.Invite inv : BankManager.pendingInvites(player.getUUID()))
             is.add(new SharingStatePayload.InviteEntry(inv.inviterName, inv.level));
-        PacketDistributor.sendToPlayer(player, new SharingStatePayload(ms, is));
+        sendToPlayerSeam(player, new SharingStatePayload(ms, is));
     }
 
     /** v1.2 last-use memory: persist the interaction in the server-side bucket files. */
@@ -105,7 +109,7 @@ public final class ModNetworking {
             for (var e : rec.sorts.entrySet()) ts.add(new UiStateSyncPayload.TabSort(e.getKey(), e.getValue()));
             for (var e : rec.pins.entrySet()) tp.add(new UiStateSyncPayload.TabPins(e.getKey(), e.getValue()));
         }
-        PacketDistributor.sendToPlayer(player, new UiStateSyncPayload(lastTab, ts, sections, tp));
+        sendToPlayerSeam(player, new UiStateSyncPayload(lastTab, ts, sections, tp));
     }
 
     /** Re-sync every online member of a bank (membership or contents changed). */

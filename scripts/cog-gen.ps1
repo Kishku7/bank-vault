@@ -74,6 +74,19 @@ Get-ChildItem (Join-Path $gen 'src\main\java') -Recurse -File -Filter *.java |
         & cog -r -I $cg -D loader=$Loader -D ver=$McVer -D codegen=$cg $_.FullName | Out-Null
         if ($LASTEXITCODE -ne 0) { throw ("cog failed: " + $_.FullName) }
     }
+# ---- 7f. forge-47 deprecation hygiene: Forge 1.20.1 deprecates the vanilla BuiltInRegistries
+# fields (ForgeRegistries preferred); they remain the correct cross-loader access and work at
+# runtime, so the DISPOSABLE gen tree gets a class-level suppression with this justification. ----
+if ($Loader -eq 'forge' -and $v -lt [version]'1.20.2') {
+    Get-ChildItem (Join-Path $gen 'src\main\java') -Recurse -File -Filter *.java | ForEach-Object {
+        $t = Get-Content $_.FullName -Raw
+        if ($t -match 'BuiltInRegistries\.' -and $t -notmatch '@SuppressWarnings\("deprecation"\)\r?\npublic') {
+            $t = $t -replace '(?m)^(public (final )?(class|record|interface) )', ('@SuppressWarnings("deprecation") // Forge 47 deprecates vanilla BuiltInRegistries; still the correct cross-loader access' + [char]10 + '$1')
+            Set-Content $_.FullName $t -NoNewline
+        }
+    }
+}
+
 # ---- 7e. ResourceLocation factory -> ctor below 1.21 (Forge backported the factory at 1.20.4) ----
 $rlFactory = ($v -ge [version]'1.21') -or ($Loader -eq 'forge' -and $v -ge [version]'1.20.4')
 if (-not $rlFactory) {

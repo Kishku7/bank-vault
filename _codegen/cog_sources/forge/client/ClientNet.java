@@ -2,6 +2,10 @@ package com.kishku7.bankvault.client;
 
 import com.kishku7.bankvault.net.ModNetworking;
 
+/* [[[cog
+import compat_forge
+compat_forge.emit_forge_clientnet(cog, ver)
+]]] */
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
 /** Client networking seam: shared client code sends to the server through this one name. */
@@ -12,3 +16,4 @@ public final class ClientNet {
         ModNetworking.sendToServer(payload);
     }
 }
+/* [[[end]]] */

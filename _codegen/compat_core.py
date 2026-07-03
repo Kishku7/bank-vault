@@ -384,7 +384,7 @@ def emit_ev(cog, ver):
             "package com.kishku7.bankvault.client;",
             "",
             "import net.minecraft.client.gui.screens.Screen;",
-            ("import net.minecraft.util.StringUtil;" if _vt(ver) >= (1, 20, 2)
+            ("import net.minecraft.util.StringUtil;" if _vt(ver) >= (1, 20, 5)
              else "import net.minecraft.SharedConstants;"),
             "",
             "/** Input shim: same accessor surface every era; carries pre-1.21.9 primitive params here. */",
@@ -421,7 +421,7 @@ def emit_ev(cog, ver):
             "    public boolean isConfirmation() { return key == 257 || key == 335; }",
             "",
             ("    public boolean isAllowedChatCharacter() { return StringUtil.isAllowedChatCharacter((char) codepoint); }"
-             if _vt(ver) >= (1, 20, 2) else
+             if _vt(ver) >= (1, 20, 5) else
              "    public boolean isAllowedChatCharacter() { return SharedConstants.isAllowedChatCharacter((char) codepoint); }"),
             "",
             "    public String codepointAsString() { return String.valueOf((char) codepoint); }",

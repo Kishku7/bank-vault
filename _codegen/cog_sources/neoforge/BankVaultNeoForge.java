@@ -25,12 +25,22 @@ compat_neoforge.emit_break_import(cog, ver)
 import net.neoforged.neoforge.event.level.block.BreakBlockEvent;
 /* [[[end]]] */
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+/* [[[cog
+import compat_neoforge
+compat_neoforge.emit_neoentry_payloads_import(cog, ver)
+]]] */
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+/* [[[end]]] */
 
 @Mod(BankVault.MOD_ID)
 public class BankVaultNeoForge {
 
+    /* [[[cog
+    import compat_neoforge
+    compat_neoforge.emit_neoentry_ctor(cog, ver)
+    ]]] */
     public BankVaultNeoForge(ModContainer mod, IEventBus bus, Dist dist) {
+    /* [[[end]]] */
         BankVault.LOGGER.info("[Bank Vault] NeoForge initializing (TravelersBackpack={})",
                 BankVault.TRAVELERS_BACKPACK);
 
@@ -47,7 +57,12 @@ public class BankVaultNeoForge {
         NeoForge.EVENT_BUS.addListener(this::registerCommands);
         NeoForge.EVENT_BUS.addListener(this::blockBroken);
 
+        /* [[[cog
+        import compat_neoforge
+        compat_neoforge.emit_neoentry_clientgate(cog, ver)
+        ]]] */
         if (dist.isClient()) {
+        /* [[[end]]] */
             com.kishku7.bankvault.client.BankVaultNeoForgeClient.init(bus);
         }
     }
@@ -58,7 +73,12 @@ public class BankVaultNeoForge {
         BankVault.LOGGER.info("[Bank Vault] registration complete");
     }
 
+    /* [[[cog
+    import compat_neoforge
+    compat_neoforge.emit_neoentry_payloads_method(cog, ver)
+    ]]] */
     private void registerPayloads(RegisterPayloadHandlersEvent event) {
+    /* [[[end]]] */
         ModNetworking.registerNeoForge(event);
     }
 

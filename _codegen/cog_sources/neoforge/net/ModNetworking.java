@@ -14,9 +14,14 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+/* [[[cog
+import compat_neoforge
+compat_neoforge.emit_neonet_imports(cog, ver)
+]]] */
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+/* [[[end]]] */
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +43,10 @@ public final class ModNetworking {
 
     private ModNetworking() {}
 
+    /* [[[cog
+    import compat_neoforge
+    compat_neoforge.emit_neonet_register(cog, ver)
+    ]]] */
     public static void registerNeoForge(RegisterPayloadHandlersEvent event) {
         PayloadRegistrar r = event.registrar("bankvault").versioned("1.2.0");
         // S2C — handlers run client-side only; sinks keep client classes out of the server.
@@ -53,6 +62,17 @@ public final class ModNetworking {
         r.playToServer(ShareActionPayload.TYPE, ShareActionPayload.CODEC, (p, ctx) -> { if (ctx.player() instanceof ServerPlayer sp) onShareAction(p, sp); });
         r.playToServer(UiStatePayload.TYPE, UiStatePayload.CODEC, (p, ctx) -> { if (ctx.player() instanceof ServerPlayer sp) onUiState(p, sp); });
     }
+    /* [[[end]]] */
+
+
+    /* [[[cog
+    import compat_neoforge
+    compat_neoforge.emit_neonet_sendto(cog, ver)
+    ]]] */
+    private static void sendToPlayerSeam(ServerPlayer player, net.minecraft.network.protocol.common.custom.CustomPacketPayload p) {
+        PacketDistributor.sendToPlayer(player, p);
+    }
+    /* [[[end]]] */
 
     public static void sendSync(ServerPlayer player, Bank bank) {
         RegistryAccess ra = player.level().registryAccess();
@@ -68,7 +88,7 @@ public final class ModNetworking {
             ItemStack st = StackStore.decode(e.getValue().stack, ra);
             if (!st.isEmpty()) entries.add(new VaultSyncPayload.Entry(e.getKey(), st, e.getValue().count));
         }
-        PacketDistributor.sendToPlayer(player, new VaultSyncPayload(entries, bank.upgradeCount,
+        sendToPlayerSeam(player, new VaultSyncPayload(entries, bank.upgradeCount,
                 VaultCapacity.capacityFor(bank.upgradeCount), bank.levelOf(player.getUUID())));
         sendSharing(player);
     }
@@ -82,7 +102,7 @@ public final class ModNetworking {
         List<SharingStatePayload.InviteEntry> is = new ArrayList<>();
         for (BankManager.Invite inv : BankManager.pendingInvites(player.getUUID()))
             is.add(new SharingStatePayload.InviteEntry(inv.inviterName, inv.level));
-        PacketDistributor.sendToPlayer(player, new SharingStatePayload(ms, is));
+        sendToPlayerSeam(player, new SharingStatePayload(ms, is));
     }
 
     /** v1.2 last-use memory: persist the interaction in the server-side bucket files. */
@@ -105,7 +125,7 @@ public final class ModNetworking {
             for (var e : rec.sorts.entrySet()) ts.add(new UiStateSyncPayload.TabSort(e.getKey(), e.getValue()));
             for (var e : rec.pins.entrySet()) tp.add(new UiStateSyncPayload.TabPins(e.getKey(), e.getValue()));
         }
-        PacketDistributor.sendToPlayer(player, new UiStateSyncPayload(lastTab, ts, sections, tp));
+        sendToPlayerSeam(player, new UiStateSyncPayload(lastTab, ts, sections, tp));
     }
 
     /** Re-sync every online member of a bank (membership or contents changed). */

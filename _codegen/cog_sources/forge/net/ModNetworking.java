@@ -14,6 +14,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+/* [[[cog
+import compat_forge
+compat_forge.emit_forgenet_imports(cog, ver)
+]]] */
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -21,6 +25,7 @@ import net.minecraftforge.network.Channel;
 import net.minecraftforge.network.ChannelBuilder;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.payload.PayloadProtocol;
+/* [[[end]]] */
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +47,10 @@ public final class ModNetworking {
 
     private ModNetworking() {}
 
+    /* [[[cog
+    import compat_forge
+    compat_forge.emit_forgenet_channel(cog, ver)
+    ]]] */
     private static Channel<CustomPacketPayload> CHANNEL;
 
     /** Client -> server send seam (ClientNet delegates here). */
@@ -106,6 +115,7 @@ public final class ModNetworking {
                         (m, c) -> c.enqueueWork(() -> sharingSink.accept(m)))
                 .build();
     }
+    /* [[[end]]] */
 
     public static void sendSync(ServerPlayer player, Bank bank) {
         RegistryAccess ra = player.level().registryAccess();
