@@ -12,8 +12,8 @@ loom {
 }
 
 // Shared single-source-of-truth tree.
-sourceSets.main.java.srcDir "../shared_minecraft/src/main/java"
-sourceSets.main.resources.srcDir "../shared_minecraft/src/main/resources"
+sourceSets.main.java.srcDir "../../shared_minecraft/src/main/java"
+sourceSets.main.resources.srcDir "../../shared_minecraft/src/main/resources"
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
