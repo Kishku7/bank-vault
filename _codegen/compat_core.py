@@ -146,32 +146,66 @@ def emit_copy_each(cog, ver, recv):
 
 
 # ---- Gfx facade: era-stable drawing surface for shared GUI code ----
-# 26: wraps GuiGraphicsExtractor (native names). Pre-26 (1.21.6-1.21.11 era): wraps GuiGraphics
-# (text->drawString+noShadow, item->renderItem, itemDecorations->renderItemDecorations; pose(),
-# scissor, blit, setTooltipForNextFrame identical at 1.21.11). Older eras extend the branches.
+# Eras: 26 (GuiGraphicsExtractor, native names) | 1.21.6-1.21.11 "new" (GuiGraphics, drawString/
+# renderItem renames; pose/tooltip/blit-pipeline identical to 26) | 1.21.2-1.21.5 "mid"
+# (PoseStack pose, renderTooltip, blit via Function<RL,RenderType>). Older eras: extend here.
+def gfx_era(ver):
+    if is26(ver):
+        return "26"
+    if _vt(ver) >= (1, 21, 6):
+        return "new"
+    if _vt(ver) >= (1, 21, 2):
+        return "mid"
+    raise KeyError("Gfx era not implemented for " + ver + " -- extend compat_core.gfx_era")
+
+
 def emit_gfx(cog, ver):
-    modern = is26(ver)
-    G = "GuiGraphicsExtractor" if modern else "GuiGraphics"
-    text_body = "g.text(font, s, x, y, color);" if modern else "g.drawString(font, s, x, y, color, false);"
-    ent_call = ("InventoryScreen.extractEntityInInventoryFollowsMouse" if modern
-                else "InventoryScreen.renderEntityInInventoryFollowsMouse")
-    item_body = "g.item(stack, x, y);" if modern else "g.renderItem(stack, x, y);"
-    deco_body = ("g.itemDecorations(font, stack, x, y, s);" if modern
+    era = gfx_era(ver)
+    G = "GuiGraphicsExtractor" if era == "26" else "GuiGraphics"
+    text_body = "g.text(font, s, x, y, color);" if era == "26" else "g.drawString(font, s, x, y, color, false);"
+    item_body = "g.item(stack, x, y);" if era == "26" else "g.renderItem(stack, x, y);"
+    deco_body = ("g.itemDecorations(font, stack, x, y, s);" if era == "26"
                  else "g.renderItemDecorations(font, stack, x, y, s);")
+    ent_call = ("InventoryScreen.extractEntityInInventoryFollowsMouse" if era == "26"
+                else "InventoryScreen.renderEntityInInventoryFollowsMouse")
+    tt = "setTooltipForNextFrame" if era in ("26", "new") else "renderTooltip"
+    if era == "mid":
+        pose_ops = [
+            "    public void pushMatrix() { g.pose().pushPose(); }",
+            "",
+            "    public void translate(float x, float y) { g.pose().translate(x, y, 0); }",
+            "",
+            "    public void scale(float sx, float sy) { g.pose().scale(sx, sy, 1); }",
+            "",
+            "    public void popMatrix() { g.pose().popPose(); }",
+        ]
+        blit_body = "g.blit(RenderType::guiTextured, tex, x, y, u, v, w, h, tw, th);"
+        blit_imports = ["import net.minecraft.client.renderer.RenderType;"]
+    else:
+        pose_ops = [
+            "    public void pushMatrix() { g.pose().pushMatrix(); }",
+            "",
+            "    public void translate(float x, float y) { g.pose().translate(x, y); }",
+            "",
+            "    public void scale(float sx, float sy) { g.pose().scale(sx, sy); }",
+            "",
+            "    public void popMatrix() { g.pose().popMatrix(); }",
+        ]
+        blit_body = "g.blit(RenderPipelines.GUI_TEXTURED, tex, x, y, u, v, w, h, tw, th);"
+        blit_imports = ["import net.minecraft.client.renderer.RenderPipelines;"]
     lines = [
         "package com.kishku7.bankvault.client;",
         "",
         "import java.util.List;",
         "import java.util.Optional;",
         "",
-        "import com.mojang.blaze3d.pipeline.RenderPipeline;",
-        "",
         "import net.minecraft.client.gui.Font;",
-        "import net.minecraft.client.gui.screens.inventory.InventoryScreen;",
         "import net.minecraft.client.gui." + G + ";",
+        "import net.minecraft.client.gui.screens.inventory.InventoryScreen;",
+    ] + blit_imports + [
         "import net.minecraft.network.chat.Component;",
-        "import net.minecraft.world.entity.LivingEntity;",
         "import net.minecraft.resources.Identifier;",
+        "import net.minecraft.world.entity.LivingEntity;",
         "import net.minecraft.world.inventory.tooltip.TooltipComponent;",
         "import net.minecraft.world.item.ItemStack;",
         "",
@@ -195,27 +229,21 @@ def emit_gfx(cog, ver):
         "",
         "    public void itemDecorations(Font font, ItemStack stack, int x, int y, String s) { " + deco_body + " }",
         "",
-        "    public void pushMatrix() { g.pose().pushMatrix(); }",
-        "",
-        "    public void translate(float x, float y) { g.pose().translate(x, y); }",
-        "",
-        "    public void scale(float sx, float sy) { g.pose().scale(sx, sy); }",
-        "",
-        "    public void popMatrix() { g.pose().popMatrix(); }",
+    ] + pose_ops + [
         "",
         "    public void enableScissor(int x0, int y0, int x1, int y1) { g.enableScissor(x0, y0, x1, y1); }",
         "",
         "    public void disableScissor() { g.disableScissor(); }",
         "",
-        "    public void blit(RenderPipeline pipeline, Identifier tex, int x, int y, float u, float v,",
-        "                     int w, int h, int tw, int th) { g.blit(pipeline, tex, x, y, u, v, w, h, tw, th); }",
+        "    public void blitGuiTextured(Identifier tex, int x, int y, float u, float v,",
+        "                                int w, int h, int tw, int th) { " + blit_body + " }",
         "",
         "    public void setTooltipForNextFrame(Font font, List<Component> lines, Optional<TooltipComponent> comp,",
-        "                                       int mx, int my) { g.setTooltipForNextFrame(font, lines, comp, mx, my); }",
+        "                                       int mx, int my) { g." + tt + "(font, lines, comp, mx, my); }",
         "",
-        "    public void setTooltipForNextFrame(Font font, ItemStack stack, int mx, int my) { g.setTooltipForNextFrame(font, stack, mx, my); }",
+        "    public void setTooltipForNextFrame(Font font, ItemStack stack, int mx, int my) { g." + tt + "(font, stack, mx, my); }",
         "",
-        "    public void setTooltipForNextFrame(Font font, Component c, int mx, int my) { g.setTooltipForNextFrame(font, c, mx, my); }",
+        "    public void setTooltipForNextFrame(Font font, Component c, int mx, int my) { g." + tt + "(font, c, mx, my); }",
         "",
         "    public void entityInInventoryFollowsMouse(int x1, int y1, int x2, int y2, int scale, float yOff,",
         "                                              float mouseX, float mouseY, LivingEntity entity) {",
@@ -453,3 +481,67 @@ def emit_perm_gamemaster26(cog, ver):
         cog.outl("s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER)")
     else:
         cog.outl("s.hasPermission(2)")
+
+
+# ---- BlockEntity save/load IO era: ValueInput/Output @1.21.6+; CompoundTag(+Provider) before ----
+def emit_be_io_imports(cog, ver):
+    if _vt(ver) >= (1, 21, 6):
+        cog.outl("import net.minecraft.world.level.storage.ValueInput;")
+        cog.outl("import net.minecraft.world.level.storage.ValueOutput;")
+    elif _vt(ver) >= (1, 20, 5):
+        cog.outl("import net.minecraft.core.HolderLookup;")
+        cog.outl("import net.minecraft.nbt.CompoundTag;")
+    else:
+        cog.outl("import net.minecraft.nbt.CompoundTag;")
+
+
+def emit_be_io(cog, ver):
+    if _vt(ver) >= (1, 21, 6):
+        lines = [
+            "    @Override",
+            "    protected void saveAdditional(ValueOutput output) {",
+            "        super.saveAdditional(output);",
+            '        if (builderUUID != null) output.putString("builder", builderUUID.toString());',
+            "    }",
+            "",
+            "    @Override",
+            "    protected void loadAdditional(ValueInput input) {",
+            "        super.loadAdditional(input);",
+            '        String b = input.getStringOr("builder", "");',
+            "        this.builderUUID = b.isEmpty() ? null : UUID.fromString(b);",
+            "    }",
+        ]
+    elif _vt(ver) >= (1, 20, 5):
+        read = ('tag.getStringOr("builder", "")' if _vt(ver) >= (1, 21, 5)
+                else 'tag.getString("builder")')
+        lines = [
+            "    @Override",
+            "    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {",
+            "        super.saveAdditional(tag, registries);",
+            '        if (builderUUID != null) tag.putString("builder", builderUUID.toString());',
+            "    }",
+            "",
+            "    @Override",
+            "    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {",
+            "        super.loadAdditional(tag, registries);",
+            "        String b = " + read + ";",
+            "        this.builderUUID = b.isEmpty() ? null : UUID.fromString(b);",
+            "    }",
+        ]
+    else:
+        lines = [
+            "    @Override",
+            "    protected void saveAdditional(CompoundTag tag) {",
+            "        super.saveAdditional(tag);",
+            '        if (builderUUID != null) tag.putString("builder", builderUUID.toString());',
+            "    }",
+            "",
+            "    @Override",
+            "    public void load(CompoundTag tag) {",
+            "        super.load(tag);",
+            '        String b = tag.getString("builder");',
+            "        this.builderUUID = b.isEmpty() ? null : UUID.fromString(b);",
+            "    }",
+        ]
+    for ln in lines:
+        cog.outl(ln)

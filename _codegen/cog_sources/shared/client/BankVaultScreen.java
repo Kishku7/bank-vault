@@ -961,7 +961,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             String ic = cell.def().icon();
             if (ic != null && ic.startsWith("texture:")) {   // baked composite icons (v1.2)
                 Identifier tid = Identifier.tryParse(ic.substring(8));
-                if (tid != null) g.blit(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, tid,
+                if (tid != null) g.blitGuiTextured(tid,
                         bx + (btnSize - 16) / 2, by + (btnSize - 16) / 2, 0f, 0f, 16, 16, 16, 16);
             } else {
                 g.item(iconFor(cell.def()), bx + (btnSize - 16) / 2, by + (btnSize - 16) / 2);
