@@ -119,7 +119,12 @@ public class BankVaultMenu extends AbstractContainerMenu {
         for (int i = 0; i < 4; i++)
             addSlot(new ArmorSlot(inv, inv.player, ARMOR_ORDER[i], ARMOR_INV_INDEX[i], 0, 0, ARMOR_ICONS[i]));
         addSlot(new Slot(inv, Inventory.SLOT_OFFHAND, 0, 0) {
+            /* [[[cog
+            import compat_core
+            compat_core.emit_no_item_icon_shield(cog, ver)
+            ]]] */
             @Override public Identifier getNoItemIcon() { return InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD; }
+            /* [[[end]]] */
         });
         // 44..52 full 3x3 crafting grid + 53 result (the vault doubles as a crafting table)
         for (int i = 0; i < 9; i++) addSlot(new Slot(craftSlots, i, 0, 0));

@@ -545,3 +545,13 @@ def emit_be_io(cog, ver):
         ]
     for ln in lines:
         cog.outl(ln)
+
+
+# ---- Slot.getNoItemIcon: single id @1.21.4+; Pair<atlas,sprite> before ----
+def emit_no_item_icon_shield(cog, ver):
+    if _vt(ver) >= (1, 21, 4):
+        cog.outl("@Override public " + id_type(ver) + " getNoItemIcon() { return InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD; }")
+    else:
+        cog.outl("@Override public com.mojang.datafixers.util.Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {")
+        cog.outl("    return com.mojang.datafixers.util.Pair.of(InventoryMenu.BLOCK_ATLAS, InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD);")
+        cog.outl("}")
