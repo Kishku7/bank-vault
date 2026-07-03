@@ -15,8 +15,13 @@ public final class ModBlockEntities {
     private ModBlockEntities() {}
 
     public static void init() {
+        /* [[[cog
+        import compat_fabric
+        compat_fabric.emit_be_create(cog, ver)
+        ]]] */
         BANK_VAULT = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
                 Identifier.fromNamespaceAndPath(BankVault.MOD_ID, "bank_vault"),
                 FabricBlockEntityTypeBuilder.create(BankVaultBlockEntity::new, ModBlocks.VAULT).build());
+        /* [[[end]]] */
     }
 }

@@ -55,3 +55,11 @@ def emit_clientnet(cog, ver):
     ]
     for ln in lines:
         cog.outl(ln)
+
+
+# ---- BlockEntityType creation: direct ctor @1.21.2+ (Builder removed); vanilla Builder before ----
+def emit_be_create(cog, ver):
+    if compat_core._vt(ver) >= (1, 21, 2):
+        cog.outl("            BANK_VAULT = new BlockEntityType<>(BankVaultBlockEntity::new, Set.of(ModBlocks.VAULT));")
+    else:
+        cog.outl("            BANK_VAULT = BlockEntityType.Builder.of(BankVaultBlockEntity::new, ModBlocks.VAULT).build(null);")

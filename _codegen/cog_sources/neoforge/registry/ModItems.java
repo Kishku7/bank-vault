@@ -19,7 +19,12 @@ public final class ModItems {
             Identifier id = Identifier.fromNamespaceAndPath(BankVault.MOD_ID, "bank_vault");
             ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, id);
             // Item registry fires after blocks: ModBlocks.VAULT is populated by then.
+            /* [[[cog
+            import compat_core
+            compat_core.emit_blockitem_deferred(cog, ver)
+            ]]] */
             return new BlockItem(ModBlocks.VAULT, new Item.Properties().setId(key));
+            /* [[[end]]] */
         });
     }
 

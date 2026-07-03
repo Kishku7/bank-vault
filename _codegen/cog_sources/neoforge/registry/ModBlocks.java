@@ -37,7 +37,12 @@ public final class ModBlocks {
                 .sound(SoundType.METAL)
                 .strength(50.0F, 1200.0F)
                 .requiresCorrectToolForDrops()
+                /* [[[cog
+                import compat_core
+                compat_core.emit_block_props_tail(cog, ver)
+                ]]] */
                 .pushReaction(PushReaction.BLOCK)
                 .setId(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(BankVault.MOD_ID, name)));
+                /* [[[end]]] */
     }
 }

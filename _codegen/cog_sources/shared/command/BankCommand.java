@@ -366,7 +366,12 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
         }
         for (int amp = 0; amp < 5; amp++) {
             ItemStack s = new ItemStack(Items.OMINOUS_BOTTLE);
-            s.set(DataComponents.OMINOUS_BOTTLE_AMPLIFIER, new net.minecraft.world.item.component.OminousBottleAmplifier(amp));
+            /* [[[cog
+            import compat_core
+            compat_core.emit_ominous_set(cog, ver)
+            ]]] */
+s.set(DataComponents.OMINOUS_BOTTLE_AMPLIFIER, new net.minecraft.world.item.component.OminousBottleAmplifier(amp));
+            /* [[[end]]] */
             if (!BankManager.hasExact(bank, s, ra) && BankManager.depositStack(bank, s, ra) > 0) other++;
         }
         final int fp = plain, fb = books, fpo = potions, fo = other;

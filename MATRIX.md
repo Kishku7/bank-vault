@@ -22,8 +22,8 @@ PLUS NeoForge/1.20.4 (BV already published that line; M1 skipped it).
 | 1.20.1  | --     | --       | [ ]   | new; Forge jar also serves NeoForge <=1.20.1 (mod-deploy cutover) |
 | 1.20.4  | --     | [ ]      | --    | keep published NeoForge 1.20.4 line (ex 1.20.4-gap) |
 | 1.20.6  | [ ]    | [ ]      | [ ]   | existing line (arch -> rebuild) |
-| 1.21    | [ ]    | [ ]      | [ ]   | new |
-| 1.21.1  | [ ]    | [ ]      | [ ]   | existing (arch -> rebuild; Forge cell already FG6) |
+| 1.21    | [x]    | [x]      | [x]   | new |
+| 1.21.1  | [x]    | [x]      | [x]   | existing (arch -> rebuild; Forge cell already FG6) |
 | 1.21.2  | [x]    | [x]      | --    | new |
 | 1.21.5  | [x]    | [x]      | [x]   | existing |
 | 1.21.6  | [ ]    | --       | --    | new (M1 pattern) |
@@ -68,3 +68,4 @@ MC), record it in mod-version-gates.md and mark `--` here instead.)
 - 2026-07-03 04:35 Forge/1.21.8 green 0/0 -- 1.21.8 ROW COMPLETE (all 3 loaders). Forge glue built in cog_sources/forge (EventBus7/BusGroup entrypoint, PayloadChannel networking w/ sp() double-decode guard, ForgeRegistries seams, FMLClientSetup screen+sinks). Trap re-learned: FG6 ATs need SRG names (gate recorded). Claim [1.21.6,1.21.9) javafml 56. Next rows: 1.21.5 (Fabric+NeoForge+Forge), then 1.21.2/1.21.1/1.21/1.21.6-era gaps per matrix.
 - 2026-07-03 05:10 1.21.5 ROW COMPLETE (3 loaders, 0/0). New era machinery: Gfx mid-era branch (PoseStack pose, renderTooltip, blit Function form; blitGuiTextured semantic call), BE save/load era (ValueInput/Output@1.21.6 vs CompoundTag+Provider, getStringOr@1.21.5), NeoForge ClientPacketDistributor boundary (>=1.21.8; PacketDistributor.sendToServer below), Forge EventBus 6/7 whole-file era entrypoint+client (eb7@Forge58/MC1.21.8). Claim adjustments: Forge 1.21.8 jar narrowed to [1.21.8,1.21.9) javafml 58; Forge 1.21.5 jar claims [1.21.5,1.21.8) javafml 55 (EventBus6 span). Next: 1.21.2 row.
 - 2026-07-03 05:45 1.21.2 ROW COMPLETE (Fabric+NeoForge 0/0, first GAP-FILL cells -- BV never shipped 1.21.2). New gate: Slot.getNoItemIcon returns Pair<atlas,sprite> <1.21.4 vs single id (emit_no_item_icon_shield). fabric-api for 1.21.2 = 0.106.1+1.21.2 (0.114.0 does not exist). NeoForge 21.2.1-beta. Next: 1.21.1 + 1.21 rows (registry get/getValue boundary @1.21.2, Gfx old-era blit).
+- 2026-07-03 06:20 1.21.1 + 1.21 ROWS COMPLETE (6 cells, all 0/0; 1.21 row = gap-fill, first-ever BV Forge 1.21/51). New gates this pass: slotChangedCraftingGrid takes Level (not ServerLevel) <=1.21.1 (per-cell AW/AT descriptor switch), Properties.setId/BlockItem id key @1.21.2+ (emit_block_props_tail/emit_blockitem_*), OMINOUS_BOTTLE_AMPLIFIER component Integer <1.21.2 vs record, BlockEntityType direct ctor @1.21.2+ vs Builder.of().build(null), registry getValue->get rename <1.21.2 (multi-line-aware), FabricBlockEntityTypeBuilder deprecated at 1.21.1 (vanilla Builder used pre-1.21.2). Remaining rows: 1.21.6 (Fabric), 1.20.6 trio, 1.20.4 Neo, 1.20.1 Forge, 1.20 Fabric, 26.3 snapshot bump.

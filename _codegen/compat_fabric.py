@@ -78,3 +78,15 @@ def emit_payload_registry(cog, ver):
         else:
             m = "playC2S()" if d == "serverbound" else "playS2C()"
         cog.outl("        PayloadTypeRegistry." + m + ".register(" + n + ".TYPE, " + n + ".CODEC);")
+
+
+# ---- BlockEntityType creation: fabric builder (modern, matches 26 twin) vs vanilla Builder <1.21.2 ----
+def emit_be_create(cog, ver):
+    if compat_core._vt(ver) >= (1, 21, 2):
+        cog.outl("        BANK_VAULT = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,")
+        cog.outl('                Identifier.fromNamespaceAndPath(BankVault.MOD_ID, "bank_vault"),')
+        cog.outl("                FabricBlockEntityTypeBuilder.create(BankVaultBlockEntity::new, ModBlocks.VAULT).build());")
+    else:
+        cog.outl("        BANK_VAULT = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,")
+        cog.outl('                Identifier.fromNamespaceAndPath(BankVault.MOD_ID, "bank_vault"),')
+        cog.outl("                BlockEntityType.Builder.of(BankVaultBlockEntity::new, ModBlocks.VAULT).build(null));")

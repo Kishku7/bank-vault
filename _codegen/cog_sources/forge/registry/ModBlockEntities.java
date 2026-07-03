@@ -18,7 +18,12 @@ public final class ModBlockEntities {
     static {
         BLOCK_ENTITY_TYPES.register("bank_vault", () -> {
             // Vanilla ctor — FabricBlockEntityTypeBuilder is just sugar over this.
+            /* [[[cog
+            import compat_neoforge
+            compat_neoforge.emit_be_create(cog, ver)
+            ]]] */
             BANK_VAULT = new BlockEntityType<>(BankVaultBlockEntity::new, Set.of(ModBlocks.VAULT));
+            /* [[[end]]] */
             return BANK_VAULT;
         });
     }

@@ -156,7 +156,7 @@ def gfx_era(ver):
         return "new"
     if _vt(ver) >= (1, 21, 2):
         return "mid"
-    raise KeyError("Gfx era not implemented for " + ver + " -- extend compat_core.gfx_era")
+    return "old"   # 1.20.x - 1.21.1: as mid but direct blit(tex,...) (no RenderType function param)
 
 
 def emit_gfx(cog, ver):
@@ -169,7 +169,7 @@ def emit_gfx(cog, ver):
     ent_call = ("InventoryScreen.extractEntityInInventoryFollowsMouse" if era == "26"
                 else "InventoryScreen.renderEntityInInventoryFollowsMouse")
     tt = "setTooltipForNextFrame" if era in ("26", "new") else "renderTooltip"
-    if era == "mid":
+    if era in ("mid", "old"):
         pose_ops = [
             "    public void pushMatrix() { g.pose().pushPose(); }",
             "",
@@ -179,8 +179,12 @@ def emit_gfx(cog, ver):
             "",
             "    public void popMatrix() { g.pose().popPose(); }",
         ]
-        blit_body = "g.blit(RenderType::guiTextured, tex, x, y, u, v, w, h, tw, th);"
-        blit_imports = ["import net.minecraft.client.renderer.RenderType;"]
+        if era == "mid":
+            blit_body = "g.blit(RenderType::guiTextured, tex, x, y, u, v, w, h, tw, th);"
+            blit_imports = ["import net.minecraft.client.renderer.RenderType;"]
+        else:
+            blit_body = "g.blit(tex, x, y, u, v, w, h, tw, th);"
+            blit_imports = []
     else:
         pose_ops = [
             "    public void pushMatrix() { g.pose().pushMatrix(); }",
@@ -555,3 +559,39 @@ def emit_no_item_icon_shield(cog, ver):
         cog.outl("@Override public com.mojang.datafixers.util.Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {")
         cog.outl("    return com.mojang.datafixers.util.Pair.of(InventoryMenu.BLOCK_ATLAS, InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD);")
         cog.outl("}")
+
+
+# ---- registration ids: Properties.setId / BlockItem id key exist from 1.21.2 ----
+def has_setid(ver):
+    return _vt(ver) >= (1, 21, 2)
+
+
+def emit_block_props_tail(cog, ver):
+    if has_setid(ver):
+        cog.outl("                .pushReaction(PushReaction.BLOCK)")
+        cog.outl("                .setId(ResourceKey.create(Registries.BLOCK, " + id_type(ver) + ".fromNamespaceAndPath(BankVault.MOD_ID, name)));")
+    else:
+        cog.outl("                .pushReaction(PushReaction.BLOCK);")
+
+
+def emit_blockitem_fabric(cog, ver):
+    if has_setid(ver):
+        cog.outl("        Registry.register(BuiltInRegistries.ITEM, id,")
+        cog.outl("                new BlockItem(ModBlocks.VAULT, new Item.Properties().setId(key)));")
+    else:
+        cog.outl("        Registry.register(BuiltInRegistries.ITEM, id,")
+        cog.outl("                new BlockItem(ModBlocks.VAULT, new Item.Properties()));")
+
+
+def emit_blockitem_deferred(cog, ver):
+    if has_setid(ver):
+        cog.outl("            return new BlockItem(ModBlocks.VAULT, new Item.Properties().setId(key));")
+    else:
+        cog.outl("            return new BlockItem(ModBlocks.VAULT, new Item.Properties());")
+
+
+def emit_ominous_set(cog, ver):
+    if _vt(ver) >= (1, 21, 2):
+        cog.outl("s.set(DataComponents.OMINOUS_BOTTLE_AMPLIFIER, new net.minecraft.world.item.component.OminousBottleAmplifier(amp));")
+    else:
+        cog.outl("s.set(DataComponents.OMINOUS_BOTTLE_AMPLIFIER, amp);")

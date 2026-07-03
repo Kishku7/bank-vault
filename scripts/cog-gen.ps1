@@ -74,6 +74,17 @@ Get-ChildItem (Join-Path $gen 'src\main\java') -Recurse -File -Filter *.java |
         & cog -r -I $cg -D loader=$Loader -D ver=$McVer -D codegen=$cg $_.FullName | Out-Null
         if ($LASTEXITCODE -ne 0) { throw ("cog failed: " + $_.FullName) }
     }
+# ---- 7d. registry getValue -> get rename below 1.21.2 (Registry.getValue introduced 1.21.2) ----
+if ($v -lt [version]'1.21.2') {
+    Get-ChildItem (Join-Path $gen 'src\main\java') -Recurse -File -Filter *.java | ForEach-Object {
+        $t = Get-Content $_.FullName -Raw
+        if ($t -match 'BuiltInRegistries\.[A-Z_]+(\s|\r|\n)*\.getValue\(') {
+            $t = $t -replace '(?s)(BuiltInRegistries\.[A-Z_]+(\s*\r?\n\s*)?)\.getValue\(', '$1.get('
+            Set-Content $_.FullName $t -NoNewline
+        }
+    }
+}
+
 # ---- 7c. GameProfile record-accessor rename: name() from 1.21.9; getName() before ----
 if ($v -lt [version]'1.21.9') {
     Get-ChildItem (Join-Path $gen 'src\main\java') -Recurse -File -Filter *.java | ForEach-Object {

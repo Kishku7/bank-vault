@@ -16,7 +16,12 @@ public final class ModItems {
     public static void init() {
         Identifier id = Identifier.fromNamespaceAndPath(BankVault.MOD_ID, "bank_vault");
         ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, id);
+        /* [[[cog
+        import compat_core
+        compat_core.emit_blockitem_fabric(cog, ver)
+        ]]] */
         Registry.register(BuiltInRegistries.ITEM, id,
                 new BlockItem(ModBlocks.VAULT, new Item.Properties().setId(key)));
+        /* [[[end]]] */
     }
 }
