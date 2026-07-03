@@ -350,7 +350,12 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
             for (int lvl = 1; lvl <= max; lvl++) {
                 ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);
                 ItemEnchantments.Mutable mut = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
+                /* [[[cog
+                import compat_core
+                compat_core.emit_ench_set(cog, ver)
+                ]]] */
                 mut.set(holder, lvl);
+                /* [[[end]]] */
                 book.set(DataComponents.STORED_ENCHANTMENTS, mut.toImmutable());
                 if (!BankManager.hasExact(bank, book, ra) && BankManager.depositStack(bank, book, ra) > 0) books++;
             }

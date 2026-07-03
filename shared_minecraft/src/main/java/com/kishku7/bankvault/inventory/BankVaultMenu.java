@@ -170,7 +170,7 @@ public class BankVaultMenu extends AbstractContainerMenu {
     public boolean stillValid(Player player) { return true; }
 
     @Override
-    public void clicked(int slotId, int button, ContainerInput clickType, Player player) {
+public void clicked(int slotId, int button, ContainerInput clickType, Player player) {
         if (slotId == PIN_SLOT) {
             handlePinClick(player);
             return;
@@ -187,7 +187,7 @@ public class BankVaultMenu extends AbstractContainerMenu {
      * inside the vanilla click transaction, then forces a full resync so the client cursor matches.
      * The client side is a no-op -- the resync delivers the result.
      */
-    private void handleViewClick(int cell, int button, ContainerInput clickType, Player player) {
+private void handleViewClick(int cell, int button, ContainerInput clickType, Player player) {
         if (!(player instanceof ServerPlayer sp)) return;            // client: server resync delivers the result
         if (cell < 0 || cell >= viewKeys.length) return;
         Bank bank = BankManager.lookup(sp.getUUID());
@@ -195,7 +195,7 @@ public class BankVaultMenu extends AbstractContainerMenu {
         int level = bank.levelOf(sp.getUUID());
         ItemStack carried = getCarried();
 
-        if (clickType == ContainerInput.PICKUP && !carried.isEmpty()) {
+if (clickType == ContainerInput.PICKUP && !carried.isEmpty()) {
             // Cursor is holding items: a grid click deposits them (right-click deposits one) --
             // the vanilla "click a container while holding = put it in" model. Any cell works.
             if (level < BankManager.DEPOSIT) return;

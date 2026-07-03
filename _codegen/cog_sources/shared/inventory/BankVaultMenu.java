@@ -17,7 +17,12 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+/* [[[cog
+import compat_core
+compat_core.emit_armor_slot_import(cog, ver)
+]]] */
 import net.minecraft.world.inventory.ArmorSlot;
+/* [[[end]]] */
 /* [[[cog
 import compat_core
 compat_core.emit_click_import(cog, ver)
@@ -117,7 +122,12 @@ public class BankVaultMenu extends AbstractContainerMenu {
         });
         // 39..42 armor + 43 offhand -- bound to the player's real equipment
         for (int i = 0; i < 4; i++)
+            /* [[[cog
+            import compat_core
+            compat_core.emit_armor_slot(cog, ver)
+            ]]] */
             addSlot(new ArmorSlot(inv, inv.player, ARMOR_ORDER[i], ARMOR_INV_INDEX[i], 0, 0, ARMOR_ICONS[i]));
+            /* [[[end]]] */
         addSlot(new Slot(inv, Inventory.SLOT_OFFHAND, 0, 0) {
             /* [[[cog
             import compat_core
@@ -339,7 +349,12 @@ if (clickType == ContainerInput.PICKUP && !carried.isEmpty()) {
     public void slotsChanged(Container container) {
         super.slotsChanged(container);
         if (container == craftSlots && owner instanceof ServerPlayer sp && sp.level() instanceof ServerLevel sl) {
+            /* [[[cog
+            import compat_core
+            compat_core.emit_slot_changed_call(cog, ver)
+            ]]] */
             CraftingMenu.slotChangedCraftingGrid(this, sl, owner, craftSlots, resultSlots, null);
+            /* [[[end]]] */
         }
         if (processing || !(owner instanceof ServerPlayer)) return;
         if (container == io) processUnload();

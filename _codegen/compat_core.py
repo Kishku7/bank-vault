@@ -595,3 +595,33 @@ def emit_ominous_set(cog, ver):
         cog.outl("s.set(DataComponents.OMINOUS_BOTTLE_AMPLIFIER, new net.minecraft.world.item.component.OminousBottleAmplifier(amp));")
     else:
         cog.outl("s.set(DataComponents.OMINOUS_BOTTLE_AMPLIFIER, amp);")
+
+
+# ---- CraftingMenu.slotChangedCraftingGrid call: +RecipeHolder param @1.21+; 5-arg on 1.20.x ----
+def emit_slot_changed_call(cog, ver):
+    if _vt(ver) >= (1, 21):
+        cog.outl("CraftingMenu.slotChangedCraftingGrid(this, sl, owner, craftSlots, resultSlots, null);")
+    else:
+        cog.outl("CraftingMenu.slotChangedCraftingGrid(this, sl, owner, craftSlots, resultSlots);")
+
+
+# ---- ArmorSlot class exists from 1.21; before, use a plain Slot (armor swap validation is a
+# GUI nicety -- the 1.20.x era menu simply exposes the armor inventory slots) ----
+def emit_armor_slot(cog, ver):
+    if _vt(ver) >= (1, 21):
+        cog.outl("addSlot(new ArmorSlot(inv, inv.player, ARMOR_ORDER[i], ARMOR_INV_INDEX[i], 0, 0, ARMOR_ICONS[i]));")
+    else:
+        cog.outl("addSlot(new Slot(inv, ARMOR_INV_INDEX[i], 0, 0));")
+
+
+def emit_armor_slot_import(cog, ver):
+    if _vt(ver) >= (1, 21):
+        cog.outl("import net.minecraft.world.inventory.ArmorSlot;")
+
+
+# ---- ItemEnchantments.Mutable.set: Holder overload @1.21+; raw Enchantment at 1.20.5/6 ----
+def emit_ench_set(cog, ver):
+    if _vt(ver) >= (1, 21):
+        cog.outl("mut.set(holder, lvl);")
+    else:
+        cog.outl("mut.set(holder.value(), lvl);")

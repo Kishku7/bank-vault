@@ -74,6 +74,18 @@ Get-ChildItem (Join-Path $gen 'src\main\java') -Recurse -File -Filter *.java |
         & cog -r -I $cg -D loader=$Loader -D ver=$McVer -D codegen=$cg $_.FullName | Out-Null
         if ($LASTEXITCODE -ne 0) { throw ("cog failed: " + $_.FullName) }
     }
+# ---- 7e. ResourceLocation factory -> ctor below 1.21 (Forge backported the factory at 1.20.4) ----
+$rlFactory = ($v -ge [version]'1.21') -or ($Loader -eq 'forge' -and $v -ge [version]'1.20.4')
+if (-not $rlFactory) {
+    Get-ChildItem (Join-Path $gen 'src\main\java') -Recurse -File -Filter *.java | ForEach-Object {
+        $t = Get-Content $_.FullName -Raw
+        if ($t -match '(ResourceLocation|Identifier)\.fromNamespaceAndPath\(') {
+            $t = $t -replace '(ResourceLocation|Identifier)\.fromNamespaceAndPath\(', 'new ResourceLocation('
+            Set-Content $_.FullName $t -NoNewline
+        }
+    }
+}
+
 # ---- 7d. registry getValue -> get rename below 1.21.2 (Registry.getValue introduced 1.21.2) ----
 if ($v -lt [version]'1.21.2') {
     Get-ChildItem (Join-Path $gen 'src\main\java') -Recurse -File -Filter *.java | ForEach-Object {
