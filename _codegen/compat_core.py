@@ -251,7 +251,9 @@ def emit_gfx(cog, ver):
         "",
         "    public void entityInInventoryFollowsMouse(int x1, int y1, int x2, int y2, int scale, float yOff,",
         "                                              float mouseX, float mouseY, LivingEntity entity) {",
-        "        " + ent_call + "(g, x1, y1, x2, y2, scale, yOff, mouseX, mouseY, entity);",
+        ("        " + ent_call + "(g, x1, y1, x2, y2, scale, yOff, mouseX, mouseY, entity);"
+         if _vt(ver) >= (1, 20, 2) else
+         "        " + ent_call + "(g, (x1 + x2) / 2, y2, scale, (x1 + x2) / 2.0F - mouseX, (y1 + y2) / 2.0F - 25 - mouseY, entity);"),
         "    }",
         "}",
     ]
@@ -382,7 +384,8 @@ def emit_ev(cog, ver):
             "package com.kishku7.bankvault.client;",
             "",
             "import net.minecraft.client.gui.screens.Screen;",
-            "import net.minecraft.util.StringUtil;",
+            ("import net.minecraft.util.StringUtil;" if _vt(ver) >= (1, 20, 2)
+             else "import net.minecraft.SharedConstants;"),
             "",
             "/** Input shim: same accessor surface every era; carries pre-1.21.9 primitive params here. */",
             "public final class Ev {",
@@ -417,7 +420,9 @@ def emit_ev(cog, ver):
             "",
             "    public boolean isConfirmation() { return key == 257 || key == 335; }",
             "",
-            "    public boolean isAllowedChatCharacter() { return StringUtil.isAllowedChatCharacter((char) codepoint); }",
+            ("    public boolean isAllowedChatCharacter() { return StringUtil.isAllowedChatCharacter((char) codepoint); }"
+             if _vt(ver) >= (1, 20, 2) else
+             "    public boolean isAllowedChatCharacter() { return SharedConstants.isAllowedChatCharacter((char) codepoint); }"),
             "",
             "    public String codepointAsString() { return String.valueOf((char) codepoint); }",
             "",
@@ -625,3 +630,220 @@ def emit_ench_set(cog, ver):
         cog.outl("mut.set(holder, lvl);")
     else:
         cog.outl("mut.set(holder.value(), lvl);")
+
+
+# ================= pre-components era (< 1.20.5) =================
+
+def emit_stackstore_ops(cog, ver):
+    if has_components(ver):
+        cog.outl("return ra.createSerializationContext(JsonOps.INSTANCE);")
+    else:
+        cog.outl("return JsonOps.INSTANCE;   // pre-1.20.5: plain NBT-backed codec needs no registry context")
+
+
+def emit_stackstore_isplain(cog, ver):
+    if has_components(ver):
+        cog.outl("return stack.getComponentsPatch().isEmpty();")
+    else:
+        cog.outl("return !stack.hasTag();")
+
+
+def emit_bc_import_components(cog, ver):
+    if has_components(ver):
+        cog.outl("import net.minecraft.core.component.DataComponents;")
+
+
+def emit_bc_import_registries(cog, ver):
+    if has_components(ver):
+        cog.outl("import net.minecraft.core.registries.Registries;")
+
+
+def emit_bc_import_brew(cog, ver):
+    if has_components(ver):
+        cog.outl("import net.minecraft.world.item.alchemy.PotionContents;")
+        cog.outl("import net.minecraft.world.item.enchantment.ItemEnchantments;")
+    else:
+        cog.outl("import net.minecraft.world.item.EnchantedBookItem;")
+        cog.outl("import net.minecraft.world.item.alchemy.Potion;")
+        cog.outl("import net.minecraft.world.item.alchemy.PotionUtils;")
+        cog.outl("import net.minecraft.world.item.enchantment.Enchantment;")
+        cog.outl("import net.minecraft.world.item.enchantment.EnchantmentInstance;")
+
+
+def emit_fillall_variants(cog, ver):
+    if has_components(ver):
+        ench_set = "mut.set(holder, lvl);" if _vt(ver) >= (1, 21) else "mut.set(holder.value(), lvl);"
+        omin_set = ("s.set(DataComponents.OMINOUS_BOTTLE_AMPLIFIER, new net.minecraft.world.item.component.OminousBottleAmplifier(amp));"
+                    if _vt(ver) >= (1, 21, 2)
+                    else "s.set(DataComponents.OMINOUS_BOTTLE_AMPLIFIER, amp);")
+        lines = [
+            "        var enchants = ra.lookupOrThrow(Registries.ENCHANTMENT);",
+            "        for (var holder : enchants.listElements().toList()) {",
+            "            int max = holder.value().getMaxLevel();",
+            "            for (int lvl = 1; lvl <= max; lvl++) {",
+            "                ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);",
+            "                ItemEnchantments.Mutable mut = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);",
+            "                " + ench_set,
+            "                book.set(DataComponents.STORED_ENCHANTMENTS, mut.toImmutable());",
+            "                if (!BankManager.hasExact(bank, book, ra) && BankManager.depositStack(bank, book, ra) > 0) books++;",
+            "            }",
+            "        }",
+            "        var pots = ra.lookupOrThrow(Registries.POTION);",
+            "        for (var holder : pots.listElements().toList()) {",
+            "            boolean hasEffects = !holder.value().getEffects().isEmpty();",
+            "            for (Item base : List.of(Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION, Items.TIPPED_ARROW)) {",
+            "                if (base == Items.TIPPED_ARROW && !hasEffects) continue; // no-effect tipped arrows aren't survival",
+            "                ItemStack s = PotionContents.createItemStack(base, holder);",
+            "                if (!BankManager.hasExact(bank, s, ra) && BankManager.depositStack(bank, s, ra) > 0) potions++;",
+            "            }",
+            "        }",
+            "        for (int amp = 0; amp < 5; amp++) {",
+            "            ItemStack s = new ItemStack(Items.OMINOUS_BOTTLE);",
+            "            " + omin_set,
+            "            if (!BankManager.hasExact(bank, s, ra) && BankManager.depositStack(bank, s, ra) > 0) other++;",
+            "        }",
+        ]
+    else:
+        lines = [
+            "        for (Enchantment ench : BuiltInRegistries.ENCHANTMENT) {",
+            "            int max = ench.getMaxLevel();",
+            "            for (int lvl = 1; lvl <= max; lvl++) {",
+            "                ItemStack book = EnchantedBookItem.createForEnchantment(new EnchantmentInstance(ench, lvl));",
+            "                if (!BankManager.hasExact(bank, book, ra) && BankManager.depositStack(bank, book, ra) > 0) books++;",
+            "            }",
+            "        }",
+            "        for (Potion potion : BuiltInRegistries.POTION) {",
+            "            boolean hasEffects = !potion.getEffects().isEmpty();",
+            "            for (Item base : List.of(Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION, Items.TIPPED_ARROW)) {",
+            "                if (base == Items.TIPPED_ARROW && !hasEffects) continue;",
+            "                ItemStack s = PotionUtils.setPotion(new ItemStack(base), potion);",
+            "                if (!BankManager.hasExact(bank, s, ra) && BankManager.depositStack(bank, s, ra) > 0) potions++;",
+            "            }",
+            "        }",
+            "        // ominous bottles do not exist before the 1.21-era content",
+        ]
+    for ln in lines:
+        cog.outl(ln)
+
+
+def mouse_scroll4(ver):
+    return _vt(ver) >= (1, 20, 2)
+
+
+def emit_scroll_head(cog, ver):
+    cog.outl("    @Override")
+    if mouse_scroll4(ver):
+        cog.outl("    public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {")
+    else:
+        cog.outl("    public boolean mouseScrolled(double mouseX, double mouseY, double scrollY) {")
+        cog.outl("        final double scrollX = 0;   // pre-1.20.2 scroll events are vertical-only")
+
+
+def emit_scroll_tail(cog, ver):
+    if mouse_scroll4(ver):
+        cog.outl("return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY);")
+    else:
+        cog.outl("return super.mouseScrolled(mouseX, mouseY, scrollY);")
+
+
+def has_block_codec(ver):
+    return _vt(ver) >= (1, 20, 3)
+
+
+def emit_block_codec_import(cog, ver):
+    if has_block_codec(ver):
+        cog.outl("import com.mojang.serialization.MapCodec;")
+
+
+def emit_block_codec_field(cog, ver):
+    if has_block_codec(ver):
+        cog.outl("    public static final MapCodec<BankVaultBlock> CODEC = simpleCodec(BankVaultBlock::new);")
+
+
+def emit_block_codec_override(cog, ver):
+    if has_block_codec(ver):
+        cog.outl("    @Override")
+        cog.outl("    public MapCodec<BankVaultBlock> codec() {")
+        cog.outl("        return CODEC;")
+        cog.outl("    }")
+    else:
+        cog.outl("    // no block MapCodec before 1.20.3")
+
+
+# ---- potion/enchant sort keys: components @1.20.5+; PotionUtils/EnchantedBookItem NBT before ----
+def emit_sort_keys(cog, ver):
+    if has_components(ver):
+        lines = [
+            "    private static String potionEffectKey(Entry e) {",
+            "        var pc = e.stack().get(net.minecraft.core.component.DataComponents.POTION_CONTENTS);",
+            '        if (pc == null || pc.potion().isEmpty()) return "~";',
+            "        String p = pc.potion().get().getRegisteredName();",
+            "        p = p.substring(p.indexOf(':') + 1);",
+            '        if (p.startsWith("long_")) p = p.substring(5);',
+            '        if (p.startsWith("strong_")) p = p.substring(7);',
+            "        return p;",
+            "    }",
+            "",
+            '    /** 0 = plain, 1 = long, 2 = strong -- "logically sub-sorted by effect power". */',
+            "    private static int potionPower(Entry e) {",
+            "        var pc = e.stack().get(net.minecraft.core.component.DataComponents.POTION_CONTENTS);",
+            "        if (pc == null || pc.potion().isEmpty()) return 0;",
+            "        String p = pc.potion().get().getRegisteredName();",
+            '        if (p.contains(":long_")) return 1;',
+            '        if (p.contains(":strong_")) return 2;',
+            "        return 0;",
+            "    }",
+            "",
+            '    /** Sort key for enchanted books (all share one hover name): first stored enchantment id, then level. */',
+            "    private static String enchantKey(Entry e) {",
+            "        var stored = e.stack().get(net.minecraft.core.component.DataComponents.STORED_ENCHANTMENTS);",
+            '        if (stored == null || stored.isEmpty()) return "~";',
+            "        var en = stored.entrySet().iterator().next();",
+            '        return en.getKey().getRegisteredName() + String.format("%02d", en.getIntValue());',
+            "    }",
+        ]
+    else:
+        lines = [
+            "    private static String potionEffectKey(Entry e) {",
+            "        var potion = net.minecraft.world.item.alchemy.PotionUtils.getPotion(e.stack());",
+            '        if (potion == net.minecraft.world.item.alchemy.Potions.EMPTY) return "~";',
+            "        String p = net.minecraft.core.registries.BuiltInRegistries.POTION.getKey(potion).toString();",
+            "        p = p.substring(p.indexOf(':') + 1);",
+            '        if (p.startsWith("long_")) p = p.substring(5);',
+            '        if (p.startsWith("strong_")) p = p.substring(7);',
+            "        return p;",
+            "    }",
+            "",
+            '    /** 0 = plain, 1 = long, 2 = strong -- "logically sub-sorted by effect power". */',
+            "    private static int potionPower(Entry e) {",
+            "        var potion = net.minecraft.world.item.alchemy.PotionUtils.getPotion(e.stack());",
+            "        if (potion == net.minecraft.world.item.alchemy.Potions.EMPTY) return 0;",
+            "        String p = net.minecraft.core.registries.BuiltInRegistries.POTION.getKey(potion).toString();",
+            '        if (p.contains(":long_")) return 1;',
+            '        if (p.contains(":strong_")) return 2;',
+            "        return 0;",
+            "    }",
+            "",
+            '    /** Sort key for enchanted books (all share one hover name): first stored enchantment id, then level. */',
+            "    private static String enchantKey(Entry e) {",
+            "        var tag = net.minecraft.world.item.EnchantedBookItem.getEnchantments(e.stack());",
+            '        if (tag.isEmpty()) return "~";',
+            "        var ct = (net.minecraft.nbt.CompoundTag) tag.get(0);",
+            '        return ct.getString("id") + String.format("%02d", ct.getShort("lvl"));',
+            "    }",
+        ]
+    for ln in lines:
+        cog.outl(ln)
+
+
+# ---- block interaction: useWithoutItem @1.20.5+; classic use() with InteractionHand before ----
+def emit_block_use_head(cog, ver):
+    if has_components(ver):
+        cog.outl("    @Override")
+        cog.outl("    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,")
+        cog.outl("                                               Player player, BlockHitResult hit) {")
+    else:
+        cog.outl("    @Override")
+        cog.outl('    @SuppressWarnings("deprecation")   // use() IS the 1.20.x interaction override; the replacement only exists from 1.20.5')
+        cog.outl("    public InteractionResult use(BlockState state, Level level, BlockPos pos,")
+        cog.outl("                                 Player player, net.minecraft.world.InteractionHand hand, BlockHitResult hit) {")

@@ -90,3 +90,127 @@ def emit_be_create(cog, ver):
         cog.outl("        BANK_VAULT = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,")
         cog.outl('                Identifier.fromNamespaceAndPath(BankVault.MOD_ID, "bank_vault"),')
         cog.outl("                BlockEntityType.Builder.of(BankVaultBlockEntity::new, ModBlocks.VAULT).build(null));")
+
+
+# ================= pre-components fabric networking (< 1.20.5) =================
+
+_C2S = ["Withdraw", "Upgrade", "Deposit", "GridView", "DepositAll", "ShareAction", "UiState"]
+
+
+def emit_fnet_imports(cog, ver):
+    if compat_core.has_components(ver):
+        cog.outl("import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;")
+        cog.outl("import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;")
+    else:
+        cog.outl("import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;")
+        cog.outl("import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;")
+        cog.outl("import net.minecraft.network.FriendlyByteBuf;")
+
+
+def emit_fnet_register(cog, ver):
+    if compat_core.has_components(ver):
+        for d, n in _PAYLOADS:
+            m = "serverboundPlay()" if d == "serverbound" else "clientboundPlay()"
+            if not compat_core.is26(ver):
+                m = "playC2S()" if d == "serverbound" else "playS2C()"
+            cog.outl("        PayloadTypeRegistry." + m + ".register(" + n + ".TYPE, " + n + ".CODEC);")
+        for n in _C2S:
+            cog.outl("        ServerPlayNetworking.registerGlobalReceiver(" + n + "Payload.TYPE, (payload, context) -> on" + n + "(payload, context.player()));")
+    else:
+        for n in _C2S:
+            cog.outl("        ServerPlayNetworking.registerGlobalReceiver(" + n + "Payload.ID, (server, player, handler, buf, sender) -> {")
+            cog.outl("            " + n + "Payload p = " + n + "Payload.decode(buf);")
+            cog.outl("            server.execute(() -> on" + n + "(p, player));")
+            cog.outl("        });")
+
+
+def emit_fnet_sendto(cog, ver):
+    if compat_core.has_components(ver):
+        cog.outl("    private static void sendTo(ServerPlayer player, net.minecraft.network.protocol.common.custom.CustomPacketPayload payload) {")
+        cog.outl("        ServerPlayNetworking.send(player, payload);")
+        cog.outl("    }")
+    else:
+        cog.outl("    private static void sendTo(ServerPlayer player, BvPayload payload) {")
+        cog.outl("        FriendlyByteBuf buf = PacketByteBufs.create();")
+        cog.outl("        payload.write(buf);")
+        cog.outl("        ServerPlayNetworking.send(player, payload.id(), buf);")
+        cog.outl("    }")
+
+
+def emit_client_init(cog, ver):
+    if compat_core.has_components(ver):
+        for ln in _twin(os.path.join("client", "BankVaultClient.java")):
+            cog.outl(ln)
+        return
+    for ln in """package com.kishku7.bankvault.client;
+
+import com.kishku7.bankvault.BankVault;
+import com.kishku7.bankvault.net.SharingStatePayload;
+import com.kishku7.bankvault.net.UiStateSyncPayload;
+import com.kishku7.bankvault.net.VaultSyncPayload;
+import com.kishku7.bankvault.registry.ModMenus;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
+
+/** Pre-1.20.5 client bootstrap: raw channel receivers decode on the netty thread, then hop to
+ *  the client thread (payload-object receivers only exist from 1.20.5). */
+public class BankVaultClient implements ClientModInitializer {
+
+    @Override
+    public void onInitializeClient() {
+        BankVault.LOGGER.info("[Bank Vault] client initializing");
+
+        MenuScreens.register(ModMenus.BANK_VAULT, BankVaultScreen::new);
+
+        ClientPlayNetworking.registerGlobalReceiver(VaultSyncPayload.ID, (client, handler, buf, sender) -> {
+            VaultSyncPayload payload = VaultSyncPayload.decode(buf);
+            client.execute(() -> {
+                Minecraft mc = client;
+                if (com.kishku7.bankvault.BvCompat.currentScreen(mc) instanceof BankVaultScreen screen) screen.updateData(payload);
+            });
+        });
+
+        ClientPlayNetworking.registerGlobalReceiver(UiStateSyncPayload.ID, (client, handler, buf, sender) -> {
+            UiStateSyncPayload payload = UiStateSyncPayload.decode(buf);
+            client.execute(() -> ClientUiState.set(payload.lastTab(), payload.sorts(),
+                    payload.showSections(), payload.pins()));
+        });
+
+        ClientPlayNetworking.registerGlobalReceiver(SharingStatePayload.ID, (client, handler, buf, sender) -> {
+            SharingStatePayload payload = SharingStatePayload.decode(buf);
+            client.execute(() -> {
+                Minecraft mc = client;
+                if (com.kishku7.bankvault.BvCompat.currentScreen(mc) instanceof BankVaultScreen screen) screen.updateSharing(payload);
+            });
+        });
+    }
+}""".split("\n"):
+        cog.outl(ln)
+
+
+def emit_clientnet_fabric(cog, ver):
+    if compat_core.has_components(ver):
+        for ln in _twin(os.path.join("client", "ClientNet.java")):
+            cog.outl(ln)
+        return
+    for ln in """package com.kishku7.bankvault.client;
+
+import com.kishku7.bankvault.net.BvPayload;
+
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.minecraft.network.FriendlyByteBuf;
+
+/** Client networking seam: shared client code sends to the server through this one name. */
+public final class ClientNet {
+    private ClientNet() {}
+
+    public static void sendToServer(BvPayload payload) {
+        FriendlyByteBuf buf = PacketByteBufs.create();
+        payload.write(buf);
+        ClientPlayNetworking.send(payload.id(), buf);
+    }
+}""".split("\n"):
+        cog.outl(ln)

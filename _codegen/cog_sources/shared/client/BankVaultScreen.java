@@ -824,6 +824,10 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private static int suffixIndex(String id, String[] arr) { String p = path(id); for (int i = 0; i < arr.length; i++) if (p.endsWith(arr[i])) return i; return arr.length; }
     /** Effect-base key for potion-carrying stacks ("night_vision" for normal/long/strong alike);
      *  non-potion items sort after all potions via the tilde prefix. */
+    /* [[[cog
+    import compat_core
+    compat_core.emit_sort_keys(cog, ver)
+    ]]] */
     private static String potionEffectKey(Entry e) {
         var pc = e.stack().get(net.minecraft.core.component.DataComponents.POTION_CONTENTS);
         if (pc == null || pc.potion().isEmpty()) return "~";
@@ -851,6 +855,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         var en = stored.entrySet().iterator().next();
         return en.getKey().getRegisteredName() + String.format("%02d", en.getIntValue());
     }
+    /* [[[end]]] */
     private static int prefixIndex(String id, String[] arr) { String p = path(id); for (int i = 0; i < arr.length; i++) if (p.startsWith(arr[i] + "_") || p.equals(arr[i])) return i; return arr.length; }
     private int oxidation(String id) { String p = path(id); int b = p.contains("oxidized") ? 3 : p.contains("weathered") ? 2 : p.contains("exposed") ? 1 : 0; return b + (p.startsWith("waxed_") ? 4 : 0); }
 
@@ -1609,14 +1614,24 @@ this.slotClicked(this.menu.slots.get(idx), idx, 0, ContainerInput.PICKUP);
 /* [[[end]]] */
     }
 
+    /* [[[cog
+    import compat_core
+    compat_core.emit_scroll_head(cog, ver)
+    ]]] */
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+    /* [[[end]]] */
         int mx = (int) mouseX, my = (int) mouseY;
         if (inside(mx, my, railX, btnTop, railW, btnBottom - btnTop)) { btnScroll -= (int) Math.signum(scrollY); clampBtnScroll(); return true; }
         if (inside(mx, my, gridX, gridY, cols * slot, rows * slot) || inside(mx, my, sbarX, sbarTop, SB_W, sbarBottom - sbarTop)) {
             scrollBy(-(int) Math.signum(scrollY)); return true;
         }
-        return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY);
+                /* [[[cog
+        import compat_core
+        compat_core.emit_scroll_tail(cog, ver)
+        ]]] */
+return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY);
+        /* [[[end]]] */
     }
 
     private Entry gridItemAt(int mx, int my) {

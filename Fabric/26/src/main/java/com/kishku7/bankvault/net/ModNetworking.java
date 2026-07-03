@@ -35,13 +35,18 @@ public final class ModNetworking {
         PayloadTypeRegistry.serverboundPlay().register(ShareActionPayload.TYPE, ShareActionPayload.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(UiStatePayload.TYPE, UiStatePayload.CODEC);
         PayloadTypeRegistry.clientboundPlay().register(UiStateSyncPayload.TYPE, UiStateSyncPayload.CODEC);
-        ServerPlayNetworking.registerGlobalReceiver(WithdrawPayload.TYPE, ModNetworking::onWithdraw);
-        ServerPlayNetworking.registerGlobalReceiver(UpgradePayload.TYPE, ModNetworking::onUpgrade);
-        ServerPlayNetworking.registerGlobalReceiver(DepositPayload.TYPE, ModNetworking::onDeposit);
-        ServerPlayNetworking.registerGlobalReceiver(GridViewPayload.TYPE, ModNetworking::onGridView);
-        ServerPlayNetworking.registerGlobalReceiver(DepositAllPayload.TYPE, ModNetworking::onDepositAll);
-        ServerPlayNetworking.registerGlobalReceiver(ShareActionPayload.TYPE, ModNetworking::onShareAction);
-        ServerPlayNetworking.registerGlobalReceiver(UiStatePayload.TYPE, ModNetworking::onUiState);
+        ServerPlayNetworking.registerGlobalReceiver(WithdrawPayload.TYPE, (payload, context) -> onWithdraw(payload, context.player()));
+        ServerPlayNetworking.registerGlobalReceiver(UpgradePayload.TYPE, (payload, context) -> onUpgrade(payload, context.player()));
+        ServerPlayNetworking.registerGlobalReceiver(DepositPayload.TYPE, (payload, context) -> onDeposit(payload, context.player()));
+        ServerPlayNetworking.registerGlobalReceiver(GridViewPayload.TYPE, (payload, context) -> onGridView(payload, context.player()));
+        ServerPlayNetworking.registerGlobalReceiver(DepositAllPayload.TYPE, (payload, context) -> onDepositAll(payload, context.player()));
+        ServerPlayNetworking.registerGlobalReceiver(ShareActionPayload.TYPE, (payload, context) -> onShareAction(payload, context.player()));
+        ServerPlayNetworking.registerGlobalReceiver(UiStatePayload.TYPE, (payload, context) -> onUiState(payload, context.player()));
+    }
+
+
+    private static void sendTo(ServerPlayer player, net.minecraft.network.protocol.common.custom.CustomPacketPayload payload) {
+        ServerPlayNetworking.send(player, payload);
     }
 
     public static void sendSync(ServerPlayer player, Bank bank) {
@@ -58,7 +63,7 @@ public final class ModNetworking {
             ItemStack st = StackStore.decode(e.getValue().stack, ra);
             if (!st.isEmpty()) entries.add(new VaultSyncPayload.Entry(e.getKey(), st, e.getValue().count));
         }
-        ServerPlayNetworking.send(player, new VaultSyncPayload(entries, bank.upgradeCount,
+        sendTo(player, new VaultSyncPayload(entries, bank.upgradeCount,
                 VaultCapacity.capacityFor(bank.upgradeCount), bank.levelOf(player.getUUID())));
         sendSharing(player);
     }
@@ -72,12 +77,12 @@ public final class ModNetworking {
         List<SharingStatePayload.InviteEntry> is = new ArrayList<>();
         for (BankManager.Invite inv : BankManager.pendingInvites(player.getUUID()))
             is.add(new SharingStatePayload.InviteEntry(inv.inviterName, inv.level));
-        ServerPlayNetworking.send(player, new SharingStatePayload(ms, is));
+        sendTo(player, new SharingStatePayload(ms, is));
     }
 
     /** v1.2 last-use memory: persist the interaction in the server-side bucket files. */
-    private static void onUiState(UiStatePayload payload, ServerPlayNetworking.Context context) {
-        UserSettings.update(context.player(), payload.lastTab(), payload.tab(), payload.sort(),
+    private static void onUiState(UiStatePayload payload, ServerPlayer player) {
+        UserSettings.update(player, payload.lastTab(), payload.tab(), payload.sort(),
                 payload.sections());
     }
 
@@ -96,7 +101,7 @@ public final class ModNetworking {
             for (var e : rec.sorts.entrySet()) ts.add(new UiStateSyncPayload.TabSort(e.getKey(), e.getValue()));
             for (var e : rec.pins.entrySet()) tp.add(new UiStateSyncPayload.TabPins(e.getKey(), e.getValue()));
         }
-        ServerPlayNetworking.send(player, new UiStateSyncPayload(lastTab, ts, sections, tp));
+        sendTo(player, new UiStateSyncPayload(lastTab, ts, sections, tp));
     }
 
     /** Re-sync every online member of a bank (membership or contents changed). */
@@ -109,8 +114,7 @@ public final class ModNetworking {
         }
     }
 
-    private static void onShareAction(ShareActionPayload payload, ServerPlayNetworking.Context context) {
-        ServerPlayer player = context.player();
+    private static void onShareAction(ShareActionPayload payload, ServerPlayer player) {
         net.minecraft.server.MinecraftServer server = player.level().getServer();
         if (server == null) return;
         String msg = null;
@@ -178,16 +182,14 @@ public final class ModNetworking {
 
     /** The client tells us which bank key sits in each visible grid cell so a real-Slot click on the
      *  vault view (handled in BankVaultMenu.clicked) knows what to withdraw. */
-    private static void onGridView(GridViewPayload payload, ServerPlayNetworking.Context context) {
-        ServerPlayer player = context.player();
+    private static void onGridView(GridViewPayload payload, ServerPlayer player) {
         if (player.containerMenu instanceof BankVaultMenu menu) {
             menu.setViewKeys(payload.keys());
             menu.setCurrentTab(payload.tab());
         }
     }
 
-    private static void onWithdraw(WithdrawPayload payload, ServerPlayNetworking.Context context) {
-        ServerPlayer player = context.player();
+    private static void onWithdraw(WithdrawPayload payload, ServerPlayer player) {
         Bank bank = BankManager.lookup(player.getUUID());
         if (bank == null || bank.levelOf(player.getUUID()) < BankManager.MEMBER) return;
         String key = payload.itemId();
@@ -215,8 +217,7 @@ public final class ModNetworking {
         sendSync(player, bank);
     }
 
-    private static void onDeposit(DepositPayload payload, ServerPlayNetworking.Context context) {
-        ServerPlayer player = context.player();
+    private static void onDeposit(DepositPayload payload, ServerPlayer player) {
         Bank bank = BankManager.lookup(player.getUUID());
         if (bank == null || bank.levelOf(player.getUUID()) < BankManager.DEPOSIT) return;
         Inventory inv = player.getInventory();
@@ -233,8 +234,7 @@ public final class ModNetworking {
      *  rows. Strictly those ranges -- armor (36..39), offhand (40), trinket and crafting slots are
      *  untouchable here by construction. Partial deposits stop when the vault fills; the remainder
      *  stays where it was. */
-    private static void onDepositAll(DepositAllPayload payload, ServerPlayNetworking.Context context) {
-        ServerPlayer player = context.player();
+    private static void onDepositAll(DepositAllPayload payload, ServerPlayer player) {
         Bank bank = BankManager.lookup(player.getUUID());
         if (bank == null || bank.levelOf(player.getUUID()) < BankManager.DEPOSIT) return;
         Inventory inv = player.getInventory();
@@ -253,8 +253,7 @@ public final class ModNetworking {
         if (player.containerMenu instanceof BankVaultMenu menu) menu.broadcastChanges();
     }
 
-    private static void onUpgrade(UpgradePayload payload, ServerPlayNetworking.Context context) {
-        ServerPlayer player = context.player();
+    private static void onUpgrade(UpgradePayload payload, ServerPlayer player) {
         Bank bank = BankManager.lookup(player.getUUID());
         if (bank == null) return;
         if (bank.levelOf(player.getUUID()) < BankManager.MASTER) {

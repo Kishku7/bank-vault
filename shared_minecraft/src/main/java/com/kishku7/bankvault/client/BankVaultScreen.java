@@ -1541,7 +1541,7 @@ this.slotClicked(this.menu.slots.get(idx), idx, 0, ContainerInput.PICKUP);
         if (inside(mx, my, gridX, gridY, cols * slot, rows * slot) || inside(mx, my, sbarX, sbarTop, SB_W, sbarBottom - sbarTop)) {
             scrollBy(-(int) Math.signum(scrollY)); return true;
         }
-        return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY);
+return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY);
     }
 
     private Entry gridItemAt(int mx, int my) {

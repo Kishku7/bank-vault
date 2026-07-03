@@ -12,17 +12,32 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.core.RegistryAccess;
+/* [[[cog
+import compat_core
+compat_core.emit_bc_import_components(cog, ver)
+]]] */
 import net.minecraft.core.component.DataComponents;
+/* [[[end]]] */
 import net.minecraft.core.registries.BuiltInRegistries;
+/* [[[cog
+import compat_core
+compat_core.emit_bc_import_registries(cog, ver)
+]]] */
 import net.minecraft.core.registries.Registries;
+/* [[[end]]] */
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+/* [[[cog
+import compat_core
+compat_core.emit_bc_import_brew(cog, ver)
+]]] */
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
+/* [[[end]]] */
 
 import java.util.List;
 import java.util.Map;
@@ -344,18 +359,17 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
             if (s.isEmpty() || BankManager.hasExact(bank, s, ra)) continue;
             if (BankManager.depositStack(bank, s, ra) > 0) plain++;
         }
+        /* [[[cog
+        import compat_core
+        compat_core.emit_fillall_variants(cog, ver)
+        ]]] */
         var enchants = ra.lookupOrThrow(Registries.ENCHANTMENT);
         for (var holder : enchants.listElements().toList()) {
             int max = holder.value().getMaxLevel();
             for (int lvl = 1; lvl <= max; lvl++) {
                 ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);
                 ItemEnchantments.Mutable mut = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
-                /* [[[cog
-                import compat_core
-                compat_core.emit_ench_set(cog, ver)
-                ]]] */
                 mut.set(holder, lvl);
-                /* [[[end]]] */
                 book.set(DataComponents.STORED_ENCHANTMENTS, mut.toImmutable());
                 if (!BankManager.hasExact(bank, book, ra) && BankManager.depositStack(bank, book, ra) > 0) books++;
             }
@@ -371,14 +385,10 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
         }
         for (int amp = 0; amp < 5; amp++) {
             ItemStack s = new ItemStack(Items.OMINOUS_BOTTLE);
-            /* [[[cog
-            import compat_core
-            compat_core.emit_ominous_set(cog, ver)
-            ]]] */
 s.set(DataComponents.OMINOUS_BOTTLE_AMPLIFIER, new net.minecraft.world.item.component.OminousBottleAmplifier(amp));
-            /* [[[end]]] */
             if (!BankManager.hasExact(bank, s, ra) && BankManager.depositStack(bank, s, ra) > 0) other++;
         }
+        /* [[[end]]] */
         final int fp = plain, fb = books, fpo = potions, fo = other;
         p.sendSystemMessage(Component.literal("\u00A76[Bank Vault]\u00A7r added (missing only): " + fp + " items, "
                 + fb + " enchanted books, " + fpo + " potions/arrows, " + fo + " ominous bottles. Upgrades set to max."));
