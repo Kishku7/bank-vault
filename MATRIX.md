@@ -60,3 +60,4 @@ MC), record it in mod-version-gates.md and mark `--` here instead.)
   staging_dirs still points at `26\dist`; repoint to this worktree's dist/ at Stage 2.6.
 - 26.3 matrix entry in build-fabric.ps1 pins 26.3-snapshot-1; bump to current snapshot at Stage 2.
 - 2026-07-03 01:25 26-line convergence: 8 loader-duplicated classes -> shared_minecraft via new Platform + ClientNet seams (config-dir/isLoaded/client-send drift). Both 26 cells rebuilt green (Fabric+NeoForge 26.2 pilot). Remaining per-loader 26 files: entrypoints, ModNetworking, TrinketCompat, registry seams, BankVaultClient.
+- 2026-07-03 01:50 M1 AI surface added: api/VaultApi.java (snapshot/list/count/find/withdraw/deposit, single-line BV|op|OK pipe format) + hidden /bank api subcommand in BankCommand. Version bumped 1.4.0 both 26 cells. Fabric+NeoForge 26.2 build green.

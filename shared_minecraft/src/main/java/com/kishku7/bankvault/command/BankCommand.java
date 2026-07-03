@@ -62,6 +62,28 @@ public final class BankCommand {
                         .executes(c -> clearAll(c.getSource())))
                 .then(Commands.literal("reload").requires(s -> s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER))
                         .executes(c -> reloadCatalog(c.getSource())))
+                // Hidden machine-readable surface for automation clients (M1). Not shown in help;
+                // plain-ASCII single-line replies via VaultApi ("BV|op|OK|..." / "BV|op|ERR|...").
+                .then(Commands.literal("api")
+                        .then(Commands.literal("snapshot")
+                                .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.snapshot(p))))
+                        .then(Commands.literal("list").executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.list(p, 1)))
+                                .then(Commands.argument("page", IntegerArgumentType.integer(1))
+                                        .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.list(p, IntegerArgumentType.getInteger(c, "page"))))))
+                        .then(Commands.literal("count")
+                                .then(Commands.argument("key", StringArgumentType.greedyString())
+                                        .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.count(p, StringArgumentType.getString(c, "key"))))))
+                        .then(Commands.literal("find")
+                                .then(Commands.argument("query", StringArgumentType.greedyString())
+                                        .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.find(p, StringArgumentType.getString(c, "query"))))))
+                        .then(Commands.literal("withdraw")
+                                .then(Commands.argument("count", IntegerArgumentType.integer(1))
+                                        .then(Commands.argument("key", StringArgumentType.greedyString())
+                                                .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.withdraw(p, StringArgumentType.getString(c, "key"), IntegerArgumentType.getInteger(c, "count")))))))
+                        .then(Commands.literal("deposit")
+                                .then(Commands.argument("count", IntegerArgumentType.integer(0))
+                                        .then(Commands.argument("what", StringArgumentType.greedyString())
+                                                .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.deposit(p, StringArgumentType.getString(c, "what"), IntegerArgumentType.getInteger(c, "count"))))))))
                 .then(Commands.literal("withdraw")
                         .then(Commands.argument("count", IntegerArgumentType.integer(1))
                                 .then(Commands.argument("item", StringArgumentType.greedyString())
@@ -82,6 +104,17 @@ public final class BankCommand {
     }
 
     private interface SimpleOp { String apply(ServerPlayer p); }
+
+    private interface ApiOp { String apply(ServerPlayer p); }
+
+    /** Runs an automation op and replies with its single machine-readable line (no color codes). */
+    private static int api(CommandSourceStack src, ApiOp op) {
+        ServerPlayer p = src.getPlayer();
+        if (p == null) return 0;
+        String line = op.apply(p);
+        p.sendSystemMessage(Component.literal(line));
+        return line.contains("|OK") ? 1 : 0;
+    }
 
     private static int simple(CommandSourceStack src, SimpleOp op) {
         ServerPlayer p = src.getPlayer();
