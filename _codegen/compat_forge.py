@@ -8,7 +8,8 @@ import compat_core
 
 
 def eb7(ver):
-    return compat_core._vt(ver) >= (1, 21, 8)
+    # EventBus 7 landed with Forge 56 (MC 1.21.6) -- gate-proven 2026-07-03
+    return compat_core._vt(ver) >= (1, 21, 6)
 
 
 ENTRY_EB7 = '''package com.kishku7.bankvault;

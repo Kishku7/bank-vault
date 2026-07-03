@@ -6,9 +6,9 @@ $repo = Split-Path -Parent $PSScriptRoot
 $dist = Join-Path $repo "dist"
 New-Item -ItemType Directory -Force -Path $dist | Out-Null
 
-$pre26 = @('1.20.4', '1.20.6', '1.21', '1.21.1', '1.21.2', '1.21.5', '1.21.8', '1.21.11')
+$pre26 = @('1.20.4', '1.20.6', '1.21', '1.21.1', '1.21.2', '1.21.5', '1.21.8', '1.21.9', '1.21.11')
 $matrix = [ordered]@{
-  "26.1" = @{neo = "26.1.2.30-beta"; pf = 84; range = "[26.1,26.2)"; neoRange = "[26.1.0-alpha,)"; mc = "26.1.2" }
+  "26.1" = @{neo = "26.1.2.30-beta"; pf = 84; range = "[26.1.2,26.2)"; neoRange = "[26.1.2.0-beta,)"; mc = "26.1.2" }
   "26.2" = @{neo = "26.2.0.1-beta";  pf = 88; range = "[26.2,26.3)"; neoRange = "[26.2.0-alpha,)"; mc = "26.2" }
 }
 

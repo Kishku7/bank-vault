@@ -323,9 +323,9 @@ def modern_input(ver):
     return _vt(ver) >= (1, 21, 9)
 
 
-# perms API (CommandSourceStack.permissions()) arrived with the same 1.21.9 wave
+# perms API (net.minecraft.server.permissions) arrived at 1.21.11 (NOT the 1.21.9 input wave)
 def modern_perms(ver):
-    return _vt(ver) >= (1, 21, 9)
+    return _vt(ver) >= (1, 21, 11)
 
 
 def emit_input_imports(cog, ver):

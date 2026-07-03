@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[58,)"
+loaderVersion="[56,)"
 license="All Rights Reserved"
 
 [[mods]]
@@ -12,13 +12,13 @@ description='''A single multiblock vault with a creative-style categorized GUI. 
 [[dependencies.bankvault]]
 modId="forge"
 mandatory=true
-versionRange="[58,)"
+versionRange="[56,)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.bankvault]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.21.8,1.21.9)"
+versionRange="[1.21.6,1.21.9)"
 ordering="NONE"
 side="BOTH"

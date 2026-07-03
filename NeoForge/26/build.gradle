@@ -31,9 +31,12 @@ neoForge {
 }
 
 processResources {
+    // 26.x pack_format > 81 needs the exact-single range form (see Fabric/26 + pack-formats.md)
+    def packFormat = (System.getenv('PACK_FORMAT') ?: '88')
     def ep = [mod_version: mod_version, mcRange: project.mc_range, neoforgeRange: project.neoforge_range]
-    inputs.properties(ep)
+    inputs.properties(ep + [packFormat: packFormat])
     filesMatching('META-INF/neoforge.mods.toml') { expand(ep) }
+    filesMatching('pack.mcmeta') { expand([packFormat: packFormat]) }
 }
 
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
