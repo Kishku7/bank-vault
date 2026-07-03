@@ -10,16 +10,15 @@ data is plain JSON under `config/bankvault/`. Client + server mod.
 
 ## Branches
 
-Source is organized by Minecraft line. Inside each branch the code is grouped **loader-on-top**:
-`Common/` (shared Architectury code, one folder per MC version) on the 1.20.x / 1.21.x lines, then
-`Fabric/`, `Forge/`, `NeoForge/`, each with a sub-folder per Minecraft version. The 26.x branches are
-standalone (no Architectury, no `Common/`). `main` (this branch) is the overview.
+All source lives on ONE cross-version branch; `main` (this branch) is the overview.
 
-- [1.20.x](https://github.com/Kishku7/bank-vault/tree/1.20.x) - Minecraft 1.20 - 1.20.6
-- [1.21.x](https://github.com/Kishku7/bank-vault/tree/1.21.x) - Minecraft 1.21 - 1.21.11
-- [26](https://github.com/Kishku7/bank-vault/tree/26) - Minecraft 26.1 -> 26.3-snapshot-1 (unified line; Fabric + NeoForge)
+- [minecraft-1.20-26.3](https://github.com/Kishku7/bank-vault/tree/minecraft-1.20-26.3) -
+  every playable Minecraft version from **1.20.0 through the 26.3 snapshot**, one shared code
+  base with thin per-version build cells for **Fabric, NeoForge and Forge**. No Architectury.
+  See that branch's README for the layout, the coverage table and the build walkers.
 
-Open a branch and read its README for loaders, versions, and version exclusions in that line.
+The old per-line branches (`1.20.x`, `1.21.x`, `26`) were unified into it in v1.4.0; their final
+states are preserved as `pre-unify/*` tags.
 
 ## Supported platforms
 
