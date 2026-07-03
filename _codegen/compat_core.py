@@ -91,6 +91,7 @@ PACK_FORMATS = {
     "1.21": 34, "1.21.1": 34, "1.21.2": 42, "1.21.3": 42, "1.21.4": 46,
     "1.21.5": 55, "1.21.6": 63, "1.21.7": 64, "1.21.8": 64,
     "1.21.9": 69, "1.21.10": 69, "1.21.11": 75,
+    "26.1": 84, "26.2": 88, "26.3": 89,
 }
 
 
@@ -747,7 +748,8 @@ def emit_scroll_tail(cog, ver):
 
 
 def has_block_codec(ver):
-    return _vt(ver) >= (1, 20, 3)
+    # block MapCodec/simpleCodec/codec() exist 1.20.3 .. 26.2; REMOVED at 26.3-snapshot-2
+    return (1, 20, 3) <= _vt(ver) < (26, 3)
 
 
 def emit_block_codec_import(cog, ver):

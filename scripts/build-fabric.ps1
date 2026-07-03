@@ -34,10 +34,17 @@ foreach ($cell in $targets) {
         $m = $matrix[$cell]
         Write-Host "=== BV Fabric 26-matrix $cell (mc=$($m.mc)) ==="
         $fabric = Join-Path $repo "Fabric\26"
+        $genFlag = @()
+        if ([version]($cell) -ge [version]"26.3") {
+            # 26.3+ = cog-materialized (26.3-snapshot-2 removed the block codec surface)
+            & pwsh -NoProfile -File (Join-Path $PSScriptRoot "cog-gen.ps1") -Cell "Fabric/26" -Ver $cell
+            if ($LASTEXITCODE -ne 0) { throw "cog-gen FAILED Fabric/26 @$cell" }
+            $genFlag = @("-PuseGen=1")
+        }
         $modver = (Select-String -Path (Join-Path $fabric "gradle.properties") -Pattern '^mod_version=(.+)$').Matches[0].Groups[1].Value
         $env:PACK_FORMAT = "$($m.pf)"
         Push-Location $fabric
-        & .\gradlew.bat clean build "-Pminecraft_version=$($m.mc)" "-Pfabric_api_version=$($m.api)" "-Ploader_version=$($m.loader)" "-Pmc_lower=$($m.lo)" "-Pmc_upper=$($m.hi)" --no-daemon
+        & .\gradlew.bat clean build "-Pminecraft_version=$($m.mc)" "-Pfabric_api_version=$($m.api)" "-Ploader_version=$($m.loader)" "-Pmc_lower=$($m.lo)" "-Pmc_upper=$($m.hi)" @genFlag --no-daemon
         $rc = $LASTEXITCODE; Pop-Location
         Remove-Item Env:PACK_FORMAT -ErrorAction SilentlyContinue
         if ($rc -ne 0) { throw "Fabric FAILED $cell" }

@@ -4,17 +4,19 @@
 # gen/ is disposable build output (gitignored). Edit ONLY _codegen/cog_sources + shared_minecraft.
 param(
     [Parameter(Mandatory)][string]$Cell,
-    [string]$SrcLoader                       # override source flavour (e.g. NeoForge/1.20.1 is forge-shaped)
+    [string]$SrcLoader,                      # override source flavour (e.g. NeoForge/1.20.1 is forge-shaped)
+    [string]$Ver                             # version override for the parameterized 26 cells (e.g. -Cell Fabric/26 -Ver 26.3)
 )
 $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path $PSScriptRoot -Parent
 $parts = $Cell -split '[/\\]'
-$LoaderDir = $parts[0]; $McVer = $parts[1]
+$LoaderDir = $parts[0]; $CellDir = $parts[1]; $McVer = $parts[1]
+if ($Ver) { $McVer = $Ver }
 $Loader = $LoaderDir.ToLower()
 if ($SrcLoader) { $Loader = $SrcLoader.ToLower() }
 $cg = Join-Path $repoRoot '_codegen'
 $cs = Join-Path $cg 'cog_sources'
-$cell = Join-Path $repoRoot ($LoaderDir + '\' + $McVer)
+$cell = Join-Path $repoRoot ($LoaderDir + '\' + $CellDir)
 if (-not (Test-Path $cell)) { throw "cell not found: $cell" }
 $gen = Join-Path $cell 'gen'
 $pkg = 'com\kishku7\bankvault'
@@ -64,8 +66,25 @@ Push-Location $cg
 $pf = & python (Join-Path $cg 'print_pf.py') $McVer
 Pop-Location
 if ($LASTEXITCODE -ne 0 -or -not $pf) { throw "no pack_format for $McVer -- extend compat_core.PACK_FORMATS" }
-('{"pack":{"description":"Bank Vault resources","pack_format":' + $pf + '}}') |
-    Set-Content (Join-Path $genR 'pack.mcmeta') -Encoding UTF8
+if ($v -ge [version]'26.0') {
+    # 26.x: pack_format > 81 -> the strict codec demands the exact-single range form
+    ('{"pack":{"description":"Bank Vault resources","pack_format":' + $pf + ',"min_format":' + $pf + ',"max_format":' + $pf + '}}') |
+        Set-Content (Join-Path $genR 'pack.mcmeta') -Encoding UTF8
+} else {
+    ('{"pack":{"description":"Bank Vault resources","pack_format":' + $pf + '}}') |
+        Set-Content (Join-Path $genR 'pack.mcmeta') -Encoding UTF8
+}
+
+# ---- 5c. parameterized 26 cells: fold the cell's own static resources into gen (the gen
+# pack.mcmeta wins -- it already carries the era-correct range form) ----
+if ($Ver) {
+    Get-ChildItem (Join-Path $cell 'src\main\resources') -Recurse -File | Where-Object { $_.Name -ne 'pack.mcmeta' } | ForEach-Object {
+        $rel = $_.FullName.Substring((Join-Path $cell 'src\main\resources').Length + 1)
+        $t = Join-Path $genR $rel
+        New-Item -ItemType Directory -Force -Path (Split-Path $t) | Out-Null
+        Copy-Item $_.FullName $t -Force
+    }
+}
 
 # ---- 6. run cog on every marker file in gen ----
 $env:PYTHONDONTWRITEBYTECODE = '1'

@@ -12,8 +12,18 @@ loom {
 }
 
 // Shared single-source-of-truth tree.
-sourceSets.main.java.srcDir "../../shared_minecraft/src/main/java"
-sourceSets.main.resources.srcDir "../../shared_minecraft/src/main/resources"
+// 26.3-snapshot-2 removed the block MapCodec surface, so 26.3+ builds use a cog-materialized
+// gen/ tree (walker runs scripts/cog-gen.ps1 -Cell Fabric/26 -Ver 26.3 then passes -PuseGen);
+// 26.1/26.2 keep the plain shared srcDir.
+if (project.hasProperty("useGen")) {
+    // REPLACE the srcDirs: gen/ carries the materialized shared+loader java AND the cell's
+    // static resources (folded in by cog-gen), so nothing may double up.
+    sourceSets.main.java.setSrcDirs(["gen/src/main/java"])
+    sourceSets.main.resources.setSrcDirs(["gen/src/main/resources"])
+} else {
+    sourceSets.main.java.srcDir "../../shared_minecraft/src/main/java"
+    sourceSets.main.resources.srcDir "../../shared_minecraft/src/main/resources"
+}
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
