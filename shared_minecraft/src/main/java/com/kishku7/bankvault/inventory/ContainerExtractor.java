@@ -1,6 +1,6 @@
 package com.kishku7.bankvault.inventory;
 
-import net.fabricmc.loader.api.FabricLoader;
+import com.kishku7.bankvault.platform.Platform;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -41,7 +41,7 @@ public final class ContainerExtractor {
     private ContainerExtractor() {}
 
     private static DataComponentType<?>[] resolveSoftContainers() {
-        if (!FabricLoader.getInstance().isModLoaded("travelersbackpack")) return new DataComponentType<?>[0];
+        if (!Platform.isLoaded("travelersbackpack")) return new DataComponentType<?>[0];
         List<DataComponentType<?>> found = new ArrayList<>();
         // Only the main cargo container — leave tools/upgrades/fluids on the backpack.
         DataComponentType<?> t = BuiltInRegistries.DATA_COMPONENT_TYPE

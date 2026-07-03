@@ -5,8 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.kishku7.bankvault.BankVault;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.FMLPaths;
+import com.kishku7.bankvault.platform.Platform;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -62,7 +61,7 @@ public final class ButtonLayout {
 
     /** Check the config file's mtime and (re)load when it changed. Call once per screen-open. */
     public static synchronized void pollConfig() {
-        Path cfg = FMLPaths.CONFIGDIR.get().resolve("bankvault").resolve("buttons.json");
+        Path cfg = Platform.configDir().resolve("bankvault").resolve("buttons.json");
         long m = -1;
         try { if (Files.exists(cfg)) m = Files.getLastModifiedTime(cfg).toMillis(); } catch (Exception ignored) {}
         if (rows != null && m == mtime) return;

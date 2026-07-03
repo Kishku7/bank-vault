@@ -1,7 +1,7 @@
 # build-all-fabric.ps1 -- Bank Vault unified Fabric source for every 26.x target.
 param([string[]]$Versions)
 $ErrorActionPreference="Stop"
-$repo=Split-Path -Parent $MyInvocation.MyCommand.Path; $fabric=Join-Path $repo "Fabric"; $dist=Join-Path $repo "dist"
+$repo=Split-Path -Parent $PSScriptRoot; $fabric=Join-Path $repo "Fabric\26"; $dist=Join-Path $repo "dist"
 New-Item -ItemType Directory -Force -Path $dist|Out-Null
 $matrix=[ordered]@{
   "26.1"=@{mc="26.1.2";          api="0.152.1+26.1.2"; loader="0.18.6"; lo="26.1-";  hi="26.2"}

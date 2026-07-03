@@ -6,8 +6,7 @@ import net.minecraft.resources.Identifier;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.kishku7.bankvault.BankVault;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.FMLPaths;
+import com.kishku7.bankvault.platform.Platform;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -40,7 +39,7 @@ public final class Keywords {
      *  screen-open -- never from per-frame/per-item paths (a disk stat per call was the
      *  alpha.2 hover-lag bug). */
     public static synchronized void pollConfig() {
-        Path cfg = FMLPaths.CONFIGDIR.get().resolve("bankvault").resolve("keywords.json");
+        Path cfg = Platform.configDir().resolve("bankvault").resolve("keywords.json");
         long m = -1;
         try { if (Files.exists(cfg)) m = Files.getLastModifiedTime(cfg).toMillis(); } catch (Exception ignored) {}
         if (itemWords != null && m == mtime) return;

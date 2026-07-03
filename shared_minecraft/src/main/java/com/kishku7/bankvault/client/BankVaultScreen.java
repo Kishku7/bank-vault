@@ -10,7 +10,7 @@ import com.kishku7.bankvault.BankVault;
 import com.kishku7.bankvault.inventory.TrinketCompat;
 import com.kishku7.bankvault.vault.Catalog;
 import com.kishku7.bankvault.vault.Keywords;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import com.kishku7.bankvault.client.ClientNet;
 import com.kishku7.bankvault.net.ShareActionPayload;
 import com.kishku7.bankvault.net.SharingStatePayload;
 import com.kishku7.bankvault.net.UiStatePayload;
@@ -151,7 +151,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         // Pushes cover the instant case; this heartbeat guarantees freshness even if one is missed.
         if (++shRefreshTicks >= 60) {   // every 3s
             shRefreshTicks = 0;
-            ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.REFRESH, "", 0));
+            ClientNet.sendToServer(new ShareActionPayload(ShareActionPayload.REFRESH, "", 0));
         }
     }
 
@@ -512,7 +512,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         if (selectedKey == null) return;
         String sv = sortString();
         ClientUiState.remember(selectedKey, sv);
-        ClientPlayNetworking.send(new UiStatePayload(selectedKey, selectedKey, sv, ""));
+        ClientNet.sendToServer(new UiStatePayload(selectedKey, selectedKey, sv, ""));
     }
 
     private String btnLabel(ButtonLayout.BtnDef d) {
@@ -1267,7 +1267,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                 String name = (shInputText + shCompletion()).trim();   // rc.3: Enter takes the autocomplete
                 shInputActive = false;
                 if (!name.isEmpty())
-                    ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.INVITE, name, 1));
+                    ClientNet.sendToServer(new ShareActionPayload(ShareActionPayload.INVITE, name, 1));
                 return true;
             }
             return true; // consume all other keys while the name field is focused
@@ -1333,7 +1333,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         if (ctrlVisible && inside(mx, my, titlesX, ctrlY, secBoxX + secBoxW - titlesX, sbH)) {
             showSections = !showSections;
             ClientUiState.rememberSections(showSections);
-            ClientPlayNetworking.send(new UiStatePayload(selectedKey == null ? "" : selectedKey, "", "",
+            ClientNet.sendToServer(new UiStatePayload(selectedKey == null ? "" : selectedKey, "", "",
                     showSections ? "on" : "off"));
             rebuild();
             return true;
@@ -1360,15 +1360,15 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             return true;
         }
         if (button == 1 && inside(mx, my, upgX, upgY, upgSize, upgSize) && permLevel >= 3
-                && this.menu.getCarried().isEmpty()) { ClientPlayNetworking.send(new UpgradePayload(false)); return true; }
+                && this.menu.getCarried().isEmpty()) { ClientNet.sendToServer(new UpgradePayload(false)); return true; }
 
         // Deposit buttons (v1.1): Inventory = main 27, All = main 27 + hotbar 9. Deposit perm required.
         if (button == 0 && permLevel >= 1 && this.menu.getCarried().isEmpty()) {
             if (inside(mx, my, depInvX, depY, depInvW, 11)) {
-                ClientPlayNetworking.send(new com.kishku7.bankvault.net.DepositAllPayload(false)); return true;
+                ClientNet.sendToServer(new com.kishku7.bankvault.net.DepositAllPayload(false)); return true;
             }
             if (inside(mx, my, depAllX, depY, depAllW, 11)) {
-                ClientPlayNetworking.send(new com.kishku7.bankvault.net.DepositAllPayload(true)); return true;
+                ClientNet.sendToServer(new com.kishku7.bankvault.net.DepositAllPayload(true)); return true;
             }
         }
 
@@ -1379,12 +1379,12 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             boolean hasInvite = !shInvites.isEmpty();
             if (inside(mx, my, shBtn1X, shBtnY, shBtn1W, SH_BTN_H)) {
                 if (canInvite) { shInputActive = true; shInputText = ""; searchFocused = false; }
-                else if (inGroup) ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.LEAVE, "", 0));
+                else if (inGroup) ClientNet.sendToServer(new ShareActionPayload(ShareActionPayload.LEAVE, "", 0));
                 return true;
             }
             if (inside(mx, my, shBtn2X, shBtnY, shBtn2W, SH_BTN_H)) {
                 if (inGroup) {
-                    if (canInvite) ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.LEAVE, "", 0));
+                    if (canInvite) ClientNet.sendToServer(new ShareActionPayload(ShareActionPayload.LEAVE, "", 0));
                 } else if (hasInvite) {
                     // rc.2 (Dave): informed consent -- close the vault, confirm the merge, then accept.
                     // rc.3: acts on the SELECTED invite (default = most recent), named in the dialog.
@@ -1394,7 +1394,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                     this.onClose();
                     if (mc != null) {
                         com.kishku7.bankvault.BvCompat.setScreen(mc, new net.minecraft.client.gui.screens.ConfirmScreen(yes -> {
-                            if (yes) ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.ACCEPT, chosen.from(), 0));
+                            if (yes) ClientNet.sendToServer(new ShareActionPayload(ShareActionPayload.ACCEPT, chosen.from(), 0));
                             com.kishku7.bankvault.BvCompat.setScreen(mc, null);
                         },
                         Component.literal("Accept " + chosen.from() + "'s Bank Invite?"),
@@ -1429,20 +1429,20 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             }
             if (shMgmtMode == 1 && shSelected != null) {
                 if (inside(mx, my, shMg1X, shMgmtY, shMg1W, SH_BTN_H)) {
-                    ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.KICK, shSelected, 0));
+                    ClientNet.sendToServer(new ShareActionPayload(ShareActionPayload.KICK, shSelected, 0));
                     shSelected = null; return true;
                 }
                 if (inside(mx, my, shMg2X, shMgmtY, shMg2W, SH_BTN_H)) {
-                    ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.LEVEL_UP, shSelected, 0)); return true;
+                    ClientNet.sendToServer(new ShareActionPayload(ShareActionPayload.LEVEL_UP, shSelected, 0)); return true;
                 }
                 if (inside(mx, my, shMg3X, shMgmtY, shMg3W, SH_BTN_H)) {
-                    ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.LEVEL_DOWN, shSelected, 0)); return true;
+                    ClientNet.sendToServer(new ShareActionPayload(ShareActionPayload.LEVEL_DOWN, shSelected, 0)); return true;
                 }
             } else if (shMgmtMode == 2 && inside(mx, my, shMg1X, shMgmtY, shMg1W, SH_BTN_H)) {
                 String from = shSelInvite >= 0 && shSelInvite < shInvites.size()
                         ? shInvites.get(shSelInvite).from() : "";
                 shSelInvite = -1;
-                ClientPlayNetworking.send(new ShareActionPayload(ShareActionPayload.DECLINE, from, 0)); return true;
+                ClientNet.sendToServer(new ShareActionPayload(ShareActionPayload.DECLINE, from, 0)); return true;
             }
             if (shInputActive) shInputActive = false;   // click elsewhere cancels name entry
         }
@@ -1552,7 +1552,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             Entry e = cellEntry(i / cols, i % cols);
             keys.add(e != null ? e.key() : "");
         }
-        ClientPlayNetworking.send(new GridViewPayload(selectedKey == null ? "" : selectedKey, keys));
+        ClientNet.sendToServer(new GridViewPayload(selectedKey == null ? "" : selectedKey, keys));
     }
 
     private static boolean inside(int mx, int my, int x, int y, int w, int h) { return mx >= x && mx < x + w && my >= y && my < y + h; }

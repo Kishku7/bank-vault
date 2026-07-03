@@ -59,3 +59,4 @@ MC), record it in mod-version-gates.md and mark `--` here instead.)
 - 2026-07-03 00:58 Stage 0 restructure done. dist/ was untracked in old 26 worktree -- mod-deploy
   staging_dirs still points at `26\dist`; repoint to this worktree's dist/ at Stage 2.6.
 - 26.3 matrix entry in build-fabric.ps1 pins 26.3-snapshot-1; bump to current snapshot at Stage 2.
+- 2026-07-03 01:25 26-line convergence: 8 loader-duplicated classes -> shared_minecraft via new Platform + ClientNet seams (config-dir/isLoaded/client-send drift). Both 26 cells rebuilt green (Fabric+NeoForge 26.2 pilot). Remaining per-loader 26 files: entrypoints, ModNetworking, TrinketCompat, registry seams, BankVaultClient.

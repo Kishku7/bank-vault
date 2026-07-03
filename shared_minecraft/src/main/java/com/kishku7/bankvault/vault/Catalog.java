@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.kishku7.bankvault.BankVault;
-import net.fabricmc.loader.api.FabricLoader;
+import com.kishku7.bankvault.platform.Platform;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -122,7 +122,7 @@ public final class Catalog {
     }
 
     public static synchronized void restoreMissingDefaults() {
-        Path dir = FabricLoader.getInstance().getConfigDir().resolve("bankvault");
+        Path dir = Platform.configDir().resolve("bankvault");
         try { Files.createDirectories(dir); }
         catch (Exception e) { BankVault.LOGGER.error("[Bank Vault] config dir create failed", e); return; }
         migrateConfig(dir);   // 1.2.1: version-stamped configs upgrade in place (Dave)
@@ -150,7 +150,7 @@ public final class Catalog {
         tabOrderList = new HashMap<>();
         groupLabels = new HashMap<>();
         // 1) config-dir override (live-editable, survives mod updates)
-        Path cfg = FabricLoader.getInstance().getConfigDir().resolve("bankvault").resolve("categories.json");
+        Path cfg = Platform.configDir().resolve("bankvault").resolve("categories.json");
         if (Files.exists(cfg)) {
             try (Reader r = Files.newBufferedReader(cfg, StandardCharsets.UTF_8)) {
                 parse(GSON.fromJson(r, JsonObject.class));
@@ -183,7 +183,7 @@ public final class Catalog {
      *  on-screen order for that tab+mode. Config dir wins; bundled copy is the fallback. */
     private static void loadOrderFile(String mode) {
         JsonObject root = null;
-        Path f = FabricLoader.getInstance().getConfigDir().resolve("bankvault").resolve("sort_" + mode + ".json");
+        Path f = Platform.configDir().resolve("bankvault").resolve("sort_" + mode + ".json");
         if (Files.exists(f)) {
             try (Reader r = Files.newBufferedReader(f, StandardCharsets.UTF_8)) { root = GSON.fromJson(r, JsonObject.class); }
             catch (Exception e) { BankVault.LOGGER.error("[Bank Vault] sort_{}.json config load failed", mode, e); }
@@ -213,7 +213,7 @@ public final class Catalog {
      *  itemId -> label map per tab+mode. Config dir wins; bundled is the fallback. */
     private static void loadGroupsFile() {
         JsonObject root = null;
-        Path f = FabricLoader.getInstance().getConfigDir().resolve("bankvault").resolve("sort_groups.json");
+        Path f = Platform.configDir().resolve("bankvault").resolve("sort_groups.json");
         if (Files.exists(f)) {
             try (Reader r = Files.newBufferedReader(f, StandardCharsets.UTF_8)) { root = GSON.fromJson(r, JsonObject.class); }
             catch (Exception e) { BankVault.LOGGER.error("[Bank Vault] sort_groups.json config load failed", e); }

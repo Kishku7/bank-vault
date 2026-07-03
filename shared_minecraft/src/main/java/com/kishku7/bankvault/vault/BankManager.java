@@ -4,8 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.kishku7.bankvault.BankVault;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.FMLPaths;
+import com.kishku7.bankvault.platform.Platform;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
@@ -49,7 +48,7 @@ public final class BankManager {
 
     private static synchronized void ensure() {
         if (root != null) return;
-        root = FMLPaths.CONFIGDIR.get().resolve("bankvault");
+        root = Platform.configDir().resolve("bankvault");
         banksDir = root.resolve("banks");
         indexFile = root.resolve("index.json");
         invitesFile = root.resolve("invites.json");

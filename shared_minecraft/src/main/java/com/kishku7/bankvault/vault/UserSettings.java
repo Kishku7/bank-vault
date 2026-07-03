@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.kishku7.bankvault.BankVault;
-import net.fabricmc.loader.api.FabricLoader;
+import com.kishku7.bankvault.platform.Platform;
 import net.minecraft.server.level.ServerPlayer;
 
 import java.io.Reader;
@@ -54,7 +54,7 @@ public final class UserSettings {
     private UserSettings() {}
 
     private static Path dir() {
-        return FabricLoader.getInstance().getConfigDir().resolve("bankvault").resolve("user_settings");
+        return Platform.configDir().resolve("bankvault").resolve("user_settings");
     }
 
     private static List<String> allBuckets() {
