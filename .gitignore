@@ -7,3 +7,7 @@ dist/
 
 gen/
 __pycache__/
+
+scripts/_publish_*.py
+scripts/_release_*.py
+scripts/build-stage.ps1

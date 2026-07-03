@@ -849,3 +849,69 @@ def emit_block_use_head(cog, ver):
         cog.outl('    @SuppressWarnings("deprecation")   // use() IS the 1.20.x interaction override; the replacement only exists from 1.20.5')
         cog.outl("    public InteractionResult use(BlockState state, Level level, BlockPos pos,")
         cog.outl("                                 Player player, net.minecraft.world.InteractionHand hand, BlockHitResult hit) {")
+# ================= BvCompat era bodies =================
+# 26 line: ONE compile serves 26.1 -> 26.3, so fault-line bridges use reflection (mojmap runtime
+# on ALL 26 loaders -- resolves fine). Pre-26: reflection-by-mojmap-name MISSES on Fabric
+# (intermediary runtime) -- currentScreen returned null and the vault screen never received
+# VaultSync/SharingState (the 1.4.0 spot-play bug). Per the fall-through rule the pre-26 bodies
+# are DIRECT code (loom/FG6/MDG remap it per cell), which is universal.
+
+def emit_bvcompat_setscreen(cog, ver):
+    if is26(ver):
+        cog.outl('        if (invoke1(mc, "setScreenAndShow", Screen.class, screen)) return;')
+        cog.outl('        invoke1(mc, "setScreen", Screen.class, screen);')
+    else:
+        cog.outl('        mc.setScreen(screen);')
+
+
+def emit_bvcompat_currentscreen(cog, ver):
+    if is26(ver):
+        cog.outl('        try {')
+        cog.outl('            Field guiF = Minecraft.class.getField("gui");')
+        cog.outl('            Object gui = guiF.get(mc);')
+        cog.outl('            Method m = gui.getClass().getMethod("screen");')
+        cog.outl('            return (Screen) m.invoke(gui);')
+        cog.outl('        } catch (Exception ignored) {}')
+        cog.outl('        try {')
+        cog.outl('            Field f = Minecraft.class.getField("screen");')
+        cog.outl('            return (Screen) f.get(mc);')
+        cog.outl('        } catch (Exception e) {')
+        cog.outl('            return null;')
+        cog.outl('        }')
+    else:
+        cog.outl('        return mc.screen;')
+
+
+def emit_bvcompat_itemcopies(cog, ver):
+    if is26(ver):
+        cog.outl('        for (String name : new String[]{"itemCopies", "itemCopyStream"}) {')
+        cog.outl('            try {')
+        cog.outl('                Method m = bundleContents.getClass().getMethod(name);')
+        cog.outl('                return (Stream<net.minecraft.world.item.ItemStack>) m.invoke(bundleContents);')
+        cog.outl('            } catch (NoSuchMethodException ignored) {')
+        cog.outl('            } catch (Exception e) {')
+        cog.outl('                throw new RuntimeException(e);')
+        cog.outl('            }')
+        cog.outl('        }')
+        cog.outl('        throw new RuntimeException("BvCompat.itemCopies: no itemCopies/itemCopyStream on " + bundleContents.getClass());')
+    elif has_components(ver):
+        cog.outl('        return ((net.minecraft.world.item.component.BundleContents) bundleContents).itemCopyStream();')
+    else:
+        cog.outl('        throw new UnsupportedOperationException("bundle components do not exist pre-1.20.5");')
+
+
+def emit_bvcompat_invoke1(cog, ver):
+    if not is26(ver):
+        return
+    cog.outl('')
+    cog.outl('    private static boolean invoke1(Object target, String method, Class<?> paramType, Object arg) {')
+    cog.outl('        try {')
+    cog.outl('            Method m = target.getClass().getMethod(method, paramType);')
+    cog.outl('            m.invoke(target, arg);')
+    cog.outl('            return true;')
+    cog.outl('        } catch (NoSuchMethodException e) {')
+    cog.outl('            return false;')
+    cog.outl('        } catch (Exception e) {')
+    cog.outl('            throw new RuntimeException("BvCompat." + method + " failed", e);')
+    cog.outl('        }')
+    cog.outl('    }')

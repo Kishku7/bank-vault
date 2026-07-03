@@ -61,6 +61,44 @@ if ($pluralData) {
     if (Test-Path (Join-Path $t 'block'))       { Rename-Item (Join-Path $t 'block')       'blocks' }
 }
 
+# ---- 4b. recipe/advancement JSON era schemas (shared files are 26/new-schema shaped) ----
+# < 1.21.2: ingredient strings must be objects/arrays ("#": "id" -> {"item": id};
+#           inventory_changed "items": "id" -> ["id"]).
+# < 1.20.5: shaped-recipe result uses "item", not "id".
+$oldIngredients = $v -lt [version]'1.21.2'
+$oldResult      = $v -lt [version]'1.20.5'
+if ($oldIngredients) {
+    $recipeDir = if ($pluralData) { 'recipes' } else { 'recipe' }
+    $advDir    = if ($pluralData) { 'advancements' } else { 'advancement' }
+    $rp = Join-Path $genR ('data\bankvault\' + $recipeDir + '\bank_vault.json')
+    if (Test-Path $rp) {
+        $r = Get-Content $rp -Raw | ConvertFrom-Json
+        $newKey = @{}
+        foreach ($k in $r.key.PSObject.Properties) {
+            if ($k.Value -is [string]) { $newKey[$k.Name] = @{ item = $k.Value } }
+            else { $newKey[$k.Name] = $k.Value }
+        }
+        $r.key = [pscustomobject]$newKey
+        if ($oldResult -and $r.result.id) {
+            $r.result = [pscustomobject]@{ item = $r.result.id; count = $r.result.count }
+        }
+        $r | ConvertTo-Json -Depth 10 | Set-Content $rp -Encoding UTF8
+    }
+    $ap = Join-Path $genR ('data\bankvault\' + $advDir + '\recipes\bank_vault.json')
+    if (Test-Path $ap) {
+        $a = Get-Content $ap -Raw | ConvertFrom-Json
+        foreach ($c in $a.criteria.PSObject.Properties) {
+            $cond = $c.Value.conditions
+            if ($cond -and $cond.items) {
+                foreach ($it in $cond.items) {
+                    if ($it.items -is [string]) { $it.items = @($it.items) }
+                }
+            }
+        }
+        $a | ConvertTo-Json -Depth 12 | Set-Content $ap -Encoding UTF8
+    }
+}
+
 # ---- 5. pack.mcmeta (plain int pre-26; table lives in compat_core.PACK_FORMATS) ----
 Push-Location $cg
 $pf = & python (Join-Path $cg 'print_pf.py') $McVer
