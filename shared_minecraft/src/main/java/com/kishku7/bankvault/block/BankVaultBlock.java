@@ -33,6 +33,8 @@ public class BankVaultBlock extends BaseEntityBlock {
     public static final EnumProperty<VaultPart> PART = ModProperties.PART;
     public static final MapCodec<BankVaultBlock> CODEC = simpleCodec(BankVaultBlock::new);
 
+    // registerDefaultState is the canonical vanilla ctor pattern; 'this' does not escape further
+    @SuppressWarnings("this-escape")
     public BankVaultBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()

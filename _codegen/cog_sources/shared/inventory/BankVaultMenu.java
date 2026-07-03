@@ -18,7 +18,12 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ArmorSlot;
+/* [[[cog
+import compat_core
+compat_core.emit_click_import(cog, ver)
+]]] */
 import net.minecraft.world.inventory.ContainerInput;
+/* [[[end]]] */
 import net.minecraft.world.inventory.CraftingMenu;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.inventory.ResultContainer;
@@ -170,7 +175,12 @@ public class BankVaultMenu extends AbstractContainerMenu {
     public boolean stillValid(Player player) { return true; }
 
     @Override
-    public void clicked(int slotId, int button, ContainerInput clickType, Player player) {
+    /* [[[cog
+import compat_core
+compat_core.emit_clicked_sig(cog, ver)
+]]] */
+public void clicked(int slotId, int button, ContainerInput clickType, Player player) {
+/* [[[end]]] */
         if (slotId == PIN_SLOT) {
             handlePinClick(player);
             return;
@@ -187,7 +197,12 @@ public class BankVaultMenu extends AbstractContainerMenu {
      * inside the vanilla click transaction, then forces a full resync so the client cursor matches.
      * The client side is a no-op -- the resync delivers the result.
      */
-    private void handleViewClick(int cell, int button, ContainerInput clickType, Player player) {
+    /* [[[cog
+import compat_core
+compat_core.emit_viewclick_sig(cog, ver)
+]]] */
+private void handleViewClick(int cell, int button, ContainerInput clickType, Player player) {
+/* [[[end]]] */
         if (!(player instanceof ServerPlayer sp)) return;            // client: server resync delivers the result
         if (cell < 0 || cell >= viewKeys.length) return;
         Bank bank = BankManager.lookup(sp.getUUID());
@@ -195,7 +210,12 @@ public class BankVaultMenu extends AbstractContainerMenu {
         int level = bank.levelOf(sp.getUUID());
         ItemStack carried = getCarried();
 
-        if (clickType == ContainerInput.PICKUP && !carried.isEmpty()) {
+        /* [[[cog
+import compat_core
+compat_core.emit_pickup_check(cog, ver)
+]]] */
+if (clickType == ContainerInput.PICKUP && !carried.isEmpty()) {
+/* [[[end]]] */
             // Cursor is holding items: a grid click deposits them (right-click deposits one) --
             // the vanilla "click a container while holding = put it in" model. Any cell works.
             if (level < BankManager.DEPOSIT) return;

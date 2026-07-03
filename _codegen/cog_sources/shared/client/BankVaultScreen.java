@@ -23,7 +23,12 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
+/* [[[cog
+import compat_core
+compat_core.emit_click_import(cog, ver)
+]]] */
 import net.minecraft.world.inventory.ContainerInput;
+/* [[[end]]] */
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -854,6 +859,10 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         g.popMatrix();
     }
 
+    /* [[[cog
+    import compat_core
+    compat_core.emit_screen_entries(cog, ver)
+    ]]] */
     @Override
     public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor gg, int mouseX, int mouseY, float partialTick) {
         Gfx g = Gfx.of(gg);
@@ -869,6 +878,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         this.extractTooltip(gg, mouseX, mouseY);
         renderHoverTooltips(g, mouseX, mouseY);
     }
+    /* [[[end]]] */
 
     /** Grid-item + section-button hover tooltips (shared by every era's render entry). */
     private void renderHoverTooltips(Gfx g, int mouseX, int mouseY) {
@@ -1470,7 +1480,12 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
                 int slotIndex = BankVaultMenu.VIEW_FIRST + cell;
                 if (slotIndex < this.menu.slots.size()) {
                     Slot vs = this.menu.slots.get(slotIndex);
+                    /* [[[cog
+        import compat_core
+        compat_core.emit_ct_decl(cog, ver)
+        ]]] */
 ContainerInput ct = event.hasShiftDown() ? ContainerInput.QUICK_MOVE : ContainerInput.PICKUP;
+/* [[[end]]] */
                     this.slotClicked(vs, slotIndex, button, ct);
                     return true;
                 }
@@ -1521,7 +1536,12 @@ ContainerInput ct = event.hasShiftDown() ? ContainerInput.QUICK_MOVE : Container
     private void pinClick() {
         int idx = BankVaultMenu.PIN_SLOT;
         if (idx < this.menu.slots.size())
+            /* [[[cog
+        import compat_core
+        compat_core.emit_slotclicked_pickup(cog, ver)
+        ]]] */
 this.slotClicked(this.menu.slots.get(idx), idx, 0, ContainerInput.PICKUP);
+/* [[[end]]] */
     }
 
     @Override

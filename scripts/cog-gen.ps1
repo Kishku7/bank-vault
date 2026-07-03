@@ -71,7 +71,7 @@ if ($LASTEXITCODE -ne 0 -or -not $pf) { throw "no pack_format for $McVer -- exte
 $env:PYTHONDONTWRITEBYTECODE = '1'
 Get-ChildItem (Join-Path $gen 'src\main\java') -Recurse -File -Filter *.java |
     Where-Object { (Get-Content $_.FullName -Raw) -match '\[\[\[cog' } | ForEach-Object {
-        & cog -r -D loader=$Loader -D ver=$McVer -D codegen=$cg $_.FullName | Out-Null
+        & cog -r -I $cg -D loader=$Loader -D ver=$McVer -D codegen=$cg $_.FullName | Out-Null
         if ($LASTEXITCODE -ne 0) { throw ("cog failed: " + $_.FullName) }
     }
 Write-Host ("cog-gen OK: {0} (loader={1} pluralData={2} itemDefs={3} pf={4})" -f $Cell, $Loader, $pluralData, $itemDefs, $pf)

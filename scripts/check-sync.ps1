@@ -52,7 +52,7 @@ foreach ($p in $pairs) {
     $mat = Join-Path $tmp ([IO.Path]::GetFileName($p.src))
     Copy-Item $p.src $mat -Force
     if ((Get-Content $mat -Raw) -match '\[\[\[cog') {
-        & cog -r -D ("loader=" + $p.loader) -D ver=26.1 -D codegen=$cg $mat | Out-Null
+        & cog -r -I $cg -D ("loader=" + $p.loader) -D ver=26.1 -D codegen=$cg $mat | Out-Null
         if ($LASTEXITCODE -ne 0) { Write-Host ("COG FAIL " + $p.rel); $fail = 1; continue }
     }
     $a = Normalize $mat
