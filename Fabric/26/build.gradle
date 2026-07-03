@@ -34,10 +34,17 @@ dependencies {
 }
 
 processResources {
-    inputs.properties(["version": project.version, "mcLower": project.mc_lower, "mcUpper": project.mc_upper])
+    // 26.x resource pack_format is > 81, so the strict codec DEMANDS min_format/max_format --
+    // ship the exact-single range form, value injected per 26.X by scripts/build-fabric.ps1
+    // (PACK_FORMAT env). See Memory/knowledge/pack-formats.md. (This block was MISSING until
+    // 1.4.0+: 26.1/26.2 fabric jars shipped a literal ${packFormat} = invalid JSON = the whole
+    // bankvault resource namespace failed to load. Caught in the 1.4.0 GUI spot-play.)
+    def packFormat = (System.getenv("PACK_FORMAT") ?: "84")
+    inputs.properties(["version": project.version, "mcLower": project.mc_lower, "mcUpper": project.mc_upper, "packFormat": packFormat])
     filesMatching("fabric.mod.json") {
         expand "version": project.version, "mcLower": project.mc_lower, "mcUpper": project.mc_upper
     }
+    filesMatching("pack.mcmeta") { expand "packFormat": packFormat }
 }
 
 tasks.withType(JavaCompile).configureEach { it.options.encoding = "UTF-8"; it.options.release = 25 }
