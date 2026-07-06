@@ -13,3 +13,6 @@ scripts/_release_*.py
 scripts/build-stage.ps1
 
 docs/
+
+# catalog/taxonomy tooling (was the 'tooling' branch; local-only, not published)
+tooling/
