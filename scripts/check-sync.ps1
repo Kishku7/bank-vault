@@ -6,6 +6,11 @@
 # cog_sources/<loader>/<rel> -> <Loader>/26/src/main/java/com/kishku7/bankvault/<rel>.
 $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path $PSScriptRoot -Parent
+
+# metadata single-source gate: every manifest's issue-tracker URL must match the canonical value.
+& python (Join-Path $PSScriptRoot '_metadata.py') check
+if ($LASTEXITCODE -ne 0) { Write-Host 'metadata check FAILED'; exit 1 }
+
 $cg = Join-Path $repoRoot '_codegen'
 $cs = Join-Path $cg 'cog_sources'
 $pkg = 'com\kishku7\bankvault'

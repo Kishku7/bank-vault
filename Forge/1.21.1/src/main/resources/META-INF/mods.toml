@@ -2,6 +2,7 @@ modLoader="javafml"
 loaderVersion="[52,)"
 license="All Rights Reserved"
 
+issueTrackerURL="https://github.com/Kishku7/mod_support/issues"
 [[mods]]
 modId="bankvault"
 version="${version}"

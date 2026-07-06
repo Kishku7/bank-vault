@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[61,)"
+license="All Rights Reserved"
+
+issueTrackerURL="https://github.com/Kishku7/mod_support/issues"
+[[mods]]
+modId="bankvault"
+version="${version}"
+displayName="Bank Vault"
+authors="Kishku7"
+description='''A single multiblock vault with a creative-style categorized GUI. Form a 3x3 of Bank Vault blocks and store everything.'''
+
+[[dependencies.bankvault]]
+modId="forge"
+mandatory=true
+versionRange="[61,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.bankvault]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.21.11,1.22)"
+ordering="NONE"
+side="BOTH"

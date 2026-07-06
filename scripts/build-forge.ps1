@@ -6,7 +6,7 @@ $repo = Split-Path -Parent $PSScriptRoot
 $dist = Join-Path $repo "dist"
 New-Item -ItemType Directory -Force -Path $dist | Out-Null
 
-$cells = @('1.20.1', '1.20.6', '1.21', '1.21.1', '1.21.5', '1.21.8')
+$cells = @('1.20.1', '1.20.6', '1.21', '1.21.1', '1.21.5', '1.21.8', '1.21.10', '1.21.11')
 $targets = if ($Only -and $Only.Count -gt 0) { $Only } else { $cells }
 
 foreach ($cell in $targets) {

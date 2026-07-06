@@ -1,8 +1,18 @@
-# Bank Vault - branch `minecraft-1.20-26.3`
+# Bank Vault - Build Guide (`minecraft-1.20-26.3` branch)
 
 The single cross-version source for Bank Vault: **every playable Minecraft version from 1.20.0
 through the 26.3 snapshot**, built from one shared code base. Client + server mod. Standalone
 per-loader builds - **no Architectury** anywhere, at build time or runtime.
+
+Landing page (what the mod is, downloads): [main branch](https://github.com/Kishku7/bank-vault).
+Report issues / support: [mod_support](https://github.com/Kishku7/mod_support/issues).
+
+## What you need installed
+
+- **JDKs** by era: JDK 17 (1.20.x), JDK 21 (1.21.x), JDK 25 (26.x). The build cells select their
+  own toolchain; have the ones you intend to build available.
+- **Python 3** plus **Cog**: `pip install cogapp` (drives the version-drift codegen).
+- **PowerShell 7** (`pwsh`) to run the build walkers.
 
 ## Layout
 
@@ -19,19 +29,25 @@ dist/                    every release jar (line-keyed names), written by the wa
 Pre-26 cells build from a cog-materialized `gen/` tree (`scripts/cog-gen.ps1`); the 26 cells build
 straight from `shared_minecraft` except 26.3+, which also materializes (26.3-snapshot-2 removed the
 block `MapCodec` surface). `scripts/check-sync.ps1` is the drift tripwire between the cog sources
-and their plain 26 twins - run it before committing.
+and their plain 26 twins, and also runs the manifest metadata gate (`_metadata.py check`) - run it
+before committing.
 
-## Coverage (1.4.0)
+## Coverage (1.4.1)
 
 | Loader   | Jars | Serves |
 |----------|------|--------|
 | Fabric   | 12   | 1.20 - 1.20.4, 1.20.5/6, 1.21 - 1.21.11 (every step), 26.1 - 26.3-snapshot |
 | NeoForge | 11   | 1.20.1 (via the Forge jar), 1.20.4, 1.20.5/6, 1.21 - 1.21.11, 26.1.2, 26.2 |
-| Forge    | 6    | 1.20.1, 1.20.6, 1.21 - 1.21.1, 1.21.5, 1.21.6 - 1.21.8 |
+| Forge    | 8    | 1.20.1, 1.20.6, 1.21 - 1.21.1, 1.21.5, 1.21.6 - 1.21.8, 1.21.9 - 1.21.10, 1.21.11 |
+
+Forge runs on ForgeGradle 6, whose real ceiling is **1.21.11** (forge 61.x) - the 1.21.10 cell
+(forge 60.x) serves 1.21.9 + 1.21.10 and the 1.21.11 cell (forge 61.x) serves 1.21.11.
 
 Known honest gaps: NeoForge MC 26.1/26.1.1 (the loader there lacks `BreakBlockEvent`, added in
-26.1.2); Forge 1.21.9+ (no FG7); NeoForge 1.20.2/1.20.3 (loader era not covered). Every claimed
-(version, loader) pair is dedicated-server boot-gated before release.
+26.1.2); NeoForge 1.20.2/1.20.3 (loader era not covered); Forge 1.21.2 / 1.21.3 / 1.21.4 (orphan FG6
+builds - pending a check of whether the mod needs the overlay-registration API those drop); 26.x is
+Fabric + NeoForge only (FG6 cannot build unobfuscated 26.x). Every claimed (version, loader) pair is
+dedicated-server boot-gated before release.
 
 ## Build
 
@@ -49,5 +65,5 @@ Replies are single plain-ASCII lines: `BV|<op>|OK|...` / `BV|<op>|ERR|<reason>`.
 bank's native keys (plain item ids, or `id#hash` for component-bearing stacks). Additive only -
 older clients are unaffected.
 
-MATRIX.md records the campaign state and per-era decisions; `_codegen/compat_core.py` documents
-every version boundary the build machinery knows about.
+`docs/MATRIX.md` (internal, not tracked) records the campaign state and per-era decisions;
+`_codegen/compat_core.py` documents every version boundary the build machinery knows about.
