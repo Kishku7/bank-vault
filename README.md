@@ -2,73 +2,37 @@
 
 Retire the chest room. Build one vault instead.
 
-Bank Vault is a multiblock storage mod: a 3x3 iron **vault door** that opens into a full-screen,
-creative-style browser of everything you own - category tabs, smart sorting, search, recursive
-container unloading, shared / guild vaults, and capacity you upgrade by feeding it chests. Per-player
-data is plain JSON under `config/bankvault/`. Client + server mod.
+Bank Vault is a multiblock storage mod: a 3x3 iron vault door that opens into a full-screen,
+creative-style browser of everything you own. One block to place, and the chest walls are gone.
 
+## Why Bank Vault
 
-## Branches
+- **One screen for everything.** Category tabs, smart sorting, and search across your whole
+  inventory - no more digging through rows of chests.
+- **Suck in containers in one click.** Recursively unload shulkers and other held containers
+  straight into the vault.
+- **Capacity you grow.** Feed the vault chests (or `/bank upgrade`) to expand it over time.
+- **Share it.** Create or join a shared / guild vault and manage membership from `/bank`.
+- **Your data stays yours.** Per-player and shared-vault data is plain JSON under
+  `config/bankvault/`.
 
-All source lives on ONE cross-version branch; `main` (this branch) is the overview.
+## Usage
 
-- [minecraft-1.20-26.3](https://github.com/Kishku7/bank-vault/tree/minecraft-1.20-26.3) -
-  every playable Minecraft version from **1.20.0 through the 26.3 snapshot**, one shared code
-  base with thin per-version build cells for **Fabric, NeoForge and Forge**. No Architectury.
-  See that branch's README for the layout, the coverage table and the build walkers.
+1. Place the iron vault-door block to form the 3x3 multiblock - it validates itself in-world.
+2. Open it for the full-screen browser: tabs, sorting, search, and one-click container unloading.
+3. Grow capacity by feeding it chests, or `/bank upgrade`.
+4. Share it: create or join a shared / guild vault and manage members from `/bank`.
 
-The old per-line branches (`1.20.x`, `1.21.x`, `26`) were unified into it in v1.4.0; their final
-states are preserved as `pre-unify/*` tags.
+Commands (`/bank`): `list`, `invite <player>`, `accept`, `decline`, `leave`, `disband`,
+`upgrade`, `withdraw ...`, and the operator-only `fillall` / `clearall` / `reload`.
 
-## Supported platforms
+## Get it
 
-| MC line | Fabric / Quilt | Forge | NeoForge |
-| --- | --- | --- | --- |
-| `1.20.x` (1.20 - 1.20.6)  | 1.20 - 1.20.6 (+ Quilt)  | 1.20.1, 1.20.5 - 1.20.6 | 1.20.1 (via the Forge jar), 1.20.2 - 1.20.6 |
-| `1.21.x` (1.21 - 1.21.11) | 1.21 - 1.21.11 (+ Quilt) | 1.21 - 1.21.8 | 1.21 - 1.21.11 |
-| `26` (unified 26.x) | 26.1 -> 26.3-snapshot-1 | - | 26.1.2 / 26.2 |
+- **Download:** [Modrinth](https://modrinth.com/mod/bank-vault)
+- **Source code:** [`minecraft-1.20-26.3` branch](https://github.com/Kishku7/bank-vault/tree/minecraft-1.20-26.3)
+- **Report issues / support:** [mod_support](https://github.com/Kishku7/mod_support/issues)
 
-- **Forge** is supported through **1.21.8** (the ForgeGradle 6 ceiling - there is no FG7). 1.21.9+ and
-  all of 26.x are Fabric + NeoForge.
-- **Quilt** runs the Fabric jar on the 1.20.x / 1.21.x lines, but **not on 26.x**: Quilt retired Quilted
-  Fabric API at 26.1, so the Fabric API path Bank Vault relies on is no longer provided on Quilt there.
-- **26.x** is standalone (no Architectury). Fabric / Quilt builds require **Fabric API**.
-
-## Using Bank Vault
-
-1. **Build the vault door.** Place the iron vault-door block to form the 3x3 multiblock (the in-game
-   structure validates itself). Adds one block; no other blocks or items.
-2. **Open it** to get the full-screen browser: category tabs, smart sorting, search, and one-click
-   recursive unloading of held containers (shulkers, etc.) into the vault.
-3. **Grow capacity** by feeding the vault chests (or `/bank upgrade`).
-4. **Share it.** Create or join a shared / guild vault and manage membership from the `/bank` command.
-
-### Commands (`/bank`)
-
-- `list` - show your bank / membership.
-- `invite <player>`, `accept`, `decline`, `leave`, `disband` - shared / guild vault membership.
-- `upgrade` - increase capacity.
-- `withdraw ...` - pull items out from the command line.
-- `fillall`, `clearall`, `reload` - operator only (permission level 2).
-
-Per-player and shared-vault data is stored as plain JSON under `config/bankvault/`.
-
-## Building from source
-
-Each loader+version folder is its own build root. Check out a branch and build the one you want:
-
-```
-# e.g. on the 1.20.x branch:
-cd Fabric/1.20.6        && ./gradlew build
-cd NeoForge/1.20.4-gap  && ./gradlew build
-```
-
-Architectury families (1.20.x / 1.21.x) pull their shared `common` from `../../Common/<version>`
-automatically. Each folder has a README describing exactly what it builds.
-
-## Downloads
-
-- Releases: https://github.com/Kishku7/bank-vault/releases
-- Modrinth: https://modrinth.com/mod/bank-vault
+Ships for Fabric, NeoForge, and Forge (plus Quilt on the 1.20 - 1.21 lines), covering Minecraft
+1.20 through the 26.x line. Fabric / Quilt builds require Fabric API.
 
 By Kishku7. All Rights Reserved.
