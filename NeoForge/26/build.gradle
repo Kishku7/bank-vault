@@ -39,4 +39,4 @@ processResources {
     filesMatching('pack.mcmeta') { expand([packFormat: packFormat]) }
 }
 
-tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.compilerArgs += ['-Xlint:all'] }

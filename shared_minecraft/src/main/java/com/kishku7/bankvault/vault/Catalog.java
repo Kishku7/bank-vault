@@ -45,7 +45,7 @@ public final class Catalog {
 
     private Catalog() {}
 
-    /** Write any MISSING config file from the bundled defaults (per-file: delete one and only
+    /* Write any MISSING config file from the bundled defaults (per-file: delete one and only
      *  that one is restored on next init). Existing files are never touched. */
 
     /** Config data version (Kishku7, 1.2.1 spec). Bump whenever the bundled data files change in

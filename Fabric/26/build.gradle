@@ -47,7 +47,7 @@ processResources {
     filesMatching("pack.mcmeta") { expand "packFormat": packFormat }
 }
 
-tasks.withType(JavaCompile).configureEach { it.options.encoding = "UTF-8"; it.options.release = 25 }
+tasks.withType(JavaCompile).configureEach { it.options.encoding = "UTF-8"; it.options.release = 25; it.options.compilerArgs += ['-Xlint:all'] }
 
 java {
     withSourcesJar()

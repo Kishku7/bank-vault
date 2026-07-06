@@ -13,7 +13,7 @@ public final class ModCreativeTab {
     private ModCreativeTab() {}
 
     public static void init() {
-        CreativeModeTab tab = CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+        CreativeModeTab tab = new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 0)
                 .title(Component.translatable("itemGroup.bankvault.bankvault"))
                 .icon(() -> new ItemStack(ModBlocks.VAULT))
                 .displayItems((params, output) -> output.accept(ModBlocks.VAULT))

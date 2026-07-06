@@ -214,3 +214,11 @@ public final class ClientNet {
     }
 }""".split("\n"):
         cog.outl(ln)
+
+def emit_tab_builder(cog, ver):
+    # 26.x deprecates the static CreativeModeTab.builder(Row,int); its public Builder constructor is
+    # the non-deprecated replacement there. Pre-26 keeps the (non-deprecated) static factory.
+    if compat_core.is26(ver):
+        cog.outl("        CreativeModeTab tab = new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 0)")
+    else:
+        cog.outl("        CreativeModeTab tab = CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)")

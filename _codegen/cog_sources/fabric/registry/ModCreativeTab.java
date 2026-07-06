@@ -13,7 +13,12 @@ public final class ModCreativeTab {
     private ModCreativeTab() {}
 
     public static void init() {
+        /* [[[cog
+        import compat_fabric
+        compat_fabric.emit_tab_builder(cog, ver)
+        ]]] */
         CreativeModeTab tab = CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+        /* [[[end]]] */
                 .title(Component.translatable("itemGroup.bankvault.bankvault"))
                 .icon(() -> new ItemStack(ModBlocks.VAULT))
                 .displayItems((params, output) -> output.accept(ModBlocks.VAULT))

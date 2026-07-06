@@ -24,14 +24,13 @@ def emit_break_sig(cog, ver):
 
 
 def emit_tab_builder(cog, ver):
+    # 26.x deprecates the static CreativeModeTab.builder(Row,int); its public Builder constructor is
+    # the non-deprecated replacement there. Pre-26 NeoForge keeps the no-arg builder().
     if compat_core.is26(ver):
-        cog.outl('TABS.register("bankvault", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)')
+        cog.outl('        TABS.register("bankvault", () -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 0)')
     else:
-        # NeoForge 1.21.x deprecates builder(Row,int); their no-arg builder() is the replacement
-        cog.outl('TABS.register("bankvault", () -> CreativeModeTab.builder()')
+        cog.outl('        TABS.register("bankvault", () -> CreativeModeTab.builder()')
 
-
-# ---- client->server send: ClientPacketDistributor (26 + 1.21.8-era) vs PacketDistributor.sendToServer (<=1.21.5) ----
 def emit_clientnet(cog, ver):
     modern = compat_core._vt(ver) >= (1, 21, 8)
     dist_import = ("import net.neoforged.neoforge.client.network.ClientPacketDistributor;" if modern

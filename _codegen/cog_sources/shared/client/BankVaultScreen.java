@@ -750,7 +750,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             default: return smartFamily();
         }
     }
-    /** SETTINGS-DRIVEN smart sort: interprets the step chain from categories.json tabSort.
+    /* SETTINGS-DRIVEN smart sort: interprets the step chain from categories.json tabSort.
      *  Steps: "name", "form", "oxidation", "color", "firstword", "lastword",
      *  "prefix:<list>", "tier:<list>" (ordered infix), "suffix:<list>". */
     /** v1.2 (Kishku7): keyword/dynamic buttons sort CATEGORICALLY -- items group by their

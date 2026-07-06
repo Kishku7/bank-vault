@@ -13,7 +13,7 @@ public final class ModCreativeTab {
             DeferredRegister.create(BuiltInRegistries.CREATIVE_MODE_TAB, BankVault.MOD_ID);
 
     static {
-        TABS.register("bankvault", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+        TABS.register("bankvault", () -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 0)
                 .title(Component.translatable("itemGroup.bankvault.bankvault"))
                 .icon(() -> new ItemStack(ModBlocks.VAULT))
                 .displayItems((params, output) -> output.accept(ModBlocks.VAULT))
