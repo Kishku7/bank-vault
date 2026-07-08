@@ -39,7 +39,7 @@ processResources {
     // (PACK_FORMAT env). See Memory/knowledge/pack-formats.md. (This block was MISSING until
     // 1.4.0+: 26.1/26.2 fabric jars shipped a literal ${packFormat} = invalid JSON = the whole
     // bankvault resource namespace failed to load. Caught in the 1.4.0 GUI spot-play.)
-    def packFormat = (System.getenv("PACK_FORMAT") ?: "84")
+    def packFormat = (project.findProperty("pack_format") ?: System.getenv("PACK_FORMAT") ?: "84")
     inputs.properties(["version": project.version, "mcLower": project.mc_lower, "mcUpper": project.mc_upper, "packFormat": packFormat])
     filesMatching("fabric.mod.json") {
         expand "version": project.version, "mcLower": project.mc_lower, "mcUpper": project.mc_upper

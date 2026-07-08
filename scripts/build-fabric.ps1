@@ -10,7 +10,7 @@ $pre26 = @('1.20', '1.20.6', '1.21', '1.21.1', '1.21.2', '1.21.5', '1.21.6', '1.
 $matrix = [ordered]@{
   "26.1" = @{mc = "26.1.2";           api = "0.152.1+26.1.2"; loader = "0.18.6"; lo = "26.1-";  hi = "26.2"; pf = 84 }
   "26.2" = @{mc = "26.2";             api = "0.152.1+26.2";   loader = "0.19.3"; lo = "26.2-";  hi = "26.3"; pf = 88 }
-  "26.3" = @{mc = "26.3-snapshot-2";  api = "0.153.1+26.3";   loader = "0.19.3"; lo = "26.3-";  hi = "26.4"; pf = 89 }
+  "26.3" = @{mc = "26.3-snapshot-3";  api = "0.154.3+26.3";   loader = "0.19.3"; lo = "26.3-alpha.3";  hi = "26.3-alpha.4"; pf = 91 }
 }
 
 $targets = if ($Only -and $Only.Count -gt 0) { $Only } else { $pre26 + @($matrix.Keys) }
@@ -44,7 +44,7 @@ foreach ($cell in $targets) {
         $modver = (Select-String -Path (Join-Path $fabric "gradle.properties") -Pattern '^mod_version=(.+)$').Matches[0].Groups[1].Value
         $env:PACK_FORMAT = "$($m.pf)"
         Push-Location $fabric
-        & .\gradlew.bat clean build "-Pminecraft_version=$($m.mc)" "-Pfabric_api_version=$($m.api)" "-Ploader_version=$($m.loader)" "-Pmc_lower=$($m.lo)" "-Pmc_upper=$($m.hi)" @genFlag --no-daemon
+        & .\gradlew.bat clean build "-Pminecraft_version=$($m.mc)" "-Pfabric_api_version=$($m.api)" "-Ploader_version=$($m.loader)" "-Pmc_lower=$($m.lo)" "-Pmc_upper=$($m.hi)" "-Ppack_format=$($m.pf)" @genFlag --no-daemon
         $rc = $LASTEXITCODE; Pop-Location
         Remove-Item Env:PACK_FORMAT -ErrorAction SilentlyContinue
         if ($rc -ne 0) { throw "Fabric FAILED $cell" }
