@@ -15,9 +15,9 @@ base { archivesName = 'bank-vault' }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
-// Shared single-source-of-truth tree.
-sourceSets.main.java.srcDir "../../shared_minecraft/src/main/java"
-sourceSets.main.resources.srcDir "../../shared_minecraft/src/main/resources"
+// D16 (2026-07-10): cog-materialize gen/ (shared_minecraft eliminated).
+sourceSets.main.java.setSrcDirs(["gen/src/main/java"])
+sourceSets.main.resources.setSrcDirs(["gen/src/main/resources"])
 
 neoForge {
     version = project.neo_version

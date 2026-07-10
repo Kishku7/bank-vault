@@ -35,7 +35,7 @@ foreach ($cell in $targets) {
         Write-Host "=== BV Fabric 26-matrix $cell (mc=$($m.mc)) ==="
         $fabric = Join-Path $repo "Fabric\26"
         $genFlag = @()
-        if ([version]($cell) -ge [version]"26.3") {
+        if ($true) {  # D16 (2026-07-10): every 26 cell cog-materializes gen/
             # 26.3+ = cog-materialized (26.3-snapshot-2 removed the block codec surface)
             & pwsh -NoProfile -File (Join-Path $PSScriptRoot "cog-gen.ps1") -Cell "Fabric/26" -Ver $cell
             if ($LASTEXITCODE -ne 0) { throw "cog-gen FAILED Fabric/26 @$cell" }

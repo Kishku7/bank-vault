@@ -1,6 +1,6 @@
 # cog-gen.ps1 -- materialize a pre-26 build cell's gen/ tree from the one shared source.
 # Usage: pwsh -File scripts\cog-gen.ps1 -Cell Fabric/1.21.8   [-SrcLoader forge]
-# The 26 cells do NOT use cog-gen (they srcDir shared_minecraft directly).
+# D16 (2026-07-10): ALL cells use cog-gen; shared_minecraft eliminated (shared code -> cog_sources).
 # gen/ is disposable build output (gitignored). Edit ONLY _codegen/cog_sources + shared_minecraft.
 param(
     [Parameter(Mandatory)][string]$Cell,
@@ -30,7 +30,7 @@ $itemDefs   = $v -ge [version]'1.21.4'    # assets/<ns>/items/ item model defini
 # ---- 1. wipe gen/, copy shared_minecraft java verbatim ----
 Remove-Item $gen -Recurse -Force -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force -Path $genJ, $genR | Out-Null
-Copy-Item (Join-Path $repoRoot ('shared_minecraft\src\main\java\' + $pkg + '\*')) $genJ -Recurse -Force
+# D16: shared java now lives in cog_sources/shared (laid down by step 2); shared_minecraft eliminated
 
 # ---- 2. overwrite drift files with the cog-instrumented shared copies ----
 if (Test-Path (Join-Path $cs 'shared')) {
@@ -44,7 +44,7 @@ if (Test-Path $L) {
 }
 
 # ---- 4. resources: shared assets/data with era corrections ----
-$shR = Join-Path $repoRoot 'shared_minecraft\src\main\resources'
+$shR = Join-Path $repoRoot '_codegen\cog_sources\shared_resources'  # D16: shared resources relocated
 Copy-Item (Join-Path $shR 'assets') (Join-Path $genR 'assets') -Recurse -Force
 Copy-Item (Join-Path $shR 'data')   (Join-Path $genR 'data')   -Recurse -Force
 if (-not $itemDefs) {

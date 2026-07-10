@@ -1,9 +1,7 @@
-# check-sync.ps1 -- drift tripwire between the cog sources and their PLAIN 26-cell twins.
-# The 26 cells never run cog, so shared_minecraft + the 26 loader cells keep plain copies of
-# files that also exist as cog sources. This materializes each cog source at 26.1 and compares
-# CODE (comments/blank/package lines ignored) against the plain twin. Exit 1 on drift.
-# Twins are AUTO-DISCOVERED: cog_sources/shared/<rel> -> shared_minecraft/.../<rel>;
-# cog_sources/<loader>/<rel> -> <Loader>/26/src/main/java/com/kishku7/bankvault/<rel>.
+# check-sync.ps1 -- metadata single-source gate (D12). The twin drift-tripwire is RETIRED:
+# D16 (2026-07-10) eliminated shared_minecraft and the 26 cell-src twins, so there are no plain
+# twins left to compare (the auto-discovery below finds none and no-ops). The metadata check
+# (_metadata.py) is the live gate; the twin loop is kept dormant + harmless.
 $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path $PSScriptRoot -Parent
 

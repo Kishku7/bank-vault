@@ -33,6 +33,9 @@ foreach ($cell in $targets) {
         $m = $matrix[$cell]
         Write-Host "=== BV NeoForge 26-matrix $cell ==="
         $nf = Join-Path $repo "NeoForge\26"
+        # D16 (2026-07-10): cog-materialize gen/ (shared_minecraft eliminated)
+        & pwsh -NoProfile -File (Join-Path $PSScriptRoot 'cog-gen.ps1') -Cell "NeoForge/26" -Ver $cell
+        if ($LASTEXITCODE -ne 0) { throw "cog-gen FAILED NeoForge/26 @$cell" }
         $modver = (Select-String -Path (Join-Path $nf "gradle.properties") -Pattern '^mod_version=(.+)$').Matches[0].Groups[1].Value
         $env:PACK_FORMAT = "$($m.pf)"
         Push-Location $nf

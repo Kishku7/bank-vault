@@ -13,7 +13,7 @@ _REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 def _twin(rel):
     """Read a plain 26-cell twin file, return its text lines (verbatim)."""
-    p = os.path.join(_REPO, "Fabric", "26", "src", "main", "java", "com", "kishku7", "bankvault", rel)
+    p = os.path.join(_REPO, "_codegen", "cog_sources", "_bodies", "fabric", rel)  # D16: master bodies live in cog_sources
     with open(p, "r", encoding="utf-8") as f:
         return f.read().splitlines()
 

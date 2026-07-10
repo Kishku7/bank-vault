@@ -13,7 +13,7 @@ _REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 
 def _twin_shared(rel):
-    p = os.path.join(_REPO, "shared_minecraft", "src", "main", "java", "com", "kishku7", "bankvault", rel)
+    p = os.path.join(_REPO, "_codegen", "cog_sources", "_bodies", rel)  # D16: master bodies live in cog_sources
     with open(p, "r", encoding="utf-8") as f:
         return f.read().splitlines()
 
