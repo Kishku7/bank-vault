@@ -1,0 +1,9 @@
+{
+  "modrinth_id": "GfbuXagl",
+  "slug": "bank-vault",
+  "jar_prefix": "bank-vault",
+  "fabric_api_dep": "P7dR8mSH",
+  "env": "client_and_server",
+  "quilt_via_fabric_pre26": true,
+  "forge_jar_also_neoforge_below_mc": "1.20.2"
+}
