@@ -28,7 +28,6 @@ Commands (`/bank`): `list`, `invite <player>`, `accept`, `decline`, `leave`, `di
 
 ## Get it
 
-- **Download:** [Modrinth](https://modrinth.com/mod/bank-vault)
 - **Source code:** [`minecraft-1.20-26.3` branch](https://github.com/Kishku7/bank-vault/tree/minecraft-1.20-26.3)
 - **Report issues / support:** [mod_support](https://github.com/Kishku7/mod_support/issues)
 
