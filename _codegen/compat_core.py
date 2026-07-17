@@ -91,7 +91,7 @@ PACK_FORMATS = {
     "1.21": 34, "1.21.1": 34, "1.21.2": 42, "1.21.3": 42, "1.21.4": 46,
     "1.21.5": 55, "1.21.6": 63, "1.21.7": 64, "1.21.8": 64,
     "1.21.9": 69, "1.21.10": 69, "1.21.11": 75,
-    "26.1": 84, "26.2": 88, "26.3": 91,  # 26.3 -> snapshot-3 resource pack_format (89/90/91 for snap-1/2/3; line advanced to snap-3)
+    "26.1": 84, "26.2": 88, "26.3": 92,  # 26.3 -> snapshot-4 resource pack_format (89/90/91/92 for snap-1/2/3/4; line advanced to snap-4)
 }
 
 
@@ -573,11 +573,15 @@ def has_setid(ver):
 
 
 def emit_block_props_tail(cog, ver):
+    # 26.3-snapshot-4 renamed the PushReaction enum (BLOCK -> IMMOVEABLE, DESTROY -> POPPED,
+    # NORMAL -> PUSH_PULL, PUSH_ONLY -> PUSH, IGNORE -> IGNORE_ENTITY). The 26.3 cell builds
+    # snap-4+, so >= (26,3) selects the new name; 26.1/26.2 keep BLOCK.
+    push = "IMMOVEABLE" if _vt(ver) >= (26, 3) else "BLOCK"
     if has_setid(ver):
-        cog.outl("                .pushReaction(PushReaction.BLOCK)")
+        cog.outl("                .pushReaction(PushReaction." + push + ")")
         cog.outl("                .setId(ResourceKey.create(Registries.BLOCK, " + id_type(ver) + ".fromNamespaceAndPath(BankVault.MOD_ID, name)));")
     else:
-        cog.outl("                .pushReaction(PushReaction.BLOCK);")
+        cog.outl("                .pushReaction(PushReaction." + push + ");")
 
 
 def emit_blockitem_fabric(cog, ver):

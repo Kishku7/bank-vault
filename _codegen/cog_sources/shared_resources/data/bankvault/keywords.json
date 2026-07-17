@@ -1,5 +1,5 @@
 {
- "version": "1.2.1",
+ "version": "1.2.2",
  "_comment": "Bank Vault item keyword table (v1.2). Descriptive words per item; richer than categories. camelCase, data-driven, augment freely.",
  "vocabulary": [
   "allay",
@@ -23131,6 +23131,156 @@
    "renewable",
    "overworld",
    "compostable"
+  ],
+  "minecraft:straw_bed": [
+   "bed",
+   "block",
+   "craftable",
+   "placeable"
+  ],
+  "minecraft:white_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:light_gray_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:gray_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:black_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:brown_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:red_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:orange_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:yellow_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:lime_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:green_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:cyan_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:light_blue_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:blue_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:purple_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:magenta_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
+  ],
+  "minecraft:pink_cushion": [
+   "wool",
+   "block",
+   "decoration",
+   "craftable",
+   "placeable",
+   "flammable",
+   "colored"
   ]
  }
 }

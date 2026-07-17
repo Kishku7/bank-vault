@@ -1,5 +1,5 @@
 {
- "version": "1.2.1",
+ "version": "1.2.2",
  "kw:Dirt & Special": {
   "family": [
    [
@@ -520,67 +520,67 @@
   "family": [
    [
     "White",
-    4
+    5
    ],
    [
     "Light Gray",
-    4
+    5
    ],
    [
     "Gray",
-    4
+    5
    ],
    [
     "Black",
-    4
+    5
    ],
    [
     "Brown",
-    4
+    5
    ],
    [
     "Red",
-    4
+    5
    ],
    [
     "Orange",
-    4
+    5
    ],
    [
     "Yellow",
-    4
+    5
    ],
    [
     "Lime",
-    4
+    5
    ],
    [
     "Green",
-    4
+    5
    ],
    [
     "Cyan",
-    4
+    5
    ],
    [
     "Light Blue",
-    4
+    5
    ],
    [
     "Blue",
-    4
+    5
    ],
    [
     "Purple",
-    4
+    5
    ],
    [
     "Magenta",
-    4
+    5
    ],
    [
     "Pink",
-    4
+    5
    ]
   ],
   "type": [
@@ -594,7 +594,7 @@
    ],
    [
     "Other",
-    32
+    48
    ]
   ]
  },
@@ -1154,7 +1154,7 @@
   "family": [
    [
     "Beds",
-    34
+    35
    ],
    [
     "Sleeping Bags",
@@ -1228,7 +1228,7 @@
    ],
    [
     "Plain",
-    2
+    3
    ]
   ]
  },

@@ -51,14 +51,17 @@ public final class Catalog {
     /** Config data version (Kishku7, 1.2.1 spec). Bump whenever the bundled data files change in
      *  a way upgrades must pick up, and record the delta in MIGRATION_LOG. Rule 1: a config
      *  file with no "version" field is pre-1.2.1 and needs an upgrade. */
-    public static final String DATA_VERSION = "1.2.1";
+    public static final String DATA_VERSION = "1.2.2";
 
     /** Rule 3: the tracked deltas between data versions, newest last. */
     private static final List<String> MIGRATION_LOG = List.of(
             "1.2.1: first versioned data. Pre-1.2.1 configs lack the 1.2 line's kw:/dyn: ranked"
                     + " lists, section-group labels, buttons.json and keywords.json; generated"
                     + " files are replaced with the bundled spec, user-editable files gain"
-                    + " missing entries (user edits kept).");
+                    + " missing entries (user edits kept).",
+            "1.2.2: MC 26.3-snapshot-3 content -- added the 16 dyed cushions (Wool button) and"
+                    + " straw_bed (Beds button) to keywords.json; sort_family/sort_type/categories"
+                    + " regenerated so they rank with their families.");
 
     /** Generated, spec-owned files: on upgrade these are REPLACED with the bundled spec. */
     private static final List<String> GENERATED_FILES = List.of(
