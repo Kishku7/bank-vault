@@ -3,6 +3,17 @@
 All notable changes to Bank Vault are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/) and Semantic Versioning.
 
+## [1.4.5] - 2026-07-21
+
+### Added
+- Support for Minecraft 26.3-snapshot-5 (Fabric).
+
+### Fixed
+- 26.3-snapshot-5 compatibility: the resource pack_format is now 93 (was 92 on snapshot-4), and the
+  bundled recipe-unlock advancement uses the new `recipes` list form of the `minecraft:recipe_unlocked`
+  trigger (snapshot-5 replaced the singular `recipe` key). Without these the mod's datapack failed to
+  load and the world would not open on the snapshot. Verified in-world on the headless client harness.
+
 ## [1.4.4] - 2026-07-16
 
 ### Added

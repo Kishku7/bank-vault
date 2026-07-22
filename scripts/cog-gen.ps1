@@ -99,6 +99,24 @@ if ($oldIngredients) {
     }
 }
 
+# ---- 4c. 26.3-snapshot-5: recipe_unlocked advancement trigger takes a LIST "recipes" (was "recipe") ----
+if ($v -ge [version]'26.3') {
+    $advDir2 = if ($pluralData) { 'advancements' } else { 'advancement' }
+    $ap2 = Join-Path $genR ('data\bankvault\' + $advDir2 + '\recipes\bank_vault.json')
+    if (Test-Path $ap2) {
+        $a2 = Get-Content $ap2 -Raw | ConvertFrom-Json
+        foreach ($c in $a2.criteria.PSObject.Properties) {
+            $cond = $c.Value.conditions
+            if ($cond -and $cond.PSObject.Properties['recipe']) {
+                $rv = $cond.recipe
+                $cond.PSObject.Properties.Remove('recipe')
+                $cond | Add-Member -NotePropertyName 'recipes' -NotePropertyValue (@($rv)) -Force
+            }
+        }
+        $a2 | ConvertTo-Json -Depth 12 | Set-Content $ap2 -Encoding UTF8
+    }
+}
+
 # ---- 5. pack.mcmeta (plain int pre-26; table lives in compat_core.PACK_FORMATS) ----
 Push-Location $cg
 $pf = & python (Join-Path $cg 'print_pf.py') $McVer
