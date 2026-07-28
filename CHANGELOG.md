@@ -4,6 +4,28 @@ All notable changes to Bank Vault are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/).
 Versioning policy is universal across all mods and is NOT restated here -- see Memory/minecraft/mod-rules.md.
 
+## [1.4.7] - 2026-07-28
+
+### Changed
+- **Fabric 26.3 cell moved to MC 26.3-snapshot-6** (from snapshot-5): fabric-api
+  `0.155.3+26.3` -> `0.156.1+26.3`, `pack_format` `93` -> `94` (bumped in BOTH
+  `scripts/build-fabric.ps1` and `_codegen/compat_core.py PACK_FORMATS`, since the
+  cog-materialized pack.mcmeta reads the latter and overrides the templated value),
+  and the exclusive snapshot window `[26.3-alpha.5, 26.3-alpha.6)` ->
+  `[26.3-alpha.6, 26.3-alpha.7)`.
+
+### Notes
+- **No source change required.** Snapshot-6's breaking surfaces were checked against the
+  whole tree: Bank Vault's only `SharedSuggestionProvider` use is the static
+  `suggest(Iterable<String>, SuggestionsBuilder)` helper, which is unchanged (the filter
+  parameter was added to `suggestRegistryElements`/`listSuggestions`, which Bank Vault does
+  not use). It touches none of the block-entity loot helpers that moved from
+  `AbstractFurnaceBlockEntity` to `BaseContainerBlockEntity`, and none of the worldgen,
+  input, screen or render changes.
+- The snapshot-5 `recipe` -> `recipes` advancement fix is applied at gen time by
+  `scripts/cog-gen.ps1` step 4c for every cell >= 26.3, so it carries into snapshot-6
+  automatically; the shared cog source deliberately keeps the pre-26.3 singular shape.
+
 ## [1.4.6] - 2026-07-27
 
 ### Changed
