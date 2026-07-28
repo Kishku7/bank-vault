@@ -1,12 +1,12 @@
-# Bank Vault - NeoForge (Minecraft 26.2 (pre-release))
+# Bank Vault - NeoForge (Minecraft 26.2)
 
-**NeoForge** loader builds of Bank Vault for the Minecraft 26.2 (pre-release) line. Client + server mod.
+**NeoForge** loader builds of Bank Vault for the Minecraft 26.2 line. Client + server mod.
 
 ## Builds
 
 | Version | Minecraft | Java | Mod ver | Shared common |
 | --- | --- | --- | --- | --- |
-| [`26.2/`](26.2) | 26.2 (pre-release) | 25 | 1.2.4 | - |
+| [`26/`](.) | 26.2 | 25 | 1.2.4 | - |
 
 ## Build
 

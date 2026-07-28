@@ -1,7 +1,16 @@
 # Changelog
 
 All notable changes to Bank Vault are documented here. This project follows
-[Keep a Changelog](https://keepachangelog.com/) and Semantic Versioning.
+[Keep a Changelog](https://keepachangelog.com/).
+Versioning policy is universal across all mods and is NOT restated here -- see Memory/minecraft/mod-rules.md.
+
+## [1.4.6] - 2026-07-27
+
+### Changed
+- NeoForge 26 cells rebuilt against the now-PUBLISHED NeoForge builds: 26.1 -> 26.1.2.87, 26.2 -> 26.2.0.35-beta (previously 26.1.2.30-beta / 26.2.0.1-beta). The [26.1.2.0-beta,) dependency floor is unchanged - Bank Vault needs the 26.1.2 BreakBlockEvent.
+- mavenLocal() removed from the NeoForge/26 cell (local-alpha-era leftover).
+- README no longer calls Minecraft 26.2 a pre-release; it shipped stable on 2026-06-16.
+- No source or behaviour change. Server-boot smoketested on NeoForge 26.1.2 and 26.2.
 
 ## [1.4.5] - 2026-07-21
 
