@@ -35,7 +35,7 @@ import java.util.function.Consumer;
  * Forge port of the fabric ModNetworking: same payloads, same server logic, registration via
  * PayloadRegistrar instead of fabric's PayloadTypeRegistry/ServerPlayNetworking. The three S2C
  * payloads are delivered through settable sinks the CLIENT initializer points at the screen
- * cache — the dedicated server never loads client classes (handlers here only touch the sinks,
+ * cache -- the dedicated server never loads client classes (handlers here only touch the sinks,
  * which default to no-ops).
  */
 public final class ModNetworking {
@@ -188,8 +188,8 @@ public final class ModNetworking {
         switch (payload.op()) {
             case ShareActionPayload.INVITE -> {
                 ServerPlayer target = server.getPlayerList().getPlayerByName(payload.target());
-                if (target == null) msg = "§cPlayer '" + payload.target() + "' is not online.";
-                else if (target.getUUID().equals(player.getUUID())) msg = "§cYou can't invite yourself.";
+                if (target == null) msg = "\u00a7cPlayer '" + payload.target() + "' is not online.";
+                else if (target.getUUID().equals(player.getUUID())) msg = "\u00a7cYou can't invite yourself.";
                 else {
                     msg = BankManager.invite(player, target.getUUID(), target.getGameProfile().name(),
                             Math.max(BankManager.DEPOSIT, payload.level()));
@@ -221,7 +221,7 @@ public final class ModNetworking {
                 try { t = java.util.UUID.fromString(payload.target()); }
                 catch (IllegalArgumentException e) { t = null; }
                 Bank.Member m = (bank == null || t == null) ? null : bank.member(t);
-                if (m == null) msg = "§cThat player isn't in your bank.";
+                if (m == null) msg = "\u00a7cThat player isn't in your bank.";
                 else if (payload.op() == ShareActionPayload.KICK) {
                     msg = BankManager.kick(player, t, m.name);
                     ServerPlayer kicked = server.getPlayerList().getPlayer(t);
@@ -298,7 +298,7 @@ public final class ModNetworking {
     }
 
     /** Bulk deposit (v1.1 "Deposit:" buttons). Vanilla Inventory indices: 0..8 hotbar, 9..35 main
-     *  rows. Strictly those ranges — armor (36..39), offhand (40), trinket and crafting slots are
+     *  rows. Strictly those ranges -- armor (36..39), offhand (40), trinket and crafting slots are
      *  untouchable here by construction. Partial deposits stop when the vault fills; the remainder
      *  stays where it was. */
     private static void onDepositAll(DepositAllPayload payload, ServerPlayer player) {
@@ -315,7 +315,7 @@ public final class ModNetworking {
             if (accepted > 0) s.shrink((int) accepted);
             if (!s.isEmpty()) rejected = true;                       // vault filled mid-stack
         }
-        if (rejected) player.sendSystemMessage(Component.literal("⚠ Vault is full."));
+        if (rejected) player.sendSystemMessage(Component.literal("\u26a0 Vault is full."));
         sendSync(player, bank);
         if (player.containerMenu instanceof BankVaultMenu menu) menu.broadcastChanges();
     }
@@ -324,7 +324,7 @@ public final class ModNetworking {
         Bank bank = BankManager.lookup(player.getUUID());
         if (bank == null) return;
         if (bank.levelOf(player.getUUID()) < BankManager.MASTER) {
-            player.sendSystemMessage(Component.literal("§cOnly Bank Masters or the Owner can change upgrades."));
+            player.sendSystemMessage(Component.literal("\u00a7cOnly Bank Masters or the Owner can change upgrades."));
             sendSync(player, bank);
             return;
         }

@@ -17,7 +17,7 @@ public final class ModBlockEntities {
 
     static {
         BLOCK_ENTITY_TYPES.register("bank_vault", () -> {
-            // Vanilla ctor — FabricBlockEntityTypeBuilder is just sugar over this.
+            // Vanilla ctor -- FabricBlockEntityTypeBuilder is just sugar over this.
             /* [[[cog
             import compat_neoforge
             compat_neoforge.emit_be_create(cog, ver)

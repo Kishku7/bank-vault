@@ -237,7 +237,7 @@ if (clickType == ContainerInput.PICKUP && !carried.isEmpty()) {
             int amount = (button == 1) ? 1 : carried.getCount();
             long acc = BankManager.depositStack(bank, carried.copyWithCount(amount), sp.level().registryAccess());
             if (acc > 0) carried.shrink((int) acc);
-            else sp.sendSystemMessage(Component.literal("§cVault is full."));
+            else sp.sendSystemMessage(Component.literal("\u00a7cVault is full."));
         } else {
             String key = viewKeys[cell];
             if (key == null || level < BankManager.MEMBER) return;
@@ -292,7 +292,7 @@ if (clickType == ContainerInput.PICKUP && !carried.isEmpty()) {
             if (currentTab != null && !currentTab.isEmpty()) UserSettings.togglePin(sp, currentTab, id);
             ModNetworking.sendUiState(sp);   // pins changed -- must land before the vault sync rebuild
         } else {
-            sp.sendSystemMessage(Component.literal("§cVault is full."));
+            sp.sendSystemMessage(Component.literal("\u00a7cVault is full."));
         }
         ModNetworking.sendSync(sp, bank);
         broadcastChanges();
@@ -325,7 +325,7 @@ if (clickType == ContainerInput.PICKUP && !carried.isEmpty()) {
                 } else if (bank != null && bank.levelOf(sp.getUUID()) >= BankManager.DEPOSIT) {
                     long acc = BankManager.depositStack(bank, stack, sp.level().registryAccess());
                     if (acc > 0) { stack.shrink((int) acc); slot.setChanged(); ModNetworking.sendSync(sp, bank); }
-                    else sp.sendSystemMessage(Component.literal("§cVault is full."));
+                    else sp.sendSystemMessage(Component.literal("\u00a7cVault is full."));
                 }
             } else if (index == CRAFT_RESULT) {
                 // return the crafted stack (not EMPTY) so vanilla's QUICK_MOVE loop keeps crafting
@@ -394,7 +394,7 @@ if (clickType == ContainerInput.PICKUP && !carried.isEmpty()) {
         for (ItemStack s : contents) total += s.getCount();
         long room = VaultCapacity.capacityFor(bank.upgradeCount) - bank.totalItems();
         if (room < total) {
-            sp.sendSystemMessage(Component.literal("§cVault is full — cannot unload ("
+            sp.sendSystemMessage(Component.literal("\u00a7cVault is full \u2014 cannot unload ("
                     + total + " items, room for " + Math.max(0, room) + ")."));
             return; // leave the container untouched in the unload slot
         }
@@ -428,7 +428,7 @@ if (clickType == ContainerInput.PICKUP && !carried.isEmpty()) {
         try {
             boolean allowed = bank != null && bank.levelOf(sp.getUUID()) >= BankManager.MASTER;
             if (!allowed) {
-                if (bank != null) sp.sendSystemMessage(Component.literal("§cOnly Bank Masters or the Owner can change upgrades."));
+                if (bank != null) sp.sendSystemMessage(Component.literal("\u00a7cOnly Bank Masters or the Owner can change upgrades."));
                 ItemStack back = in.copy();
                 upg.setItem(0, ItemStack.EMPTY);
                 if (!sp.getInventory().add(back)) sp.drop(back, false);

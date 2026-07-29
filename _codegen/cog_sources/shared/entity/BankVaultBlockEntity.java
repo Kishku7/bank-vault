@@ -50,7 +50,7 @@ public class BankVaultBlockEntity extends BlockEntity implements WorldlyContaine
         return builderUUID == null ? null : BankManager.lookup(builderUUID);
     }
 
-    // ── NBT ───────────────────────────────────────────────────────────────────
+    // -- NBT -------------------------------------------------------------------
 
     /* [[[cog
     import compat_core
@@ -70,7 +70,7 @@ public class BankVaultBlockEntity extends BlockEntity implements WorldlyContaine
     }
     /* [[[end]]] */
 
-    // ── Container (hopper sink) ────────────────────────────────────────────────
+    // -- Container (hopper sink) ------------------------------------------------
 
     @Override public int getContainerSize() { return 1; }
     @Override public boolean isEmpty() { return true; }

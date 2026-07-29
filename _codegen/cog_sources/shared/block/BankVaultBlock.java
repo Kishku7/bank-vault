@@ -97,7 +97,7 @@ public class BankVaultBlock extends BaseEntityBlock {
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,
                                                Player player, BlockHitResult hit) {
     /* [[[end]]] */
-        // Unformed: don't capture the click — let normal block placement / other interactions happen.
+        // Unformed: don't capture the click -- let normal block placement / other interactions happen.
         if (state.getValue(PART) == VaultPart.NONE) {
             return InteractionResult.PASS;
         }

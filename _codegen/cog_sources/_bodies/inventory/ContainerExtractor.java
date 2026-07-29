@@ -21,13 +21,13 @@ import java.util.List;
  *
  * <p>Supported, in order of how their contents are stored:
  * <ul>
- *   <li>Shulker boxes — vanilla {@code DataComponents.CONTAINER}.</li>
- *   <li>Bundles — vanilla {@code DataComponents.BUNDLE_CONTENTS}.</li>
- *   <li>Traveler's Backpack — its {@code travelersbackpack:backpack_container} component, which is
+ *   <li>Shulker boxes -- vanilla {@code DataComponents.CONTAINER}.</li>
+ *   <li>Bundles -- vanilla {@code DataComponents.BUNDLE_CONTENTS}.</li>
+ *   <li>Traveler's Backpack -- its {@code travelersbackpack:backpack_container} component, which is
  *       itself an {@link ItemContainerContents}. Resolved by registry ID at runtime so there is no
  *       compile-time dependency on TB; if TB is not installed the lookup yields nothing and TB
  *       backpacks are simply treated as ordinary (non-container) items. Only the main cargo is
- *       extracted — the backpack's tool slots, upgrade modules, and fluid tanks stay with the
+ *       extracted -- the backpack's tool slots, upgrade modules, and fluid tanks stay with the
  *       returned shell.</li>
  * </ul>
  */
@@ -43,7 +43,7 @@ public final class ContainerExtractor {
     private static DataComponentType<?>[] resolveSoftContainers() {
         if (!Platform.isLoaded("travelersbackpack")) return new DataComponentType<?>[0];
         List<DataComponentType<?>> found = new ArrayList<>();
-        // Only the main cargo container — leave tools/upgrades/fluids on the backpack.
+        // Only the main cargo container -- leave tools/upgrades/fluids on the backpack.
         DataComponentType<?> t = BuiltInRegistries.DATA_COMPONENT_TYPE
                 .getValue(Identifier.fromNamespaceAndPath("travelersbackpack", "backpack_container"));
         if (t != null) found.add(t);

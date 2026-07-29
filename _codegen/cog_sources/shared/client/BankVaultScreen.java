@@ -65,7 +65,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             "_carpet","_wool","_concrete","_terracotta","_bricks","_brick","_ingot","_nugget","_block","_ore",
             "_bed","_candle","_banner","_boat","_dye","_seeds","_bulb"};
 
-    private enum SortMode { SMART_FAMILY("Smart(F)"), SMART_TYPE("Smart(T)"), ALPHA("A–Z"), COUNT("Count"); final String label; SortMode(String l){label=l;} }
+    private enum SortMode { SMART_FAMILY("Smart(F)"), SMART_TYPE("Smart(T)"), ALPHA("A\u2013Z"), COUNT("Count"); final String label; SortMode(String l){label=l;} }
 
     private List<Entry> entries = new ArrayList<>();
     private int upgradeCount;
@@ -282,7 +282,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         SortMode[] modes = SortMode.values();
         int bx = gridX;
         for (int i = 0; i < 4; i++) {
-            sbW[i] = this.font.width(modes[i] == SortMode.COUNT ? "Count ↓" : modes[i].label) + 10;
+            sbW[i] = this.font.width(modes[i] == SortMode.COUNT ? "Count \u2193" : modes[i].label) + 10;
             sbX[i] = bx;
             bx += sbW[i] + 4;
         }
@@ -296,7 +296,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         sbarTop = gridY; sbarBottom = gridBottom;
 
         // search bar spans the grid + scrollbar width, go button at the right end
-        goW2 = this.font.width("↵") + 10;
+        goW2 = this.font.width("\u21b5") + 10;
         goX = sbarX + SB_W - goW2;
         searchBoxX = gridX;
         // v1.2: "Pin" drop box + "Titles" checkbox live on the search row, left of the go
@@ -938,7 +938,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         g.text(this.font, stats, closeX - 8 - this.font.width(stats), py + 11, statsColor);
         boolean closeHov = inside(mouseX, mouseY, closeX, closeY, closeSize, closeSize);
         g.fill(closeX, closeY, closeX + closeSize, closeY + closeSize, closeHov ? CLOSE_HOV : CLOSE);
-        g.text(this.font, "✕", closeX + (closeSize - this.font.width("✕")) / 2, closeY + 3, TITLE);
+        g.text(this.font, "\u2715", closeX + (closeSize - this.font.width("\u2715")) / 2, closeY + 3, TITLE);
 
         // left rail + category buttons (v1.2: buttons instead of tabs)
         panel(g, railX, railTop, railW, railBottom - railTop, false);
@@ -983,7 +983,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             boolean hov = inside(mouseX, mouseY, sbX[i], sbY, sbW[i], sbH);
             g.fill(sbX[i], sbY, sbX[i] + sbW[i], sbY + sbH, active ? 0xFF4A3A12 : (hov ? 0xFF3A3A42 : WELL));
             if (active) g.fill(sbX[i], sbY, sbX[i] + sbW[i], sbY + 1, ACCENT);
-            String lbl = modes[i] == SortMode.COUNT ? ("Count " + (countDesc ? "↓" : "↑")) : modes[i].label;
+            String lbl = modes[i] == SortMode.COUNT ? ("Count " + (countDesc ? "\u2193" : "\u2191")) : modes[i].label;
             g.text(this.font, lbl, sbX[i] + (sbW[i] - this.font.width(lbl)) / 2, sbY + 3, active ? ACCENT : TEXT);
         }
 
@@ -1070,7 +1070,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         }
         boolean goHov = inside(mouseX, mouseY, goX, srchY, goW2, sbH);
         g.fill(goX, srchY, goX + goW2, srchY + sbH, goHov ? 0xFF3A3A42 : WELL);
-        String goIco = "↵";
+        String goIco = "\u21b5";
         g.text(this.font, goIco, goX + (goW2 - this.font.width(goIco)) / 2, srchY + 3, TEXT);
 
         // --- right panel: native survival inventory replication ---
@@ -1081,7 +1081,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             g.entityInInventoryFollowsMouse(rpX + 28, rpY + 8, rpX + 68, rpY + 58,
                     20, 0.0625f, mouseX, mouseY, this.minecraft.player);
         }
-        g.text(this.font, "→", rpX + 130, rpY + 30, SUBTLE);
+        g.text(this.font, "\u2192", rpX + 130, rpY + 30, SUBTLE);
         // vanilla-style slot boxes (exact vanilla palette + per-slot grid lines) for the whole
         // player area: armor, offhand, crafting, result, inventory, hotbar -- and trinket rows.
         for (int i = 0; i < this.menu.slots.size() && i < BankVaultMenu.VIEW_FIRST; i++) {
@@ -1238,11 +1238,11 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         boolean dnHov = inside(mouseX, mouseY, sbarX, sbarBottom - SB_W, SB_W, SB_W);
         g.fill(sbarX, sbarTop, sbarX + SB_W, sbarTop + SB_W, upHov ? 0xFF3A3A42 : SLOT_BG);
         g.fill(sbarX, sbarBottom - SB_W, sbarX + SB_W, sbarBottom, dnHov ? 0xFF3A3A42 : SLOT_BG);
-        int arrW = this.font.width("▲");
+        int arrW = this.font.width("\u25b2");
         int arrOx = (SB_W - arrW) / 2;
         int arrOy = (SB_W - 8) / 2;
-        g.text(this.font, "▲", sbarX + arrOx, sbarTop + arrOy, SUBTLE);
-        g.text(this.font, "▼", sbarX + arrOx, sbarBottom - SB_W + arrOy, SUBTLE);
+        g.text(this.font, "\u25b2", sbarX + arrOx, sbarTop + arrOy, SUBTLE);
+        g.text(this.font, "\u25bc", sbarX + arrOx, sbarBottom - SB_W + arrOy, SUBTLE);
         int[] t = thumb();
         boolean thumbHov = draggingThumb || inside(mouseX, mouseY, t[0], t[1], t[2], t[3]);
         if (maxRow() > 0) {

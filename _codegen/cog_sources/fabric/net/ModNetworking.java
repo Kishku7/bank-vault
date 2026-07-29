@@ -272,7 +272,7 @@ public final class ModNetworking {
         Bank bank = BankManager.lookup(player.getUUID());
         if (bank == null) return;
         if (bank.levelOf(player.getUUID()) < BankManager.MASTER) {
-            player.sendSystemMessage(Component.literal("§cOnly Bank Masters or the Owner can change upgrades."));
+            player.sendSystemMessage(Component.literal("\u00a7cOnly Bank Masters or the Owner can change upgrades."));
             sendSync(player, bank);
             return;
         }

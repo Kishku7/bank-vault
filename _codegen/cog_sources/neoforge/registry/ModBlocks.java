@@ -17,7 +17,7 @@ public final class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(BuiltInRegistries.BLOCK, BankVault.MOD_ID);
 
-    /** The single vault block — place nine in a 3x3 to form a vault. Populated at registration
+    /** The single vault block -- place nine in a 3x3 to form a vault. Populated at registration
      *  so common code keeps its plain-field access pattern. */
     public static Block VAULT;
 

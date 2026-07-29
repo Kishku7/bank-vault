@@ -24,7 +24,7 @@ import java.util.UUID;
 
 /**
  * Loads/saves banks, the player->bank index, and pending invites. The JSON files under
- * {@code config/bankvault/} are the source of truth (Ender-Chest model — independent of the structure).
+ * {@code config/bankvault/} are the source of truth (Ender-Chest model -- independent of the structure).
  */
 public final class BankManager {
 
@@ -110,7 +110,7 @@ public final class BankManager {
         catch (IOException e) { BankVault.LOGGER.error("[Bank Vault] bank delete failed {}", bankId, e); }
     }
 
-    // ── core lookup ────────────────────────────────────────────────────────────
+    // -- core lookup ------------------------------------------------------------
 
     public static synchronized Bank getOrCreate(ServerPlayer player) {
         ensure();
@@ -154,7 +154,7 @@ public final class BankManager {
         return bid == null ? null : loadBank(bid);
     }
 
-    // ── item storage ─────────────────────────────────────────────────────────
+    // -- item storage ---------------------------------------------------------
 
     public static synchronized long deposit(Bank bank, String itemId, long count) {
         ensure();
@@ -225,18 +225,18 @@ public final class BankManager {
         return withdraw(bank, key, count);
     }
 
-    // ── groups / sharing ───────────────────────────────────────────────────────
+    // -- groups / sharing -------------------------------------------------------
 
     /** Returns a feedback message. Inviter must be Master+; level is clamped to what they may grant. */
     public static synchronized String invite(ServerPlayer inviter, UUID targetId, String targetName, int level) {
         ensure();
         Bank bank = getOrCreate(inviter);
         int my = bank.levelOf(inviter.getUUID());
-        if (my < MASTER) return "§cYou must be a Bank Master or Owner to invite.";
+        if (my < MASTER) return "\u00a7cYou must be a Bank Master or Owner to invite.";
         int maxGrant = (my == OWNER) ? MASTER : MEMBER;
         if (level < DEPOSIT) level = DEPOSIT;
         if (level > maxGrant) level = maxGrant;
-        if (bank.member(targetId) != null) return "§cThat player is already in your bank.";
+        if (bank.member(targetId) != null) return "\u00a7cThat player is already in your bank.";
         Invite inv = new Invite();
         inv.bankId = bank.bankId; inv.level = level;
         inv.inviterUuid = inviter.getUUID().toString();
@@ -259,7 +259,7 @@ public final class BankManager {
                     "\u00a76[Bank Vault]\u00a7r " + inv.inviterName + " invited you to share their bank vault! "
                     + how + ", \u00a7e/bank decline\u00a7r, or open any Bank Vault to respond."));
         }
-        return "§aInvited " + targetName + " as " + levelName(level) + ". They run §e/bank accept§a.";
+        return "\u00a7aInvited " + targetName + " as " + levelName(level) + ". They run \u00a7e/bank accept\u00a7a.";
     }
 
     /** Most recent pending invite, or null. */
@@ -286,26 +286,26 @@ public final class BankManager {
         String key = invitee.getUUID().toString();
         List<Invite> pending = invites.get(key);
         if (pending == null || pending.isEmpty())
-            return new AcceptResult(false, "§cYou have no pending invite.", 0);
+            return new AcceptResult(false, "\u00a7cYou have no pending invite.", 0);
         Invite inv = null;
         if (inviterName == null) {
             inv = pending.get(pending.size() - 1);                      // newest
         } else {
             for (int i = pending.size() - 1; i >= 0; i--)               // newest match wins
                 if (pending.get(i).inviterName.equalsIgnoreCase(inviterName)) { inv = pending.get(i); break; }
-            if (inv == null) return new AcceptResult(false, "§cNo pending invite from " + inviterName + ".", 0);
+            if (inv == null) return new AcceptResult(false, "\u00a7cNo pending invite from " + inviterName + ".", 0);
         }
         Bank group = loadBank(inv.bankId);
         if (group == null) {
             pending.remove(inv);
             if (pending.isEmpty()) invites.remove(key);
             writeJson(invitesFile, invites);
-            return new AcceptResult(false, "§cThat bank no longer exists.", 0);
+            return new AcceptResult(false, "\u00a7cThat bank no longer exists.", 0);
         }
 
         Bank own = lookup(invitee.getUUID());
         if (own != null && own.members.size() > 1)
-            return new AcceptResult(false, "§cLeave your current group first (§e/bank leave§c).", 0);
+            return new AcceptResult(false, "\u00a7cLeave your current group first (\u00a7e/bank leave\u00a7c).", 0);
 
         int excess = 0;
         if (own != null && !own.bankId.equals(group.bankId)) {
@@ -335,9 +335,9 @@ public final class BankManager {
         save(group); writeJson(indexFile, index); writeJson(invitesFile, invites);
         // rc.4 (Kishku7): rank named only when the new member is Master+ -- others just join
         return new AcceptResult(true,
-                "§aJoined " + inv.inviterName + "'s bank."
+                "\u00a7aJoined " + inv.inviterName + "'s bank."
                         + (inv.level >= MASTER ? " You are a " + levelName(inv.level) + "." : "")
-                        + (excess > 0 ? " §7(" + excess + " surplus chests returned.)" : ""), excess);
+                        + (excess > 0 ? " \u00a77(" + excess + " surplus chests returned.)" : ""), excess);
     }
 
     /** Decline the most recent pending invite. */
@@ -348,26 +348,26 @@ public final class BankManager {
         ensure();
         String key = invitee.getUUID().toString();
         List<Invite> pending = invites.get(key);
-        if (pending == null || pending.isEmpty()) return "§cYou have no pending invite.";
+        if (pending == null || pending.isEmpty()) return "\u00a7cYou have no pending invite.";
         Invite inv = null;
         if (inviterName == null) {
             inv = pending.get(pending.size() - 1);
         } else {
             for (int i = pending.size() - 1; i >= 0; i--)
                 if (pending.get(i).inviterName.equalsIgnoreCase(inviterName)) { inv = pending.get(i); break; }
-            if (inv == null) return "§cNo pending invite from " + inviterName + ".";
+            if (inv == null) return "\u00a7cNo pending invite from " + inviterName + ".";
         }
         pending.remove(inv);
         if (pending.isEmpty()) invites.remove(key);
         writeJson(invitesFile, invites);
-        return "§7Invite from " + inv.inviterName + " declined.";
+        return "\u00a77Invite from " + inv.inviterName + " declined.";
     }
 
     /** Member leaves; owner triggers succession; last member out deletes the bank. */
     public static synchronized String leave(ServerPlayer player) {
         ensure();
         Bank bank = lookup(player.getUUID());
-        if (bank == null) return "§cYou don't belong to a bank.";
+        if (bank == null) return "\u00a7cYou don't belong to a bank.";
         Bank.Member me = bank.member(player.getUUID());
         boolean wasOwner = me != null && me.level == OWNER;
         bank.members.removeIf(m -> m.uuid.equals(player.getUUID().toString()));
@@ -397,7 +397,7 @@ public final class BankManager {
             }
         }
         writeJson(indexFile, index);
-        return "§7You left the bank." + (wasOwner && !bank.members.isEmpty() ? " Ownership passed on." : "");
+        return "\u00a77You left the bank." + (wasOwner && !bank.members.isEmpty() ? " Ownership passed on." : "");
     }
 
     private static Bank.Member succession(Bank bank) {
@@ -411,13 +411,13 @@ public final class BankManager {
     public static synchronized String setLevel(ServerPlayer actor, UUID targetId, String targetName, int newLevel) {
         ensure();
         Bank bank = lookup(actor.getUUID());
-        if (bank == null) return "§cYou don't belong to a bank.";
+        if (bank == null) return "\u00a7cYou don't belong to a bank.";
         int my = bank.levelOf(actor.getUUID());
-        if (my < MASTER) return "§cYou lack permission.";
-        if (targetId.equals(actor.getUUID())) return "§cYou can't change your own level.";
+        if (my < MASTER) return "\u00a7cYou lack permission.";
+        if (targetId.equals(actor.getUUID())) return "\u00a7cYou can't change your own level.";
         Bank.Member t = bank.member(targetId);
-        if (t == null) return "§cThat player isn't in your bank.";
-        if (t.level >= my) return "§cYou can't modify someone at your level or above.";
+        if (t == null) return "\u00a7cThat player isn't in your bank.";
+        if (t.level >= my) return "\u00a7cYou can't modify someone at your level or above.";
         int maxGrant = (my == OWNER) ? MASTER : MEMBER;
         if (newLevel < DEPOSIT) newLevel = DEPOSIT;
         if (newLevel > maxGrant) newLevel = maxGrant;
@@ -431,9 +431,9 @@ public final class BankManager {
         if (server != null && newLevel != oldLevel) {
             boolean up = newLevel > oldLevel;
             String note = up
-                    ? "§6[Bank Vault]§a " + targetName + " was promoted to " + levelName(newLevel)
+                    ? "\u00a76[Bank Vault]\u00a7a " + targetName + " was promoted to " + levelName(newLevel)
                       + " by " + actor.getGameProfile().name() + "."
-                    : "§6[Bank Vault]§c " + targetName + " was lowered to " + levelName(newLevel)
+                    : "\u00a76[Bank Vault]\u00a7c " + targetName + " was lowered to " + levelName(newLevel)
                       + " by " + actor.getGameProfile().name() + ".";
             for (Bank.Member m : bank.members) {
                 if (!up && m.level < MASTER) continue;
@@ -444,46 +444,46 @@ public final class BankManager {
             }
             return "";   // broadcast already covers the actor (Master+) -- no duplicate line
         }
-        return "§a" + targetName + " is now " + levelName(newLevel) + ".";
+        return "\u00a7a" + targetName + " is now " + levelName(newLevel) + ".";
     }
 
     public static synchronized String kick(ServerPlayer actor, UUID targetId, String targetName) {
         ensure();
         Bank bank = lookup(actor.getUUID());
-        if (bank == null) return "§cYou don't belong to a bank.";
+        if (bank == null) return "\u00a7cYou don't belong to a bank.";
         int my = bank.levelOf(actor.getUUID());
-        if (my < MASTER) return "§cYou lack permission.";
+        if (my < MASTER) return "\u00a7cYou lack permission.";
         Bank.Member t = bank.member(targetId);
-        if (t == null) return "§cThat player isn't in your bank.";
-        if (t.level >= my) return "§cYou can't kick someone at your level or above.";
+        if (t == null) return "\u00a7cThat player isn't in your bank.";
+        if (t.level >= my) return "\u00a7cYou can't kick someone at your level or above.";
         bank.members.removeIf(m -> m.uuid.equals(targetId.toString()));
         index.remove(targetId.toString());
         save(bank); writeJson(indexFile, index);
-        return "§a" + targetName + " was removed from the bank.";
+        return "\u00a7a" + targetName + " was removed from the bank.";
     }
 
     public static synchronized String transfer(ServerPlayer owner, UUID targetId, String targetName) {
         ensure();
         Bank bank = lookup(owner.getUUID());
-        if (bank == null) return "§cYou don't belong to a bank.";
-        if (bank.levelOf(owner.getUUID()) != OWNER) return "§cOnly the Owner can transfer ownership.";
+        if (bank == null) return "\u00a7cYou don't belong to a bank.";
+        if (bank.levelOf(owner.getUUID()) != OWNER) return "\u00a7cOnly the Owner can transfer ownership.";
         Bank.Member t = bank.member(targetId);
-        if (t == null) return "§cThat player isn't in your bank.";
+        if (t == null) return "\u00a7cThat player isn't in your bank.";
         t.level = OWNER;
         bank.member(owner.getUUID()).level = MASTER;
         save(bank);
-        return "§aOwnership transferred to " + targetName + ". You are now a Bank Master.";
+        return "\u00a7aOwnership transferred to " + targetName + ". You are now a Bank Master.";
     }
 
     public static synchronized String disband(ServerPlayer owner) {
         ensure();
         Bank bank = lookup(owner.getUUID());
-        if (bank == null) return "§cYou don't belong to a bank.";
-        if (bank.levelOf(owner.getUUID()) != OWNER) return "§cOnly the Owner can disband.";
+        if (bank == null) return "\u00a7cYou don't belong to a bank.";
+        if (bank.levelOf(owner.getUUID()) != OWNER) return "\u00a7cOnly the Owner can disband.";
         for (Bank.Member m : bank.members) index.remove(m.uuid);
         deleteBank(bank.bankId);
         writeJson(indexFile, index);
-        return "§cBank disbanded — all stored items are gone.";
+        return "\u00a7cBank disbanded \u2014 all stored items are gone.";
     }
 
     public static String levelName(int level) {

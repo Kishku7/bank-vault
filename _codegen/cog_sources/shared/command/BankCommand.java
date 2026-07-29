@@ -43,7 +43,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-/** {@code /bank} — manage your bank vault group and stored items. */
+/** {@code /bank} -- manage your bank vault group and stored items. */
 public final class BankCommand {
 
     private BankCommand() {}
@@ -161,8 +161,8 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
         ServerPlayer p = src.getPlayer();
         if (p == null) return 0;
         Bank bank = BankManager.getOrCreate(p);
-        StringBuilder sb = new StringBuilder("§6[Bank Vault]§r ");
-        sb.append(String.format("%,d/%,d items · %d unique · upgrades %d/64. Members: ",
+        StringBuilder sb = new StringBuilder("\u00a76[Bank Vault]\u00a7r ");
+        sb.append(String.format("%,d/%,d items \u00b7 %d unique \u00b7 upgrades %d/64. Members: ",
                 bank.totalItems(), VaultCapacity.capacityFor(bank.upgradeCount), bank.uniqueItems(), bank.upgradeCount));
         for (Bank.Member m : bank.members) sb.append(m.name).append("(").append(BankManager.levelName(m.level)).append(") ");
         return send(p, sb.toString().trim());
@@ -172,12 +172,12 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
         ServerPlayer p = src.getPlayer();
         if (p == null) return 0;
         Bank bank = BankManager.getOrCreate(p);
-        if (bank.items.isEmpty()) return send(p, "§6[Bank Vault]§r (empty)");
-        send(p, "§6[Bank Vault]§r contents:");
+        if (bank.items.isEmpty()) return send(p, "\u00a76[Bank Vault]\u00a7r (empty)");
+        send(p, "\u00a76[Bank Vault]\u00a7r contents:");
         int shown = 0;
         for (Map.Entry<String, Long> e : bank.items.entrySet()) {
-            if (shown++ >= 40) { send(p, "§7…and " + (bank.items.size() - 40) + " more."); break; }
-            send(p, String.format("§7- §f%s §7x §e%,d", e.getKey(), e.getValue()));
+            if (shown++ >= 40) { send(p, "\u00a77\u2026and " + (bank.items.size() - 40) + " more."); break; }
+            send(p, String.format("\u00a77- \u00a7f%s \u00a77x \u00a7e%,d", e.getKey(), e.getValue()));
         }
         return 1;
     }
@@ -186,7 +186,7 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
         ServerPlayer actor = src.getPlayer();
         if (actor == null) return 0;
         UUID id = resolveId(src, name);
-        if (id == null) return send(actor, "§cPlayer not found: " + name);
+        if (id == null) return send(actor, "\u00a7cPlayer not found: " + name);
         send(actor, BankManager.invite(actor, id, name, level));
         // rc.3: BankManager.invite notifies the invitee directly (covers GUI invites too).
         return 1;
@@ -211,17 +211,17 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
         ServerPlayer p = src.getPlayer();
         if (p == null) return 0;
         Bank bank = BankManager.lookup(p.getUUID());
-        if (bank == null) return send(p, "§cYou don't belong to a bank.");
-        if (bank.levelOf(p.getUUID()) < BankManager.MASTER) return send(p, "§cOnly Bank Masters or the Owner can add upgrades.");
+        if (bank == null) return send(p, "\u00a7cYou don't belong to a bank.");
+        if (bank.levelOf(p.getUUID()) < BankManager.MASTER) return send(p, "\u00a7cOnly Bank Masters or the Owner can add upgrades.");
         ItemStack hand = p.getMainHandItem();
-        if (hand.getItem() != Items.CHEST) return send(p, "§cHold a stack of chests, then run §e/bank upgrade§c.");
+        if (hand.getItem() != Items.CHEST) return send(p, "\u00a7cHold a stack of chests, then run \u00a7e/bank upgrade\u00a7c.");
         int room = VaultCapacity.MAX_UPGRADES - bank.upgradeCount;
-        if (room <= 0) return send(p, "§cThis bank is already at the 64-upgrade cap.");
+        if (room <= 0) return send(p, "\u00a7cThis bank is already at the 64-upgrade cap.");
         int add = Math.min(room, hand.getCount());
         hand.shrink(add);
         bank.upgradeCount += add;
         BankManager.save(bank);
-        return send(p, String.format("§aAdded %d upgrade(s) — now %d/64, capacity %,d items.",
+        return send(p, String.format("\u00a7aAdded %d upgrade(s) \u2014 now %d/64, capacity %,d items.",
                 add, bank.upgradeCount, VaultCapacity.capacityFor(bank.upgradeCount)));
     }
 
@@ -229,8 +229,8 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
         ServerPlayer p = src.getPlayer();
         if (p == null) return 0;
         Bank bank = BankManager.lookup(p.getUUID());
-        if (bank == null) return send(p, "§cYou don't belong to a bank.");
-        if (bank.levelOf(p.getUUID()) < BankManager.MEMBER) return send(p, "§cDeposit-only members can't withdraw.");
+        if (bank == null) return send(p, "\u00a7cYou don't belong to a bank.");
+        if (bank.levelOf(p.getUUID()) < BankManager.MEMBER) return send(p, "\u00a7cDeposit-only members can't withdraw.");
         String arg = itemArg.trim();
         // Component-bearing stacks live under "id#hash" special keys (enchanted/trimmed gear).
         // Accept the key directly, and fall back to a UNIQUE special variant when the plain id
@@ -240,7 +240,7 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
             return withdrawSpecial(p, bank, arg, count);
         }
         Identifier id = parseId(arg);
-        if (id == null || !BuiltInRegistries.ITEM.containsKey(id)) return send(p, "§cUnknown item: " + itemArg);
+        if (id == null || !BuiltInRegistries.ITEM.containsKey(id)) return send(p, "\u00a7cUnknown item: " + itemArg);
         String key = id.toString();
         long taken = BankManager.withdraw(bank, key, count);
         if (taken <= 0) {
@@ -250,11 +250,11 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
             }
             if (variants.size() == 1) return withdrawSpecial(p, bank, variants.get(0), count);
             if (variants.size() > 1) {
-                StringBuilder b = new StringBuilder("§eSeveral variants in the bank -- withdraw by key:");
-                for (String k : variants) b.append("\n§7  ").append(k).append(" x").append(bank.special.get(k).count);
+                StringBuilder b = new StringBuilder("\u00a7eSeveral variants in the bank -- withdraw by key:");
+                for (String k : variants) b.append("\n\u00a77  ").append(k).append(" x").append(bank.special.get(k).count);
                 return send(p, b.toString());
             }
-            return send(p, "§cNone of that item in the bank.");
+            return send(p, "\u00a7cNone of that item in the bank.");
         }
         Item item = BuiltInRegistries.ITEM.getValue(id);
         int max = new ItemStack(item).getMaxStackSize();
@@ -265,17 +265,17 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
             if (!p.getInventory().add(stack)) p.drop(stack, false);
             left -= n;
         }
-        return send(p, String.format("§aWithdrew %,d %s.", taken, key));
+        return send(p, String.format("\u00a7aWithdrew %,d %s.", taken, key));
     }
 
     /** Withdraw an exact special ("id#hash") stack with its components intact. */
     private static int withdrawSpecial(ServerPlayer p, Bank bank, String key, int count) {
         Bank.Special sp = bank.special.get(key);
-        if (sp == null) return send(p, "§cNo such stack in the bank: " + key);
+        if (sp == null) return send(p, "\u00a7cNo such stack in the bank: " + key);
         ItemStack proto = StackStore.decode(sp.stack, p.level().registryAccess());
-        if (proto == null || proto.isEmpty()) return send(p, "§cCannot reconstruct " + key + " -- not withdrawn.");
+        if (proto == null || proto.isEmpty()) return send(p, "\u00a7cCannot reconstruct " + key + " -- not withdrawn.");
         long taken = BankManager.withdrawKey(bank, key, count);
-        if (taken <= 0) return send(p, "§cNone of that item in the bank.");
+        if (taken <= 0) return send(p, "\u00a7cNone of that item in the bank.");
         int max = proto.getMaxStackSize();
         long left = taken;
         while (left > 0) {
@@ -285,14 +285,14 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
             if (!p.getInventory().add(out)) p.drop(out, false);
             left -= n;
         }
-        return send(p, String.format("§aWithdrew %,d %s.", taken, key));
+        return send(p, String.format("\u00a7aWithdrew %,d %s.", taken, key));
     }
 
     private static int withTarget(CommandSourceStack src, String name, MemberOp op) {
         ServerPlayer actor = src.getPlayer();
         if (actor == null) return 0;
         UUID id = resolveId(src, name);
-        if (id == null) return send(actor, "§cPlayer not found: " + name);
+        if (id == null) return send(actor, "\u00a7cPlayer not found: " + name);
         return send(actor, op.apply(actor, id, name));
     }
 
@@ -407,7 +407,7 @@ s.set(DataComponents.OMINOUS_BOTTLE_AMPLIFIER, new net.minecraft.world.item.comp
         bank.special.clear();
         BankManager.save(bank);
         com.kishku7.bankvault.net.ModNetworking.sendSync(p, bank);
-        p.sendSystemMessage(Component.literal(String.format("§6[Bank Vault]§r cleared %,d items (%d unique).", total, unique)));
+        p.sendSystemMessage(Component.literal(String.format("\u00a76[Bank Vault]\u00a7r cleared %,d items (%d unique).", total, unique)));
         return 1;
     }
 

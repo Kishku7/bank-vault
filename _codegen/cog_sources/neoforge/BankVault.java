@@ -14,7 +14,7 @@ public class BankVault {
     public static final String MOD_ID = "bankvault";
     public static final Logger LOGGER = LoggerFactory.getLogger("Bank Vault");
 
-    /** Trinkets Updated is a fabric-only mod — never present on NeoForge. */
+    /** Trinkets Updated is a fabric-only mod -- never present on NeoForge. */
     public static final boolean TRINKETS = false;
     public static final boolean TRAVELERS_BACKPACK = ModList.get().isLoaded("travelersbackpack");
 }

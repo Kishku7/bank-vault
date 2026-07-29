@@ -23,7 +23,7 @@ public class BankVault implements ModInitializer {
     public static final String MOD_ID = "bankvault";
     public static final Logger LOGGER = LoggerFactory.getLogger("Bank Vault");
 
-    /** Optional integrations — soft dependencies, guarded everywhere they are used. */
+    /** Optional integrations -- soft dependencies, guarded everywhere they are used. */
     public static final boolean TRINKETS =
             FabricLoader.getInstance().isModLoaded("trinkets_updated");
     public static final boolean TRAVELERS_BACKPACK =

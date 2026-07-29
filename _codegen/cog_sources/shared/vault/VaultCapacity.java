@@ -11,7 +11,7 @@ public final class VaultCapacity {
 
     public static final long BASE_ITEMS   = 2_048L;       // capacity with 0 upgrade chests
     public static final long MAX_ITEMS    = 20_000_000L;  // capacity at 64 chests
-    public static final int  CHEST_SLOTS  = 27 * 64;      // 1728 — a real chest's item ceiling
+    public static final int  CHEST_SLOTS  = 27 * 64;      // 1728 -- a real chest's item ceiling
     public static final int  MAX_UPGRADES = 64;
 
     private VaultCapacity() {}

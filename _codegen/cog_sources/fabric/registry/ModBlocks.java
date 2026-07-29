@@ -14,7 +14,7 @@ import net.minecraft.world.level.material.PushReaction;
 
 public final class ModBlocks {
 
-    /** The single vault block — place nine in a 3x3 to form a vault. */
+    /** The single vault block -- place nine in a 3x3 to form a vault. */
     public static Block VAULT;
 
     private ModBlocks() {}

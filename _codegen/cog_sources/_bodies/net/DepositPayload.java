@@ -7,7 +7,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.Identifier;
 
-/** Client -> server: deposit the stack in the given player-inventory slot (0–35) into the vault. */
+/** Client -> server: deposit the stack in the given player-inventory slot (0-35) into the vault. */
 public record DepositPayload(int slot) implements CustomPacketPayload {
 
     public static final Type<DepositPayload> TYPE =
