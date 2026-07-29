@@ -34,8 +34,8 @@ public record SharingStatePayload(List<Member> members, List<InviteEntry> invite
             new Type<>(Identifier.fromNamespaceAndPath(BankVault.MOD_ID, "sharing_state"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, SharingStatePayload> CODEC = StreamCodec.composite(
-            Member.CODEC.apply(ByteBufCodecs.list()), SharingStatePayload::members,
-            InviteEntry.CODEC.apply(ByteBufCodecs.list()), SharingStatePayload::invites,
+            Member.CODEC.apply(ByteBufCodecs.list(BvWire.MAX_MEMBERS)), SharingStatePayload::members,
+            InviteEntry.CODEC.apply(ByteBufCodecs.list(BvWire.MAX_INVITES)), SharingStatePayload::invites,
             SharingStatePayload::new);
 
     @Override

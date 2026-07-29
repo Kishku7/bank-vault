@@ -27,7 +27,7 @@ public record VaultSyncPayload(List<Entry> entries, int upgradeCount, long capac
             new Type<>(Identifier.fromNamespaceAndPath(BankVault.MOD_ID, "vault_sync"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, VaultSyncPayload> CODEC = StreamCodec.composite(
-            Entry.CODEC.apply(ByteBufCodecs.list()), VaultSyncPayload::entries,
+            Entry.CODEC.apply(ByteBufCodecs.list(BvWire.MAX_SYNC_ENTRIES)), VaultSyncPayload::entries,
             ByteBufCodecs.VAR_INT, VaultSyncPayload::upgradeCount,
             ByteBufCodecs.VAR_LONG, VaultSyncPayload::capacity,
             ByteBufCodecs.VAR_INT, VaultSyncPayload::permLevel,

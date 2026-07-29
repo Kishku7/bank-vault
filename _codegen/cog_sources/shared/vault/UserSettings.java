@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.kishku7.bankvault.BankVault;
+import com.kishku7.bankvault.net.BvWire;
 import com.kishku7.bankvault.platform.Platform;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -146,8 +147,15 @@ public final class UserSettings {
         boolean[] dirty = {false};
         Rec r = recFor(player, dirty);
         if (lastTab != null && !lastTab.isEmpty() && !lastTab.equals(r.lastTab)) { r.lastTab = lastTab; dirty[0] = true; }
+        // D22: an UNKNOWN tab is a NEW map key AND a full bucket rewrite, both driven by a wire
+        // string -- so a new key only lands while there is room. Updating a tab already remembered
+        // is always allowed. (Callers pass these through BvWire.token first; this is the cap.)
         if (tab != null && !tab.isEmpty() && sort != null && !sort.isEmpty()
-                && !sort.equals(r.sorts.get(tab))) { r.sorts.put(tab, sort); dirty[0] = true; }
+                && !sort.equals(r.sorts.get(tab))
+                && (r.sorts.containsKey(tab) || BvWire.sortMemoryHasRoom(r.sorts.size()))) {
+            r.sorts.put(tab, sort);
+            dirty[0] = true;
+        }
         if (sections != null && !sections.isEmpty()) {
             boolean v = "on".equals(sections);
             if (v != r.showSections) { r.showSections = v; dirty[0] = true; }

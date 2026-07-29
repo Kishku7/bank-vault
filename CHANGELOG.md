@@ -4,6 +4,46 @@ All notable changes to Bank Vault are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/).
 Versioning policy is universal across all mods and is NOT restated here -- see Memory/minecraft/mod-rules.md.
 
+## [1.4.8] - 2026-07-29
+
+Hardening release: every message Bank Vault accepts from a client is now bounded and then
+checked against real server state before it is acted on. Product-wide -- all 28 cells rebuilt.
+
+### Security
+- **New `BvWire`: one untrusted-input gate for the whole mod.** All server-side payload handling
+  routes through a single validator holding the named server-policy ceilings and the state checks,
+  instead of each loader's `ModNetworking` deciding for itself. Compiles unchanged on every cell
+  from 1.20 to 26.x.
+- **Collection reads are count-gated before they allocate.** A declared element count that is
+  negative or over its ceiling is rejected as a malformed packet (`DecoderException`) before a
+  single element is read. Previously the grid-view message sized its list straight from the count
+  on the wire, so one packet claiming a huge number of entries could exhaust server memory. Applies
+  to every list in every payload, on both the modern `StreamCodec` cells (via `ByteBufCodecs.list`
+  with an explicit max) and the pre-1.20.5 raw-buffer cells (via the code generator, which now
+  refuses to emit an uncapped list read at all).
+- **Withdraw amounts are clamped to policy and to real stock.** `withdraw` took any positive
+  amount; a request for a huge quantity drained the vault in one go and could turn into hundreds of
+  thousands of dropped item entities on the server thread. The amount is now capped per request and
+  never exceeds what the bank actually holds.
+- **The grid map is verified, not trusted.** The client tells the server which bank key sits in each
+  visible cell so a slot click maps back to stored stock -- which makes it a withdraw handle. Cells
+  are now bounded and every key checked against stock the bank really holds; anything unknown or
+  malformed becomes an empty cell.
+- **Single-slot deposit honours the armor/offhand exclusion.** The slot index was only bounds-checked
+  against the full 41-slot container, so a crafted packet could reach armor (36-39) or offhand (40),
+  which the v1.1 spec calls untouchable. It is now checked against the hotbar + main rows (0-35),
+  matching what the bulk-deposit path already enforced by construction.
+- **UI-memory tokens are sanitized and capped.** The remembered tab/sort strings are persisted to
+  the player's settings file, and each write rewrites that file. They are now shape-checked and
+  length-limited, and the number of distinct remembered per-tab sorts is capped, so the values can
+  no longer grow the file without bound.
+
+### Changed
+- All source, resources and code-generator files are now pure ASCII. Glyphs that the GUI actually
+  draws (sort and scrollbar arrows, the close marker) and the section-sign colour codes are written
+  as `\uXXXX` escapes rather than literal characters -- the compiled output is unchanged and the
+  GUI looks exactly the same. Translation files keep their native characters.
+
 ## [1.4.7] - 2026-07-28
 
 ### Changed

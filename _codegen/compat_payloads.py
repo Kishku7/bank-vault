@@ -73,6 +73,20 @@ PAYLOADS = {
     },
 }
 
+# D19/D22: EVERY generated list read is count-gated before it allocates. Keyed "<record>.<field>"
+# (nested record names are unique). A new list field with no entry here is a HARD ERROR in
+# _record_io -- an uncapped collection read must never be able to ship by omission.
+LIST_CAPS = {
+    "GridViewPayload.keys":        "BvWire.MAX_GRID_KEYS",
+    "UiStateSyncPayload.sorts":    "BvWire.MAX_SORT_KEYS",
+    "UiStateSyncPayload.pins":     "BvWire.MAX_SORT_KEYS",
+    "TabPins.ids":                 "BvWire.MAX_PINS",
+    "SharingStatePayload.members": "BvWire.MAX_MEMBERS",
+    "SharingStatePayload.invites": "BvWire.MAX_INVITES",
+    "VaultSyncPayload.entries":    "BvWire.MAX_SYNC_ENTRIES",
+}
+
+
 _JT = {"utf": "String", "varint": "int", "varlong": "long", "bool": "boolean", "item": "ItemStack",
        "list_utf": "List<String>"}
 
@@ -103,7 +117,7 @@ def _write_stmt(field, kind, owner_is_nested):
     raise KeyError(kind)
 
 
-def _read_expr(kind, tmp):
+def _read_expr(kind, tmp, cap=None):
     if kind == "utf":
         return None, "buf.readUtf()"
     if kind == "varint":
@@ -115,12 +129,12 @@ def _read_expr(kind, tmp):
     if kind == "item":
         return None, "buf.readItem()"
     if kind == "list_utf":
-        pre = ("int n{i} = buf.readVarInt(); List<String> {t} = new ArrayList<>(n{i}); "
+        pre = ("int n{i} = BvWire.count(buf.readVarInt(), " + cap + "); List<String> {t} = new ArrayList<>(n{i}); "
                "for (int i{i} = 0; i{i} < n{i}; i{i}++) {t}.add(buf.readUtf());").replace("{t}", tmp).replace("{i}", tmp)
         return pre, tmp
     if kind.startswith("list:"):
         n = kind[5:]
-        pre = ("int n{i} = buf.readVarInt(); List<" + n + "> {t} = new ArrayList<>(n{i}); "
+        pre = ("int n{i} = BvWire.count(buf.readVarInt(), " + cap + "); List<" + n + "> {t} = new ArrayList<>(n{i}); "
                "for (int i{i} = 0; i{i} < n{i}; i{i}++) {t}.add(" + n + ".read(buf));").replace("{t}", tmp).replace("{i}", tmp)
         return pre, tmp
     raise KeyError(kind)
@@ -147,7 +161,13 @@ def _record_io(name, fields, nested_level):
         out.append(ind + "public static " + name + " decode(FriendlyByteBuf buf) {")
     args = []
     for f, k in fields:
-        pre, expr = _read_expr(k, "l" + f)
+        cap = None
+        if k.startswith("list"):
+            cap = LIST_CAPS.get(name + "." + f)
+            if cap is None:
+                raise KeyError("D19/D22: no LIST_CAPS entry for the list field " + name + "." + f
+                               + " -- add a server-policy ceiling before generating an uncapped read")
+        pre, expr = _read_expr(k, "l" + f, cap)
         if pre:
             out.append(ind + "    " + pre)
             args.append(expr)

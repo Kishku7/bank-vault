@@ -25,7 +25,7 @@ public record UiStateSyncPayload(String lastTab, List<TabSort> sorts, boolean sh
     public record TabPins(String tab, List<String> ids) {
         public static final StreamCodec<RegistryFriendlyByteBuf, TabPins> CODEC = StreamCodec.composite(
                 ByteBufCodecs.STRING_UTF8, TabPins::tab,
-                ByteBufCodecs.STRING_UTF8.apply(ByteBufCodecs.list()), TabPins::ids,
+                ByteBufCodecs.STRING_UTF8.apply(ByteBufCodecs.list(BvWire.MAX_PINS)), TabPins::ids,
                 TabPins::new);
     }
 
@@ -34,9 +34,9 @@ public record UiStateSyncPayload(String lastTab, List<TabSort> sorts, boolean sh
 
     public static final StreamCodec<RegistryFriendlyByteBuf, UiStateSyncPayload> CODEC = StreamCodec.composite(
             ByteBufCodecs.STRING_UTF8, UiStateSyncPayload::lastTab,
-            TabSort.CODEC.apply(ByteBufCodecs.list()), UiStateSyncPayload::sorts,
+            TabSort.CODEC.apply(ByteBufCodecs.list(BvWire.MAX_SORT_KEYS)), UiStateSyncPayload::sorts,
             ByteBufCodecs.BOOL, UiStateSyncPayload::showSections,
-            TabPins.CODEC.apply(ByteBufCodecs.list()), UiStateSyncPayload::pins,
+            TabPins.CODEC.apply(ByteBufCodecs.list(BvWire.MAX_SORT_KEYS)), UiStateSyncPayload::pins,
             UiStateSyncPayload::new);
 
     @Override

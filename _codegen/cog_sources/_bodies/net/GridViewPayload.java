@@ -19,7 +19,7 @@ public record GridViewPayload(String tab, List<String> keys) implements CustomPa
 
     public static final StreamCodec<RegistryFriendlyByteBuf, GridViewPayload> CODEC = StreamCodec.composite(
             ByteBufCodecs.STRING_UTF8, GridViewPayload::tab,
-            ByteBufCodecs.STRING_UTF8.apply(ByteBufCodecs.list()), GridViewPayload::keys,
+            ByteBufCodecs.STRING_UTF8.apply(ByteBufCodecs.list(BvWire.MAX_GRID_KEYS)), GridViewPayload::keys,
             GridViewPayload::new);
 
     @Override

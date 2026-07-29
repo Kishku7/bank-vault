@@ -107,8 +107,9 @@ public final class ModNetworking {
 
     /** v1.2 last-use memory: persist the interaction in the server-side bucket files. */
     private static void onUiState(UiStatePayload payload, ServerPlayer player) {
-        UserSettings.update(player, payload.lastTab(), payload.tab(), payload.sort(),
-                payload.sections());
+        // D22: these land in the player's on-disk bucket -- sanitize before they persist.
+        UserSettings.update(player, BvWire.token(payload.lastTab()), BvWire.token(payload.tab()),
+                BvWire.token(payload.sort()), BvWire.token(payload.sections()));
     }
 
     /** Push the player's remembered UI state (last tab + per-tab sorts); must be sent BEFORE
@@ -208,8 +209,10 @@ public final class ModNetworking {
      *  vault view (handled in BankVaultMenu.clicked) knows what to withdraw. */
     private static void onGridView(GridViewPayload payload, ServerPlayer player) {
         if (player.containerMenu instanceof BankVaultMenu menu) {
-            menu.setViewKeys(payload.keys());
-            menu.setCurrentTab(payload.tab());
+            // D22: the grid map is a withdraw handle -- bound it, then verify every cell against
+            // stock this bank really holds. The server never learns a key from the client.
+            menu.setViewKeys(BvWire.verifiedGridKeys(payload.keys(), BankManager.lookup(player.getUUID())));
+            menu.setCurrentTab(BvWire.token(payload.tab()));
         }
     }
 
@@ -229,7 +232,11 @@ public final class ModNetworking {
             proto = new ItemStack(BuiltInRegistries.ITEM.getValue(id));
         }
         if (proto.isEmpty()) return;
-        long taken = BankManager.withdrawKey(bank, key, Math.max(1, payload.amount()));
+        // D22: clamp the requested amount to server policy AND to real available stock, so a
+        // hostile "withdraw 2 billion" cannot become a tick-thread flood of dropped entities.
+        int want = BvWire.withdrawAmount(payload.amount(), BvWire.stockOf(bank, key));
+        if (want <= 0) return;
+        long taken = BankManager.withdrawKey(bank, key, want);
         int max = proto.getMaxStackSize();
         long left = taken;
         while (left > 0) {
@@ -246,7 +253,9 @@ public final class ModNetworking {
         if (bank == null || bank.levelOf(player.getUUID()) < BankManager.DEPOSIT) return;
         Inventory inv = player.getInventory();
         int slot = payload.slot();
-        if (slot < 0 || slot >= inv.getContainerSize()) return;
+        // D22: bounds alone would still reach armor (36-39) and offhand (40); the v1.1 spec says
+        // hotbar + main rows only, so verify against THAT subset, not the container size.
+        if (!BvWire.isPlayerStorageSlot(slot)) return;
         ItemStack s = inv.getItem(slot);
         if (s.isEmpty()) return;
         long accepted = BankManager.depositStack(bank, s, player.level().registryAccess());
