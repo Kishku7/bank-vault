@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "bankvault",
+  "version": "${version}",
+  "name": "Bank Vault",
+  "description": "A multiblock bank vault with virtual, categorized storage.",
+  "authors": [
+    "Kishku7"
+  ],
+  "contact": {
+    "issues": "https://github.com/Kishku7/mod_support/issues"
+  },
+  "license": "ARR",
+  "environment": "*",
+  "accessWidener": "bankvault.accesswidener",
+  "entrypoints": {
+    "main": [
+      "com.kishku7.bankvault.BankVault"
+    ],
+    "client": [
+      "com.kishku7.bankvault.client.BankVaultClient"
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "${mcDep}",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "travelersbackpack": "*"
+  }
+}

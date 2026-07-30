@@ -38,6 +38,18 @@ checked against real server state before it is acted on. Product-wide -- all 28 
   length-limited, and the number of distinct remembered per-tab sorts is capped, so the values can
   no longer grow the file without bound.
 
+### Fixed
+- **Fabric 1.21.9 / 1.21.10 crashed the integrated server on world join.** The Fabric
+  `1.21.11` jar claimed `>=1.21.9 <1.21.12` but compiles the permissions API that only
+  arrived in 1.21.11, so `/bank`'s operator-gate predicate hit a `NoSuchMethodError` while
+  the command tree was being built for a joining player -- a hard crash on two of the three
+  versions that jar advertised. This shipped in 1.4.4 and every release before it.
+  Fixed by splitting the cell the way the NeoForge and Forge lines already were: a new
+  Fabric `1.21.9` cell (classic integer permission levels) now serves 1.21.9-1.21.10, and
+  the `1.21.11` jar is narrowed to 1.21.11 only. Found by a full every-claimed-version
+  client run, which is the only thing that would have caught it -- the jar's own build
+  version was always fine.
+
 ### Changed
 - All source, resources and code-generator files are now pure ASCII. Glyphs that the GUI actually
   draws (sort and scrollbar arrows, the close marker) and the section-sign colour codes are written
