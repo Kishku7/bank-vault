@@ -4,6 +4,24 @@ All notable changes to Bank Vault are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/).
 Versioning policy is universal across all mods and is NOT restated here -- see Memory/minecraft/mod-rules.md.
 
+## [1.4.9] - 2026-08-04
+
+Minecraft 26.3-snapshot-7 support. 26.3 cell only -- every other cell is unchanged and keeps
+1.4.8.
+
+### Changed
+- **Retargeted the 26.3 cell from snapshot-6 to snapshot-7.** Fabric API 0.156.2+26.3, loader
+  0.19.3, resource pack_format 95, dependency window `[26.3-alpha.7, 26.3-alpha.8)`.
+
+### Fixed
+- **`Player.drop` gained a trailing `Prediction` argument in snapshot-7.** Mojang added
+  `net.minecraft.util.Prediction` (`PREDICTED` / `SERVER_ONLY`) and threaded it through
+  `Player.drop` and `Inventory.placeItemBackInInventory`. Every Bank Vault call site is
+  server-side overflow handling reached from a player action -- withdraw, deposit, grid moves,
+  `/bank` -- so all 14 now pass `PREDICTED`, matching what vanilla's own
+  `AbstractContainerMenu`, `CraftingMenu` and `ResultSlot` pass at the equivalent sites. Without
+  this the 26.3 cell does not compile at all.
+
 ## [1.4.8] - 2026-07-29
 
 Hardening release: every message Bank Vault accepts from a client is now bounded and then

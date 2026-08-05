@@ -163,6 +163,27 @@ Get-ChildItem (Join-Path $gen 'src\main\java') -Recurse -File -Filter *.java |
         & cog -r -I $cg -D loader=$Loader -D ver=$McVer -D codegen=$cg $_.FullName | Out-Null
         if ($LASTEXITCODE -ne 0) { throw ("cog failed: " + $_.FullName) }
     }
+# ---- 7a. 26.3-snapshot-7: Player.drop / Inventory.placeItemBackInInventory gained a trailing
+# net.minecraft.util.Prediction argument (new enum PREDICTED / SERVER_ONLY). Every BV call site is
+# server-side overflow handling reached from a player action, so PREDICTED is the vanilla-matching
+# value (AbstractContainerMenu/CraftingMenu/ResultSlot all pass PREDICTED at the equivalent sites).
+# Verified against MC-Java\diffs\family-26\26.3-snapshot-6_vs_26.3-snapshot-7.diff. ----
+if ($v -ge [version]'26.3') {
+    $dropPat = '\.drop\((?<a>[^;()]*(\([^()]*\))?[^;()]*), (?<b>true|false)\)'
+    $hits = 0
+    Get-ChildItem (Join-Path $gen 'src\main\java') -Recurse -File -Filter *.java | ForEach-Object {
+        $t = Get-Content $_.FullName -Raw
+        if ($t -match $dropPat) {
+            $n = [regex]::Matches($t, $dropPat).Count
+            $t = [regex]::Replace($t, $dropPat, '.drop(${a}, ${b}, net.minecraft.util.Prediction.PREDICTED)')
+            $t = $t -replace 'placeItemBackInInventory\((?<a>[^;()]*(\([^()]*\))?[^;()]*)\)', 'placeItemBackInInventory(${a}, net.minecraft.util.Prediction.PREDICTED)'
+            Set-Content $_.FullName $t -NoNewline
+            $hits += $n
+        }
+    }
+    Write-Host ("  7a: Prediction arg added to {0} drop() call sites" -f $hits)
+}
+
 # ---- 7f. forge-47 deprecation hygiene: Forge 1.20.1 deprecates the vanilla BuiltInRegistries
 # fields (ForgeRegistries preferred); they remain the correct cross-loader access and work at
 # runtime, so the DISPOSABLE gen tree gets a class-level suppression with this justification. ----
