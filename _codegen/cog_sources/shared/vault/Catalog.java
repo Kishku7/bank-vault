@@ -158,7 +158,9 @@ public final class Catalog {
             try (Reader r = Files.newBufferedReader(cfg, StandardCharsets.UTF_8)) {
                 parse(GSON.fromJson(r, JsonObject.class));
                 fillMissingIcons();
-                BankVault.LOGGER.info("[Bank Vault] catalog from config: {} tabs, {} items", tabs.size(), itemTabs.size());
+                int backfilled = fillMissingItems();
+                BankVault.LOGGER.info("[Bank Vault] catalog from config: {} tabs, {} items ({} backfilled from bundled)",
+                        tabs.size(), itemTabs.size(), backfilled);
                 loadOrderFile("family");
                 loadOrderFile("type");
                 loadGroupsFile();
@@ -325,6 +327,42 @@ public final class Catalog {
             }
         }
         if (filled > 0) BankVault.LOGGER.info("[Bank Vault] backfilled {} tab icons from bundled defaults", filled);
+    }
+
+    /** v1.4.10: a config-dir categories.json is a SNAPSHOT of whatever the catalog looked like
+     *  when it was first written, and it WINS over the bundled copy -- so on an existing install
+     *  it pins the item list forever. Every later Minecraft version's new items then fall through
+     *  to "uncategorized" even though the shipped jar classifies them, and nothing reports it: the
+     *  load line prints the config's own item count, which does not move when the registry grows.
+     *  Backfill any item the bundled catalog knows about and the config does not. The user's own
+     *  assignments are NEVER overwritten -- only genuinely absent ids are added. Same posture as
+     *  fillMissingIcons above. */
+    private static int fillMissingItems() {
+        try (InputStream in = Catalog.class.getResourceAsStream("/data/bankvault/categories.json")) {
+            if (in == null) return 0;
+            JsonObject root = GSON.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), JsonObject.class);
+            JsonObject items = root.getAsJsonObject("items");
+            if (items == null) return 0;
+            int added = 0;
+            for (Map.Entry<String, JsonElement> e : items.entrySet()) {
+                if (itemTabs.containsKey(e.getKey())) continue;
+                List<String> tabsFor = new ArrayList<>();
+                if (e.getValue().isJsonArray()) {
+                    e.getValue().getAsJsonArray().forEach(x -> tabsFor.add(x.getAsString()));
+                } else if (e.getValue().isJsonPrimitive()) {
+                    tabsFor.add(e.getValue().getAsString());
+                }
+                if (!tabsFor.isEmpty()) { itemTabs.put(e.getKey(), tabsFor); added++; }
+            }
+            if (added > 0) {
+                BankVault.LOGGER.info("[Bank Vault] backfilled {} items from the bundled catalog "
+                        + "(new Minecraft items your config predates)", added);
+            }
+            return added;
+        } catch (Exception e) {
+            BankVault.LOGGER.error("[Bank Vault] bundled item backfill failed", e);
+            return 0;
+        }
     }
 
     /** Drop all cached catalog/sort data and re-read the JSON files (config dir first). */

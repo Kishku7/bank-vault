@@ -4,6 +4,33 @@ All notable changes to Bank Vault are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/).
 Versioning policy is universal across all mods and is NOT restated here -- see Memory/minecraft/mod-rules.md.
 
+## [1.4.10] - 2026-08-04
+
+Catalog completeness release. Every cell rebuilt: the vault catalog is shared across all cells, so
+the classification work below applies product-wide, not just to 26.3.
+
+### Added
+- **The 48 items Minecraft 26.3-snapshot-7 introduced are now classified**, not dumped in
+  Uncategorized. 32 concrete slabs + stairs (all 16 dye colours) -> **Colored Blocks**, ranked
+  directly beside the concrete they are cut from. 16 new per-target map items -- `ancient_city_map`,
+  `buried_treasure_map`, the six `*_village_map`s, the explorer maps and the rest, which Mojang split
+  out of `filled_map` -> **Materials & Utility**, ranked beside `filled_map`.
+- **The pre-existing classification backlog is closed too.** 16 cushions and `straw_bed` ->
+  **Fabric & Color**; the 7 infested blocks -> **Stone & Masonry**, each beside its base block;
+  `player_head` -> **Magic & Treasure** with the other mob heads. 73 items classified in total,
+  with keyword-search entries for the 48 new ids.
+- The remaining 21 net-new registry ids are creative/technical only (command blocks, jigsaw,
+  structure/test blocks, spawners, bedrock, `budding_amethyst`, `suspicious_sand`, spawn eggs, ...)
+  and are **deliberately excluded** from the vault, consistent with how `barrier` and the spawn eggs
+  have always been treated. They are now recorded as such in the taxonomy, so the
+  "needs classification" list is **empty** and stays empty instead of re-surfacing every version.
+
+### Fixed
+- A new Minecraft version used to add its items to the vault as storable-but-Uncategorized. Nothing
+  reported this: the load-time log prints the catalog's own item count, which does not change when
+  the registry grows, so the gap read as healthy. Catalog completeness is now an explicit release
+  gate -- `tooling/bv_new_items.py` must return zero before a version ships.
+
 ## [1.4.9] - 2026-08-04
 
 Minecraft 26.3-snapshot-7 support. 26.3 cell only -- every other cell is unchanged and keeps

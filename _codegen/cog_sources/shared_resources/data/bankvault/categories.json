@@ -1,5 +1,5 @@
 {
- "version": "1.2.2",
+ "version": "1.2.1",
  "tabs": [
   {
    "id": "wood",
@@ -4905,6 +4905,225 @@
   ],
   "minecraft:shelf_mushroom": [
    "nature"
+  ],
+  "minecraft:white_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:white_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:white_cushion": [
+   "fabric"
+  ],
+  "minecraft:light_gray_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:light_gray_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:light_gray_cushion": [
+   "fabric"
+  ],
+  "minecraft:gray_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:gray_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:gray_cushion": [
+   "fabric"
+  ],
+  "minecraft:black_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:black_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:black_cushion": [
+   "fabric"
+  ],
+  "minecraft:brown_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:brown_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:brown_cushion": [
+   "fabric"
+  ],
+  "minecraft:red_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:red_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:red_cushion": [
+   "fabric"
+  ],
+  "minecraft:orange_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:orange_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:orange_cushion": [
+   "fabric"
+  ],
+  "minecraft:yellow_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:yellow_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:yellow_cushion": [
+   "fabric"
+  ],
+  "minecraft:lime_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:lime_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:lime_cushion": [
+   "fabric"
+  ],
+  "minecraft:green_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:green_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:green_cushion": [
+   "fabric"
+  ],
+  "minecraft:cyan_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:cyan_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:cyan_cushion": [
+   "fabric"
+  ],
+  "minecraft:light_blue_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:light_blue_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:light_blue_cushion": [
+   "fabric"
+  ],
+  "minecraft:blue_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:blue_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:blue_cushion": [
+   "fabric"
+  ],
+  "minecraft:purple_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:purple_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:purple_cushion": [
+   "fabric"
+  ],
+  "minecraft:magenta_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:magenta_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:magenta_cushion": [
+   "fabric"
+  ],
+  "minecraft:pink_concrete_slab": [
+   "colored"
+  ],
+  "minecraft:pink_concrete_stairs": [
+   "colored"
+  ],
+  "minecraft:pink_cushion": [
+   "fabric"
+  ],
+  "minecraft:abandoned_campsite_map": [
+   "materials"
+  ],
+  "minecraft:ancient_city_map": [
+   "materials"
+  ],
+  "minecraft:buried_treasure_map": [
+   "materials"
+  ],
+  "minecraft:desert_pyramid_map": [
+   "materials"
+  ],
+  "minecraft:desert_village_map": [
+   "materials"
+  ],
+  "minecraft:jungle_explorer_map": [
+   "materials"
+  ],
+  "minecraft:mineshaft_map": [
+   "materials"
+  ],
+  "minecraft:ocean_explorer_map": [
+   "materials"
+  ],
+  "minecraft:plains_village_map": [
+   "materials"
+  ],
+  "minecraft:savanna_village_map": [
+   "materials"
+  ],
+  "minecraft:snowy_village_map": [
+   "materials"
+  ],
+  "minecraft:swamp_explorer_map": [
+   "materials"
+  ],
+  "minecraft:taiga_village_map": [
+   "materials"
+  ],
+  "minecraft:trial_explorer_map": [
+   "materials"
+  ],
+  "minecraft:warm_ocean_ruins_map": [
+   "materials"
+  ],
+  "minecraft:woodland_explorer_map": [
+   "materials"
+  ],
+  "minecraft:straw_bed": [
+   "fabric"
+  ],
+  "minecraft:player_head": [
+   "treasure"
+  ],
+  "minecraft:infested_stone": [
+   "stone"
+  ],
+  "minecraft:infested_cobblestone": [
+   "stone"
+  ],
+  "minecraft:infested_stone_bricks": [
+   "stone"
+  ],
+  "minecraft:infested_mossy_stone_bricks": [
+   "stone"
+  ],
+  "minecraft:infested_cracked_stone_bricks": [
+   "stone"
+  ],
+  "minecraft:infested_chiseled_stone_bricks": [
+   "stone"
+  ],
+  "minecraft:infested_deepslate": [
+   "stone"
   ]
  },
  "colors": {
