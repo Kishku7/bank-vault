@@ -4,6 +4,22 @@ All notable changes to Bank Vault are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/).
 Versioning policy is universal across all mods and is NOT restated here -- see Memory/minecraft/mod-rules.md.
 
+## [1.4.12] - 2026-08-09
+
+Dead-asset removal. Product-wide -- all 32 cells rebuilt. No rendering change: everything removed
+here was already unreachable.
+
+### Removed
+- **`textures/block/corner_front.png` and `textures/block/edge_front.png` are gone.** Both were
+  referenced by nothing and shipped in every jar. The eight `bank_vault_corner{0,90,180,270}` and
+  `bank_vault_edge{0,90,180,270}` models that were supposed to use them were bare
+  `{"parent": "bankvault:block/bank_vault_plain"}` aliases, so the blockstate's 40 variants had
+  only ever resolved to two real models. Those eight alias files are removed too and the blockstate
+  now points at `bank_vault_plain` directly -- 40 variants, 2 models, identical rendering.
+- Both orphan textures carried the SAME stray cross mark near their bottom-right corner that 1.4.11
+  removed from `vault_metal.png` (peaks 172 and 163 against a ~75 background), so the defect was
+  set-wide rather than a one-off. Deleting them settles it without needing a second repair.
+
 ## [1.4.11] - 2026-08-09
 
 Texture fix. Product-wide -- the block texture is shared by every cell, so all 32 cells are
