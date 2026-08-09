@@ -4,6 +4,18 @@ All notable changes to Bank Vault are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/).
 Versioning policy is universal across all mods and is NOT restated here -- see Memory/minecraft/mod-rules.md.
 
+## [1.4.11] - 2026-08-09
+
+Texture fix. Product-wide -- the block texture is shared by every cell, so all 32 cells are
+rebuilt and carry 1.4.11.
+
+### Fixed
+- **A stray cross-shaped mark sat where the vault block's bottom-right corner rivet should be.**
+  `textures/block/vault_metal.png` carried a 6x6 px bright plus sign at (118-123, 118-123) instead
+  of a rivet, leaving the riveted border visibly broken at one corner while the other three were
+  complete. The corner now carries a normal rivet, copied from the adjacent right-column rivet so
+  the highlight, shadow and plate-edge shading match the rest of the border exactly.
+
 ## [1.4.10] - 2026-08-04
 
 Catalog completeness release. Every cell rebuilt: the vault catalog is shared across all cells, so
