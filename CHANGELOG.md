@@ -4,6 +4,50 @@ All notable changes to Bank Vault are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/).
 Versioning policy is universal across all mods and is NOT restated here -- see Memory/minecraft/mod-rules.md.
 
+## [1.4.13] - 2026-09-10
+
+Eight explorer maps were being sorted under item ids Minecraft no longer uses, and the 26.3 target
+jumps four builds to `26.3-rc-1`. Only the 26.3 cell is rebuilt.
+
+### Fixed
+
+- **Eight explorer maps were invisible to categorization and sorting on any 26.3 build newer than
+  snapshot-7.** They were curated under the ids they had at 26.3-snapshot-7, and Minecraft renamed
+  every one of them at 26.3-pre-1:
+
+  | was (snapshot-7) | is (26.3-pre-1 onward) |
+  |---|---|
+  | `abandoned_campsite_map` | `abandoned_camp_map` |
+  | `ancient_city_map` | `buried_ancient_city_map` |
+  | `jungle_explorer_map` | `jungle_pyramid_map` |
+  | `mineshaft_map` | `buried_mineshaft_map` |
+  | `ocean_explorer_map` | `ocean_monument_map` |
+  | `swamp_explorer_map` | `swamp_hut_map` |
+  | `trial_explorer_map` | `buried_trial_chambers_map` |
+  | `woodland_explorer_map` | `woodland_mansion_map` |
+
+  The curation itself was right -- the keywords, the `materials` category and the position of each
+  map in the curated sort order are carried across unchanged, verified by index. Only the ids move.
+  Nothing else in the data referenced the old names.
+
+### Changed
+
+- **The 26.3 target moves from `26.3-snapshot-7` to `26.3-rc-1`**, skipping pre-1, pre-2 and pre-3.
+  `pack_format` 95 -> **97**, fabric-api `0.156.2+26.3` -> `0.160.3+26.3`, fabric-loader 0.19.3 ->
+  0.19.5, and the exclusive window becomes `>=26.3-rc.1 <26.3-rc.2`. The 26.3 pin names one exact
+  build because `pack_format` moves on most 26.3 releases, so a jar is wrong on every other one.
+
+### Notes
+
+- **Every item added to Minecraft between 26.2 and 26.3-rc-1 was checked, not just the ones that
+  broke.** 121 items arrived and none were removed: the poplar wood set and its three leaf colours,
+  16 cushions, wool and concrete slabs and stairs in all 16 colours, 16 explorer maps, plus
+  `red_shrub`, `shelf_mushroom` and `straw_bed`. 113 were already classified; the 8 above were the
+  only gap. Spawn eggs and creative-only blocks remain excluded, as they always have been -- zero of
+  either is classified, so that is the standing rule and not an oversight.
+- fabric-api must be `0.160.3+26.3` or newer on rc-1: earlier builds on the 26.3 line install and
+  then crash the client, because they wrap a lambda that rc-1 deleted.
+
 ## [1.4.12] - 2026-08-09
 
 Dead-asset removal. Product-wide -- all 32 cells rebuilt. No rendering change: everything removed

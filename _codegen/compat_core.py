@@ -91,7 +91,7 @@ PACK_FORMATS = {
     "1.21": 34, "1.21.1": 34, "1.21.2": 42, "1.21.3": 42, "1.21.4": 46,
     "1.21.5": 55, "1.21.6": 63, "1.21.7": 64, "1.21.8": 64,
     "1.21.9": 69, "1.21.10": 69, "1.21.11": 75,
-    "26.1": 84, "26.2": 88, "26.3": 95,  # 26.3 -> snapshot-7 resource pack_format (89/90/91/92/93/94/95 for snap-1..7; line advanced to snap-7)
+    "26.1": 84, "26.2": 88, "26.3": 97,  # 26.3 -> 26.3-rc-1 resource pack_format (snap-1..7 were 89..95; pre-1..rc-1 are all 97). MUST track the mc pin in scripts/build-fabric.ps1 -- the cog-materialized gen/pack.mcmeta is built from THIS value, and on a 26.3 cell gen/ replaces the cell srcDirs, so this number is the one that SHIPS.
 }
 
 

@@ -23538,7 +23538,7 @@
       "decoration",
       "stairs"
     ],
-    "minecraft:abandoned_campsite_map": [
+    "minecraft:abandoned_camp_map": [
       "map",
       "paper",
       "tradeable",
@@ -23547,7 +23547,7 @@
       "odd",
       "explorer"
     ],
-    "minecraft:ancient_city_map": [
+    "minecraft:buried_ancient_city_map": [
       "map",
       "paper",
       "tradeable",
@@ -23583,7 +23583,7 @@
       "odd",
       "explorer"
     ],
-    "minecraft:jungle_explorer_map": [
+    "minecraft:jungle_pyramid_map": [
       "map",
       "paper",
       "tradeable",
@@ -23592,7 +23592,7 @@
       "odd",
       "explorer"
     ],
-    "minecraft:mineshaft_map": [
+    "minecraft:buried_mineshaft_map": [
       "map",
       "paper",
       "tradeable",
@@ -23601,7 +23601,7 @@
       "odd",
       "explorer"
     ],
-    "minecraft:ocean_explorer_map": [
+    "minecraft:ocean_monument_map": [
       "map",
       "paper",
       "tradeable",
@@ -23637,7 +23637,7 @@
       "odd",
       "explorer"
     ],
-    "minecraft:swamp_explorer_map": [
+    "minecraft:swamp_hut_map": [
       "map",
       "paper",
       "tradeable",
@@ -23655,7 +23655,7 @@
       "odd",
       "explorer"
     ],
-    "minecraft:trial_explorer_map": [
+    "minecraft:buried_trial_chambers_map": [
       "map",
       "paper",
       "tradeable",
@@ -23673,7 +23673,7 @@
       "odd",
       "explorer"
     ],
-    "minecraft:woodland_explorer_map": [
+    "minecraft:woodland_mansion_map": [
       "map",
       "paper",
       "tradeable",
