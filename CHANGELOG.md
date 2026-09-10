@@ -26,9 +26,13 @@ jumps four builds to `26.3-rc-1`. Only the 26.3 cell is rebuilt.
   | `trial_explorer_map` | `buried_trial_chambers_map` |
   | `woodland_explorer_map` | `woodland_mansion_map` |
 
-  The curation itself was right -- the keywords, the `materials` category and the position of each
-  map in the curated sort order are carried across unchanged, verified by index. Only the ids move.
-  Nothing else in the data referenced the old names.
+  **Both sets of ids are now carried, not swapped.** The data files ship to every cell from 1.20.0
+  to 26.3, so an id that is right on one version and absent on another has to be present either
+  way -- the old names stay valid on 26.3-snapshot-7 and below, the new ones from 26.3-pre-1 up,
+  and on any given version the other half is simply inert. Each old id sits immediately beside its
+  replacement in the curated `materials` order, so the sort reads the same whichever one the
+  running version resolves. The curation itself was already right and is untouched: same keywords,
+  same `materials` category, same position.
 
 ### Changed
 

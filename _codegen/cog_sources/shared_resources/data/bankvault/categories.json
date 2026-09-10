@@ -5050,7 +5050,13 @@
   "minecraft:pink_cushion": [
    "fabric"
   ],
+  "minecraft:abandoned_campsite_map": [
+   "materials"
+  ],
   "minecraft:abandoned_camp_map": [
+   "materials"
+  ],
+  "minecraft:ancient_city_map": [
    "materials"
   ],
   "minecraft:buried_ancient_city_map": [
@@ -5065,10 +5071,19 @@
   "minecraft:desert_village_map": [
    "materials"
   ],
+  "minecraft:jungle_explorer_map": [
+   "materials"
+  ],
   "minecraft:jungle_pyramid_map": [
    "materials"
   ],
+  "minecraft:mineshaft_map": [
+   "materials"
+  ],
   "minecraft:buried_mineshaft_map": [
+   "materials"
+  ],
+  "minecraft:ocean_explorer_map": [
    "materials"
   ],
   "minecraft:ocean_monument_map": [
@@ -5083,16 +5098,25 @@
   "minecraft:snowy_village_map": [
    "materials"
   ],
+  "minecraft:swamp_explorer_map": [
+   "materials"
+  ],
   "minecraft:swamp_hut_map": [
    "materials"
   ],
   "minecraft:taiga_village_map": [
    "materials"
   ],
+  "minecraft:trial_explorer_map": [
+   "materials"
+  ],
   "minecraft:buried_trial_chambers_map": [
    "materials"
   ],
   "minecraft:warm_ocean_ruins_map": [
+   "materials"
+  ],
+  "minecraft:woodland_explorer_map": [
    "materials"
   ],
   "minecraft:woodland_mansion_map": [

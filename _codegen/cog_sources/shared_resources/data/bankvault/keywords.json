@@ -23538,7 +23538,25 @@
       "decoration",
       "stairs"
     ],
+    "minecraft:abandoned_campsite_map": [
+      "map",
+      "paper",
+      "tradeable",
+      "overworld",
+      "book",
+      "odd",
+      "explorer"
+    ],
     "minecraft:abandoned_camp_map": [
+      "map",
+      "paper",
+      "tradeable",
+      "overworld",
+      "book",
+      "odd",
+      "explorer"
+    ],
+    "minecraft:ancient_city_map": [
       "map",
       "paper",
       "tradeable",
@@ -23583,6 +23601,15 @@
       "odd",
       "explorer"
     ],
+    "minecraft:jungle_explorer_map": [
+      "map",
+      "paper",
+      "tradeable",
+      "overworld",
+      "book",
+      "odd",
+      "explorer"
+    ],
     "minecraft:jungle_pyramid_map": [
       "map",
       "paper",
@@ -23592,7 +23619,25 @@
       "odd",
       "explorer"
     ],
+    "minecraft:mineshaft_map": [
+      "map",
+      "paper",
+      "tradeable",
+      "overworld",
+      "book",
+      "odd",
+      "explorer"
+    ],
     "minecraft:buried_mineshaft_map": [
+      "map",
+      "paper",
+      "tradeable",
+      "overworld",
+      "book",
+      "odd",
+      "explorer"
+    ],
+    "minecraft:ocean_explorer_map": [
       "map",
       "paper",
       "tradeable",
@@ -23637,6 +23682,15 @@
       "odd",
       "explorer"
     ],
+    "minecraft:swamp_explorer_map": [
+      "map",
+      "paper",
+      "tradeable",
+      "overworld",
+      "book",
+      "odd",
+      "explorer"
+    ],
     "minecraft:swamp_hut_map": [
       "map",
       "paper",
@@ -23655,6 +23709,15 @@
       "odd",
       "explorer"
     ],
+    "minecraft:trial_explorer_map": [
+      "map",
+      "paper",
+      "tradeable",
+      "overworld",
+      "book",
+      "odd",
+      "explorer"
+    ],
     "minecraft:buried_trial_chambers_map": [
       "map",
       "paper",
@@ -23665,6 +23728,15 @@
       "explorer"
     ],
     "minecraft:warm_ocean_ruins_map": [
+      "map",
+      "paper",
+      "tradeable",
+      "overworld",
+      "book",
+      "odd",
+      "explorer"
+    ],
+    "minecraft:woodland_explorer_map": [
       "map",
       "paper",
       "tradeable",
