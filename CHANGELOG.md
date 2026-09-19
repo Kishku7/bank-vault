@@ -2,7 +2,7 @@
 
 All notable changes to Bank Vault are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/).
-Versioning policy is universal across all mods and is NOT restated here -- see Memory/minecraft/mod-rules.md.
+Versioning policy is universal across all Kishku7 mods and is deliberately NOT restated here.
 
 ## [1.5.0] - 2026-09-18
 

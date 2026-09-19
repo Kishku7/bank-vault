@@ -5,7 +5,7 @@ Loader-specific registration/entrypoint/networking live in compat_fabric / compa
 compat_neoforge. The 26 cells NEVER run cog (they srcDir shared_minecraft directly).
 
 Version axes (fill boundaries as the compiler enumerates them; every confirmed boundary is
-also recorded in Memory/knowledge/dev/mod-version-gates.md):
+also recorded alongside the per-version Minecraft source diffs):
   renamed   @1.21.11 : ResourceLocation -> Identifier rename
   components @1.20.5 : ItemStack data components era (pre: NBT tags); StackStore codec drift
   perms26   @26      : CommandSourceStack.permissions().hasPermission(Permissions.X)
@@ -84,7 +84,7 @@ def emit_environment_imports(cog, loader):
         cog.outl("import net.fabricmc.api.Environment;")
 
 
-# ---- pack_format (resource) per version; authoritative: Memory/knowledge/pack-formats.md ----
+# ---- pack_format (resource) per version; read from each MC build's own resources/version.json ----
 PACK_FORMATS = {
     "1.20": 15, "1.20.1": 15, "1.20.2": 18, "1.20.3": 22, "1.20.4": 22,
     "1.20.5": 32, "1.20.6": 32,
