@@ -38,4 +38,7 @@ processResources {
     filesMatching('pack.mcmeta') { expand([packFormat: packFormat]) }
 }
 
-tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.compilerArgs += ['-Xlint:all'] }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.compilerArgs += ['-Xlint:all', '-Xlint:-classfile'] }
+// -classfile is disabled NARROWLY, not as a weakening of the zero-warning gate: it fires only on the
+// JOML dependency jar (Matrix3x2f / Matrix3x2fStack carry a RuntimeVisibleTypeAnnotations attribute in
+// a class file old enough to ignore it) -- third-party bytecode this mod neither owns nor can fix.

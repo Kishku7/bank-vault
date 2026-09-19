@@ -10,7 +10,11 @@ $pre26 = @('1.20', '1.20.6', '1.21', '1.21.1', '1.21.2', '1.21.5', '1.21.6', '1.
 $matrix = [ordered]@{
   "26.1" = @{mc = "26.1.2";           api = "0.152.1+26.1.2"; loader = "0.18.6"; lo = "26.1-";  hi = "26.2"; pf = 84 }
   "26.2" = @{mc = "26.2";             api = "0.152.1+26.2";   loader = "0.19.3"; lo = "26.2-";  hi = "26.3"; pf = 88 }
-  "26.3" = @{mc = "26.3-rc-1";        api = "0.160.3+26.3";   loader = "0.19.5"; lo = "26.3-rc.1";     hi = "26.3-rc.2";    pf = 97 }
+  # 26.3 went STABLE 2026-09-15. The rc-exclusive single-build window (lo/hi = 26.3-rc.1/26.3-rc.2)
+  # is gone and the cell takes the ordinary closed prerelease-inclusive range. pack_format is
+  # UNCHANGED at 97 -- it settled at pre-1 and held through pre-2, pre-3, rc-1 and release -- so the
+  # rc-1 binary's resources were already correct and only the PIN was wrong.
+  "26.3" = @{mc = "26.3";             api = "0.161.0+26.3";   loader = "0.19.5"; lo = "26.3-";        hi = "26.4";         pf = 97 }
 }
 
 $targets = if ($Only -and $Only.Count -gt 0) { $Only } else { $pre26 + @($matrix.Keys) }

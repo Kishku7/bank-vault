@@ -4,6 +4,34 @@ All notable changes to Bank Vault are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/).
 Versioning policy is universal across all mods and is NOT restated here -- see Memory/minecraft/mod-rules.md.
 
+## [1.5.0] - 2026-09-18
+
+### Added
+- **NeoForge support on MC 26.3.** The 26 NeoForge matrix stopped at 26.2. NeoForge has in fact
+  shipped 26.3 betas (now `26.3.0.6-beta`); what actually failed was ModDevGradle. On 2.0.140 the
+  NFRT `:createMinecraftArtifacts` recompile dies inside Minecraft's own source -- NeoForge's access
+  transformer widens `HolderSet.Named.contents()` to public and the widening is not propagated to the
+  anonymous subclass `HolderSet.emptyNamed` returns, so javac rejects the recompiled game before any
+  mod source is compiled. MDG 2.0.147 builds the identical cell clean.
+
+### Changed
+- **26.3 cell moved from MC 26.3-rc-1 to MC 26.3 (stable, 2026-09-15).** The rc-exclusive single-build
+  window (`26.3-rc.1` .. `26.3-rc.2`) is replaced by the ordinary closed prerelease-inclusive range
+  `>=26.3- <26.4` (Fabric) / `[26.3,26.4)` (NeoForge). Resource `pack_format` is UNCHANGED at 97 -- it
+  settled at pre-1 and held through pre-2, pre-3, rc-1 and release -- so the rc-1 binary's resources
+  were already correct and only the pin was wrong.
+- fabric-api `0.160.3+26.3` -> `0.161.0+26.3`, NeoForge `26.3.0.6-beta`, ModDevGradle `2.0.147`.
+
+### Notes
+- **No source or data change required.** The item catalog was re-verified against 26.3 rather than
+  assumed: all four shipped data files (`keywords.json`, `categories.json`, `sort_family.json`,
+  `sort_type.json`) already carry the poplar wood set, the 16-colour cushion / concrete-slab /
+  concrete-stair / wool-slab / wool-stair families, `red_shrub`, `shelf_mushroom` and `straw_bed`,
+  and they still carry BOTH id sets for the eight explorer maps Mojang renamed at 26.3-pre-1 (8/8 old
+  and 8/8 new in every file). Carrying both is deliberate: on any given version the name that does not
+  exist is inert, whereas swapping fixes 26.3 and silently breaks every cell from 26.3-snapshot-7 down.
+- Only the 26.3 cells were rebuilt; every other cell keeps the version it already shipped.
+
 ## [1.4.13] - 2026-09-10
 
 Eight explorer maps were being sorted under item ids Minecraft no longer uses, and the 26.3 target

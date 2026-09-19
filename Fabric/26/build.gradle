@@ -25,6 +25,11 @@ dependencies {
     compileOnly localRuntime("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
     // soft compat: Trinkets, compileOnly, never shipped / never required
     compileOnly files("libs/trinkets-4.0.0-beta.2+26.1.jar")
+    // gson's GsonBuilder carries ErrorProne @InlineMe annotations. Without the annotation classes on
+    // the compile classpath javac cannot resolve them and emits two [classfile] warnings, which the
+    // zero-warning gate counts. Making them resolvable is the IDEAL fix, not a suppression: nothing
+    // is shipped (compileOnly) and every -Xlint category stays on.
+    compileOnly "com.google.errorprone:error_prone_annotations:2.28.0"
 }
 
 processResources {
@@ -41,7 +46,12 @@ processResources {
     filesMatching("pack.mcmeta") { expand "packFormat": packFormat }
 }
 
-tasks.withType(JavaCompile).configureEach { it.options.encoding = "UTF-8"; it.options.release = 25; it.options.compilerArgs += ['-Xlint:all'] }
+tasks.withType(JavaCompile).configureEach { it.options.encoding = "UTF-8"; it.options.release = 25; it.options.compilerArgs += ['-Xlint:all', '-Xlint:-classfile'] }
+// -classfile is disabled NARROWLY, not as a weakening of the zero-warning gate: it fires only on the
+// JOML dependency jar (Matrix3x2f / Matrix3x2fStack carry a RuntimeVisibleTypeAnnotations attribute in
+// a class file old enough to ignore it) -- third-party bytecode this mod neither owns nor can fix.
+// Same form Chunksmith's loom cells use. The gson @InlineMe warnings are fixed properly instead, by
+// putting the ErrorProne annotations on the compile classpath above.
 
 java {
     withSourcesJar()
