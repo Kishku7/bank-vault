@@ -111,10 +111,20 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     // Real (unrendered) widgets mirroring the two custom-drawn Deposit buttons, so widget walkers
     // such as M1's `describe` / `click <id>` can see and press them. Drawing stays in render().
     private net.minecraft.client.gui.components.Button depInvBtn, depAllBtn;
-    // Never rendered or added as a child: a real EditBox FIELD that mirrors "a custom text box has focus".
-    // Movement-in-GUI mods (InvMove) find a focused EditBox by reflecting over a screen's fields; without
-    // one they treat WASD as movement and the hand-drawn search / invite boxes never receive the letters.
+    // Never rendered or added as a child: a real EditBox FIELD that mirrors "the hand-drawn invite-name box
+    // has focus". Movement-in-GUI mods (InvMove) find a focused EditBox by reflecting over a screen's fields;
+    // without one they treat WASD as movement. (The search box is a real EditBox now and needs no proxy.)
     private net.minecraft.client.gui.components.EditBox textFocusProxy;
+    // The vault search box: a REAL vanilla EditBox (cursor, selection, clipboard, IME, narration), styled by
+    // the surrounding hand-drawn frame. Background, frame and the empty-state hint are drawn in render().
+    private net.minecraft.client.gui.components.EditBox searchBox;
+    // Unrendered, no-op Button mirrors of the hand-drawn controls (tabs, sort row, close, search go, titles
+    // checkbox, scroll arrows) so widget walkers such as M1's `describe` / `click <id>` can see and press
+    // them. A press arrives through mouseClicked at the widget centre and is claimed by the hand-drawn
+    // hit-test first, so the action runs exactly once; the mirror's own press does nothing.
+    private final List<net.minecraft.client.gui.components.Button> catMirrors = new ArrayList<>();
+    private final List<net.minecraft.client.gui.components.Button> ctlMirrors = new ArrayList<>();
+    private String catMirrorSig = "";
     // -- Sharing corner (v1.1) --
     private List<SharingStatePayload.Member> shMembers = new ArrayList<>();
     private List<SharingStatePayload.InviteEntry> shInvites = new ArrayList<>();
@@ -134,8 +144,8 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private int dragThumbY;
 
     private String searchText = ClientUiState.searchText();   // reopen where the player left off
-    private int searchCursor = searchText.length();            // insertion point inside searchText
-    private boolean searchFocused = false;
+
+    private boolean searchFocused() { return searchBox != null && searchBox.isFocused(); }
 
     // deposit-denied feedback: grid flashes red 3x; header total goes dark red until room exists
     private long flashEnd = 0;
@@ -243,14 +253,113 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     }
 
     private void syncDepositWidgets() {
-        if (textFocusProxy != null) textFocusProxy.setFocused(searchFocused || shInputActive);
+        if (textFocusProxy != null) textFocusProxy.setFocused(shInputActive);
         if (depInvBtn == null || depAllBtn == null) return;
         depInvBtn.setX(depInvX); depInvBtn.setY(depY); depInvBtn.setWidth(depInvW); depInvBtn.active = permLevel >= 1;
         depAllBtn.setX(depAllX); depAllBtn.setY(depY); depAllBtn.setWidth(depAllW); depAllBtn.active = permLevel >= 1;
     }
 
+    /** Create the real search EditBox over the hand-drawn frame (called at the end of init, after layout). */
+    private void addSearchBox(boolean refocus) {
+        searchBox = new net.minecraft.client.gui.components.EditBox(this.font, searchBoxX + 3,
+                srchY + (sbH - 8) / 2, Math.max(10, searchBoxW - 6), 9, Component.literal("Search vault"));
+        searchBox.setBordered(false);
+        searchBox.setMaxLength(32);
+        searchBox.setTextColor(TEXT);
+        searchBox.setValue(searchText);           // before the responder, so restoring never triggers a rebuild
+        if (searchCaretKeep >= 0) {               // a resize rebuilt the screen: keep the caret where it was
+            int c = Math.min(searchCaretKeep, searchText.length());
+            searchBox.setCursorPosition(c);
+            searchBox.setHighlightPos(c);
+            searchCaretKeep = -1;
+        }
+        searchBox.setResponder(s -> {
+            if (s.equals(searchText)) return;
+            searchText = s;
+            ClientUiState.rememberSearch(s);
+            scrollRow = 0;
+            rebuild();
+        });
+        this.addWidget(searchBox);
+        if (refocus) this.setFocused(searchBox);
+    }
+
+    private net.minecraft.client.gui.components.Button mirror(List<net.minecraft.client.gui.components.Button> into,
+                                                              int x, int y, int w, int h, String label) {
+        net.minecraft.client.gui.components.Button b = net.minecraft.client.gui.components.Button.builder(
+                Component.literal(label), bt -> { }).bounds(x, y, w, h).build();
+        into.add(b);
+        this.addWidget(b);
+        return b;
+    }
+
+    /** Static control mirrors (positions fixed by init); the category mirrors are synced per frame. */
+    private void addControlMirrors() {
+        ctlMirrors.clear();
+        catMirrors.clear();
+        catMirrorSig = "";
+        mirror(ctlMirrors, closeX, closeY, closeSize, closeSize, "Close");
+        SortMode[] modes = SortMode.values();
+        for (int i = 0; i < 4; i++) mirror(ctlMirrors, sbX[i], sbY, sbW[i], sbH, "Sort: " + modes[i].label);
+        mirror(ctlMirrors, goX, srchY, goW2, sbH, "Search");
+        if (ctrlVisible) mirror(ctlMirrors, titlesX, ctrlY, secBoxX + secBoxW - titlesX, sbH, "Section titles");
+        mirror(ctlMirrors, sbarX, sbarTop, SB_W, SB_W, "Scroll up");
+        mirror(ctlMirrors, sbarX, sbarBottom - SB_W, SB_W, SB_W, "Scroll down");
+    }
+
+    /** Per-frame: rebuild the category mirrors when the button set changes, then follow scroll and clipping. */
+    private void syncMirrors() {
+        StringBuilder sig = new StringBuilder();
+        for (BtnCell bc : btnCells) sig.append(bc.def().key()).append(',');
+        String now = sig.toString();
+        if (!now.equals(catMirrorSig)) {
+            for (net.minecraft.client.gui.components.Button b : catMirrors) this.removeWidget(b);
+            catMirrors.clear();
+            catMirrorSig = now;
+            for (BtnCell bc : btnCells) mirror(catMirrors, bc.x(), btnTop + bc.y(), btnSize, btnSize, btnLabel(bc.def()));
+        }
+        int step = btnSize + btnGap;
+        for (int i = 0; i < catMirrors.size() && i < btnCells.size(); i++) {
+            BtnCell bc = btnCells.get(i);
+            net.minecraft.client.gui.components.Button b = catMirrors.get(i);
+            int by = btnTop + bc.y() - btnScroll * step;
+            b.setX(bc.x()); b.setY(by);
+            b.visible = by >= btnTop && by + btnSize <= btnBottom;   // clipped cells are not clickable
+        }
+        if (ctlMirrors.size() >= 2) {
+            net.minecraft.client.gui.components.Button up = ctlMirrors.get(ctlMirrors.size() - 2);
+            net.minecraft.client.gui.components.Button down = ctlMirrors.get(ctlMirrors.size() - 1);
+            up.active = scrollRow > 0;
+            down.active = true;
+        }
+    }
+
+    /** A resize / GUI-scale change rebuilds every widget and clears focus BEFORE init() runs, so the
+     *  "search box had focus" fact has to be taken here, ahead of the clear. */
+    private boolean searchRefocus;
+    private int searchCaretKeep = -1;   // caret position carried across a rebuild; -1 = none
+
+    @Override
+    protected void rebuildWidgets() {
+        searchRefocus = searchFocused();
+        searchCaretKeep = searchBox != null ? searchBox.getCursorPosition() : -1;
+        super.rebuildWidgets();
+    }
+
+    /** Vanilla hands focus to the first focusable widget after a keyboard-driven rebuild, which here would be
+     *  one of the unrendered control mirrors. The screen manages its own focus (search box / invite box). */
+    /* [[[cog
+    import compat_core
+    compat_core.emit_initial_focus(cog, ver)
+    ]]] */
+    @Override
+    protected void setInitialFocus() { }
+    /* [[[end]]] */
+
     @Override
     protected void init() {
+        boolean refocusSearch = searchRefocus;
+        searchRefocus = false;
         super.init();
         ButtonLayout.pollConfig();
         Keywords.pollConfig();
@@ -342,6 +451,8 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         pinBoxX = titlesX - 8 - pinBoxW;
         ctrlVisible = pinBoxX >= searchBoxX + 64;                  // keep a usable search box
         searchBoxW = Math.max(60, (ctrlVisible ? pinBoxX : goX) - 4 - searchBoxX);
+        addSearchBox(refocusSearch);
+        addControlMirrors();
 
         positionRealSlots();
         recomputeButtons();
@@ -1080,7 +1191,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         drawScrollbar(g, mouseX, mouseY);
 
         // global search bar (bottom of the grid column)
-        boolean sfFocused = searchFocused;
+        boolean sfFocused = searchFocused();
         g.fill(searchBoxX, srchY, searchBoxX + searchBoxW, srchY + sbH,
                sfFocused ? 0xFF1A1A28 : (inside(mouseX, mouseY, searchBoxX, srchY, searchBoxW, sbH) ? 0xFF252530 : SLOT_BG));
         int borderColor = sfFocused ? ACCENT : SUBTLE;
@@ -1088,25 +1199,11 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         g.fill(searchBoxX,                  srchY + sbH - 1, searchBoxX + searchBoxW, srchY + sbH,     borderColor);
         g.fill(searchBoxX,                  srchY,           searchBoxX + 1,          srchY + sbH,     borderColor);
         g.fill(searchBoxX + searchBoxW - 1, srchY,           searchBoxX + searchBoxW, srchY + sbH,     borderColor);
-        boolean showHint = searchText.isEmpty() && !sfFocused;
-        String displayStr = showHint ? "search entire vault..." : searchText;
-        int displayColor = showHint ? SUBTLE : TEXT;
-        int cur = Math.max(0, Math.min(searchCursor, searchText.length()));
-        int viewStart = 0;   // scroll the visible window so the insertion point stays inside the box
-        if (!showHint) {
-            while (viewStart < cur && this.font.width(searchText.substring(viewStart, cur)) > searchBoxW - 10) viewStart++;
-            displayStr = searchText.substring(viewStart);
+        if (searchText.isEmpty() && !sfFocused) {   // empty-state hint (EditBox has no era-stable hint)
+            g.text(this.font, "search entire vault...", searchBoxX + 3, srchY + (sbH - 8) / 2, SUBTLE);
         }
-        while (displayStr.length() > 1 && this.font.width(displayStr) > searchBoxW - 6) {
-            displayStr = displayStr.substring(0, displayStr.length() - 1);
-        }
-        int textDrawX = searchBoxX + 3;
-        int textDrawY = srchY + (sbH - 8) / 2;
-        g.text(this.font, displayStr, textDrawX, textDrawY, displayColor);
-        if (sfFocused && (System.currentTimeMillis() / 500) % 2 == 0) {
-            int cx = textDrawX + this.font.width(searchText.substring(viewStart, cur));
-            g.fill(cx, textDrawY - 1, cx + 1, textDrawY + 9, TEXT);
-        }
+        if (searchBox != null) g.renderWidget(searchBox, mouseX, mouseY, 0f);
+        syncMirrors();
         boolean goHov = inside(mouseX, mouseY, goX, srchY, goW2, sbH);
         g.fill(goX, srchY, goX + goW2, srchY + sbH, goHov ? 0xFF3A3A42 : WELL);
         String goIco = "\u21b5";
@@ -1344,31 +1441,12 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             }
             return true; // consume all other keys while the name field is focused
         }
-        if (searchFocused) {
-            searchCursor = Math.max(0, Math.min(searchCursor, searchText.length()));
-            int sk = event.input();   // InputConstants.KEY_* track the game's own key numbering (GLFW before 26.3, SDL scancodes from 26.3)
-            if (sk == com.mojang.blaze3d.platform.InputConstants.KEY_BACKSPACE) { // BACKSPACE
-                if (searchCursor > 0) {
-                    searchText = searchText.substring(0, searchCursor - 1) + searchText.substring(searchCursor);
-                    searchCursor--;
-                    ClientUiState.rememberSearch(searchText); rebuild();
-                }
-                return true;
-            }
-            if (sk == com.mojang.blaze3d.platform.InputConstants.KEY_DELETE) { // DELETE
-                if (searchCursor < searchText.length()) {
-                    searchText = searchText.substring(0, searchCursor) + searchText.substring(searchCursor + 1);
-                    ClientUiState.rememberSearch(searchText); rebuild();
-                }
-                return true;
-            }
-            if (sk == com.mojang.blaze3d.platform.InputConstants.KEY_LEFT) { if (searchCursor > 0) searchCursor--; return true; }
-            if (sk == com.mojang.blaze3d.platform.InputConstants.KEY_RIGHT) { if (searchCursor < searchText.length()) searchCursor++; return true; }
-            if (sk == com.mojang.blaze3d.platform.InputConstants.KEY_HOME) { searchCursor = 0; return true; }
-            if (sk == com.mojang.blaze3d.platform.InputConstants.KEY_END) { searchCursor = searchText.length(); return true; }
-            if (event.isEscape()) { searchFocused = false; return true; }
-            if (event.isConfirmation()) { searchFocused = false; return true; }
-            return true; // consume all other keys while focused
+        if (searchFocused()) {
+            // The real EditBox owns every key while focused (cursor, selection, clipboard, word jumps). Like
+            // vanilla's anvil name box we consume all of them, so E / digits / Q never reach the container.
+            if (event.isEscape() || event.isConfirmation()) { this.setFocused(null); return true; }
+            event.keyTo(searchBox);
+            return true;
         }
         /* [[[cog
         import compat_core
@@ -1393,14 +1471,8 @@ return super.keyPressed((net.minecraft.client.input.KeyEvent) event.raw());
             }
             return true;
         }
-        if (searchFocused) {
-            if (event.isAllowedChatCharacter() && searchText.length() < 32) {
-                searchCursor = Math.max(0, Math.min(searchCursor, searchText.length()));
-                searchText = searchText.substring(0, searchCursor) + event.codepointAsString() + searchText.substring(searchCursor);
-                searchCursor += event.codepointAsString().length();
-                ClientUiState.rememberSearch(searchText);
-                rebuild();
-            }
+        if (searchFocused()) {
+            event.charTo(searchBox);
             return true;
         }
         /* [[[cog
@@ -1422,7 +1494,7 @@ return super.charTyped((net.minecraft.client.input.CharacterEvent) event.raw());
     /* [[[end]]] */
         int mx = (int) event.x(), my = (int) event.y(), button = event.button();
 
-        if (!inside(mx, my, searchBoxX, srchY, searchBoxW, sbH)) searchFocused = false;
+        if (!inside(mx, my, searchBoxX, srchY, searchBoxW, sbH) && searchFocused()) this.setFocused(null);
 
         if (inside(mx, my, closeX, closeY, closeSize, closeSize)) { this.onClose(); return true; }
 
@@ -1442,10 +1514,12 @@ return super.charTyped((net.minecraft.client.input.CharacterEvent) event.raw());
 
         // search field focus + go button
         if (inside(mx, my, searchBoxX, srchY, searchBoxW, sbH)) {
-            if (!searchFocused) searchCursor = searchText.length();
-            searchFocused = true; return true;
+            if (shInputActive) shInputActive = false;
+            if (!searchFocused()) this.setFocused(searchBox);
+            event.clickTo(searchBox, doubleClick);   // places the caret / selects a word inside the text area
+            return true;
         }
-        if (inside(mx, my, goX, srchY, goW2, sbH)) { searchFocused = false; rebuild(); return true; }
+        if (inside(mx, my, goX, srchY, goW2, sbH)) { this.setFocused(null); rebuild(); return true; }
 
         // v1.2: section-titles checkbox + Pin drop box (handled BEFORE anything that could
         // treat the click as an item drop -- the cursor stack is never touched here)
@@ -1497,7 +1571,7 @@ return super.charTyped((net.minecraft.client.input.CharacterEvent) event.raw());
             boolean canInvite = permLevel >= 3;
             boolean hasInvite = !shInvites.isEmpty();
             if (inside(mx, my, shBtn1X, shBtnY, shBtn1W, SH_BTN_H)) {
-                if (canInvite) { shInputActive = true; shInputText = ""; searchFocused = false; }
+                if (canInvite) { shInputActive = true; shInputText = ""; this.setFocused(null); }
                 else if (inGroup) ClientNet.sendToServer(new ShareActionPayload(ShareActionPayload.LEAVE, "", 0));
                 return true;
             }
@@ -1622,6 +1696,7 @@ return super.mouseClicked((net.minecraft.client.input.MouseButtonEvent) event.ra
             sendGridView();
             return true;
         }
+        if (searchFocused() && event.dragTo(searchBox, dragX, dragY)) return true;   // drag-select inside the search box
         /* [[[cog
         import compat_core
         compat_core.emit_input_tail(cog, ver, "drag")

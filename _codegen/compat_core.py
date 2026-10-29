@@ -206,6 +206,7 @@ def emit_gfx(cog, ver):
         "",
         "import net.minecraft.client.gui.Font;",
         "import net.minecraft.client.gui." + G + ";",
+        "import net.minecraft.client.gui.components.AbstractWidget;",
         "import net.minecraft.client.gui.screens.inventory.InventoryScreen;",
     ] + blit_imports + [
         "import net.minecraft.network.chat.Component;",
@@ -239,6 +240,10 @@ def emit_gfx(cog, ver):
         "    public void enableScissor(int x0, int y0, int x1, int y1) { g.enableScissor(x0, y0, x1, y1); }",
         "",
         "    public void disableScissor() { g.disableScissor(); }",
+        "",
+        "    /** Draw a real vanilla widget (EditBox) inside this hand-drawn screen: 26.x names it extractRenderState. */",
+        "    public void renderWidget(AbstractWidget w, int mx, int my, float pt) { w." +
+        ("extractRenderState" if era == "26" else "render") + "(g, mx, my, pt); }",
         "",
         "    public void blitGuiTextured(Identifier tex, int x, int y, float u, float v,",
         "                                int w, int h, int tw, int th) { " + blit_body + " }",
@@ -309,6 +314,13 @@ def emit_screen_entries(cog, ver):
         cog.outl(ln)
 
 
+def emit_initial_focus(cog, ver):
+    # Screen.setInitialFocus() appeared in 1.20.5; before that there is nothing to suppress.
+    if _vt(ver) >= (1, 20, 5):
+        cog.outl("    @Override")
+        cog.outl("    protected void setInitialFocus() { }")
+
+
 def emit_ct_decl(cog, ver):
     t = click_type(ver)
     cog.outl(t + " ct = event.hasShiftDown() ? " + t + ".QUICK_MOVE : " + t + ".PICKUP;")
@@ -343,6 +355,7 @@ def emit_ev(cog, ver):
             "package com.kishku7.bankvault.client;",
             "",
             "import com.mojang.blaze3d.platform.InputConstants;",
+            "import net.minecraft.client.gui.components.AbstractWidget;",
             "import net.minecraft.client.input.CharacterEvent;",
             "import net.minecraft.client.input.KeyEvent;",
             "import net.minecraft.client.input.MouseButtonEvent;",
@@ -387,12 +400,22 @@ def emit_ev(cog, ver):
             "    }",
             "",
             "    public boolean hasShiftDown() { return ((MouseButtonEvent) raw).hasShiftDown(); }",
+            "",
+            "    /** Hand this event to a real widget (the vault search EditBox) so it edits, selects and clicks natively. */",
+            "    public boolean keyTo(AbstractWidget w) { return w.keyPressed((KeyEvent) raw); }",
+            "",
+            "    public boolean charTo(AbstractWidget w) { return w.charTyped((CharacterEvent) raw); }",
+            "",
+            "    public boolean clickTo(AbstractWidget w, boolean doubleClick) { return w.mouseClicked((MouseButtonEvent) raw, doubleClick); }",
+            "",
+            "    public boolean dragTo(AbstractWidget w, double dx, double dy) { return w.mouseDragged((MouseButtonEvent) raw, dx, dy); }",
             "}",
         ]
     else:
         lines = [
             "package com.kishku7.bankvault.client;",
             "",
+            "import net.minecraft.client.gui.components.AbstractWidget;",
             "import net.minecraft.client.gui.screens.Screen;",
             ("import net.minecraft.util.StringUtil;" if _vt(ver) >= (1, 20, 5)
              else "import net.minecraft.SharedConstants;"),
@@ -443,6 +466,14 @@ def emit_ev(cog, ver):
             "    public int button() { return button; }",
             "",
             "    public boolean hasShiftDown() { return Screen.hasShiftDown(); }",
+            "",
+            "    public boolean keyTo(AbstractWidget w) { return w.keyPressed(key, scan, mods); }",
+            "",
+            "    public boolean charTo(AbstractWidget w) { return w.charTyped((char) codepoint, mods); }",
+            "",
+            "    public boolean clickTo(AbstractWidget w, boolean doubleClick) { return w.mouseClicked(mx, my, button); }",
+            "",
+            "    public boolean dragTo(AbstractWidget w, double dx, double dy) { return w.mouseDragged(mx, my, button, dx, dy); }",
             "}",
         ]
     for ln in lines:

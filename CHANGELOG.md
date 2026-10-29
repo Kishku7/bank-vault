@@ -4,6 +4,25 @@ All notable changes to Bank Vault are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/).
 Versioning policy is universal across all Kishku7 mods and is deliberately NOT restated here.
 
+## [1.5.7] - 2026-10-29
+
+### Added
+- **`/bank api open`** (game-master only, hidden from help like the rest of `/bank api`): opens the vault
+  screen for the calling player without standing at a physical vault, replying `BV|open|OK`. It exists so
+  automation (M1) and admins can reach the screen directly; it shows the caller's own bank and nothing else.
+
+### Changed
+- **The vault search box is a real vanilla text box.** It was hand-drawn, which is why it lacked a cursor,
+  selection, copy and paste, and text-entry (IME) support, and why mods that look for a focused text field
+  (InvMove) could not see it. The frame and the empty-state hint are still drawn by the screen; the text,
+  caret, selection, word jumps, clipboard and IME come from `EditBox`. Esc and Enter still leave the box
+  first, and while it is focused every key goes to it, so E, the number keys and Q never reach the vault.
+  The unrendered focus-proxy workaround from 1.5.2 now only covers the share-invite name box.
+- **Machine-friendly controls.** The category buttons, the four sort buttons, Close, the search "go" button,
+  the Section-titles checkbox and the grid scroll arrows are now visible to widget walkers (M1 `describe` /
+  `click <id>`) as unrendered buttons that follow scrolling and clipping. Drawing and the real mouse path
+  are unchanged; a click through a mirror is claimed by the hand-drawn hit-test, so the action runs once.
+
 ## [1.5.6] - 2026-10-29
 
 ### Fixed

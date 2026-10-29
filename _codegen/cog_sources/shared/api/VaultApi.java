@@ -33,6 +33,20 @@ public final class VaultApi {
 
     private VaultApi() {}
 
+    // ---- screen ----
+
+    /** Opens the vault screen for the calling player without a physical vault (admin / automation only:
+     *  the command gates it on game-master permission, the player's own bank is the one shown). */
+    public static String open(ServerPlayer p) {
+        Bank bank = BankManager.getOrCreate(p);
+        com.kishku7.bankvault.net.ModNetworking.sendUiState(p);
+        p.openMenu(new net.minecraft.world.SimpleMenuProvider(
+                (id, inv, pl) -> new com.kishku7.bankvault.inventory.BankVaultMenu(id, inv),
+                net.minecraft.network.chat.Component.literal("Bank Vault")));
+        com.kishku7.bankvault.net.ModNetworking.sendSync(p, bank);
+        return "BV|open|OK";
+    }
+
     // ---- queries ----
 
     public static String snapshot(ServerPlayer p) {

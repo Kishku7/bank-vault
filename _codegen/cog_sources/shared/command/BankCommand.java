@@ -101,6 +101,15 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
                 // Hidden machine-readable surface for automation clients (M1). Not shown in help;
                 // plain-ASCII single-line replies via VaultApi ("BV|op|OK|..." / "BV|op|ERR|...").
                 .then(Commands.literal("api")
+                        .then(Commands.literal("open").requires(s ->
+/* [[[cog
+import compat_core
+compat_core.emit_perm_gamemaster26(cog, ver)
+]]] */
+s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER)
+/* [[[end]]] */
+                                )
+                                .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.open(p))))
                         .then(Commands.literal("snapshot")
                                 .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.snapshot(p))))
                         .then(Commands.literal("list").executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.list(p, 1)))
