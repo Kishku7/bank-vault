@@ -4,6 +4,43 @@ All notable changes to Bank Vault are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/).
 Versioning policy is universal across all Kishku7 mods and is deliberately NOT restated here.
 
+## [1.5.5] - 2026-10-29
+
+(1.5.1 - 1.5.4 were internal builds and were never released; everything listed under them below ships
+in this version.)
+
+### Fixed
+- **The search box is now properly editable.** It only ever handled Backspace-at-the-end. It now has an
+  insertion point: Left / Right / Home / End move it, Backspace and Delete work at the cursor, and typed
+  characters insert there. The view scrolls to keep the cursor visible.
+- **Root cause of Backspace never working on 26.3:** the screen compared `KeyEvent.input()` to hard-coded
+  GLFW codes (259 Backspace, 258 Tab). MC 26.3 delivers SDL scancodes (Backspace 42, Delete 76), so the
+  comparisons never matched. They now use `InputConstants.KEY_*`, which track the game's own numbering
+  in every version. This also fixes Backspace and Tab-complete in the share-invite name box.
+
+## [1.5.3] - 2026-10-29
+
+### Fixed
+- **The last global search is restored when the vault is reopened.** The tab and per-tab sort were
+  already remembered, but the search text was a per-screen field and came back empty. It is now kept
+  in `ClientUiState` for the session (not synced to the server) and restored with the tab.
+
+## [1.5.2] - 2026-10-29
+
+### Fixed
+- **Typing in the search box (and the share-invite name box) with InvMove installed.** Those boxes are
+  hand-drawn, so movement-in-GUI mods saw no focused text field, treated WASD as movement and the
+  letters never reached the box. The screen now carries an unrendered `EditBox` field whose focus
+  mirrors the custom boxes, which is what InvMove looks for.
+
+## [1.5.1] - 2026-10-29
+
+### Fixed
+- **Deposit Inventory / Deposit All are now real widgets.** The two Deposit buttons were hand-drawn
+  rectangles with a click handler, so widget walkers (the M1 driver's `describe` / `click <id>`)
+  could not see or press them. They are now invisible `Button` widgets mirroring the drawn
+  rectangles; drawing and the click path are unchanged.
+
 ## [1.5.0] - 2026-09-18
 
 ### Added

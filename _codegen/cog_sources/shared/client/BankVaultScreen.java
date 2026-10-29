@@ -108,6 +108,13 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private int closeX, closeY, closeSize = 14;
     private final int[] sbX = new int[4]; private final int[] sbW = new int[4]; private int sbY, sbH = 14;
     private int depInvX, depInvW, depAllX, depAllW, depY;   // v1.1 Deposit: [Inventory] [All]
+    // Real (unrendered) widgets mirroring the two custom-drawn Deposit buttons, so widget walkers
+    // such as M1's `describe` / `click <id>` can see and press them. Drawing stays in render().
+    private net.minecraft.client.gui.components.Button depInvBtn, depAllBtn;
+    // Never rendered or added as a child: a real EditBox FIELD that mirrors "a custom text box has focus".
+    // Movement-in-GUI mods (InvMove) find a focused EditBox by reflecting over a screen's fields; without
+    // one they treat WASD as movement and the hand-drawn search / invite boxes never receive the letters.
+    private net.minecraft.client.gui.components.EditBox textFocusProxy;
     // -- Sharing corner (v1.1) --
     private List<SharingStatePayload.Member> shMembers = new ArrayList<>();
     private List<SharingStatePayload.InviteEntry> shInvites = new ArrayList<>();
@@ -126,7 +133,8 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private int dragOffsetY;
     private int dragThumbY;
 
-    private String searchText = "";
+    private String searchText = ClientUiState.searchText();   // reopen where the player left off
+    private int searchCursor = searchText.length();            // insertion point inside searchText
     private boolean searchFocused = false;
 
     // deposit-denied feedback: grid flashes red 3x; header total goes dark red until room exists
@@ -217,6 +225,30 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         g.text(this.font, l, x + (w - this.font.width(l)) / 2, y + 3, enabled ? TEXT : SUBTLE);
     }
 
+    private void addDepositWidgets() {
+        depAllW = this.font.width("All") + 6;
+        depInvW = this.font.width("Inv") + 6;
+        depY = rpY + 68;
+        depAllX = rpX + RP_W - 8 - depAllW;
+        depInvX = depAllX - 3 - depInvW;
+        depInvBtn = net.minecraft.client.gui.components.Button.builder(Component.literal("Deposit Inventory"),
+                b -> { if (permLevel >= 1) ClientNet.sendToServer(new com.kishku7.bankvault.net.DepositAllPayload(false)); })
+                .bounds(depInvX, depY, depInvW, 11).build();
+        depAllBtn = net.minecraft.client.gui.components.Button.builder(Component.literal("Deposit All"),
+                b -> { if (permLevel >= 1) ClientNet.sendToServer(new com.kishku7.bankvault.net.DepositAllPayload(true)); })
+                .bounds(depAllX, depY, depAllW, 11).build();
+        this.addWidget(depInvBtn);
+        this.addWidget(depAllBtn);
+        textFocusProxy = new net.minecraft.client.gui.components.EditBox(this.font, 0, 0, 1, 1, Component.empty());
+    }
+
+    private void syncDepositWidgets() {
+        if (textFocusProxy != null) textFocusProxy.setFocused(searchFocused || shInputActive);
+        if (depInvBtn == null || depAllBtn == null) return;
+        depInvBtn.setX(depInvX); depInvBtn.setY(depY); depInvBtn.setWidth(depInvW); depInvBtn.active = permLevel >= 1;
+        depAllBtn.setX(depAllX); depAllBtn.setY(depY); depAllBtn.setWidth(depAllW); depAllBtn.active = permLevel >= 1;
+    }
+
     @Override
     protected void init() {
         super.init();
@@ -255,6 +287,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         rpX = px + pw - 8 - RP_W;
         rpY = contentTop;                                        // top-aligned player area
         quY = rpY + RP_H + 6;
+        addDepositWidgets();
 
         // Sharing corner (v1.1): below the quick-unload cluster and trinket rows, to the panel bottom.
         int tRowsSh = (this.menu.trinketSlotCount + 8) / 9;
@@ -1058,14 +1091,20 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         boolean showHint = searchText.isEmpty() && !sfFocused;
         String displayStr = showHint ? "search entire vault..." : searchText;
         int displayColor = showHint ? SUBTLE : TEXT;
+        int cur = Math.max(0, Math.min(searchCursor, searchText.length()));
+        int viewStart = 0;   // scroll the visible window so the insertion point stays inside the box
+        if (!showHint) {
+            while (viewStart < cur && this.font.width(searchText.substring(viewStart, cur)) > searchBoxW - 10) viewStart++;
+            displayStr = searchText.substring(viewStart);
+        }
         while (displayStr.length() > 1 && this.font.width(displayStr) > searchBoxW - 6) {
-            displayStr = displayStr.substring(1);
+            displayStr = displayStr.substring(0, displayStr.length() - 1);
         }
         int textDrawX = searchBoxX + 3;
         int textDrawY = srchY + (sbH - 8) / 2;
         g.text(this.font, displayStr, textDrawX, textDrawY, displayColor);
         if (sfFocused && (System.currentTimeMillis() / 500) % 2 == 0) {
-            int cx = textDrawX + this.font.width(displayStr);
+            int cx = textDrawX + this.font.width(searchText.substring(viewStart, cur));
             g.fill(cx, textDrawY - 1, cx + 1, textDrawY + 9, TEXT);
         }
         boolean goHov = inside(mouseX, mouseY, goX, srchY, goW2, sbH);
@@ -1106,6 +1145,7 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             depY = rpY + 68;
             depAllX = rpX + RP_W - 8 - depAllW;
             depInvX = depAllX - 3 - depInvW;
+            syncDepositWidgets();
             String dlbl = "Deposit:";
             textScaled(g, dlbl, depInvX - 5 - (int) (this.font.width(dlbl) * LBL_SCALE), depY + 2, SUBTLE, LBL_SCALE);
             boolean ihov = inside(mouseX, mouseY, depInvX, depY, depInvW, 11);
@@ -1285,12 +1325,12 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     private boolean keyPressedImpl(Ev event) {
     /* [[[end]]] */
         if (shInputActive) {
-            if (event.input() == 258) { // TAB -- rc.4 (Kishku7): accept the autocomplete
+            if (event.input() == com.mojang.blaze3d.platform.InputConstants.KEY_TAB) { // TAB -- rc.4 (Kishku7): accept the autocomplete
                 String ghost = shCompletion();
                 if (!ghost.isEmpty()) shInputText = shInputText + ghost;
                 return true;
             }
-            if (event.input() == 259) { // BACKSPACE
+            if (event.input() == com.mojang.blaze3d.platform.InputConstants.KEY_BACKSPACE) { // BACKSPACE
                 if (!shInputText.isEmpty()) shInputText = shInputText.substring(0, shInputText.length() - 1);
                 return true;
             }
@@ -1305,10 +1345,27 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             return true; // consume all other keys while the name field is focused
         }
         if (searchFocused) {
-            if (event.input() == 259) { // BACKSPACE
-                if (!searchText.isEmpty()) { searchText = searchText.substring(0, searchText.length() - 1); rebuild(); }
+            searchCursor = Math.max(0, Math.min(searchCursor, searchText.length()));
+            int sk = event.input();   // InputConstants.KEY_* track the game's own key numbering (GLFW before 26.3, SDL scancodes from 26.3)
+            if (sk == com.mojang.blaze3d.platform.InputConstants.KEY_BACKSPACE) { // BACKSPACE
+                if (searchCursor > 0) {
+                    searchText = searchText.substring(0, searchCursor - 1) + searchText.substring(searchCursor);
+                    searchCursor--;
+                    ClientUiState.rememberSearch(searchText); rebuild();
+                }
                 return true;
             }
+            if (sk == com.mojang.blaze3d.platform.InputConstants.KEY_DELETE) { // DELETE
+                if (searchCursor < searchText.length()) {
+                    searchText = searchText.substring(0, searchCursor) + searchText.substring(searchCursor + 1);
+                    ClientUiState.rememberSearch(searchText); rebuild();
+                }
+                return true;
+            }
+            if (sk == com.mojang.blaze3d.platform.InputConstants.KEY_LEFT) { if (searchCursor > 0) searchCursor--; return true; }
+            if (sk == com.mojang.blaze3d.platform.InputConstants.KEY_RIGHT) { if (searchCursor < searchText.length()) searchCursor++; return true; }
+            if (sk == com.mojang.blaze3d.platform.InputConstants.KEY_HOME) { searchCursor = 0; return true; }
+            if (sk == com.mojang.blaze3d.platform.InputConstants.KEY_END) { searchCursor = searchText.length(); return true; }
             if (event.isEscape()) { searchFocused = false; return true; }
             if (event.isConfirmation()) { searchFocused = false; return true; }
             return true; // consume all other keys while focused
@@ -1338,7 +1395,10 @@ return super.keyPressed((net.minecraft.client.input.KeyEvent) event.raw());
         }
         if (searchFocused) {
             if (event.isAllowedChatCharacter() && searchText.length() < 32) {
-                searchText = searchText + event.codepointAsString();
+                searchCursor = Math.max(0, Math.min(searchCursor, searchText.length()));
+                searchText = searchText.substring(0, searchCursor) + event.codepointAsString() + searchText.substring(searchCursor);
+                searchCursor += event.codepointAsString().length();
+                ClientUiState.rememberSearch(searchText);
                 rebuild();
             }
             return true;
@@ -1381,7 +1441,10 @@ return super.charTyped((net.minecraft.client.input.CharacterEvent) event.raw());
         }
 
         // search field focus + go button
-        if (inside(mx, my, searchBoxX, srchY, searchBoxW, sbH)) { searchFocused = true; return true; }
+        if (inside(mx, my, searchBoxX, srchY, searchBoxW, sbH)) {
+            if (!searchFocused) searchCursor = searchText.length();
+            searchFocused = true; return true;
+        }
         if (inside(mx, my, goX, srchY, goW2, sbH)) { searchFocused = false; rebuild(); return true; }
 
         // v1.2: section-titles checkbox + Pin drop box (handled BEFORE anything that could

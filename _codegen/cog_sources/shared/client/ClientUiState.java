@@ -16,8 +16,13 @@ public final class ClientUiState {
     private static final Map<String, String> sorts = new HashMap<>();
     private static final Map<String, List<String>> pins = new HashMap<>();
     private static boolean showSections = false;
+    private static String searchText = "";   // session-local: the last global search, restored on reopen
 
     private ClientUiState() {}
+
+    public static synchronized String searchText() { return searchText; }
+
+    public static synchronized void rememberSearch(String s) { searchText = s == null ? "" : s; }
 
     public static synchronized void set(String tab, List<UiStateSyncPayload.TabSort> sortList,
                                         boolean sections, List<UiStateSyncPayload.TabPins> pinList) {
