@@ -4,6 +4,17 @@ All notable changes to Bank Vault are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/).
 Versioning policy is universal across all Kishku7 mods and is deliberately NOT restated here.
 
+## [1.5.6] - 2026-10-29
+
+### Fixed
+- **Deposit Inventory / Deposit All, the vault upgrade button and every right-click did nothing with a real
+  mouse on 26.3.** 26.3 (SDL3) numbers the raw mouse buttons 1 = left, 2 = middle, 3 = right, while the
+  screen compared against 0 = left, 1 = right. The Deposit buttons (`button == 0`) never fired, a LEFT
+  click on the upgrade icon acted as a right click, and a left click in the vault grid was treated as a
+  right click (it picked up one item instead of the stack). The input shim now maps the raw button through
+  the game's own `InputConstants.MOUSE_BUTTON_*`, so the screen always sees 0 / 1 / 2. Synthetic clicks
+  (the M1 driver) send 0 and never exercised this, which is why every automated run passed.
+
 ## [1.5.5] - 2026-10-29
 
 (1.5.1 - 1.5.4 were internal builds and were never released; everything listed under them below ships
