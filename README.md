@@ -28,7 +28,7 @@ Commands (`/bank`): `list`, `invite <player>`, `accept`, `decline`, `leave`, `di
 
 ## Get it
 
-- **Source code:** [`minecraft-1.20-26.3` branch](https://github.com/Kishku7/bank-vault (build guide: `BUILDING.md`))
+- **Source code:** [Kishku7/bank-vault](https://github.com/Kishku7/bank-vault) (build guide: `BUILDING.md`)
 - **Report issues / support:** [mod_support](https://github.com/Kishku7/mod_support/issues)
 
 Ships for Fabric, NeoForge, and Forge (plus Quilt on the 1.20 - 1.21 lines), covering Minecraft

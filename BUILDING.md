@@ -1,4 +1,4 @@
-# Bank Vault - Build Guide (`minecraft-1.20-26.3` branch)
+# Bank Vault - Build Guide
 
 The single cross-version source for Bank Vault: **every playable Minecraft version from 1.20.0
 through the 26.3 snapshot**, built from one shared code base. Client + server mod. Standalone
