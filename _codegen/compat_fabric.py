@@ -222,3 +222,43 @@ def emit_tab_builder(cog, ver):
         cog.outl("        CreativeModeTab tab = new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 0)")
     else:
         cog.outl("        CreativeModeTab tab = CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)")
+
+
+# ---- menu -> screen registration: MenuScreens.register went private at 26.4 (registry based) ----
+def emit_menu_screen_compat(cog, ver):
+    if compat_core.ui264(ver):
+        body = [
+            "    static void register() {",
+            "        MenuScreens.ScreenConstructor<BankVaultMenu, BankVaultScreen> ctor = BankVaultScreen::new;",
+            "        Registry.register(BuiltInClientRegistries.MENU_SCREEN,",
+            "                BuiltInRegistries.MENU.getKey(ModMenus.BANK_VAULT), ctor);",
+            "    }",
+        ]
+        imports = [
+            "import net.minecraft.client.core.registries.BuiltInClientRegistries;",
+            "import net.minecraft.core.Registry;",
+            "import net.minecraft.core.registries.BuiltInRegistries;",
+        ]
+    else:
+        body = [
+            "    static void register() {",
+            "        MenuScreens.register(ModMenus.BANK_VAULT, BankVaultScreen::new);",
+            "    }",
+        ]
+        imports = []
+    lines = [
+        "package com.kishku7.bankvault.client;",
+        "",
+        "import com.kishku7.bankvault.inventory.BankVaultMenu;",
+        "import com.kishku7.bankvault.registry.ModMenus;",
+    ] + imports + [
+        "import net.minecraft.client.gui.screens.MenuScreens;",
+        "",
+        "/** Menu-screen registration (cog-gated: MenuScreens.register is private from 26.4). */",
+        "final class MenuScreenCompat {",
+        "",
+        "    private MenuScreenCompat() {}",
+        "",
+    ] + body + ["}"]
+    for ln in lines:
+        cog.outl(ln)

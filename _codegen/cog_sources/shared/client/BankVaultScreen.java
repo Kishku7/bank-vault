@@ -324,7 +324,12 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
             net.minecraft.client.gui.components.Button b = catMirrors.get(i);
             int by = btnTop + bc.y() - btnScroll * step;
             b.setX(bc.x()); b.setY(by);
+            /* [[[cog
+            import compat_core
+            compat_core.emit_set_visible(cog, ver, "b", "by >= btnTop && by + btnSize <= btnBottom")
+            ]]] */
             b.visible = by >= btnTop && by + btnSize <= btnBottom;   // clipped cells are not clickable
+            /* [[[end]]] */
         }
         if (ctlMirrors.size() >= 2) {
             net.minecraft.client.gui.components.Button up = ctlMirrors.get(ctlMirrors.size() - 2);
@@ -455,6 +460,11 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
         addControlMirrors();
 
         positionRealSlots();
+        /* [[[cog
+        import compat_core
+        compat_core.emit_rebuild_slot_widgets(cog, ver)
+        ]]] */
+        /* [[[end]]] */
         recomputeButtons();
         resolveSelection();
         rebuild();
@@ -1034,12 +1044,21 @@ public class BankVaultScreen extends AbstractContainerScreen<BankVaultMenu> {
     }
     /* [[[end]]] */
 
+    /* [[[cog
+    import compat_core
+    compat_core.emit_screen_helpers(cog, ver)
+    ]]] */
+    private List<Component> itemTooltip(ItemStack stack) { return this.getTooltipFromContainerItem(stack); }
+
+    private void clickSlotIdx(int idx, int button, ContainerInput ct) { this.slotClicked(this.menu.slots.get(idx), idx, button, ct); }
+    /* [[[end]]] */
+
     /** Grid-item + section-button hover tooltips (shared by every era's render entry). */
     private void renderHoverTooltips(Gfx g, int mouseX, int mouseY) {
         Entry h = gridItemAt(mouseX, mouseY);
         if (h != null) {
             if (!searchText.trim().isEmpty()) {   // searching: tell them WHERE it lives (decision 2026-06)
-                List<Component> lines = new ArrayList<>(this.getTooltipFromContainerItem(h.stack()));
+                List<Component> lines = new ArrayList<>(itemTooltip(h.stack()));
                 boolean first = true;
                 for (BtnCell bc2 : btnCells) {
                     if (!matchesDef(bc2.def(), h)) continue;
@@ -1657,14 +1676,13 @@ return super.charTyped((net.minecraft.client.input.CharacterEvent) event.raw());
             if (cell >= 0 && (carrying ? permLevel >= 1 : permLevel >= 2)) {
                 int slotIndex = BankVaultMenu.VIEW_FIRST + cell;
                 if (slotIndex < this.menu.slots.size()) {
-                    Slot vs = this.menu.slots.get(slotIndex);
                     /* [[[cog
         import compat_core
         compat_core.emit_ct_decl(cog, ver)
         ]]] */
 ContainerInput ct = event.hasShiftDown() ? ContainerInput.QUICK_MOVE : ContainerInput.PICKUP;
 /* [[[end]]] */
-                    this.slotClicked(vs, slotIndex, button, ct);
+                    clickSlotIdx(slotIndex, button, ct);
                     return true;
                 }
             }

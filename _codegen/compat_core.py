@@ -31,6 +31,12 @@ def is26(ver):
     return _vt(ver) >= (26,)
 
 
+def ui264(ver):
+    """26.4-pre-1 reworked the container screen (SlotWidget, Slot.Section), commands (serialisable
+    arguments, no requires lambda), GuiPipeline blits, BlockSoundSets and the menu-screen registry."""
+    return _vt(ver) >= (26, 4)
+
+
 def java17(ver):
     return _vt(ver) < (1, 20, 5)
 
@@ -91,7 +97,7 @@ PACK_FORMATS = {
     "1.21": 34, "1.21.1": 34, "1.21.2": 42, "1.21.3": 42, "1.21.4": 46,
     "1.21.5": 55, "1.21.6": 63, "1.21.7": 64, "1.21.8": 64,
     "1.21.9": 69, "1.21.10": 69, "1.21.11": 75,
-    "26.1": 84, "26.2": 88, "26.3": 97,  # 26.3 -> 26.3-rc-1 resource pack_format (snap-1..7 were 89..95; pre-1..rc-1 are all 97). MUST track the mc pin in scripts/build-fabric.ps1 -- the cog-materialized gen/pack.mcmeta is built from THIS value, and on a 26.3 cell gen/ replaces the cell srcDirs, so this number is the one that SHIPS.
+    "26.1": 84, "26.2": 88, "26.3": 97, "26.4": 104,  # 26.3 -> 26.3-rc-1 resource pack_format (snap-1..7 were 89..95; pre-1..rc-1 are all 97). MUST track the mc pin in scripts/build-fabric.ps1 -- the cog-materialized gen/pack.mcmeta is built from THIS value, and on a 26.3 cell gen/ replaces the cell srcDirs, so this number is the one that SHIPS.
 }
 
 
@@ -196,8 +202,13 @@ def emit_gfx(cog, ver):
             "",
             "    public void popMatrix() { g.pose().popMatrix(); }",
         ]
-        blit_body = "g.blit(RenderPipelines.GUI_TEXTURED, tex, x, y, u, v, w, h, tw, th);"
-        blit_imports = ["import net.minecraft.client.renderer.RenderPipelines;"]
+        if ui264(ver):
+            # 26.4: RenderPipelines moved out and GuiGraphicsExtractor.blit takes a GuiPipeline
+            blit_body = "g.blit(GuiPipeline.TEXTURED, tex, x, y, u, v, w, h, tw, th);"
+            blit_imports = ["import net.minecraft.client.gui.GuiPipeline;"]
+        else:
+            blit_body = "g.blit(RenderPipelines.GUI_TEXTURED, tex, x, y, u, v, w, h, tw, th);"
+            blit_imports = ["import net.minecraft.client.renderer.RenderPipelines;"]
     lines = [
         "package com.kishku7.bankvault.client;",
         "",
@@ -242,8 +253,9 @@ def emit_gfx(cog, ver):
         "    public void disableScissor() { g.disableScissor(); }",
         "",
         "    /** Draw a real vanilla widget (EditBox) inside this hand-drawn screen: 26.x names it extractRenderState. */",
-        "    public void renderWidget(AbstractWidget w, int mx, int my, float pt) { w." +
-        ("extractRenderState" if era == "26" else "render") + "(g, mx, my, pt); }",
+        "    public void renderWidget(AbstractWidget w, int mx, int my, float pt) { " +
+        ("w.extractRenderState(g); }" if ui264(ver) else
+         "w." + ("extractRenderState" if era == "26" else "render") + "(g, mx, my, pt); }"),
         "",
         "    public void blitGuiTextured(Identifier tex, int x, int y, float u, float v,",
         "                                int w, int h, int tw, int th) { " + blit_body + " }",
@@ -257,7 +269,9 @@ def emit_gfx(cog, ver):
         "",
         "    public void entityInInventoryFollowsMouse(int x1, int y1, int x2, int y2, int scale, float yOff,",
         "                                              float mouseX, float mouseY, LivingEntity entity) {",
-        ("        " + ent_call + "(g, x1, y1, x2, y2, scale, yOff, mouseX, mouseY, entity);"
+        ("        net.minecraft.client.gui.screens.social.EntityPortraitWidget.extractEntityInInventoryFollowsMouse(g, x1, y1, x2, y2, scale, yOff, entity);"
+         if ui264(ver) else
+         "        " + ent_call + "(g, x1, y1, x2, y2, scale, yOff, mouseX, mouseY, entity);"
          if _vt(ver) >= (1, 20, 2) else
          "        " + ent_call + "(g, (x1 + x2) / 2, y2, scale, (x1 + x2) / 2.0F - mouseX, (y1 + y2) / 2.0F - 25 - mouseY, entity);"),
         "    }",
@@ -269,7 +283,23 @@ def emit_gfx(cog, ver):
 
 # ---- BankVaultScreen render entry points (the 26 extract era vs the pre-26 render/renderBg era) ----
 def emit_screen_entries(cog, ver):
-    if is26(ver):
+    if ui264(ver):
+        # 26.4: AbstractContainerScreen draws SlotWidgets (absolute coordinates, own highlight and
+        # tooltip); the mouse position rides on the extractor, so no translate and no hoveredSlot.
+        lines = [
+            "    @Override",
+            "    public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor gg) {",
+            "        int mouseX = gg.mouseX();",
+            "        int mouseY = gg.mouseY();",
+            "        Gfx g = Gfx.of(gg);",
+            "        g.fill(0, 0, this.width, this.height, OVERLAY);",
+            "        drawCustom(g, mouseX, mouseY);",
+            "        this.extractSlots(gg);",
+            "        this.extractCarriedItem(gg);",
+            "        renderHoverTooltips(g, mouseX, mouseY);",
+            "    }",
+        ]
+    elif is26(ver):
         lines = [
             "    @Override",
             "    public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor gg, int mouseX, int mouseY, float partialTick) {",
@@ -327,7 +357,162 @@ def emit_ct_decl(cog, ver):
 
 
 def emit_slotclicked_pickup(cog, ver):
-    cog.outl("this.slotClicked(this.menu.slots.get(idx), idx, 0, " + click_type(ver) + ".PICKUP);")
+    cog.outl("clickSlotIdx(idx, 0, " + click_type(ver) + ".PICKUP);")
+
+
+def emit_screen_helpers(cog, ver):
+    # 26.4: slotClicked takes a (nullable) SlotWidget and re-derives the slot id from it, so a
+    # click on an off-screen view slot passes null + the raw index. Item tooltips are static now.
+    if ui264(ver):
+        cog.outl("    private List<Component> itemTooltip(ItemStack stack) { return net.minecraft.client.gui.screens.Screen.getTooltipFromItem(this.minecraft, stack); }")
+        cog.outl("")
+        cog.outl("    private void clickSlotIdx(int idx, int button, " + click_type(ver) + " ct) { this.slotClicked(null, idx, button, ct); }")
+    else:
+        cog.outl("    private List<Component> itemTooltip(ItemStack stack) { return this.getTooltipFromContainerItem(stack); }")
+        cog.outl("")
+        cog.outl("    private void clickSlotIdx(int idx, int button, " + click_type(ver) + " ct) { this.slotClicked(this.menu.slots.get(idx), idx, button, ct); }")
+
+
+def emit_rebuild_slot_widgets(cog, ver):
+    # 26.4: SlotWidgets are built from Slot.x/y at construction, so rebuild them once the
+    # screen has moved every real slot into place.
+    if ui264(ver):
+        cog.outl("        this.updateSlotWidgets();")
+
+
+def emit_set_visible(cog, ver, var, expr):
+    # AbstractWidget.visible went protected at 26.4 (setVisible is the public surface)
+    if ui264(ver):
+        cog.outl("            " + var + ".setVisible(" + expr + ");   // clipped cells are not clickable")
+    else:
+        cog.outl("            " + var + ".visible = " + expr + ";   // clipped cells are not clickable")
+
+
+# ---- Slot.Section: every Slot needs one from 26.4; BvSlot hides the ctor drift ----
+def emit_bvslot(cog, ver):
+    if ui264(ver):
+        c = "super(c, i, x, y, kind == 'i' ? Slot.Section.INVENTORY : kind == 'h' ? Slot.Section.HOTBAR : Slot.Section.CONTAINER);"
+    else:
+        c = "super(c, i, x, y);"
+    for ln in [
+        "package com.kishku7.bankvault.inventory;",
+        "",
+        "import net.minecraft.world.Container;",
+        "import net.minecraft.world.inventory.Slot;",
+        "",
+        "/** Slot with a stable constructor: 26.4 demands a Slot.Section (used for narration groups and",
+        " *  tab order); kind is 'i' inventory, 'h' hotbar, anything else container. Older eras ignore it. */",
+        "public class BvSlot extends Slot {",
+        "",
+        "    public BvSlot(Container c, int i, int x, int y) { this(c, i, x, y, 'c'); }",
+        "",
+        "    public BvSlot(Container c, int i, int x, int y, char kind) {",
+        "        " + c,
+        "    }",
+        "}",
+    ]:
+        cog.outl(ln)
+
+
+# ---- command tree: 26.4 needs serialisable argument types and takes no requires() lambda ----
+def emit_command_compat(cog, ver):
+    if ui264(ver):
+        word = "net.minecraft.commands.arguments.StringArgument.word()"
+        greedy = "net.minecraft.commands.arguments.StringArgument.greedyString()"
+        gets = "net.minecraft.commands.arguments.StringArgument.getString(ctx, name)"
+        ints = ["net.minecraft.commands.arguments.IntegerArgument.integer(min)",
+                "net.minecraft.commands.arguments.IntegerArgument.integer(min, max)"]
+        geti = "net.minecraft.commands.arguments.IntegerArgument.getInteger(ctx, name)"
+        suggest = "net.minecraft.commands.suggestions.SuggestionContext.suggest(values, builder)"
+        prov = ["    @SuppressWarnings(\"unchecked\")",
+                "    static SuggestionProvider<CommandSourceStack> provider(SuggestionProvider<CommandSourceStack> p) {",
+                "        return net.minecraft.commands.suggestions.SuggestionProviders.serverOnly(",
+                "                (server, context, builder) -> p.getSuggestions(",
+                "                        (CommandContext<CommandSourceStack>) (CommandContext<?>) context, builder));",
+                "    }"]
+        req = ["    static <T extends ArgumentBuilder<CommandSourceStack, T>> T requires(T node, Predicate<CommandSourceStack> p) {",
+               "        return node;",
+               "    }"]
+    else:
+        word = "com.mojang.brigadier.arguments.StringArgumentType.word()"
+        greedy = "com.mojang.brigadier.arguments.StringArgumentType.greedyString()"
+        gets = "com.mojang.brigadier.arguments.StringArgumentType.getString(ctx, name)"
+        ints = ["com.mojang.brigadier.arguments.IntegerArgumentType.integer(min)",
+                "com.mojang.brigadier.arguments.IntegerArgumentType.integer(min, max)"]
+        geti = "com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(ctx, name)"
+        suggest = "net.minecraft.commands.SharedSuggestionProvider.suggest(values, builder)"
+        prov = ["    static SuggestionProvider<CommandSourceStack> provider(SuggestionProvider<CommandSourceStack> p) {",
+                "        return p;",
+                "    }"]
+        req = ["    static <T extends ArgumentBuilder<CommandSourceStack, T>> T requires(T node, Predicate<CommandSourceStack> p) {",
+               "        return node.requires(p);",
+               "    }"]
+    if modern_perms(ver):
+        perm = "s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER)"
+    else:
+        perm = "s.hasPermission(2)"
+    for ln in [
+        "package com.kishku7.bankvault.command;",
+        "",
+        "import com.mojang.brigadier.arguments.ArgumentType;",
+        "import com.mojang.brigadier.builder.ArgumentBuilder;",
+        "import com.mojang.brigadier.context.CommandContext;",
+        "import com.mojang.brigadier.suggestion.SuggestionProvider;",
+        "import com.mojang.brigadier.suggestion.Suggestions;",
+        "import com.mojang.brigadier.suggestion.SuggestionsBuilder;",
+        "import java.util.concurrent.CompletableFuture;",
+        "import java.util.function.Predicate;",
+        "import java.util.function.ToIntFunction;",
+        "import net.minecraft.commands.CommandSourceStack;",
+        "import net.minecraft.network.chat.Component;",
+        "",
+        "/** Command-tree pieces whose shape changed at 26.4 (cog-gated): argument types, the suggestion",
+        " *  helper and provider wrapper, and node visibility. From 26.4 the tree must be serialisable, so",
+        " *  raw Brigadier argument types and lambda providers are rejected and requires() is gone; every",
+        " *  op-only executor therefore re-checks its permission through gm(). */",
+        "final class CommandCompat {",
+        "",
+        "    private CommandCompat() {}",
+        "",
+        "    static ArgumentType<String> word() { return " + word + "; }",
+        "",
+        "    static ArgumentType<String> greedy() { return " + greedy + "; }",
+        "",
+        "    static String getString(CommandContext<?> ctx, String name) { return " + gets + "; }",
+        "",
+        "    static ArgumentType<Integer> integer(int min) { return " + ints[0] + "; }",
+        "",
+        "    static ArgumentType<Integer> integer(int min, int max) { return " + ints[1] + "; }",
+        "",
+        "    static int getInteger(CommandContext<?> ctx, String name) { return " + geti + "; }",
+        "",
+        "    static CompletableFuture<Suggestions> suggest(Iterable<String> values, SuggestionsBuilder builder) {",
+        "        return " + suggest + ";",
+        "    }",
+        "",
+    ] + prov + [""] + req + [
+        "",
+        "    /** Op-only guard for an executor (the permission check requires() used to carry). */",
+        "    static int gm(CommandContext<CommandSourceStack> c, ToIntFunction<CommandSourceStack> op) {",
+        "        CommandSourceStack s = c.getSource();",
+        "        if (!(" + perm + ")) {",
+        "            s.sendFailure(Component.literal(\"You do not have permission to use this command.\"));",
+        "            return 0;",
+        "        }",
+        "        return op.applyAsInt(s);",
+        "    }",
+        "}",
+    ]:
+        cog.outl(ln)
+
+
+def emit_block_sound(cog, ver):
+    # 26.4: SoundType is gone; a block takes a ResourceKey<BlockSoundSet> from BlockSoundSets
+    if ui264(ver):
+        cog.outl("                .sound(net.minecraft.world.level.block.sounds.BlockSoundSets.METAL)")
+    else:
+        cog.outl("                .sound(net.minecraft.world.level.block.SoundType.METAL)")
+
 
 
 # ---- input-record era: MouseButtonEvent/KeyEvent/CharacterEvent exist from 1.21.9 ----

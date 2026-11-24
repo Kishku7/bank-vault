@@ -6,11 +6,8 @@ import com.kishku7.bankvault.vault.Catalog;
 import com.kishku7.bankvault.vault.StackStore;
 import com.kishku7.bankvault.vault.VaultCapacity;
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.core.RegistryAccess;
 /* [[[cog
 import compat_core
@@ -55,23 +52,23 @@ public final class BankCommand {
                 .executes(c -> info(c.getSource()))
                 .then(Commands.literal("list").executes(c -> list(c.getSource())))
                 .then(Commands.literal("invite")
-                        .then(Commands.argument("player", StringArgumentType.word()).suggests(BankCommand::players)
-                                .executes(c -> invite(c.getSource(), StringArgumentType.getString(c, "player"), 2))
-                                .then(Commands.argument("level", IntegerArgumentType.integer(1, 3))
-                                        .executes(c -> invite(c.getSource(), StringArgumentType.getString(c, "player"),
-                                                IntegerArgumentType.getInteger(c, "level"))))))
+                        .then(Commands.argument("player", CommandCompat.word()).suggests(CommandCompat.provider(BankCommand::players))
+                                .executes(c -> invite(c.getSource(), CommandCompat.getString(c, "player"), 2))
+                                .then(Commands.argument("level", CommandCompat.integer(1, 3))
+                                        .executes(c -> invite(c.getSource(), CommandCompat.getString(c, "player"),
+                                                CommandCompat.getInteger(c, "level"))))))
                 .then(Commands.literal("accept").executes(c -> accept(c.getSource(), null))
-                        .then(Commands.argument("player", StringArgumentType.word()).suggests(BankCommand::inviters)
-                                .executes(c -> accept(c.getSource(), StringArgumentType.getString(c, "player")))))
+                        .then(Commands.argument("player", CommandCompat.word()).suggests(CommandCompat.provider(BankCommand::inviters))
+                                .executes(c -> accept(c.getSource(), CommandCompat.getString(c, "player")))))
                 .then(Commands.literal("decline").executes(c -> simple(c.getSource(), BankManager::decline))
-                        .then(Commands.argument("player", StringArgumentType.word()).suggests(BankCommand::inviters)
+                        .then(Commands.argument("player", CommandCompat.word()).suggests(CommandCompat.provider(BankCommand::inviters))
                                 .executes(c -> simple(c.getSource(),
-                                        p -> BankManager.decline(p, StringArgumentType.getString(c, "player"))))))
+                                        p -> BankManager.decline(p, CommandCompat.getString(c, "player"))))))
                 .then(Commands.literal("leave").executes(c -> simple(c.getSource(), BankManager::leave)))
                 .then(Commands.literal("disband").executes(c -> simple(c.getSource(), BankManager::disband)))
                 .then(Commands.literal("upgrade")
                         .executes(c -> upgrade(c.getSource())))
-                .then(Commands.literal("fillall").requires(s ->
+                .then(CommandCompat.requires(Commands.literal("fillall"), s ->
 /* [[[cog
 import compat_core
 compat_core.emit_perm_gamemaster26(cog, ver)
@@ -79,8 +76,8 @@ compat_core.emit_perm_gamemaster26(cog, ver)
 s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER)
 /* [[[end]]] */
                         )
-                        .executes(c -> fillAll(c.getSource())))
-                .then(Commands.literal("clearall").requires(s ->
+                        .executes(c -> CommandCompat.gm(c, BankCommand::fillAll)))
+                .then(CommandCompat.requires(Commands.literal("clearall"), s ->
 /* [[[cog
 import compat_core
 compat_core.emit_perm_gamemaster26(cog, ver)
@@ -88,8 +85,8 @@ compat_core.emit_perm_gamemaster26(cog, ver)
 s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER)
 /* [[[end]]] */
                         )
-                        .executes(c -> clearAll(c.getSource())))
-                .then(Commands.literal("reload").requires(s ->
+                        .executes(c -> CommandCompat.gm(c, BankCommand::clearAll)))
+                .then(CommandCompat.requires(Commands.literal("reload"), s ->
 /* [[[cog
 import compat_core
 compat_core.emit_perm_gamemaster26(cog, ver)
@@ -97,11 +94,11 @@ compat_core.emit_perm_gamemaster26(cog, ver)
 s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER)
 /* [[[end]]] */
                         )
-                        .executes(c -> reloadCatalog(c.getSource())))
+                        .executes(c -> CommandCompat.gm(c, BankCommand::reloadCatalog)))
                 // Hidden machine-readable surface for automation clients (M1). Not shown in help;
                 // plain-ASCII single-line replies via VaultApi ("BV|op|OK|..." / "BV|op|ERR|...").
                 .then(Commands.literal("api")
-                        .then(Commands.literal("open").requires(s ->
+                        .then(CommandCompat.requires(Commands.literal("open"), s ->
 /* [[[cog
 import compat_core
 compat_core.emit_perm_gamemaster26(cog, ver)
@@ -109,43 +106,43 @@ compat_core.emit_perm_gamemaster26(cog, ver)
 s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMANDS_GAMEMASTER)
 /* [[[end]]] */
                                 )
-                                .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.open(p))))
+                                .executes(c -> CommandCompat.gm(c, src -> api(src, p -> com.kishku7.bankvault.api.VaultApi.open(p)))))
                         .then(Commands.literal("snapshot")
                                 .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.snapshot(p))))
                         .then(Commands.literal("list").executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.list(p, 1)))
-                                .then(Commands.argument("page", IntegerArgumentType.integer(1))
-                                        .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.list(p, IntegerArgumentType.getInteger(c, "page"))))))
+                                .then(Commands.argument("page", CommandCompat.integer(1))
+                                        .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.list(p, CommandCompat.getInteger(c, "page"))))))
                         .then(Commands.literal("count")
-                                .then(Commands.argument("key", StringArgumentType.greedyString())
-                                        .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.count(p, StringArgumentType.getString(c, "key"))))))
+                                .then(Commands.argument("key", CommandCompat.greedy())
+                                        .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.count(p, CommandCompat.getString(c, "key"))))))
                         .then(Commands.literal("find")
-                                .then(Commands.argument("query", StringArgumentType.greedyString())
-                                        .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.find(p, StringArgumentType.getString(c, "query"))))))
+                                .then(Commands.argument("query", CommandCompat.greedy())
+                                        .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.find(p, CommandCompat.getString(c, "query"))))))
                         .then(Commands.literal("withdraw")
-                                .then(Commands.argument("count", IntegerArgumentType.integer(1))
-                                        .then(Commands.argument("key", StringArgumentType.greedyString())
-                                                .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.withdraw(p, StringArgumentType.getString(c, "key"), IntegerArgumentType.getInteger(c, "count")))))))
+                                .then(Commands.argument("count", CommandCompat.integer(1))
+                                        .then(Commands.argument("key", CommandCompat.greedy())
+                                                .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.withdraw(p, CommandCompat.getString(c, "key"), CommandCompat.getInteger(c, "count")))))))
                         .then(Commands.literal("deposit")
-                                .then(Commands.argument("count", IntegerArgumentType.integer(0))
-                                        .then(Commands.argument("what", StringArgumentType.greedyString())
-                                                .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.deposit(p, StringArgumentType.getString(c, "what"), IntegerArgumentType.getInteger(c, "count"))))))))
+                                .then(Commands.argument("count", CommandCompat.integer(0))
+                                        .then(Commands.argument("what", CommandCompat.greedy())
+                                                .executes(c -> api(c.getSource(), p -> com.kishku7.bankvault.api.VaultApi.deposit(p, CommandCompat.getString(c, "what"), CommandCompat.getInteger(c, "count"))))))))
                 .then(Commands.literal("withdraw")
-                        .then(Commands.argument("count", IntegerArgumentType.integer(1))
-                                .then(Commands.argument("item", StringArgumentType.greedyString())
+                        .then(Commands.argument("count", CommandCompat.integer(1))
+                                .then(Commands.argument("item", CommandCompat.greedy())
                                         .executes(c -> withdraw(c.getSource(),
-                                                IntegerArgumentType.getInteger(c, "count"),
-                                                StringArgumentType.getString(c, "item"))))))
+                                                CommandCompat.getInteger(c, "count"),
+                                                CommandCompat.getString(c, "item"))))))
                 .then(Commands.literal("setlevel")
-                        .then(Commands.argument("player", StringArgumentType.word()).suggests(BankCommand::players)
-                                .then(Commands.argument("level", IntegerArgumentType.integer(1, 3))
-                                        .executes(c -> withTarget(c.getSource(), StringArgumentType.getString(c, "player"),
-                                                (a, id, n) -> BankManager.setLevel(a, id, n, IntegerArgumentType.getInteger(c, "level")))))))
+                        .then(Commands.argument("player", CommandCompat.word()).suggests(CommandCompat.provider(BankCommand::players))
+                                .then(Commands.argument("level", CommandCompat.integer(1, 3))
+                                        .executes(c -> withTarget(c.getSource(), CommandCompat.getString(c, "player"),
+                                                (a, id, n) -> BankManager.setLevel(a, id, n, CommandCompat.getInteger(c, "level")))))))
                 .then(Commands.literal("kick")
-                        .then(Commands.argument("player", StringArgumentType.word()).suggests(BankCommand::players)
-                                .executes(c -> withTarget(c.getSource(), StringArgumentType.getString(c, "player"), BankManager::kick))))
+                        .then(Commands.argument("player", CommandCompat.word()).suggests(CommandCompat.provider(BankCommand::players))
+                                .executes(c -> withTarget(c.getSource(), CommandCompat.getString(c, "player"), BankManager::kick))))
                 .then(Commands.literal("transfer")
-                        .then(Commands.argument("player", StringArgumentType.word()).suggests(BankCommand::players)
-                                .executes(c -> withTarget(c.getSource(), StringArgumentType.getString(c, "player"), BankManager::transfer)))));
+                        .then(Commands.argument("player", CommandCompat.word()).suggests(CommandCompat.provider(BankCommand::players))
+                                .executes(c -> withTarget(c.getSource(), CommandCompat.getString(c, "player"), BankManager::transfer)))));
     }
 
     private interface SimpleOp { String apply(ServerPlayer p); }
@@ -330,7 +327,7 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
         ServerPlayer p = ctx.getSource().getPlayer();
         List<String> names = p == null ? List.of()
                 : BankManager.pendingInvites(p.getUUID()).stream().map(i -> i.inviterName).distinct().toList();
-        return SharedSuggestionProvider.suggest(names, builder);
+        return CommandCompat.suggest(names, builder);
     }
 
     private static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> players(
@@ -338,7 +335,7 @@ s.permissions().hasPermission(net.minecraft.server.permissions.Permissions.COMMA
             com.mojang.brigadier.suggestion.SuggestionsBuilder builder) {
         List<String> names = ctx.getSource().getServer().getPlayerList().getPlayers().stream()
                 .map(pl -> pl.getGameProfile().name()).toList();
-        return SharedSuggestionProvider.suggest(names, builder);
+        return CommandCompat.suggest(names, builder);
     }
 
     /** Op-only test utility: deposits 1 of every cataloged item plus every NBT variant the

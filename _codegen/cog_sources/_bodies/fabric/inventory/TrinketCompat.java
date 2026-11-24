@@ -39,7 +39,7 @@ public final class TrinketCompat {
             for (int i = 0; i < ti.getContainerSize(); i++) {
                 final TrinketInventory inv = ti;
                 final int idx = i;
-                menu.addTrinketSlotDirect(new Slot(inv, idx, -9999, -9999) {
+                menu.addTrinketSlotDirect(new BvSlot(inv, idx, -9999, -9999) {
                     @Override public boolean mayPlace(ItemStack stack) {
                         try {
                             return inv.slotType().validatorCheck(stack, inv.getOrCreateSlotAccess(idx), player);

@@ -4,6 +4,12 @@ All notable changes to Bank Vault are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/).
 Versioning policy is universal across all Kishku7 mods and is deliberately NOT restated here.
 
+## [1.6.0] - 2026-11-24 (Fabric 26.4 cell only)
+
+### Added
+- **Minecraft 26.4 (pre-release 1) support on Fabric.** New 26.4 cell, pinned to 26.4-pre-1 (pack_format 104). The jar
+  accepts 26.4-pre.1 only, like every pre-release build of a new line; the other lines are not rebuilt.
+
 ## [1.5.7] - 2026-10-29
 
 ### Added

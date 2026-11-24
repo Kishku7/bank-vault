@@ -108,16 +108,16 @@ public class BankVaultMenu extends AbstractContainerMenu {
         // 0..26 main, 27..35 hotbar (positions are set by the screen each init())
         for (int r = 0; r < 3; r++)
             for (int c = 0; c < 9; c++)
-                addSlot(new Slot(inv, 9 + r * 9 + c, 0, 0));
+                addSlot(new BvSlot(inv, 9 + r * 9 + c, 0, 0, 'i'));
         for (int c = 0; c < 9; c++)
-            addSlot(new Slot(inv, c, 0, 0));
-        addSlot(new Slot(io, 0, 0, 0) {
+            addSlot(new BvSlot(inv, c, 0, 0, 'h'));
+        addSlot(new BvSlot(io, 0, 0, 0) {
             @Override public boolean mayPlace(ItemStack stack) { return ContainerExtractor.isContainerType(stack); }
         });
-        addSlot(new Slot(io, 1, 0, 0) {
+        addSlot(new BvSlot(io, 1, 0, 0) {
             @Override public boolean mayPlace(ItemStack stack) { return false; }   // grab-me is output-only
         });
-        addSlot(new Slot(upg, 0, 0, 0) {
+        addSlot(new BvSlot(upg, 0, 0, 0) {
             @Override public boolean mayPlace(ItemStack stack) { return stack.getItem() == Items.CHEST; }
         });
         // 39..42 armor + 43 offhand -- bound to the player's real equipment
@@ -128,7 +128,7 @@ public class BankVaultMenu extends AbstractContainerMenu {
             ]]] */
             addSlot(new ArmorSlot(inv, inv.player, ARMOR_ORDER[i], ARMOR_INV_INDEX[i], 0, 0, ARMOR_ICONS[i]));
             /* [[[end]]] */
-        addSlot(new Slot(inv, Inventory.SLOT_OFFHAND, 0, 0) {
+        addSlot(new BvSlot(inv, Inventory.SLOT_OFFHAND, 0, 0) {
             /* [[[cog
             import compat_core
             compat_core.emit_no_item_icon_shield(cog, ver)
@@ -137,11 +137,11 @@ public class BankVaultMenu extends AbstractContainerMenu {
             /* [[[end]]] */
         });
         // 44..52 full 3x3 crafting grid + 53 result (the vault doubles as a crafting table)
-        for (int i = 0; i < 9; i++) addSlot(new Slot(craftSlots, i, 0, 0));
+        for (int i = 0; i < 9; i++) addSlot(new BvSlot(craftSlots, i, 0, 0));
         addSlot(new ResultSlot(inv.player, craftSlots, resultSlots, 0, 0, 0));
         // 54 pin: a REAL slot so drop-to-pin rides the vanilla click transaction (see clicked()).
         // Invisible and inactive -- the screen routes Pin-box clicks and drag-releases here.
-        addSlot(new Slot(pinBacking, 0, -9999, -9999) {
+        addSlot(new BvSlot(pinBacking, 0, -9999, -9999) {
             @Override public boolean mayPlace(ItemStack stack) { return false; }
             @Override public boolean mayPickup(Player player) { return false; }
             @Override public boolean isActive() { return false; }
@@ -149,7 +149,7 @@ public class BankVaultMenu extends AbstractContainerMenu {
         // 49.. view slots: real Slots so vanilla container clicks are valid, but invisible
         // (off-screen + inactive) so they never render or get hovered.
         for (int i = 0; i < VIEW_SIZE; i++) {
-            addSlot(new Slot(viewBacking, i, -9999, -9999) {
+            addSlot(new BvSlot(viewBacking, i, -9999, -9999) {
                 @Override public boolean mayPlace(ItemStack stack) { return false; }
                 @Override public boolean mayPickup(Player player) { return false; }
                 @Override public boolean isActive() { return false; }

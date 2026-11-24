@@ -8,7 +8,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
@@ -27,7 +26,12 @@ public final class ModBlocks {
     private static Block.Properties props(String name) {
         return Block.Properties.of()
                 .mapColor(MapColor.METAL)
-                .sound(SoundType.METAL)
+                /* [[[cog
+                import compat_core
+                compat_core.emit_block_sound(cog, ver)
+                ]]] */
+                .sound(net.minecraft.world.level.block.SoundType.METAL)
+                /* [[[end]]] */
                 .strength(50.0F, 1200.0F)
                 .requiresCorrectToolForDrops()
                 /* [[[cog

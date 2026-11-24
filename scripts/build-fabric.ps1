@@ -15,6 +15,8 @@ $matrix = [ordered]@{
   # UNCHANGED at 97 -- it settled at pre-1 and held through pre-2, pre-3, rc-1 and release -- so the
   # rc-1 binary's resources were already correct and only the PIN was wrong.
   "26.3" = @{mc = "26.3";             api = "0.161.0+26.3";   loader = "0.19.5"; lo = "26.3-";        hi = "26.4";         pf = 97 }
+  # 26.4 is still in pre-release: exclusive single-build window (pack_format 104 read from 26.4-pre-1's own version.json).
+  "26.4" = @{mc = "26.4-pre-1";       api = "0.167.1+26.4";   loader = "0.19.5"; lo = "26.4-pre.1"; hi = "26.4-pre.2"; pf = 104 }
 }
 
 $targets = if ($Only -and $Only.Count -gt 0) { $Only } else { $pre26 + @($matrix.Keys) }

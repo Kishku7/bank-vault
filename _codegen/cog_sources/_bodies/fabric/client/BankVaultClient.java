@@ -4,11 +4,9 @@ import com.kishku7.bankvault.BankVault;
 import com.kishku7.bankvault.net.SharingStatePayload;
 import com.kishku7.bankvault.net.UiStateSyncPayload;
 import com.kishku7.bankvault.net.VaultSyncPayload;
-import com.kishku7.bankvault.registry.ModMenus;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.MenuScreens;
 
 public class BankVaultClient implements ClientModInitializer {
 
@@ -16,7 +14,7 @@ public class BankVaultClient implements ClientModInitializer {
     public void onInitializeClient() {
         BankVault.LOGGER.info("[Bank Vault] client initializing");
 
-        MenuScreens.register(ModMenus.BANK_VAULT, BankVaultScreen::new);
+        MenuScreenCompat.register();
 
         // The screen is created by the menu open; this packet carries the virtual vault grid contents.
         ClientPlayNetworking.registerGlobalReceiver(VaultSyncPayload.TYPE, (payload, context) ->
